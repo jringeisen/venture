@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Student\Prompts;
 
-use App\Models\Prompt;
-use Illuminate\Http\Request;
-use App\Services\OpenAIService;
 use App\Http\Controllers\Controller;
+use App\Models\Prompt;
+use App\Services\OpenAIService;
+use Illuminate\Http\Request;
 
 class GetSubjectController extends Controller
 {

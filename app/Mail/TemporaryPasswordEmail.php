@@ -6,8 +6,8 @@ use App\Models\Student;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
 
 class TemporaryPasswordEmail extends Mailable
 {
@@ -16,7 +16,8 @@ class TemporaryPasswordEmail extends Mailable
     public function __construct(
         public Student $student,
         public string $temporary_password
-    ){}
+    ) {
+    }
 
     public function envelope(): Envelope
     {

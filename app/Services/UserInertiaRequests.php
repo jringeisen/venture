@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
-use Tightenco\Ziggy\Ziggy;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Tightenco\Ziggy\Ziggy;
 
-class UserInertiaRequests {
-
-    public function __invoke(Request $request) {
+class UserInertiaRequests
+{
+    public function __invoke(Request $request)
+    {
         return [
             'auth' => [
                 'type' => 'teacher',
@@ -34,7 +35,7 @@ class UserInertiaRequests {
 
     protected function students(): ?array
     {
-        if (!request()->user()?->students) {
+        if (! request()->user()?->students) {
             return null;
         }
 
@@ -43,7 +44,7 @@ class UserInertiaRequests {
                 'id' => $student->id,
                 'name' => $student->name,
                 'initial' => strtoupper(Str::substr($student->name, 0, 1)),
-                'href' => '/students/' . $student->id,
+                'href' => '/students/'.$student->id,
                 'icon' => folderSvgIcon(),
             ];
         })->toArray();

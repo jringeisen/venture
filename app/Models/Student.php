@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Student extends Authenticatable
 {
@@ -15,7 +15,7 @@ class Student extends Authenticatable
         'password',
         'grade',
         'age',
-        'is_temporary_password'
+        'is_temporary_password',
     ];
 
     protected $hidden = [

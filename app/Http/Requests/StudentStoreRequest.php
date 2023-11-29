@@ -17,7 +17,7 @@ class StudentStoreRequest extends FormRequest
             'name' => 'required|min:3|max:255',
             'email' => 'required|email|min:3|max:255',
             'grade' => 'required|numeric|min:1|max:12',
-            'age' => 'required|numeric|min:5|max:19'
+            'age' => 'required|numeric|min:5|max:19',
         ];
     }
 }

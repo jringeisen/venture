@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                $route = match($guard){
+                $route = match ($guard) {
                     'student' => RouteServiceProvider::STUDENT_HOME,
                     default => RouteServiceProvider::HOME,
                 };

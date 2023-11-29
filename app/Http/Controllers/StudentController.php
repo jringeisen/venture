@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use Inertia\Response;
-use App\Models\Student;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Http\Requests\StudentStoreRequest;
+use App\Http\Resources\StudentResource;
 use App\Mail\TemporaryPasswordEmail;
+use App\Models\Student;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\TempoararyPasswordEmail;
-use Illuminate\Http\RedirectResponse;
-use App\Http\Resources\StudentResource;
-use App\Http\Requests\StudentStoreRequest;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class StudentController extends Controller
 {

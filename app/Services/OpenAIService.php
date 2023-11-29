@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
-use App\Models\User;
 use App\Models\Student;
+use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class OpenAIService
 {
     protected array $messages = [];
+
     protected Student|User $user;
 
     public function create(): array
@@ -17,7 +18,7 @@ class OpenAIService
             'model' => 'gpt-4-1106-preview',
             'response_format' => ['type' => 'json_object'],
             'messages' => $this->messages,
-            'user' => 'user-' . $this->user->id,
+            'user' => 'user-'.$this->user->id,
         ]);
 
         return json_decode($response->choices[0]->message->content, true);

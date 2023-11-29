@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
-use Tightenco\Ziggy\Ziggy;
 use Illuminate\Http\Request;
+use Tightenco\Ziggy\Ziggy;
 
-class StudentInertiaRequests {
-
-    public function __invoke(Request $request) {
+class StudentInertiaRequests
+{
+    public function __invoke(Request $request)
+    {
         return [
             'auth' => [
                 'type' => 'student',

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Student;
 
-use Inertia\Inertia;
-use App\Models\Prompt;
-use Illuminate\Http\Request;
-use App\Services\OpenAIService;
-use OpenAI\Laravel\Facades\OpenAI;
 use App\Http\Controllers\Controller;
+use App\Models\Prompt;
+use App\Services\OpenAIService;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use OpenAI\Laravel\Facades\OpenAI;
 
 class PromptController extends Controller
 {
@@ -32,7 +32,7 @@ class PromptController extends Controller
                 'result' => [
                     'flagged' => true,
                     'message' => 'This question violates OpenAI\'s policies. Please try another question.',
-                ]
+                ],
             ]);
         }
 

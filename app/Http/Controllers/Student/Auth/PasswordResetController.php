@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Student\Auth;
 
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class PasswordResetController extends Controller
 {

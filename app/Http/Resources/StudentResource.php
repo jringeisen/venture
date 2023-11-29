@@ -12,7 +12,7 @@ class StudentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'prompt_questions' =>  $this->promptQuestions()
+            'prompt_questions' => $this->promptQuestions()
                 ->whereHas('promptAnswer')
                 ->filterByDate($request)
                 ->get()

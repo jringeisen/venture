@@ -12,7 +12,7 @@ class PromptSeeder extends Seeder
         collect([
             [
                 'category' => 'categorize',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Analyze the question, and only choose from the Subject Category List below. Create a json response with a subject and sub_category.
 
                 ONLY choose from the options below, do not create new categories.
@@ -118,7 +118,7 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => 'tone',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Answer this question in an informative and engaging way,
                 presenting information about the topic to someone at an age level of [AGE]
                 and a grade level of [GRADE]. The tone of the text is enthusiastic, friendly,
@@ -132,14 +132,14 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => 'questions',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Based on this question, create an json response with a list of 5 to 10 additional questions
                 with the key being "questions".
                 EOT
             ],
             [
                 'category' => 'moderation',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Analyze the question and decide if it is an appropriate question for a 8-13 year old. If it's not, reply with the correct response below.
                 Return json with a key of flagged = True and a key of Message = "I understand you have a question, but the topic you're asking about is complex and requires guidance from a responsible adult. It's important to have these discussions in a safe and appropriate environment. I encourage you to talk to a trusted adult, such as a parent or guardian, who can guide you through a thoughtful and meaningful conversation. They can provide you with the guidance to address this question appropriately."
                 Flag the following content as inappropriate:
@@ -151,7 +151,7 @@ class PromptSeeder extends Seeder
                 6. Violence: Content that promotes or glorifies violence or celebrates the suffering or humiliation of others.
                 7. Violence/graphic: Violent content that depicts death, violence, or serious physical injury in extreme graphic detail.
                 EOT
-            ]
+            ],
         ])->each(function ($prompt) {
             Prompt::create($prompt);
         });

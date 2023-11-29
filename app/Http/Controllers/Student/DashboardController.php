@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Student;
 
-use Inertia\Inertia;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
+use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
