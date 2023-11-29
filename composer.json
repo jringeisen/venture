@@ -27,7 +27,7 @@
     },
     "autoload": {
         "files": [
-            "app/helpers/icons.php"
+            "app/Helpers/Icons.php"
         ],
         "psr-4": {
             "App\\": "app/",
