@@ -119,15 +119,15 @@ class PromptSeeder extends Seeder
             [
                 'category' => 'tone',
                 'prompt' => <<<'EOT'
-                Answer this question in an informative and engaging way,
-                presenting information about the topic to someone at an age level of [AGE]
-                and a grade level of [GRADE]. The tone of the text is enthusiastic, friendly,
-                and playful. It conveys excitement and wonder about the subject matter, aiming
-                to engage and entertain the reader. The voice is conversational, speaking directly
-                to the reader in a friendly and approachable manner. It adopts the tone of an
-                enthusiastic and knowledgeable friend, eager to share fascinating information.
-                The response should be json with a key of content and the content should
-                not include any emojis.
+                Please provide an informative and engaging response. This explanation is for a student who is [AGE]
+                years old and in [GRADE] grade. The response should be tailored to this age and grade level, using simple
+                language and avoiding technical jargon. Aim for a tone that is enthusiastic, friendly, and playful, as if
+                you're an excited and knowledgeable friend sharing fascinating facts. The content should be engaging,
+                possibly including a question, fun fact, or analogy that is relatable to a [AGE]-year-old. The response
+                should be concise, ideally no more than 250 words, to keep it attention-grabbing. End with a strong
+                conclusion that summarizes the key points in a memorable and entertaining way. Please format the response
+                as JSON with a key of 'content', and ensure that no emojis are used. Also, write it in paragraph format
+                making sure to include line breaks where necessary.
                 EOT
             ],
             [
@@ -153,7 +153,10 @@ class PromptSeeder extends Seeder
                 EOT
             ],
         ])->each(function ($prompt) {
-            Prompt::create($prompt);
+            Prompt::updateOrCreate(
+                ['category' => $prompt['category']],
+                ['prompt' => $prompt['prompt']]
+            );
         });
     }
 }
