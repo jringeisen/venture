@@ -12,15 +12,18 @@ class TopicController extends Controller
 {
     public function show(Request $request, string $topic)
     {
+        $date = $request->date ?? now()->toDateString();
+
         return Inertia::render('Student/Topic', [
-            'date' => $request->date,
+            'date' => $date,
             'topic' => Str::slug($topic),
             'questions' => PromptQuestion::where('student_id', $request->user()->id)
                 ->whereHas('promptAnswer', function ($query) use ($topic) {
-                    $query->where('subject_category', Str::slug($topic));
+                    $query->where('subject_category', Str::replace('-', ' ', $topic));
                 })
                 ->with('promptAnswer')
-                ->filterByDate($request)
+                ->orderBy('created_at', 'desc')
+                ->filterByDate($date)
                 ->get()
                 ->map(function ($promptQuestion) {
                     return [

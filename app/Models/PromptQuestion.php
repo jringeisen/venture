@@ -25,10 +25,10 @@ class PromptQuestion extends Model
         return $this->hasOne(PromptAnswer::class);
     }
 
-    public function scopeFilterByDate(Builder $query, Request $request): Builder
+    public function scopeFilterByDate(Builder $query, string $date): Builder
     {
-        return $query->when($request->date, function ($query) use ($request) {
-            $query->whereDate('created_at', $request->date);
+        return $query->when($date, function ($query) use ($date) {
+            $query->whereDate('created_at', $date);
         });
     }
 }

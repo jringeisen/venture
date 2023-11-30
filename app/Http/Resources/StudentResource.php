@@ -9,12 +9,14 @@ class StudentResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        $date = $request->date ?? now()->toDateString();
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'prompt_questions' => $this->promptQuestions()
                 ->whereHas('promptAnswer')
-                ->filterByDate($request)
+                ->filterByDate($date)
                 ->get()
                 ->map(function ($promptQuestion) {
                     return [
