@@ -13,107 +13,14 @@ class PromptSeeder extends Seeder
             [
                 'category' => 'categorize',
                 'prompt' => <<<'EOT'
-                Analyze the question, and only choose from the Subject Category List below. Create a json response with a subject and sub_category.
+                Analyze the question and categorize it using the provided Subject Category List. Respond in JSON format with 'subject' and 'sub_category' fields. Choose only from the listed categories:
 
-                ONLY choose from the options below, do not create new categories.
+                - English: [Grammar and Syntax, Vocabulary, Reading Comprehension, Writing, Literature, Communication, Research Skills, Language and Culture]
+                - Mathematics: [Arithmetic, Algebra, Geometry, Trigonometry, Calculus, Statistics, Probability, Discrete Mathematics, Applied Mathematics]
+                - Science: [Physics, Chemistry, Biology, Earth Science, Environmental Science, Anatomy and Physiology, Geographical Sciences, Paleontology, Scientific Inquiry and Methodology]
+                - [Social Studies, Physical Education, Arts, Technology, Health Education, Career and Technical Education, Life Skills]
 
-                SUBJECT CATEGORY LIST CHOICE:
-
-                Subject Category | English
-                English Subcategory | Grammar and Syntax
-                English Subcategory | Vocabulary
-                English Subcategory | Reading Comprehension
-                English Subcategory | Writing
-                English Subcategory | Literature
-                English Subcategory | Communication
-                English Subcategory | Research Skills
-                English Subcategory | Language and Culture
-                Subject Category | Mathematics
-                Mathematics Subcategory | Arithmetic
-                Mathematics Subcategory | Algebra
-                Mathematics Subcategory | Geometry
-                Mathematics Subcategory | Trigonometry
-                Mathematics Subcategory | Calculus
-                Mathematics Subcategory | Statistics
-                Mathematics Subcategory | Probability
-                Mathematics Subcategory | Discrete Mathematics
-                Mathematics Subcategory | Applied Mathematics
-                Subject Category | Science
-                Science Subcategory | Physics
-                Science Subcategory | Chemistry
-                Science Subcategory | Biology
-                Science Subcategory | Earth Science
-                Science Subcategory | Environmental Science
-                Science Subcategory | Anatomy and Physiology
-                Science Subcategory | Geographical Sciences
-                Science Subcategory | Paleontology
-                Science Subcategory | Scientific Inquiry and Methodology
-                Subject Category | Social Studies
-                Social Studies Subcategory | History
-                Social Studies Subcategory | Geography
-                Social Studies Subcategory | Civics and Government
-                Social Studies Subcategory | Economics
-                Social Studies Subcategory | Sociology
-                Social Studies Subcategory | Anthropology
-                Social Studies Subcategory | Archaeology
-                Social Studies Subcategory | Cultural Studies
-                Social Studies Subcategory | Psychology
-                Social Studies Subcategory | Religion and Belief Systems
-                Subject Category  | Physical Education
-                Physical Education Subcategory | Fitness and Exercise
-                Physical Education Subcategory | Sports and Games
-                Physical Education Subcategory | Health and Wellness
-                Physical Education Subcategory | Outdoor and Adventure Activities
-                Physical Education Subcategory | Fitness Assessments and Measurements
-                Physical Education Subcategory | Rules and Strategies
-                Subject Category | Arts
-                Arts Subcategory | Visual Arts
-                Arts Subcategory | Performing Arts
-                Arts Subcategory | Literary Arts
-                Arts Subcategory | Design
-                Arts Subcategory | Craft and Artisanal Skills
-                Arts Subcategory | Art History and Criticism
-                Arts Subcategory | Media Arts
-                Subject Category | Technology
-                Technology Subcategory | Programming and Software Development
-                Technology Subcategory | Computer Systems and Networks
-                Technology Subcategory | Cybersecurity
-                Technology Subcategory | Data Management and Analytics
-                Technology Subcategory | Information Systems
-                Technology Subcategory | Web Design and Development
-                Technology Subcategory | Robotics and Automation
-                Technology Subcategory | Multimedia and Graphics
-                Subject Category | Health Education
-                Health Education Subcategory | Physical Health
-                Health Education Subcategory | Mental and Emotional Health
-                Health Education Subcategory | Sexual and Reproductive Health
-                Health Education Subcategory | Disease Prevention and Control
-                Health Education Subcategory | Substance Abuse Education
-                Health Education Subcategory | First Aid and Emergency Preparedness
-                Health Education Subcategory | Environmental Health
-                Health Education Subcategory | Health Advocacy and Decision Making
-                Subject Category | Career and Technical Education
-                Career and Technical Education Subcategory | Business Management and Administration
-                Career and Technical Education Subcategory | Agriculture, Food, and Natural Resources
-                Career and Technical Education Subcategory | Health Science
-                Career and Technical Education Subcategory | Information Technology
-                Career and Technical Education Subcategory | Architecture and Construction
-                Career and Technical Education Subcategory | Manufacturing and Engineering
-                Career and Technical Education Subcategory | Arts, Audio/Video Technology, and Communication
-                Career and Technical Education Subcategory | Transportation, Distribution, and Logistics
-                Career and Technical Education Subcategory | Education and Training
-                Career and Technical Education Subcategory | Hospitality and Tourism
-                Career and Technical Education Subcategory | Human Services
-                Career and Technical Education Subcategory | Law, Public Safety, Corrections, and Security
-                Subject Category | Life Skills
-                Life Skills Subcategory | Personal Development
-                Life Skills Subcategory | Health and Well-being
-                Life Skills Subcategory | Financial
-                Life Skills Subcategory | Career Development
-                Life Skills Subcategory | Interpersonal Skills
-                Life Skills Subcategory | Critical Thinking and Problem-Solving
-                Life Skills Subcategory | Home Management
-                Life Skills Subcategory | Digital Literacyd
+                Do not create new categories.
                 EOT
             ],
             [
@@ -125,15 +32,13 @@ class PromptSeeder extends Seeder
                 you're an excited and knowledgeable friend sharing fascinating facts. The content should be engaging,
                 possibly including a question, fun fact, or analogy that is relatable to a [AGE]-year-old. The response
                 should be concise, ideally no more than 250 words, to keep it attention-grabbing. End with a strong
-                conclusion that summarizes the key points in a memorable and entertaining way. Please format the response
-                as JSON with a key of 'content', and ensure that no emojis are used. Also, write it in paragraph format
-                making sure to include line breaks where necessary.
+                conclusion that summarizes the key points in a memorable and entertaining way.
                 EOT
             ],
             [
                 'category' => 'questions',
                 'prompt' => <<<'EOT'
-                Based on this question, create an json response with a list of 5 to 10 additional questions
+                Based on this question, create an json response with a list of 5 additional questions
                 with the key being "questions".
                 EOT
             ],

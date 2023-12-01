@@ -22,7 +22,7 @@ class GetQuestionsController extends Controller
         $question->promptAnswer()->updateOrCreate([
             'prompt_question_id' => $question->id,
         ], [
-            'questions' => isset($response['questions']) ? $response['questions'] : null,
+            'questions' => is_array($response) && isset($response['questions']) ? $response['questions'] : null,
         ]);
 
         return response()->json($response);
