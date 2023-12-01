@@ -6,6 +6,7 @@ use App\Http\Requests\StudentStoreRequest;
 use App\Http\Resources\StudentResource;
 use App\Mail\TemporaryPasswordEmail;
 use App\Models\Student;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +20,9 @@ class StudentController extends Controller
     public function index(Request $request): Response
     {
         return Inertia::render('Teachers/Students/Index', [
-            'students' => $request->user()->students()->paginate(10),
+            'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) {
+                $query->whereDate('created_at', today());
+            }])->paginate(10),
         ]);
     }
 
