@@ -23,7 +23,7 @@ Route::prefix('student')
                 Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
                 Route::post('/prompts', [PromptController::class, 'store'])->name('prompts.store');
                 Route::post('/prompts/subject', GetSubjectController::class)->name('prompts.subject');
-                Route::post('/prompts/content', GetContentController::class)->name('prompts.content');
+                Route::get('/prompts/content', GetContentController::class)->name('prompts.content');
                 Route::post('/prompts/questions', GetQuestionsController::class)->name('prompts.questions');
 
                 Route::get('/topic/{topic}', [\App\Http\Controllers\Student\TopicController::class, 'show'])->name('topic.show');
