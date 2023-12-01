@@ -36,17 +36,17 @@ class PromptController extends Controller
             ]);
         }
 
-        // $response = $openAIService
-        //     ->messages('system', Prompt::where('category', 'moderation')->first()->prompt)
-        //     ->messages('user', $request->question)
-        //     ->user($request->user())
-        //     ->create();
+        $response = $openAIService
+            ->messages('system', Prompt::where('category', 'moderation')->first()->prompt)
+            ->messages('user', $request->question)
+            ->user($request->user())
+            ->create();
 
-        // if (isset($response['flagged']) && $response['flagged'] === true) {
-        //     return Inertia::render('Student/Prompts/Index', [
-        //         'result' => $response,
-        //     ]);
-        // }
+        if (isset($response['flagged']) && $response['flagged'] === true) {
+            return Inertia::render('Student/Prompts/Index', [
+                'result' => $response,
+            ]);
+        }
 
         return Inertia::render('Student/Prompts/Index', [
             'result' => [
