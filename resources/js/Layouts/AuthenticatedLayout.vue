@@ -175,7 +175,8 @@
             </a>
         </div>
 
-        <main class="py-10 lg:pl-72">
+        <main class="relative py-10 lg:pl-72">
+            <MotivationalMessage v-if="showMotivationalMessage()" />
             <div class="px-4 sm:px-6 lg:px-8">
                 <slot></slot>
             </div>
@@ -184,10 +185,14 @@
 </template>
 
 <script setup>
-import { router } from '@inertiajs/vue3';
+import { router, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon, HomeIcon, UsersIcon, DocumentIcon } from '@heroicons/vue/24/outline';
+import MotivationalMessage from '@/Components/MotivationalMessage.vue';
+import moment from 'moment';
+
+const page = usePage();
 
 const sidebarOpen = ref(false);
 const toggleSettingsMenu = ref(false);
@@ -200,5 +205,10 @@ const iconMap = {
 
 const getIconComponent = (iconName) => {
     return iconMap[iconName] || null;
+};
+
+const showMotivationalMessage = () => {
+    return page.props.auth.user.motivational_message === null
+        || moment(page.props.auth.user.motivational_message).utc().format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD');
 };
 </script>
