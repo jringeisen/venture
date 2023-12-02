@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\PromptQuestion;
 use App\Models\Student;
 use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
@@ -12,6 +13,8 @@ class OpenAIService
 
     protected Student|User $user;
 
+    protected PromptQuestion $question;
+
     public function create(): array
     {
         $response = OpenAI::chat()->create([
@@ -20,6 +23,12 @@ class OpenAIService
             'messages' => $this->messages,
             'user' => 'user-'.$this->user->id,
         ]);
+
+        if (isset($response['usage']['total_tokens'])) {
+            $this->question->update([
+                'total_tokens' => $this->question->total_tokens + $response['usage']['total_tokens'],
+            ]);
+        }
 
         return json_decode($response->choices[0]->message->content, true);
     }
@@ -37,6 +46,13 @@ class OpenAIService
     public function user(Student|User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function updateQuestionTokens(PromptQuestion $question): self
+    {
+        $this->question = $question;
 
         return $this;
     }
