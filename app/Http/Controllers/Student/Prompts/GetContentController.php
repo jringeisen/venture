@@ -47,6 +47,12 @@ class GetContentController extends Controller
                 }
 
                 if ($data['finish_reason'] === 'stop') {
+                    if (isset($data['usage']['total_tokens'])) {
+                        $question->update([
+                            'total_tokens' => $question->total_tokens + $response['usage']['total_tokens'],
+                        ]);
+                    }
+
                     $question->promptAnswer()->updateOrCreate([
                         'prompt_question_id' => $question->id,
                     ], [

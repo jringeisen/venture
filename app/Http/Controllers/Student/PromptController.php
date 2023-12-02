@@ -18,7 +18,7 @@ class PromptController extends Controller
 
     public function store(Request $request, OpenAIService $openAIService)
     {
-        $request->user()->promptQuestions()->create([
+        $question = $request->user()->promptQuestions()->create([
             'question' => $request->question,
         ]);
 
@@ -40,6 +40,7 @@ class PromptController extends Controller
             ->messages('system', Prompt::where('category', 'moderation')->first()->prompt)
             ->messages('user', $request->question)
             ->user($request->user())
+            ->updateQuestionTokens($question)
             ->create();
 
         if (isset($response['flagged']) && $response['flagged'] === true) {

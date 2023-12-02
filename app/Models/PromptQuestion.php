@@ -12,6 +12,11 @@ class PromptQuestion extends Model
 
     protected $fillable = [
         'question',
+        'total_tokens',
+    ];
+
+    protected $casts = [
+        'total_tokens' => 'integer',
     ];
 
     public function user()
