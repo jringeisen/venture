@@ -16,6 +16,7 @@ class Student extends Authenticatable
         'grade',
         'age',
         'is_temporary_password',
+        'motivational_message',
     ];
 
     protected $hidden = [
@@ -29,6 +30,7 @@ class Student extends Authenticatable
         'grade' => 'integer',
         'age' => 'integer',
         'is_temporary_password' => 'boolean',
+        'motivational_message' => 'datetime',
     ];
 
     public function user()

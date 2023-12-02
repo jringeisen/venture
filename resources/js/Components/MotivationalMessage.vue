@@ -1,0 +1,39 @@
+<template>
+    <div>
+        <Modal :show="true">
+            <div class="p-8 prose">
+                <h1 class="text-2xl font-bold text-center">Good morning!</h1>
+                <p class="text-center py-4">
+                    Believe in the magic within you, <strong>{{$page.props.auth.user.name}}</strong>. Your courage and dreams light the way to a future filled with amazing possibilities. We are so proud of you!
+                    Now go crush the day!
+                </p>
+                <div class="flex justify-center">
+                    <button
+                        @click.prevent="updateUser()"
+                        type="button"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none"
+                    >
+                        Start The Day
+                    </button>
+                </div>
+            </div>
+        </Modal>
+        <div class="absolute left-1/2 top-1/2">
+            <ConfettiExplosion :particleCount="300" :force=".5" />
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { usePage } from '@inertiajs/vue3';
+import ConfettiExplosion from "vue-confetti-explosion";
+import Modal from '@/Components/Modal.vue';
+
+const page = usePage();
+
+const updateUser = () => {
+    axios.patch(route('students.update', page.props.auth.user), {motivational_message: new Date().toLocaleDateString()}).then(() => {
+        window.location.reload();
+    });
+}
+</script>
