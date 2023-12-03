@@ -22,11 +22,10 @@ class StudentController extends Controller
     {
         return Inertia::render('Teachers/Students/Index', [
             'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) {
-                $todayInUserTimezone = Carbon::now('America/New_York')
-                    ->startOfDay()
-                    ->setTimezone('UTC');
+                $startOfDayInUserTimezone = Carbon::now('America/New_York')->startOfDay()->setTimezone('UTC');
+                $endOfDayInUserTimezone = Carbon::now('America/New_York')->endOfDay()->setTimezone('UTC');
 
-                $query->whereDate('created_at', $todayInUserTimezone);
+                $query->whereBetween('created_at', [$startOfDayInUserTimezone, $endOfDayInUserTimezone]);
             }])->paginate(10),
         ]);
     }
