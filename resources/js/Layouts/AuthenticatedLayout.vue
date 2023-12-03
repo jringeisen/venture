@@ -142,7 +142,7 @@
 
                             <ul
                                 v-if="toggleSettingsMenu"
-                                class="absolute -top-32 border bg-white ml-3 w-11/12 shadow-lg py-2 rounded-lg"
+                                class="absolute bottom-14 border bg-white ml-3 w-11/12 shadow-lg py-2 rounded-lg"
                             >
                                 <li
                                     @click.prevent="router.post($page.props.auth.type === 'teacher' ? route('user.logout') : route('student.logout'))"
@@ -150,8 +150,7 @@
                                 >
                                     Logout
                                 </li>
-                                <li class="cursor-pointer px-4 py-1 hover:bg-gray-100">Profile</li>
-                                <li class="cursor-pointer px-4 py-1 hover:bg-gray-100">Settings</li>
+                                <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100">Profile</Link>
                             </ul>
                         </li>
                     </ul>
@@ -185,7 +184,7 @@
 </template>
 
 <script setup>
-import { router, usePage } from '@inertiajs/vue3';
+import { router, usePage, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon, HomeIcon, UsersIcon, DocumentIcon } from '@heroicons/vue/24/outline';
