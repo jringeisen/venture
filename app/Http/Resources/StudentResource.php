@@ -23,7 +23,7 @@ class StudentResource extends JsonResource
                         'id' => $promptQuestion->id,
                         'question' => $promptQuestion->question,
                         'prompt_answer' => $promptQuestion->promptAnswer,
-                        'created_at' => $promptQuestion->created_at->toFormattedDateString(),
+                        'created_at' => $promptQuestion->created_at->setTimezone('America/New_York')->toFormattedDateString(),
                     ];
                 }),
         ];
