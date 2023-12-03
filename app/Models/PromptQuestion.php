@@ -33,8 +33,8 @@ class PromptQuestion extends Model
     public function scopeFilterByDate(Builder $query, string $date): Builder
     {
         return $query->when($date, function ($query) use ($date) {
-            $startOfDayInUserTimezone = Carbon::parse($date)->startOfDay()->setTimezone('UTC');
-            $endOfDayInUserTimezone = Carbon::parse($date)->endOfDay()->setTimezone('UTC');
+            $startOfDayInUserTimezone = Carbon::parse($date)->timezone('America/New_York')->startOfDay()->setTimezone('UTC');
+            $endOfDayInUserTimezone = Carbon::parse($date)->timezone('America/New_York')->endOfDay()->setTimezone('UTC');
 
             $query->whereBetween('created_at', [$startOfDayInUserTimezone, $endOfDayInUserTimezone]);
         });
