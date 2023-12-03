@@ -208,7 +208,8 @@ const getIconComponent = (iconName) => {
 };
 
 const showMotivationalMessage = () => {
-    return page.props.auth.user.motivational_message === null
-        || moment(page.props.auth.user.motivational_message).utc().format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD');
+    return page.props.auth.user.hasOwnProperty('motivational_message')
+        && (page.props.auth.user.motivational_message === null
+        || moment(page.props.auth.user.motivational_message).utc().format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD'));
 };
 </script>
