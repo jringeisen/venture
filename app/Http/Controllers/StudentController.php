@@ -9,6 +9,7 @@ use App\Models\Student;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -21,7 +22,11 @@ class StudentController extends Controller
     {
         return Inertia::render('Teachers/Students/Index', [
             'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) {
-                $query->whereDate('created_at', today());
+                $todayInUserTimezone = Carbon::now('America/New_York')
+                    ->startOfDay()
+                    ->setTimezone('UTC');
+
+                $query->whereDate('created_at', $todayInUserTimezone);
             }])->paginate(10),
         ]);
     }
