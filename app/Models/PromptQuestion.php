@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class PromptQuestion extends Model
 {
@@ -32,7 +33,10 @@ class PromptQuestion extends Model
     public function scopeFilterByDate(Builder $query, string $date): Builder
     {
         return $query->when($date, function ($query) use ($date) {
-            $query->whereDate('created_at', $date);
+            $startOfDayInUserTimezone = Carbon::parse($date)->startOfDay()->setTimezone('UTC');
+            $endOfDayInUserTimezone = Carbon::parse($date)->endOfDay()->setTimezone('UTC');
+
+            $query->whereBetween('created_at', [$startOfDayInUserTimezone, $endOfDayInUserTimezone]);
         });
     }
 }
