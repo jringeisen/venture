@@ -21,16 +21,16 @@ class PieChartService
 
     public function labels(string $label): self
     {
-        $this->labels = $this->data->pluck($label)->map(function ($item) {
-            return ucfirst($item);
-        });
+        $this->labels = $this->data->pluck($label)->filter()->map(function ($item) {
+            return ucwords($item);
+        })->values();
 
         return $this;
     }
 
     public function series(string $series): self
     {
-        $this->series = $this->data->pluck($series);
+        $this->series = $this->data->pluck($series)->filter()->values();
 
         return $this;
     }
