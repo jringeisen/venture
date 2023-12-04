@@ -30,7 +30,7 @@ class PieChartService
 
     public function series(string $series): self
     {
-        $this->series = $this->data->pluck($series)->filter()->values();
+        $this->series = $this->data->pluck($series);
 
         return $this;
     }
