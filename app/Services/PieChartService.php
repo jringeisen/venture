@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class PieChartService
 {
@@ -12,9 +13,18 @@ class PieChartService
 
     public Collection $series;
 
-    public function data(Collection $data): self
+    public function data(string $model, string $column): self
     {
-        $this->data = $data;
+        $this->data = $model::select($column, DB::raw('count(*) as total'))
+            ->whereNotNull($column)
+            ->groupBy($column)
+            ->get()
+            ->map(function ($item) use ($column) {
+                $item->$column = ucfirst($item->$column);
+
+                return $item;
+            })
+            ->values();
 
         return $this;
     }
