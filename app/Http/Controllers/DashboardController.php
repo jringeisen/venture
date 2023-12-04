@@ -21,7 +21,7 @@ class DashboardController extends Controller
             'totalQuestions' => (int) $result->totalQuestions,
             'dailyQuestions' => (int) $result->dailyQuestions,
             'pieChartData' => $pieChartService
-                ->data(PromptAnswer::getPieChartData())
+                ->data(PromptAnswer::class, 'subject_category')
                 ->labels('subject_category')
                 ->series('total')
                 ->get(),
