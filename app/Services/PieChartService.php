@@ -21,7 +21,7 @@ class PieChartService
 
     public function labels(string $label): self
     {
-        $this->labels = $this->data->pluck($label)->filter()->map(function ($item) {
+        $this->labels = $this->data->pluck($label)->map(function ($item) {
             return ucwords($item);
         })->values();
 
