@@ -9,7 +9,6 @@ use App\Models\Student;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -53,7 +52,7 @@ class StudentController extends Controller
     {
         return Inertia::render('Teachers/Students/Show', [
             'student' => (new StudentResource($student->load('promptQuestions')))->resolve(),
-            'date' => $request->date ?? now()->format('Y-m-d'),
+            'date' => $request->date ?? now()->timezone('America/New_York')->toDateString(),
         ]);
     }
 

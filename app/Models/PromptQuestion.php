@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class PromptQuestion extends Model
 {
@@ -35,7 +35,7 @@ class PromptQuestion extends Model
         return $query->when($date, function ($query) use ($date) {
             $query->whereBetween('created_at', [
                 Carbon::createFromFormat('Y-m-d', $date, 'America/New_York')->startOfDay()->setTimezone('UTC'),
-                Carbon::createFromFormat('Y-m-d', $date, 'America/New_York')->endOfDay()->setTimezone('UTC')
+                Carbon::createFromFormat('Y-m-d', $date, 'America/New_York')->endOfDay()->setTimezone('UTC'),
             ]);
         });
     }
