@@ -15,12 +15,13 @@ class PieChartService
 
     public function data(string $model, string $column, mixed $userId = null): self
     {
-        $this->data = $model::select($column, DB::raw('count(*) as total'))
-            ->when($userId, function ($query, $userId) {
-                $query->whereHas('promptQuestion', function ($query) use ($userId) {
-                    $query->where('student_id', $userId);
-                });
-            })
+        $query = $model::when($userId, function ($query, $userId) {
+            $query->whereHas('promptQuestion', function ($query) use ($userId) {
+                $query->where('student_id', $userId);
+            });
+        });
+
+        $this->data = $query->select($column, DB::raw('count(*) as total'))
             ->whereNotNull($column)
             ->groupBy($column)
             ->get()
