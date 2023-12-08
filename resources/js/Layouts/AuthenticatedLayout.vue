@@ -164,14 +164,39 @@
                 <Bars3Icon class="h-6 w-6" aria-hidden="true" />
             </button>
             <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">Dashboard</div>
-            <a href="#">
-                <span class="sr-only">Your profile</span>
-                <img
-                    class="h-8 w-8 rounded-full bg-gray-50"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                />
-            </a>
+            <div
+                v-if="toggleSettingsMenu"
+                @click.prevent="toggleSettingsMenu = false"
+                class="fixed inset-0 flex items-center"
+                aria-hidden="true"
+            ></div>
+
+            <div class="relative">
+                <a
+                    @click.prevent="toggleSettingsMenu = !toggleSettingsMenu"
+                    href="#"
+                    class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-gray-900"
+                >
+                    <div class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-400 w-7 h-7">
+                        <p class="text-xl text-gray-600">{{ $page.props.auth.user.name[0] }}</p>
+                    </div>
+                    <span class="sr-only">Your profile</span>
+                    <span aria-hidden="true">{{ $page.props.auth.user.name }}</span>
+                </a>
+
+                <ul
+                    v-if="toggleSettingsMenu"
+                    class="absolute top-10 border bg-white ml-3 w-40 shadow-lg py-2 rounded-lg"
+                >
+                    <li
+                        @click.prevent="router.post($page.props.auth.type === 'teacher' ? route('user.logout') : route('student.logout'))"
+                        class="cursor-pointer px-4 py-1 hover:bg-gray-100"
+                    >
+                        Logout
+                    </li>
+                    <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100">Profile</Link>
+                </ul>
+            </div>
         </div>
 
         <main class="relative py-10 lg:pl-72">
