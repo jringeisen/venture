@@ -23,6 +23,7 @@ class DashboardController extends Controller
                 ->whereNotNull('subject_category')
                 ->select('student_id', 'subject_category', DB::raw('count(*) as total'))
                 ->groupBy('student_id', 'subject_category')
+                ->orderBy('total', 'desc')
                 ->get()
                 ->pluck('total', 'subject_category')
                 ->toArray(),
