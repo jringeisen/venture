@@ -18,7 +18,7 @@ class PromptQuestionObserver
         }
 
         if ($lastQuestionDate->isSameDay(Carbon::yesterday())) {
-            $user->current_streak->increment();
+            $user->increment('current_streak');
         } else {
             $user->current_streak = 1;
         }
