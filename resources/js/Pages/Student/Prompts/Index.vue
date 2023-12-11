@@ -16,8 +16,9 @@
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                 </button>
-
             </form>
+
+            <InputError v-if="errors.question" :message="errors.question" />
 
             <div v-if="form.processing" role="status" class="flex justify-center items-center mt-12">
                 <div class="flex items-center">
@@ -67,11 +68,16 @@
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import { useForm, Head } from '@inertiajs/vue3'
     import TextInput from "@/Components/TextInput.vue";
+    import InputError from "@/Components/InputError.vue";
     import Subject from "@/Pages/Student/Prompts/Subject.vue";
     import Content from "@/Pages/Student/Prompts/Content.vue";
     import Questions from "@/Pages/Student/Prompts/Questions.vue";
 
     defineProps({
+        errors: {
+            type: Object,
+            required: false,
+        },
         result: {
             type: Object,
             required: false,
