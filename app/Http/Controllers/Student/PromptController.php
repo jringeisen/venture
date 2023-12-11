@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PromptRequest;
 use App\Models\Prompt;
 use App\Services\OpenAIService;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use OpenAI\Laravel\Facades\OpenAI;
 
@@ -16,7 +16,7 @@ class PromptController extends Controller
         return Inertia::render('Student/Prompts/Index');
     }
 
-    public function store(Request $request, OpenAIService $openAIService)
+    public function store(PromptRequest $request, OpenAIService $openAIService)
     {
         $question = $request->user()->promptQuestions()->create([
             'question' => $request->question,
