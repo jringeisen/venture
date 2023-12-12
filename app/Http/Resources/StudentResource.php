@@ -14,6 +14,7 @@ class StudentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'current_streak' => $this->current_streak,
             'prompt_questions' => $this->promptQuestions()
                 ->whereHas('promptAnswer')
                 ->filterByDate($date)

@@ -3,7 +3,48 @@
 
     <AuthenticatedLayout>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto space-y-3 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+                    <div class="bg-white border dark:bg-gray-800 p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="text-gray-500 dark:text-gray-100">Total Questions</div>
+                        <p class="text-4xl font-bold">{{ totalQuestions }}</p>
+                    </div>
+
+                    <div class="bg-white border p-6 dark:bg-gray-800 space-y-2 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="text-gray-500 dark:text-gray-100">Daily Questions</div>
+                        <p class="text-4xl font-bold">{{ dailyQuestions }}</p>
+                    </div>
+
+                    <div class="bg-white border p-6 dark:bg-gray-800 space-y-2 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="text-gray-500 dark:text-gray-100">Current Streak</div>
+                        <p class="text-4xl font-bold">{{ student.current_streak }}</p>
+                    </div>
+                </div>
+                <div v-if="Object.keys(categoriesWithCounts).length > 0 || series.length > 0" class="grid grid-cols-1 space-y-4 md:grid-cols-12 md:grid-rows-2 md:grid-flow-col md:space-y-0 md:gap-3">
+                    <div
+                        v-if="Object.keys(categoriesWithCounts).length > 0"
+                        class="bg-white border p-6 dark:bg-gray-800 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:row-span-2 md:col-span-4"
+                        :class="Object.keys(categoriesWithCounts).length > 0 && series.length > 0 ? 'md:col-span-4' : 'md:col-span-12'"
+                    >
+                        <div class="text-gray-500 dark:text-gray-100">Topics</div>
+                        <ul>
+                            <li v-for="(value, index) in categoriesWithCounts" :key="index" class="flex justify-between items-center">
+                                <Link :href="route('student.topic.show', kebabCase(index))" class="underline text-blue-500">{{ startCase(index) }}</Link>
+                                <p class="font-bold">{{ value }}</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        v-if="series.length > 0"
+                        class="relative bg-white p-6 border dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg md:row-span-2 md:col-span-8"
+                        :class="Object.keys(categoriesWithCounts).length > 0 && series.length > 0 ? 'md:col-span-8' : 'md:col-span-12'"
+                    >
+                        <div class="absolute text-gray-500 dark:text-gray-100">Subjects</div>
+                        <apexchart width="100%" height="100%" type="pie" :options="options" :series="series"></apexchart>
+                    </div>
+                </div>
+
                 <div class="bg-white shadow p-8 rounded-lg">
                     <div class="flex justify-between items-center">
                         <p class="text-2xl font-bold">{{ student.name }}</p>
@@ -70,14 +111,19 @@
 </template>
 
 <script setup>
-import { Head, router } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { capitalize } from 'lodash';
+import { startCase, kebabCase } from 'lodash';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 const props = defineProps({
     student: Object,
     date: String,
+    categoriesWithCounts: Object,
+    totalQuestions: Number,
+    dailyQuestions: Number,
+    pieChartData: Object
 });
 
 const toggleContent = ref('');
@@ -91,4 +137,10 @@ const handleToggleContent = (id) => {
 
     toggleContent.value = id;
 };
+
+const options = ref({
+    labels: props.pieChartData.labels
+});
+
+const series = ref(props.pieChartData.series);
 </script>
