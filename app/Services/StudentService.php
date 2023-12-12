@@ -31,7 +31,7 @@ class StudentService
 
     public function totalQuestionsAskedToday(): int
     {
-        return $this->student->promptQuestions()->filterByDate(today()->toDateString())->count();
+        return $this->student->promptQuestions()->filterByDate(today()->timezone('America/New_York')->toDateString())->count();
     }
 
     public function categoriesWithCounts(): array
