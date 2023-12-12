@@ -9,7 +9,7 @@ class StudentResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        $date = $request->date ?? now()->toDateString();
+        $date = $request->date ?? now()->setTimezone('America/New_York')->toDateString();
 
         return [
             'id' => $this->id,
