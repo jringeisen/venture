@@ -24,7 +24,7 @@
                     <div class="bg-white border p-6 dark:bg-gray-800 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:row-span-2 md:col-span-4">
                         <div class="text-gray-500 dark:text-gray-100">Topics</div>
                         <ul>
-                            <li v-for="(value, index) in promptsWithCounts" :key="index" class="flex justify-between items-center">
+                            <li v-for="(value, index) in categoriesWithCounts" :key="index" class="flex justify-between items-center">
                                 <Link :href="route('student.topic.show', kebabCase(index))" class="underline text-blue-500">{{ startCase(index) }}</Link>
                                 <p class="font-bold">{{ value }}</p>
                             </li>
@@ -48,7 +48,7 @@ import { startCase, kebabCase } from 'lodash';
 import { ref } from 'vue';
 
 const props = defineProps({
-    promptsWithCounts: Object,
+    categoriesWithCounts: Object,
     totalQuestions: Number,
     dailyQuestions: Number,
     pieChartData: Object

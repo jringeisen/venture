@@ -3,35 +3,19 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\PromptAnswer;
-use App\Services\PieChartService;
+use App\Services\StudentService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request, PieChartService $pieChartService)
+    public function index(Request $request, StudentService $studentService)
     {
         return Inertia::render('Student/Dashboard', [
-            'totalQuestions' => $request->user()->promptQuestions()->count(),
-            'dailyQuestions' => $request->user()
-                ->promptQuestions()
-                ->filterByDate(today()->toDateString())
-                ->count(),
-            'promptsWithCounts' => $request->user()->promptAnswers()
-                ->whereNotNull('subject_category')
-                ->select('student_id', 'subject_category', DB::raw('count(*) as total'))
-                ->groupBy('student_id', 'subject_category')
-                ->orderBy('total', 'desc')
-                ->get()
-                ->pluck('total', 'subject_category')
-                ->toArray(),
-            'pieChartData' => $pieChartService
-                ->data(PromptAnswer::class, 'subject_category', $request->user()->id)
-                ->labels('subject_category')
-                ->series('total')
-                ->get(),
+            'totalQuestions' => $studentService->student($request->user())->totalQuestionsAsked(),
+            'dailyQuestions' => $studentService->student($request->user())->totalQuestionsAskedToday(),
+            'categoriesWithCounts' => $studentService->student($request->user())->categoriesWithCounts(),
+            'pieChartData' => $studentService->student($request->user())->pieChartData(),
         ]);
     }
 }
