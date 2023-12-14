@@ -29,7 +29,7 @@ class StudentController extends Controller
     public function index(Request $request): Response
     {
         return Inertia::render('Teachers/Students/Index', [
-            'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) use ($request) {
+            'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) {
                 $query->filterByDate(today()->toDateString());
             }])->paginate(10),
         ]);

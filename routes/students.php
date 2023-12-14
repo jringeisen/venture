@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Student\PromptController;
-use App\Http\Controllers\Student\StudentController;
-use App\Http\Controllers\Student\Auth\PasswordResetController;
-use App\Http\Controllers\Student\Prompts\GetContentController;
-use App\Http\Controllers\Student\Prompts\GetSubjectController;
-use App\Http\Controllers\Student\Prompts\GetQuestionsController;
 use App\Http\Controllers\Student\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Student\Auth\PasswordResetController;
+use App\Http\Controllers\Student\PromptController;
+use App\Http\Controllers\Student\Prompts\GetContentController;
+use App\Http\Controllers\Student\Prompts\GetQuestionsController;
+use App\Http\Controllers\Student\Prompts\GetSubjectController;
+use App\Http\Controllers\Student\StudentController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('student')
     ->name('student.')
