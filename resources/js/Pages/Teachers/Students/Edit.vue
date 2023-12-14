@@ -73,16 +73,11 @@
 
                                     <div>
                                         <label for="timezone" class="block text-sm font-medium leading-6 text-gray-900">Timezone</label>
-                                        <div class="mt-2">
-                                            <input
-                                                id="timezone"
-                                                v-model="form.timezone"
-                                                type="text"
-                                                autocomplete="timezone"
-                                                required
-                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            />
-                                        </div>
+                                        <select id="timezone" v-model="form.timezone" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            <option disabled>Choose a timezone:</option>
+                                            <option v-for="(timezone, index) in timezones" selected :value="timezone.value">{{ timezone.label }}</option>
+                                        </select>
+                                        <InputError class="mt-2" :message="form.errors.timezone" />
                                     </div>
 
                                     <div class="flex justify-end space-x-2">
@@ -107,6 +102,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 
 const props = defineProps({
     student: Object,
+    timezones: Array,
 });
 
 const form = useForm({
