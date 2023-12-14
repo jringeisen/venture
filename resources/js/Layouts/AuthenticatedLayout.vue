@@ -87,9 +87,12 @@
         <!-- Static sidebar for desktop -->
         <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white">
-                <div class="flex h-16 shrink-0 items-center bg-green-600">
-                    <p class="text-green-50 text-2xl text-center font-bold w-full">MINDFUL</p>
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-primary-gray">
+                <div class="flex h-16 shrink-0 items-center">
+                    <p class="flex justify-center items-center text-white text-2xl font-bold w-full">
+                        <ApplicationLogo class="w-9 h-9" />
+                        MINDFUL
+                    </p>
                 </div>
                 <nav class="flex flex-1 flex-col px-6">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -100,8 +103,8 @@
                                         :href="item.href"
                                         :class="[
                                             item.current
-                                                ? 'bg-gray-100 text-gray-600'
-                                                : 'text-gray-700 hover:text-gray-600 hover:bg-gray-50',
+                                                ? 'bg-gray-100 text-primary-gray'
+                                                : 'text-gray-300 hover:text-primary-gray hover:bg-gray-50',
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                         ]"
                                     >
@@ -109,8 +112,8 @@
                                             :is="getIconComponent(item.icon)"
                                             :class="[
                                                 item.current
-                                                    ? 'text-gray-600'
-                                                    : 'text-gray-400 group-hover:text-gray-600',
+                                                    ? 'text-primary-gray'
+                                                    : 'text-gray-300 group-hover:text-primary-gray',
                                                 'h-6 w-6 shrink-0',
                                             ]"
                                             aria-hidden="true"
@@ -131,10 +134,10 @@
                             <a
                                 @click.prevent="toggleSettingsMenu = !toggleSettingsMenu"
                                 href="#"
-                                class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+                                class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-300 hover:text-primary-gray hover:bg-gray-50"
                             >
                                 <div class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-400 w-7 h-7">
-                                    <p class="text-xl text-gray-600">{{ $page.props.auth.user.name[0] }}</p>
+                                    <p class="text-xl text-gray-400">{{ $page.props.auth.user.name[0] }}</p>
                                 </div>
                                 <span class="sr-only">Your profile</span>
                                 <span aria-hidden="true">{{ $page.props.auth.user.name }}</span>
@@ -177,8 +180,8 @@
                     href="#"
                     class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-gray-900"
                 >
-                    <div class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-400 w-7 h-7">
-                        <p class="text-xl text-gray-600">{{ $page.props.auth.user.name[0] }}</p>
+                    <div class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-300 w-7 h-7">
+                        <p class="text-xl text-gray-300">{{ $page.props.auth.user.name[0] }}</p>
                     </div>
                     <span class="sr-only">Your profile</span>
                     <span aria-hidden="true">{{ $page.props.auth.user.name }}</span>
@@ -215,6 +218,7 @@ import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessu
 import { Bars3Icon, XMarkIcon, HomeIcon, UsersIcon, DocumentIcon } from '@heroicons/vue/24/outline';
 import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import moment from 'moment';
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 const page = usePage();
 
