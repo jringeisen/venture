@@ -33,7 +33,7 @@ class StudentService
     {
         return $this->student
             ->promptQuestions()
-            ->filterByDate(today()->toDateString())
+            ->filterByDate(now()->toDateString())
             ->count();
     }
 

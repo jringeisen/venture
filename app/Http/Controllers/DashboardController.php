@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $result = PromptQuestion::select(
             DB::raw('COUNT(*) as totalQuestions'),
             DB::raw('SUM(CASE WHEN DATE(created_at) = ? THEN 1 ELSE 0 END) as dailyQuestions')
-        )->setBindings([today()->toDateString()])->first();
+        )->setBindings([now()->toDateString()])->first();
 
         return Inertia::render('Dashboard', [
             'totalQuestions' => (int) $result->totalQuestions,
