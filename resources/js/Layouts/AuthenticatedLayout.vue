@@ -98,9 +98,8 @@
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
                         <li>
                             <ul role="list" class="-mx-2 space-y-1">
-                                <li v-for="(item, index) in $page.props.auth.navigation" :key="index">
-                                    <a
-                                        :href="item.href"
+                                <Link v-for="(item, index) in $page.props.auth.navigation" :key="index" :href="item.href" as="li" class="cursor-pointer">
+                                    <span
                                         :class="[
                                             item.current
                                                 ? 'bg-gray-100 text-primary-gray'
@@ -119,8 +118,8 @@
                                             aria-hidden="true"
                                         />
                                         {{ item.name }}
-                                    </a>
-                                </li>
+                                    </span>
+                                </Link>
                             </ul>
                         </li>
                         <li class="relative -mx-6 mt-auto">
