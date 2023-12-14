@@ -30,7 +30,7 @@ class StudentController extends Controller
     {
         return Inertia::render('Teachers/Students/Index', [
             'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) use ($request) {
-                $query->filterByDate(today()->timezone($request->user()->timezone)->toDateString());
+                $query->filterByDate(today()->toDateString());
             }])->paginate(10),
         ]);
     }
