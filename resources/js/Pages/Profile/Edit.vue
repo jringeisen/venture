@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <TimezoneForm class="max-w-xl" />
+                    <TimezoneForm class="max-w-xl" :timezones="timezones" />
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
@@ -42,6 +42,9 @@ defineProps({
     },
     status: {
         type: String,
+    },
+    timezones: {
+        type: Array,
     },
 });
 </script>

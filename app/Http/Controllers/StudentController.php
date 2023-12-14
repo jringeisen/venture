@@ -6,6 +6,7 @@ use App\Http\Requests\StudentStoreRequest;
 use App\Http\Resources\StudentResource;
 use App\Mail\TemporaryPasswordEmail;
 use App\Models\Student;
+use App\Models\Timezone;
 use App\Services\StudentService;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
@@ -60,6 +61,7 @@ class StudentController extends Controller
     {
         return Inertia::render('Teachers/Students/Edit', [
             'student' => $student->only('id', 'name', 'email', 'grade', 'age', 'timezone'),
+            'timezones' => Timezone::orderBy('value', 'asc')->get(),
         ]);
     }
 
