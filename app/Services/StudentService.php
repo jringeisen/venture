@@ -26,13 +26,17 @@ class StudentService
 
     public function totalQuestionsAsked(): int
     {
-        return $this->student->promptQuestions()->count();
+        return $this->student
+            ->promptQuestions()
+            ->whereHas('promptAnswer')
+            ->count();
     }
 
     public function totalQuestionsAskedToday(): int
     {
         return $this->student
             ->promptQuestions()
+            ->whereHas('promptAnswer')
             ->filterByDate(now()->toDateString())
             ->count();
     }
