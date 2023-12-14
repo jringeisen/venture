@@ -86,23 +86,24 @@
 
                                                         <ul
                                                             v-if="toggleAction === student.id"
-                                                            class="absolute bg-white shadow-lg py-1 text-left border rounded-lg right-4 -top-6"
+                                                            class="absolute bg-white shadow-lg text-left border rounded-lg right-4 -top-6"
                                                         >
-                                                            <li>
-                                                                <Link :href="route('students.show', student.id)"
-                                                                    class="cursor-pointer px-2 text-gray-600 hover:bg-gray-100"
-                                                                >
-                                                                    View
-                                                                </Link>
-                                                            </li>
-                                                            <li
-                                                                class="cursor-pointer px-2 text-gray-600 hover:bg-gray-100"
+                                                            <Link
+                                                                :href="route('students.show', student.id)"
+                                                                class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
+                                                                as="li"
                                                             >
+                                                                View
+                                                            </Link>
+                                                            <Link
+                                                                :href="route('students.edit', student.id)"
+                                                                class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
+                                                                as="li">
                                                                 Edit
-                                                            </li>
+                                                            </Link>
                                                             <li
                                                                 @click.prevent="deleteStudent(student)"
-                                                                class="cursor-pointer px-2 text-gray-600 hover:bg-gray-100"
+                                                                class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
                                                             >
                                                                 Delete
                                                             </li>

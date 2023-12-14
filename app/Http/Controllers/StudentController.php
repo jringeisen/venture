@@ -6,7 +6,6 @@ use App\Http\Requests\StudentStoreRequest;
 use App\Http\Resources\StudentResource;
 use App\Mail\TemporaryPasswordEmail;
 use App\Models\Student;
-use App\Services\PieChartService;
 use App\Services\StudentService;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
@@ -19,21 +18,18 @@ use Inertia\Response;
 
 class StudentController extends Controller
 {
-    private PieChartService $pieChartService;
-
     private StudentService $studentService;
 
     public function __construct()
     {
-        $this->pieChartService = new PieChartService;
         $this->studentService = new StudentService;
     }
 
     public function index(Request $request): Response
     {
         return Inertia::render('Teachers/Students/Index', [
-            'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) {
-                $query->filterByDate(today()->timezone('America/New_York')->toDateString());
+            'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) use ($request) {
+                $query->filterByDate(today()->timezone($request->user()->timezone)->toDateString());
             }])->paginate(10),
         ]);
     }
@@ -60,16 +56,30 @@ class StudentController extends Controller
         return to_route('students.index');
     }
 
+    public function edit(Student $student): Response
+    {
+        return Inertia::render('Teachers/Students/Edit', [
+            'student' => $student->only('id', 'name', 'email', 'grade', 'age', 'timezone'),
+        ]);
+    }
+
     public function show(Request $request, Student $student): Response
     {
         return Inertia::render('Teachers/Students/Show', [
             'student' => (new StudentResource($student->load('promptQuestions')))->resolve(),
-            'date' => $request->date ?? now()->timezone('America/New_York')->toDateString(),
+            'date' => $request->date ?? now()->timezone($request->user()->timezone)->toDateString(),
             'totalQuestions' => $this->studentService->student($student)->totalQuestionsAsked(),
             'dailyQuestions' => $this->studentService->student($student)->totalQuestionsAskedToday(),
             'categoriesWithCounts' => $this->studentService->student($student)->categoriesWithCounts(),
             'pieChartData' => $this->studentService->student($student)->pieChartData(),
         ]);
+    }
+
+    public function update(StudentStoreRequest $request, Student $student): RedirectResponse
+    {
+        $student->update($request->validated());
+
+        return to_route('students.index');
     }
 
     public function destroy(Student $student): RedirectResponse

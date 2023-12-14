@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/create', [StudentController::class, 'create'])->name('students.create');
             Route::post('/', [StudentController::class, 'store'])->name('students.store');
             Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
+            Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+            Route::patch('/{student}', [StudentController::class, 'update'])->name('students.update');
             Route::delete('/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
         });
     });
