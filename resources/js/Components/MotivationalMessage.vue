@@ -4,8 +4,7 @@
             <div class="p-8 prose">
                 <h1 class="text-2xl font-bold text-center">Good morning!</h1>
                 <p class="text-center py-4">
-                    Believe in the magic within you, <strong>{{$page.props.auth.user.name}}</strong>. Your courage and dreams light the way to a future filled with amazing possibilities. We are so proud of you!
-                    Now go crush the day!
+                    {{ message }}
                 </p>
                 <div class="flex justify-center">
                     <button
@@ -28,6 +27,13 @@
 import { usePage, useForm } from '@inertiajs/vue3';
 import ConfettiExplosion from "vue-confetti-explosion";
 import Modal from '@/Components/Modal.vue';
+
+defineProps({
+    message: {
+        type: String,
+        default: ''
+    }
+});
 
 const page = usePage();
 

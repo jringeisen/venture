@@ -1,7 +1,7 @@
 <template>
     <Head title="Dashboard" />
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :motivational-message="motivationalMessage">
         <div class="md:py-12">
             <div class="max-w-7xl mx-auto space-y-3 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -51,7 +51,8 @@ const props = defineProps({
     categoriesWithCounts: Object,
     totalQuestions: Number,
     dailyQuestions: Number,
-    pieChartData: Object
+    pieChartData: Object,
+    motivationalMessage: String
 });
 
 const options = ref({
