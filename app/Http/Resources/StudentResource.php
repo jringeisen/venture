@@ -9,7 +9,7 @@ class StudentResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        $date = $request->date ?? now()->setTimezone('America/New_York')->toDateString();
+        $date = $request->date ?? now()->setTimezone($request->user()->timezone)->toDateString();
 
         return [
             'id' => $this->id,
@@ -19,12 +19,12 @@ class StudentResource extends JsonResource
                 ->whereHas('promptAnswer')
                 ->filterByDate($date)
                 ->get()
-                ->map(function ($promptQuestion) {
+                ->map(function ($promptQuestion) use ($request) {
                     return [
                         'id' => $promptQuestion->id,
                         'question' => $promptQuestion->question,
                         'prompt_answer' => $promptQuestion->promptAnswer,
-                        'created_at' => $promptQuestion->created_at->setTimezone('America/New_York')->toFormattedDateString(),
+                        'created_at' => $promptQuestion->created_at->setTimezone($request->user()->timezone)->toFormattedDateString(),
                     ];
                 }),
         ];

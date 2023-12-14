@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -18,6 +19,7 @@ class Student extends Authenticatable
         'is_temporary_password',
         'motivational_message',
         'current_streak',
+        'timezone',
     ];
 
     protected $hidden = [
@@ -48,5 +50,12 @@ class Student extends Authenticatable
     public function promptAnswers()
     {
         return $this->hasManyThrough(PromptAnswer::class, PromptQuestion::class);
+    }
+
+    protected function timezone(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => $value ?? config('app.timezone')
+        );
     }
 }
