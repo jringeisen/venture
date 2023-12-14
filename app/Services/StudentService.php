@@ -31,10 +31,9 @@ class StudentService
 
     public function totalQuestionsAskedToday(): int
     {
-        return $this->student->promptQuestions()
-            ->filterByDate(
-                today()->timezone(auth()->user()->timezone)->toDateString()
-            )
+        return $this->student
+            ->promptQuestions()
+            ->filterByDate(today()->toDateString())
             ->count();
     }
 
