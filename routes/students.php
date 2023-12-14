@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Student\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Student\Auth\PasswordResetController;
-use App\Http\Controllers\Student\PromptController;
-use App\Http\Controllers\Student\Prompts\GetContentController;
-use App\Http\Controllers\Student\Prompts\GetQuestionsController;
-use App\Http\Controllers\Student\Prompts\GetSubjectController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Student\PromptController;
+use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\Student\Auth\PasswordResetController;
+use App\Http\Controllers\Student\Prompts\GetContentController;
+use App\Http\Controllers\Student\Prompts\GetSubjectController;
+use App\Http\Controllers\Student\Prompts\GetQuestionsController;
+use App\Http\Controllers\Student\Auth\AuthenticatedSessionController;
 
 Route::prefix('student')
     ->name('student.')
@@ -27,6 +28,8 @@ Route::prefix('student')
                 Route::post('/prompts/questions', GetQuestionsController::class)->name('prompts.questions');
 
                 Route::get('/topic/{topic}', [\App\Http\Controllers\Student\TopicController::class, 'show'])->name('topic.show');
+
+                Route::patch('/students/{student}', [StudentController::class, 'update'])->name('students.update');
             });
 
             Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

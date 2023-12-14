@@ -25,15 +25,18 @@
 </template>
 
 <script setup>
-import { usePage } from '@inertiajs/vue3';
+import { usePage, useForm } from '@inertiajs/vue3';
 import ConfettiExplosion from "vue-confetti-explosion";
 import Modal from '@/Components/Modal.vue';
 
 const page = usePage();
 
+const form = useForm({
+    motivational_message: new Date().toLocaleDateString(),
+    redirect_route: 'student.dashboard',
+});
+
 const updateUser = () => {
-    axios.patch(route('students.update', page.props.auth.user), {motivational_message: new Date().toLocaleDateString()}).then(() => {
-        window.location.reload();
-    });
+    form.patch(route('student.students.update', page.props.auth.user));
 }
 </script>
