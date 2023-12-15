@@ -98,7 +98,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 
-defineOptions({layout: AuthenticatedLayout});
+defineOptions({
+    layout: AuthenticatedLayout
+});
 
 const props = defineProps({
     student: Object,

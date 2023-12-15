@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PromptAnswer extends Model
 {
@@ -16,7 +17,7 @@ class PromptAnswer extends Model
         'outline',
     ];
 
-    public function promptQuestion()
+    public function promptQuestion(): BelongsTo
     {
         return $this->belongsTo(PromptQuestion::class);
     }

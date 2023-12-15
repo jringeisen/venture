@@ -53,7 +53,7 @@ class StudentService
             ->toArray();
     }
 
-    public function pieChartData()
+    public function pieChartData(): array
     {
         return $this->pieChartService
             ->data(PromptAnswer::class, 'subject_category', $this->student->id)

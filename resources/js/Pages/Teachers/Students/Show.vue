@@ -115,7 +115,9 @@ import { capitalize } from 'lodash';
 import { startCase, kebabCase } from 'lodash';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
-defineOptions({layout: AuthenticatedLayout});
+defineOptions({
+    layout: AuthenticatedLayout
+});
 
 const props = defineProps({
     student: Object,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\PromptQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +20,7 @@ class StudentResource extends JsonResource
                 ->whereHas('promptAnswer')
                 ->filterByDate($date)
                 ->get()
-                ->map(function ($promptQuestion) use ($request) {
+                ->map(function (PromptQuestion $promptQuestion) use ($request) {
                     return [
                         'id' => $promptQuestion->id,
                         'question' => $promptQuestion->question,

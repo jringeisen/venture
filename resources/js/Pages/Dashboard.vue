@@ -28,7 +28,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-defineOptions({layout: AuthenticatedLayout});
+defineOptions({
+    layout: AuthenticatedLayout
+});
 
 const props = defineProps({
     totalQuestions: Number,

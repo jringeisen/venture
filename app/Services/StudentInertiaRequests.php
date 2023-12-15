@@ -14,6 +14,9 @@ class StudentInertiaRequests
                 'type' => 'student',
                 'user' => $request->user(),
                 'navigation' => $this->navigation(),
+                'motivationalMessage' => $request->routeIs('student.dashboard')
+                    ? (new MotivationalMessageService($request->user()))->generate()
+                    : null,
             ],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
