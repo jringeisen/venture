@@ -6,15 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class PasswordResetController extends Controller
 {
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Student/PasswordReset');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): string
     {
         $request->validate([
             'password' => ['required', 'confirmed', 'min:8'],

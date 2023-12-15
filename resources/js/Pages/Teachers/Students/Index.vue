@@ -160,7 +160,9 @@ import { ref } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
-defineOptions({layout: AuthenticatedLayout});
+defineOptions({
+    layout: AuthenticatedLayout
+});
 
 defineProps({
     students: {

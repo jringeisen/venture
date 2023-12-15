@@ -38,7 +38,7 @@ defineProps({
 const page = usePage();
 
 const form = useForm({
-    motivational_message: new Date().toLocaleDateString(),
+    motivational_message: new Date().toISOString(),
     redirect_route: 'student.dashboard',
 });
 

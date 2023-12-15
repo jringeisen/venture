@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Tightenco\Ziggy\Ziggy;
@@ -39,7 +40,7 @@ class UserInertiaRequests
             return null;
         }
 
-        return request()->user()?->students->map(function ($student) {
+        return request()->user()?->students->map(function (Student $student) {
             return [
                 'id' => $student->id,
                 'name' => $student->name,

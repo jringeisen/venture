@@ -202,7 +202,7 @@
         </div>
 
         <main class="relative py-10 lg:pl-72">
-            <MotivationalMessage v-if="motivationalMessage" :message="motivationalMessage" />
+            <MotivationalMessage v-if="$page.props.auth.motivationalMessage" :message="$page.props.auth.motivationalMessage" />
             <div class="px-4 sm:px-6 lg:px-8">
                 <slot></slot>
             </div>
@@ -217,10 +217,6 @@ import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessu
 import { Bars3Icon, XMarkIcon, HomeIcon, UsersIcon, DocumentIcon } from '@heroicons/vue/24/outline';
 import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-
-const props = defineProps({
-    motivationalMessage: String,
-});
 
 const sidebarOpen = ref(false);
 const toggleSettingsMenu = ref(false);

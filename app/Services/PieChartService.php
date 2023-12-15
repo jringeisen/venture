@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +17,8 @@ class PieChartService
 
     public function data(string $model, string $column, mixed $userId = null): self
     {
-        $query = $model::when($userId, function ($query, $userId) {
-            $query->whereHas('promptQuestion', function ($query) use ($userId) {
+        $query = $model::when($userId, function (Builder $query, int $userId) {
+            $query->whereHas('promptQuestion', function (Builder $query) use ($userId) {
                 $query->where('student_id', $userId);
             });
         });
@@ -25,7 +27,7 @@ class PieChartService
             ->whereNotNull($column)
             ->groupBy($column)
             ->get()
-            ->map(function ($item) use ($column) {
+            ->map(function (Model $item) use ($column) {
                 $item->$column = ucfirst($item->$column);
 
                 return $item;
@@ -37,7 +39,7 @@ class PieChartService
 
     public function labels(string $label): self
     {
-        $this->labels = $this->data->pluck($label)->map(function ($item) {
+        $this->labels = $this->data->pluck($label)->map(function (string $item) {
             return ucwords($item);
         })->values();
 

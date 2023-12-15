@@ -7,16 +7,17 @@ use App\Http\Requests\PromptRequest;
 use App\Models\Prompt;
 use App\Services\OpenAIService;
 use Inertia\Inertia;
+use Inertia\Response;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class PromptController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Student/Prompts/Index');
     }
 
-    public function store(PromptRequest $request, OpenAIService $openAIService)
+    public function store(PromptRequest $request, OpenAIService $openAIService): Response
     {
         $question = $request->user()->promptQuestions()->create([
             'question' => $request->question,
