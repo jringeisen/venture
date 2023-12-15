@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Student;
+use Illuminate\Support\Carbon;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class MotivationalMessageService
@@ -28,8 +29,11 @@ class MotivationalMessageService
 
     protected function shouldCreateMessage(): bool
     {
+        $dayMotivationalMessageWasLastSaved = $this->student->motivational_message->copy()->timezone($this->timezone)->startOfDay();
+        $todaysDate = today($this->timezone)->startOfDay();
+
         return $this->student->motivational_message
-            && $this->student->motivational_message->timezone($this->timezone)->lessThan(today()->timezone($this->timezone));
+            && $dayMotivationalMessageWasLastSaved->lessThan($todaysDate);
     }
 
     protected function callOpenAI(): string
