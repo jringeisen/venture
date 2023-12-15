@@ -10,13 +10,12 @@
             <span class="sr-only">Loading...</span>
         </div>
         <div v-else>
-            <h3 class="text-lg font-bold text-amber-700">Explore More</h3>
             <div class="whitespace-pre-wrap">
                 <ul>
                     <li
                         v-for="(question, index) in questions"
                         :key="index"
-                        class="mb-2.5 cursor-pointer text-blue-400 underline"
+                        class="mb-2.5 cursor-pointer text-primary-yellow underline"
                         @click.prevent="questionClicked(question)"
                     >
                         {{ question }}

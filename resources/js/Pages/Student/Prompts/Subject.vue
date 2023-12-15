@@ -5,9 +5,14 @@
             <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-20 mb-2.5"></div>
             <span class="sr-only">Loading...</span>
         </div>
-        <div v-else>
-            <h1 class="text-2xl font-bold text-teal-600">{{ capitalize(subject) }}</h1>
-            <h3 class="text-lg font-bold text-amber-700">{{ capitalize(subCategory) }}</h3>
+        <div v-else class="flex items-center divide-x-4 divide-primary-yellow">
+            <div class="flex items-center p-2 pl-0">
+                <ApplicationLogo class="w-10 h-10" />
+                <h1 class="text-3xl font-bold">{{ subject.toUpperCase() }}</h1>
+            </div>
+            <div class="p-2">
+                <h3 class="text-lg font-bold text-black">{{ subCategory.toUpperCase() }}</h3>
+            </div>
         </div>
     </div>
 </template>
@@ -15,6 +20,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { capitalize } from 'lodash';
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 const props = defineProps({
     question: {
