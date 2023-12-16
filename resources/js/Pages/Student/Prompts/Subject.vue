@@ -7,7 +7,7 @@
         </div>
         <div v-else class="flex items-center divide-x-4 divide-primary-yellow">
             <div class="flex items-center p-2 pl-0">
-                <ApplicationLogo class="w-10 h-10" />
+                <ApplicationLogo class="w-14 h-14" />
                 <h1 class="text-3xl font-bold">{{ subject.toUpperCase() }}</h1>
             </div>
             <div class="p-2">
