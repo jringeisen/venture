@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Student;
-use Illuminate\Support\Carbon;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class MotivationalMessageService
