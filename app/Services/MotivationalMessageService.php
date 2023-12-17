@@ -28,8 +28,8 @@ class MotivationalMessageService
 
     protected function shouldCreateMessage(): bool
     {
-        $dayMotivationalMessageWasLastSaved = $this->student->motivational_message->startOfDay()->timezone($this->timezone);
-        $todaysDate = today()->startOfDay()->timezone($this->timezone);
+        $dayMotivationalMessageWasLastSaved = $this->student->motivational_message->timezone($this->timezone)->startOfDay()->utc();
+        $todaysDate = today()->timezone($this->timezone)->startOfDay()->utc();
 
         return $this->student->motivational_message
             && $dayMotivationalMessageWasLastSaved->lessThan($todaysDate);
