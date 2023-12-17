@@ -30,7 +30,7 @@ class StudentInertiaRequests
     {
         return [
             ['name' => 'Dashboard', 'href' => '/student/dashboard', 'icon' => 'home-icon', 'current' => request()->routeIs('student.dashboard')],
-            ['name' => 'Prompts', 'href' => '/student/prompts', 'icon' => 'document-icon', 'current' => request()->routeIs('student.prompts.*')],
+            ['name' => 'Learn', 'href' => '/student/prompts', 'icon' => 'book-open', 'current' => request()->routeIs('student.prompts.*')],
         ];
     }
 }

@@ -11,7 +11,7 @@
                 <h1 class="text-3xl font-bold">{{ subject.toUpperCase() }}</h1>
             </div>
             <div class="p-2">
-                <h3 class="text-lg font-bold text-black">{{ subCategory.toUpperCase() }}</h3>
+                <h3 class="text-lg font-bold text-black tracking-widest">{{ subCategory.toUpperCase() }}</h3>
             </div>
         </div>
     </div>
