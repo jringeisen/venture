@@ -1,6 +1,6 @@
 <template>
         <div>
-            <p class="whitespace-pre-line">{{ message }}</p>
+            <p class="whitespace-pre-line dark:text-neutral-400">{{ message }}</p>
         </div>
 </template>
 

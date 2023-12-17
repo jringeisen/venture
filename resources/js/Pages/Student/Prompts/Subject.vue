@@ -8,10 +8,10 @@
         <div v-else class="flex items-center divide-x-4 divide-primary-yellow">
             <div class="flex items-center p-2 pl-0">
                 <ApplicationLogo class="w-14 h-14" />
-                <h1 class="text-3xl font-bold">{{ subject.toUpperCase() }}</h1>
+                <h1 class="text-3xl font-bold dark:text-neutral-900">{{ subject.toUpperCase() }}</h1>
             </div>
             <div class="p-2">
-                <h3 class="text-lg font-bold text-black tracking-widest">{{ subCategory.toUpperCase() }}</h3>
+                <h3 class="text-lg font-bold text-black tracking-widest dark:text-neutral-900">{{ subCategory.toUpperCase() }}</h3>
             </div>
         </div>
     </div>
