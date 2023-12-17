@@ -44,7 +44,7 @@
                             <!-- Sidebar component, swap this element with another sidebar if you like -->
                             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white pb-2">
                                 <div class="flex h-16 shrink-0 items-center bg-green-600">
-                                    <p class="text-green-50 text-2xl text-center font-bold w-full">MINDFUL</p>
+                                    <p class="text-green-50 text-2xl text-center font-bold w-full dark:text-neutral-400">MINDFUL</p>
                                 </div>
                                 <nav class="flex flex-1 flex-col px-6">
                                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -87,9 +87,9 @@
         <!-- Static sidebar for desktop -->
         <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-primary-gray">
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-primary-gray">
                 <div class="flex h-16 shrink-0 items-center">
-                    <p class="flex justify-center items-center text-white text-2xl font-bold w-full">
+                    <p class="flex justify-center items-center text-white text-2xl font-bold w-full dark:text-neutral-400">
                         <ApplicationLogo class="w-9 h-9" />
                         MINDFUL
                     </p>
@@ -102,8 +102,8 @@
                                     <span
                                         :class="[
                                             item.current
-                                                ? 'bg-gray-100 text-primary-gray'
-                                                : 'text-gray-300 hover:text-primary-gray hover:bg-gray-50',
+                                                ? 'bg-gray-100 text-primary-gray dark:bg-neutral-700 dark:text-neutral-400'
+                                                : 'text-gray-300 hover:text-primary-gray hover:bg-gray-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-400',
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                         ]"
                                     >
@@ -111,8 +111,8 @@
                                             :is="getIconComponent(item.icon)"
                                             :class="[
                                                 item.current
-                                                    ? 'text-primary-gray'
-                                                    : 'text-gray-300 group-hover:text-primary-gray',
+                                                    ? 'text-primary-gray dark:text-neutral-400'
+                                                    : 'text-gray-300 group-hover:text-primary-gray dark:text-neutral-400 dark:group-hover:text-neutral-400',
                                                 'h-6 w-6 shrink-0',
                                             ]"
                                             aria-hidden="true"
@@ -133,7 +133,7 @@
                             <a
                                 @click.prevent="toggleSettingsMenu = !toggleSettingsMenu"
                                 href="#"
-                                class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-300 hover:text-primary-gray hover:bg-gray-50"
+                                class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-300 hover:text-primary-gray hover:bg-gray-50 dark:hover:bg-neutral-700 dark:hover:text-neutral-400"
                             >
                                 <div class="flex justify-center items-center rounded-full bg-primary-yellow w-7 h-7">
                                     <p class="text-xl text-primary-gray">{{ $page.props.auth.user.name[0] }}</p>
@@ -144,11 +144,11 @@
 
                             <ul
                                 v-if="toggleSettingsMenu"
-                                class="absolute bottom-14 border bg-white ml-3 w-11/12 shadow-lg py-2 rounded-lg"
+                                class="absolute bottom-14 border bg-white ml-3 w-11/12 shadow-lg py-2 rounded-lg dark:bg-neutral-700 dark:text-neutral-400 dark:border-none"
                             >
                                 <li
                                     @click.prevent="router.post($page.props.auth.type === 'teacher' ? route('user.logout') : route('student.logout'))"
-                                    class="cursor-pointer px-4 py-1 hover:bg-gray-100"
+                                    class="cursor-pointer px-4 py-1 hover:bg-gray-100 dark:hover:bg-neutral-600"
                                 >
                                     Logout
                                 </li>

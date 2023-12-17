@@ -10,7 +10,7 @@
             <span class="sr-only">Loading...</span>
         </div>
         <div v-else>
-            <div class="whitespace-pre-wrap">
+            <div class="whitespace-pre-wrap mt-14">
                 <ul>
                     <li
                         v-for="(question, index) in questions"
