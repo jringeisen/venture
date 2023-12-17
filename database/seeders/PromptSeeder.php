@@ -36,8 +36,10 @@ class PromptSeeder extends Seeder
             [
                 'category' => 'questions',
                 'prompt' => <<<'EOT'
-                Based on this question, create an json response with a list of 5 additional questions
-                with the key being "questions".
+                Create an curriculum outline for the subject for the kids to learn more about the topic below.
+                Don't number anything and simply list out the topics to the question. Each of the topics needs
+                to be able to be on it's own. (exclude things like "conclusion" "Wrapping up"). Give me the results
+                in a list and in json format with a key of questions. Include at least 10 items in the list.
                 EOT
             ],
             [

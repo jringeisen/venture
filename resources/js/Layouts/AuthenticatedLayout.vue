@@ -135,8 +135,8 @@
                                 href="#"
                                 class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-300 hover:text-primary-gray hover:bg-gray-50"
                             >
-                                <div class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-400 w-7 h-7">
-                                    <p class="text-xl text-gray-400">{{ $page.props.auth.user.name[0] }}</p>
+                                <div class="flex justify-center items-center rounded-full bg-primary-yellow w-7 h-7">
+                                    <p class="text-xl text-primary-gray">{{ $page.props.auth.user.name[0] }}</p>
                                 </div>
                                 <span class="sr-only">Your profile</span>
                                 <span aria-hidden="true">{{ $page.props.auth.user.name }}</span>
@@ -214,7 +214,7 @@
 import { router, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon, HomeIcon, UsersIcon, DocumentIcon } from '@heroicons/vue/24/outline';
+import { Bars3Icon, XMarkIcon, HomeIcon, UsersIcon, DocumentIcon, BookOpenIcon } from '@heroicons/vue/24/outline';
 import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
@@ -225,6 +225,7 @@ const iconMap = {
     'home-icon': HomeIcon,
     'users-icon': UsersIcon,
     'document-icon': DocumentIcon,
+    'book-open': BookOpenIcon,
 };
 
 const getIconComponent = (iconName) => {
