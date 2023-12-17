@@ -122,6 +122,21 @@
                                 </Link>
                             </ul>
                         </li>
+                        <li>
+                            <div class="text-xs font-semibold leading-6 text-gray-300 uppercase">Subjects</div>
+                            <ul role="list" class="mt-2 space-y-1">
+                                <Link v-for="(subject, index) in $page.props.auth.subjects" :key="index" :href="subject.href">
+                                    <a
+                                        href="#"
+                                        class="text-gray-300 hover:text-primary-yellow group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
+                                        :class="{'text-primary-yellow': subject.current}"
+                                    >
+                                        <span class="truncate">{{ subject.name }}</span>
+                                        <span class="truncate">{{ subject.count }}</span>
+                                    </a>
+                                </Link>
+                            </ul>
+                        </li>
                         <li class="relative -mx-6 mt-auto">
                             <div
                                 v-if="toggleSettingsMenu"
