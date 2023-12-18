@@ -19,9 +19,27 @@
                     <p class="text-4xl font-bold dark:text-neutral-400">{{ $page.props.auth.user.current_streak }}</p>
                 </div>
             </div>
-            <div class="relative bg-white h-96 p-6 border overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-none">
-                <div class="absolute text-gray-500 dark:text-neutral-400">Subjects</div>
-                <apexchart width="100%" height="100%" type="pie" :options="options" :series="series"></apexchart>
+            <div class="grid grid-cols-1 h-96 space-y-4 md:grid-cols-12 md:grid-rows-4 md:grid-flow-col md:space-y-0 md:gap-3">
+                <div class="relative bg-white border bg-center bg-cover p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:row-span-4 md:col-span-4 dark:bg-primary-gray dark:border-none" :style="`background-image: url(${randomQuestion.image});`">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black">
+                        <div class="absolute bottom-0 p-4 text-white w-full">
+                            <p>{{ randomQuestion.grade }} Grade Student</p>
+                            <p class="mb-2">{{ randomQuestion.text }}</p>
+                            <div class="flex items-center">
+                                <ApplicationLogo class="h-8 w-8"  />
+                                <div class="flex divide-x">
+                                    <p class="px-2">{{ randomQuestion.category }}</p>
+                                    <p class="px-2">{{ randomQuestion.sub_category }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative bg-white p-6 border overflow-hidden shadow-sm sm:rounded-lg md:row-span-4 md:col-span-8 dark:bg-primary-gray dark:border-none">
+                    <div class="absolute text-gray-500 dark:text-neutral-400">Subjects</div>
+                    <apexchart width="100%" height="100%" type="pie" :options="options" :series="series"></apexchart>
+                </div>
             </div>
         </div>
     </div>
@@ -29,8 +47,8 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
-import { startCase, kebabCase } from 'lodash';
+import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 defineOptions({
@@ -41,6 +59,7 @@ const props = defineProps({
     totalQuestions: Number,
     dailyQuestions: Number,
     pieChartData: Object,
+    randomQuestion: Object,
 });
 
 const options = ref({
