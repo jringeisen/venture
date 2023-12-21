@@ -44,7 +44,7 @@
                             <!-- Sidebar component, swap this element with another sidebar if you like -->
                             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white pb-2">
                                 <div class="flex h-16 shrink-0 items-center bg-green-600">
-                                    <p class="text-green-50 text-2xl text-center font-bold w-full dark:text-neutral-400">MINDFUL</p>
+                                    <p class="text-green-50 text-2xl text-center font-bold w-full dark:text-neutral-400">VENTURE</p>
                                 </div>
                                 <nav class="flex flex-1 flex-col px-6">
                                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -91,7 +91,7 @@
                 <div class="flex h-16 shrink-0 items-center">
                     <p class="flex justify-center items-center text-white text-2xl font-bold w-full dark:text-neutral-400">
                         <ApplicationLogo class="w-9 h-9" />
-                        MINDFUL
+                        VENTURE
                     </p>
                 </div>
                 <nav class="flex flex-1 flex-col px-6">
