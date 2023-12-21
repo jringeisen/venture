@@ -7,7 +7,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
         <div>
             <a href="/" class="flex items-center">
                 <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
-                <p class="text-primary-yellow text-5xl">VENTURE</p>
+                <p class="text-white text-5xl">VENTURE</p>
             </a>
         </div>
 
