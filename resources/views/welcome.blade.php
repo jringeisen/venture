@@ -83,9 +83,9 @@
             </section>
         </div>
 
-        <section id="subjects" class="w-full bg-gradient-to-t from-black to-transparent" style="height:800px;">
+        <section id="subjects" class="w-full bg-gradient-to-t from-black to-transparent h-[400px] lg:h-[800px]">
             <div class="flex justify-center">
-                <div class="relative w-full lg:block">
+                <div class="hidden relative w-full lg:block">
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:15%;top:170px;width:196px;height:21px;">
                         <img src="{{ asset('assets/images/icons/20.png') }}" />
@@ -244,7 +244,7 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <div class="w-full text-center mt-80 lg:w-6/12">
+                <div class="w-full text-center mt-40 lg:mt-80 lg:w-6/12">
                     <h2 class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-4xl lg:text-5xl">
                         LEARN ANYTHING,</h2>
                     <h2 class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-4xl lg:text-5xl">
@@ -253,7 +253,7 @@
             </div>
         </section>
 
-        <section style="height:600px;">
+        <section class="h-[700px] lg:h-[600px]">
             <div id="grades" class="relative h-full bg-cover bg-center bg-fixed">
                 <div class="absolute inset-0 bg-black opacity-50 h-full z-10"></div>
                 <div class="max-w-xl mx-auto">
