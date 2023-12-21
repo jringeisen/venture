@@ -14,10 +14,7 @@ class TopicController extends Controller
 {
     public function show(Request $request, string $topic): Response
     {
-        $date = $request->date ?? now()->toDateString();
-
         return Inertia::render('Student/Topic', [
-            'date' => $date,
             'topic' => Str::slug($topic),
             'questions' => PromptQuestion::where('student_id', $request->user()->id)
                 ->whereHas('promptAnswer', function (Builder $query) use ($topic) {
@@ -25,9 +22,8 @@ class TopicController extends Controller
                 })
                 ->with('promptAnswer')
                 ->orderBy('created_at', 'desc')
-                ->filterByDate($date)
-                ->get()
-                ->map(function (PromptQuestion $promptQuestion) {
+                ->paginate(10)
+                ->through(function (PromptQuestion $promptQuestion) {
                     return [
                         'id' => $promptQuestion->id,
                         'question' => $promptQuestion->question,

@@ -2,7 +2,7 @@
     <GuestLayout>
         <Head title="Teacher Login" />
 
-        <p class="text-center font-bold text-2xl pb-4">Teacher Login</p>
+        <p class="text-center font-bold text-2xl pb-4 dark:text-white">Teacher Login</p>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
@@ -51,7 +51,7 @@
                 <Link
                     v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    class="underline text-sm text-neutral-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 >
                     Forgot your password?
                 </Link>

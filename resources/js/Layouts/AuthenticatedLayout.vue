@@ -122,7 +122,7 @@
                                 </Link>
                             </ul>
                         </li>
-                        <li>
+                        <li v-if="$page.props.auth.subjects && Object.keys($page.props.auth.subjects).length > 0">
                             <div class="text-xs font-semibold leading-6 text-gray-300 uppercase">Subjects</div>
                             <ul role="list" class="mt-2 space-y-1">
                                 <Link v-for="(subject, index) in $page.props.auth.subjects" :key="index" :href="subject.href">
