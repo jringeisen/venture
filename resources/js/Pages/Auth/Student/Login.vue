@@ -2,7 +2,7 @@
     <GuestLayout>
         <Head title="Student Login" />
 
-        <p class="text-center font-bold text-2xl pb-4">Student Login</p>
+        <p class="text-center font-bold text-2xl pb-4 dark:text-white">Student Login</p>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
