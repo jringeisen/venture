@@ -7,8 +7,6 @@
 
     <title>Laravel</title>
 
-    <!-- Fonts -->
-
     @vite(['resources/css/app.css'])
     <script>
         document.documentElement.classList.add('js')
