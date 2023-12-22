@@ -6,11 +6,15 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+        <link rel="icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon"/>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        <!-- Fathom - beautiful, simple website analytics -->
+        <script src="https://cdn.usefathom.com/script.js" data-site="KVCJTXET" defer></script>
+        <!-- / Fathom -->
 
         <!-- Scripts -->
         @routes
