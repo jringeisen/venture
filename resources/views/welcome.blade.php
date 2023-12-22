@@ -13,8 +13,8 @@
     </script>
 </head>
 
-<body class="antialiased">
-    <header class="sticky top-0 bg-primary-dark-gray z-50">
+<body class="antialiased relative">
+    <header class="sticky top-0 bg-primary-dark-gray z-20">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a href="#" class="flex items-center -m-1.5 p-1.5">
@@ -101,7 +101,7 @@
         </div>
     </header>
 
-    <div class="relative">
+    <div>
         <div class="max-w-7xl mx-auto">
             <section id="hero" class="mt-10 lg:mt-32">
                 <div class="flex justify-center">
@@ -117,11 +117,21 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5">
-                    <img src="{{ asset('assets/images/hero/1.png')}}" />
-                    <img src="{{ asset('assets/images/hero/2.png')}}" />
-                    <img src="{{ asset('assets/images/hero/3.png')}}" />
-                    <img src="{{ asset('assets/images/hero/4.png')}}" />
-                    <img src="{{ asset('assets/images/hero/5.png')}}" class="hidden md:block" />
+                    <div onclick="toggleResponse(this)">
+                        <img src="{{ asset('assets/images/hero/1.png')}}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                    </div>
+                    <div onclick="toggleResponse(this)">
+                        <img src="{{ asset('assets/images/hero/2.png')}}" class="transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                    </div>
+                    <div onclick="toggleResponse(this)">
+                        <img src="{{ asset('assets/images/hero/3.png')}}" class="transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                    </div>
+                    <div onclick="toggleResponse(this)">
+                        <img src="{{ asset('assets/images/hero/4.png')}}" class="transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                    </div>
+                    <div onclick="toggleResponse(this)">
+                        <img src="{{ asset('assets/images/hero/5.png')}}" class="hidden transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110 md:block" />
+                    </div>
                 </div>
             </section>
 
@@ -313,7 +323,7 @@
             <div id="grades" class="relative h-full bg-cover bg-center bg-fixed">
                 <div class="absolute inset-0 bg-black opacity-50 h-full z-10"></div>
                 <div class="max-w-xl mx-auto">
-                    <div class="absolute flex space-x-4 top-14 max-w-4xl mx-auto z-20 px-6 lg:space-x-24 lg:px-0">
+                    <div class="absolute flex space-x-4 top-14 max-w-4xl mx-auto z-10 px-6 lg:space-x-24 lg:px-0">
                         <div id="grade-lower" class="text-white text-center space-y-1 cursor-pointer">
                             <p class="text-xs tracking-wider">GRADES K-4</p>
                             <p class="tracking-widest">LOWER SCHOOL</p>
@@ -330,7 +340,7 @@
                     </div>
 
                     <div id="lower-school"
-                        class="absolute text-white z-20 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
+                        class="absolute text-white z-10 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
                         <h2 class="text-3xl border-b pb-2">LOWER SCHOOL (K-4)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             In our Lower School program, we lay the groundwork for a transformative educational journey.
@@ -347,7 +357,7 @@
                     </div>
 
                     <div id="middle-school"
-                        class="absolute text-white z-20 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
+                        class="absolute text-white z-10 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
                         <h2 class="text-3xl border-b pb-2">MIDDLE SCHOOL (5-8)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             Our Middle School curriculum is designed to cater to the unique
@@ -365,7 +375,7 @@
                     </div>
 
                     <div id="high-school"
-                        class="absolute text-white z-20 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
+                        class="absolute text-white z-10 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
                         <h2 class="text-3xl border-b pb-2">HIGH SCHOOL (9-12)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             The High School experience is centered around educational freedom and real-world
@@ -404,11 +414,21 @@
             <h2 class="text-center text-4xl text-white font-thin lg:text-7xl">WHAT WILL YOU <span
                     class="text-primary-yellow font-normal">DISCOVER?</span></h2>
             <div class="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-5">
-                <img src="{{ asset('assets/images/15.png') }}" />
-                <img src="{{ asset('assets/images/17.png') }}" />
-                <img src="{{ asset('assets/images/19.png') }}" />
-                <img src="{{ asset('assets/images/20.png') }}" />
-                <img src="{{ asset('assets/images/18.png') }}" class="hidden lg:block" />
+                <div onclick="toggleResponse(this)">
+                    <img src="{{ asset('assets/images/15.png') }}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                </div>
+                <div onclick="toggleResponse(this)">
+                    <img src="{{ asset('assets/images/17.png') }}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                </div>
+                <div onclick="toggleResponse(this)">
+                    <img src="{{ asset('assets/images/19.png') }}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                </div>
+                <div onclick="toggleResponse(this)">
+                    <img src="{{ asset('assets/images/20.png') }}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                </div>
+                <div onclick="toggleResponse(this)">
+                    <img src="{{ asset('assets/images/18.png') }}" class="hidden transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110 lg:block" />
+                </div>
             </div>
         </section>
 
@@ -903,6 +923,7 @@
             </div>
         </div>
     </footer>
+    <div id="opaque-background" class="absolute hidden inset-0 bg-black opacity-75 z-20"></div>
     <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
 
     <script>
@@ -974,6 +995,13 @@
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('hidden');
+        }
+
+        function toggleResponse(element) {
+            const background = document.getElementById('opaque-background');
+            background.classList.toggle('hidden');
+
+            element.classList.toggle('z-30');
         }
     </script>
 </body>
