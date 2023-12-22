@@ -72,5 +72,5 @@ function toggleResponse(element) {
     const background = document.getElementById('opaque-background');
     background.classList.toggle('hidden');
 
-    element.classList.toggle('z-30');
+    element.classList.toggle('z-40');
 }
