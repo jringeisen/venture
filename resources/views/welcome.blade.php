@@ -135,11 +135,17 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5">
-                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <div onclick="toggleResponse(this)" class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                         <img src="{{ asset('assets/images/hero/1.png')}}" alt="spaceship launching into space" class="w-full h-full cursor-pointer" />
+                        <div class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-60 top-0 animate-fade-in-right">Hey there, space enthusiast! Space exploration is super exciting, but it's not without its challenges. One biggie is the crazy cost - shooting things into space is seriously pricey! Another hurdle is the extreme conditions out there, like intense radiation and bone-weakening microgravity. And let's not forget about the mind-boggling distance - even getting to our nearest planet neighbor, Mars, is a huge feat!</div>
                     </div>
-                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <div onclick="toggleResponse(this)" class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                         <img src="{{ asset('assets/images/hero/2.png')}}" alt="chameleon on a stick" class="w-full h-full cursor-pointer" />
+                        <div class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-60 top-0 animate-fade-in-right overflow-y-auto">
+                            <p>Hey there! So, chameleons are like the rockstars of the animal kingdom when it comes to changing colors. They change color to communicate, regulate their temperature, and camouflage themselves.</p>
+                            <br>
+                            <p>Okay, get this: chameleons have special cells called "chromatophores" in their skin. These cells have different colors stored inside them, like a wardrobe full of colorful clothes. When chameleons want to change color, their brain sends signals to these cells, telling them which color to show. It's kind of like a remote-controlled LED light changing colors!</p>
+                        </div>
                     </div>
                     <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
                         <img src="{{ asset('assets/images/hero/3.png')}}" alt="sphynx with pyramid in the background" class="w-full h-full cursor-pointer" />

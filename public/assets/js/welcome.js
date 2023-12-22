@@ -72,5 +72,11 @@ function toggleResponse(element) {
     const background = document.getElementById('opaque-background');
     background.classList.toggle('hidden');
 
+    for (child of element.children) {
+        if (child.tagName === 'DIV') {
+            child.classList.toggle('hidden');
+        }
+    }
+
     element.classList.toggle('z-40');
 }
