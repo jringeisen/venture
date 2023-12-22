@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
 
     <title>Laravel</title>
 
@@ -118,19 +119,19 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5">
                     <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/1.png')}}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                        <img src="{{ asset('assets/images/hero/1.png')}}" alt="spaceship launching into space" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
                     </div>
                     <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/2.png')}}" class="transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                        <img src="{{ asset('assets/images/hero/2.png')}}" alt="chameleon on a stick" class="w-full h-full transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
                     </div>
                     <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/3.png')}}" class="transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                        <img src="{{ asset('assets/images/hero/3.png')}}" alt="sphynx with pyramid in the background" class="w-full h-full transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
                     </div>
                     <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/4.png')}}" class="transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                        <img src="{{ asset('assets/images/hero/4.png')}}" alt="face of a bamboon" class="w-full h-full transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
                     </div>
                     <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/5.png')}}" class="hidden transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110 md:block" />
+                        <img src="{{ asset('assets/images/hero/5.png')}}" alt="xray of a hand" class="w-full h-full hidden transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110 md:block" />
                     </div>
                 </div>
             </section>
@@ -154,157 +155,157 @@
                 <div class="hidden relative w-full lg:block">
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:15%;top:170px;width:196px;height:21px;">
-                        <img src="{{ asset('assets/images/icons/20.png') }}" />
+                        <img src="{{ asset('assets/images/icons/20.png') }}" alt="conservation" class="w-5 h-5" />
                         Conservation
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:26%;top:200px;width:126px;height:21px;">
-                        <img src="{{ asset('assets/images/icons/5.png') }}" />
+                        <img src="{{ asset('assets/images/icons/5.png') }}" alt="astronomy" class="w-5 h-5" />
                         Astronomy
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:10%;top:250px;width:196px;height:21px;">
-                        <img src="{{ asset('assets/images/icons/25.png') }}" />
+                        <img src="{{ asset('assets/images/icons/25.png') }}" alt="legal-studies" class="w-5 h-5" />
                         Legal Studies
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:45%;top:209px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/20.png') }}" />
+                        <img src="{{ asset('assets/images/icons/20.png') }}" alt="geography" class="w-5 h-5" />
                         Geography
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:67%;top:108px;width:196px;height:21px;">
-                        <img src="{{ asset('assets/images/icons/8.png') }}" />
+                        <img src="{{ asset('assets/images/icons/8.png') }}" alt="coding" class="w-5 h-5" />
                         Coding
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:31%;top:130px;width:330px;height:21px;">
-                        <img src="{{ asset('assets/images/icons/13.png') }}" />
+                        <img src="{{ asset('assets/images/icons/13.png') }}" alt="entrepreneurship" class="w-5 h-5" />
                         Entrepreneurship
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:23%;top:330px;width:126px;height:21px;">
-                        <img src="{{ asset('assets/images/icons/1.png') }}" />
+                        <img src="{{ asset('assets/images/icons/1.png') }}" alt="science" class="w-5 h-5" />
                         Science
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:34%;top:275px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/6.png') }}" />
+                        <img src="{{ asset('assets/images/icons/6.png') }}" alt="space-eploration" class="w-5 h-5" />
                         Space Eploration
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:10%;top:374px;width:126px;height:21px;">
-                        <img src="{{ asset('assets/images/icons/2.png') }}" />
+                        <img src="{{ asset('assets/images/icons/2.png') }}" alt="language-arts" class="w-5 h-5" />
                         Language Arts
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:26%;top:440px;width:126px;height:21px">
-                        <img src="{{ asset('assets/images/icons/2.png') }}" />
+                        <img src="{{ asset('assets/images/icons/2.png') }}" alt="history" class="w-5 h-5" />
                         History
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:18%;top:500px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/10.png') }}" />
+                        <img src="{{ asset('assets/images/icons/10.png') }}" alt="literature" class="w-5 h-5" />
                         Literarture
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:83%;top:460px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/28.png') }}" />
+                        <img src="{{ asset('assets/images/icons/28.png') }}" alt="vocational-skills" class="w-5 h-5" />
                         Vocational Skills
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:30%;top:632px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/26.png') }}" />
+                        <img src="{{ asset('assets/images/icons/26.png') }}" alt="mythology" class="w-5 h-5" />
                         Mythology
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:20%;top:600px;width:330px;height:21px">
-                        <img src="{{ asset('assets/images/icons/14.png') }}" />
+                        <img src="{{ asset('assets/images/icons/14.png') }}" alt="business" class="w-5 h-5" />
                         Business
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:11%;top:536px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/15.png') }}" />
+                        <img src="{{ asset('assets/images/icons/15.png') }}" alt="robotics" class="w-5 h-5" />
                         Robotics
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:30%;top:530px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/4.png') }}" />
+                        <img src="{{ asset('assets/images/icons/4.png') }}" alt="physical-education" class="w-5 h-5" />
                         Physical Education
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:80%;top:545px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/31.png') }}" />
+                        <img src="{{ asset('assets/images/icons/31.png') }}" alt="ancient-cultures" class="w-5 h-5" />
                         Ancient Cultures
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:45%;top:516px;width:126px;height:21px">
-                        <img src="{{ asset('assets/images/icons/30.png') }}" />
+                        <img src="{{ asset('assets/images/icons/30.png') }}" alt="social-studies" class="w-5 h-5" />
                         Social Studies
                     </div>
                     <div class="absolute text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:53%;top:590px;width:126px;height:21px">
-                        <img src="{{ asset('assets/images/icons/24.png') }}" />
+                        <img src="{{ asset('assets/images/icons/24.png') }}" alt="music" class="w-5 h-5" />
                         Music
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:40%;top:640px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/10.png') }}" />
+                        <img src="{{ asset('assets/images/icons/10.png') }}" alt="civics-and-government" class="w-5 h-5" />
                         Civics and Government
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:72%;top:645px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/20.png') }}" />
+                        <img src="{{ asset('assets/images/icons/20.png') }}" alt="environmental-studies" class="w-5 h-5" />
                         Environmental Studies
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:62%;top:602px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/32.png') }}" />
+                        <img src="{{ asset('assets/images/icons/32.png') }}" alt="wildlife" class="w-5 h-5" />
                         Wildlife
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:60%;top:481px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/33.png') }}" />
+                        <img src="{{ asset('assets/images/icons/33.png') }}" alt="paleontology" class="w-5 h-5" />
                         Paleontology
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:68%;top:542px;width:126px;height:21px">
-                        <img src="{{ asset('assets/images/icons/2.png') }}" />
+                        <img src="{{ asset('assets/images/icons/2.png') }}" alt="storytelling" class="w-5 h-5" />
                         Storytelling
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:73%;top:320px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/4.png') }}" />
+                        <img src="{{ asset('assets/images/icons/4.png') }}" alt="health" class="w-5 h-5" />
                         Health
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:74%;top:420px;width:126px;height:21px">
-                        <img src="{{ asset('assets/images/icons/11.png') }}" />
+                        <img src="{{ asset('assets/images/icons/11.png') }}" alt="art" class="w-5 h-5" />
                         Art
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:61%;top:270px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/17.png') }}" />
+                        <img src="{{ asset('assets/images/icons/17.png') }}" alt="archaeology" class="w-5 h-5" />
                         Archaeology
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:54%;top:130px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/2.png') }}" />
+                        <img src="{{ asset('assets/images/icons/2.png') }}" alt="creative-writing" class="w-5 h-5" />
                         Creative Writing
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:74%;top:184px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/34.png') }}" />
+                        <img src="{{ asset('assets/images/icons/34.png') }}" alt="computer-science" class="w-5 h-5" />
                         Computer Science
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:83%;top:299px;width:126px;height:21px">
-                        <img src="{{ asset('assets/images/icons/19.png') }}" />
+                        <img src="{{ asset('assets/images/icons/19.png') }}" alt="mathematics" class="w-5 h-5" />
                         Mathematics
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
                         data-taos-offset="100" style="left:42%;top:108px;width:126px;height:21px">
-                        <img src="{{ asset('assets/images/icons/21.png') }}" />
+                        <img src="{{ asset('assets/images/icons/21.png') }}" alt="marine-biology" class="w-5 h-5" />
                         Marine Biology
                     </div>
                 </div>
@@ -415,19 +416,19 @@
                     class="text-primary-yellow font-normal">DISCOVER?</span></h2>
             <div class="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-5">
                 <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/15.png') }}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                    <img src="{{ asset('assets/images/15.png') }}" alt="close up of an eye" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
                 </div>
                 <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/17.png') }}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                    <img src="{{ asset('assets/images/17.png') }}" alt="snow covered mountains" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
                 </div>
                 <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/19.png') }}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                    <img src="{{ asset('assets/images/19.png') }}" alt="earth from space" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
                 </div>
                 <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/20.png') }}" class="transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                    <img src="{{ asset('assets/images/20.png') }}" alt="man with falcon" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
                 </div>
                 <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/18.png') }}" class="hidden transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110 lg:block" />
+                    <img src="{{ asset('assets/images/18.png') }}" alt="scientist looking through a microscope" class="w-full h-full hidden transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110 lg:block" />
                 </div>
             </div>
         </section>
@@ -925,85 +926,7 @@
     </footer>
     <div id="opaque-background" class="absolute hidden inset-0 bg-black opacity-75 z-20"></div>
     <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
-
-    <script>
-        const backgroundImage = document.getElementById('grades');
-        backgroundImage.style.backgroundImage = "url('{{ asset('assets/images/grades-2.jpg') }}')"
-
-        const lowerSchool = document.getElementById('lower-school');
-        lowerSchool.classList.remove('hidden');
-
-        const middleSchool = document.getElementById('middle-school');
-        const highSchool = document.getElementById('high-school');
-
-        document.getElementById('grade-lower').addEventListener('click', () => {
-            backgroundImage.style.backgroundImage = "url('{{ asset('assets/images/grades-2.jpg') }}')";
-
-            if (lowerSchool.classList.contains('hidden')) {
-                lowerSchool.classList.remove('hidden');
-            }
-
-            if (!middleSchool.classList.contains('hidden')) {
-                middleSchool.classList.add('hidden');
-            }
-
-            if (!highSchool.classList.contains('hidden')) {
-                highSchool.classList.add('hidden');
-            }
-        });
-
-        document.getElementById('grade-middle').addEventListener('click', () => {
-            backgroundImage.style.backgroundImage = "url('{{ asset('assets/images/grades-3.jpg') }}')";
-
-            if (middleSchool.classList.contains('hidden')) {
-                middleSchool.classList.remove('hidden');
-            }
-
-            if (!lowerSchool.classList.contains('hidden')) {
-                lowerSchool.classList.add('hidden');
-            }
-
-            if (!highSchool.classList.contains('hidden')) {
-                highSchool.classList.add('hidden');
-            }
-        });
-
-        document.getElementById('grade-high').addEventListener('click', () => {
-            backgroundImage.style.backgroundImage = "url('{{ asset('assets/images/grades-1.jpg') }}')";
-
-            if (highSchool.classList.contains('hidden')) {
-                highSchool.classList.remove('hidden');
-            }
-
-            if (!lowerSchool.classList.contains('hidden')) {
-                lowerSchool.classList.add('hidden');
-            }
-
-            if (!middleSchool.classList.contains('hidden')) {
-                middleSchool.classList.add('hidden');
-            }
-        });
-
-        function toggleFAQ(event) {
-            for(event of event.children) {
-                if (event.tagName === 'UL') {
-                    event.classList.toggle('hidden');
-                }
-            }
-        }
-
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        }
-
-        function toggleResponse(element) {
-            const background = document.getElementById('opaque-background');
-            background.classList.toggle('hidden');
-
-            element.classList.toggle('z-30');
-        }
-    </script>
+    <script src="{{ asset('assets/js/welcome.js') }}" defer></script>
 </body>
 
 </html>
