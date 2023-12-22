@@ -19,12 +19,16 @@
 
     <title>{{ config('app.name') }}</title>
 
-    <link rel="shortcut icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon"/>
 
     @vite(['resources/css/app.css'])
     <script>
         document.documentElement.classList.add('js')
     </script>
+
+    <!-- Fathom - beautiful, simple website analytics -->
+    <script src="https://cdn.usefathom.com/script.js" data-site="KVCJTXET" defer></script>
+    <!-- / Fathom -->
 </head>
 
 <body class="antialiased relative">
