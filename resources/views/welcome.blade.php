@@ -4,11 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="title" property="og:title" content="Venture - Revolutionizing Homeschooling with OpenAI">
-    <meta name="description" property="og:description" content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
-    <meta name="image" property="og:image" content="{{ asset('assets/images/preview-image.png') }}">
-    <meta name="type" property="og:type" content="website">
-    <meta name="url" property="og:url" content="https://learnwithventure.com">
+    <meta name="title" content="Venture - Revolutionizing Homeschooling with OpenAI">
+    <meta name="description" content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
+    <meta name="image" content="{{ asset('assets/images/preview-image.png') }}">
+    <meta name="type" content="website">
+    <meta name="url" content="https://learnwithventure.com">
+
+
+    <meta property="og:title" content="Venture - Revolutionizing Homeschooling with OpenAI">
+    <meta property="og:description" content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
+    <meta property="og:image" content="{{ asset('assets/images/preview-image.png') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://learnwithventure.com">
 
     <title>{{ config('app.name') }}</title>
 
