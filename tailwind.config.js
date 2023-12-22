@@ -20,6 +20,9 @@ export default {
                 'primary-gray': '#2B2B2B',
                 'primary-dark-gray': '#1E1E21',
             },
+            animation: {
+                'fade-in-right': 'fadeInRight 1s ease-out',
+            },
         },
     },
 
