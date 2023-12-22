@@ -123,8 +123,8 @@
         <div class="max-w-7xl mx-auto">
             <section id="hero" class="mt-10 lg:mt-32">
                 <div class="flex justify-center">
-                    <div class="px-10 w-full space-y-8 lg:px-0 md:w-2/3 xl:w-5/12">
-                        <h1 class="text-4xl text-white text-center font-thin lg:text-5xl">Curiosity-led learning for
+                    <div class="px-10 w-full space-y-8 lg:px-0 md:w-2/3 xl:w-8/12">
+                        <h1 class="text-4xl text-white text-center font-thin lg:text-7xl">Curiosity-led learning for
                             creative minds,
                             encouraging exploration and discovery.</h1>
                         <div class="flex justify-center">
@@ -207,7 +207,7 @@
                         Entrepreneurship
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                        data-taos-offset="100" style="left:23%;top:330px;width:126px;height:21px;">
+                        data-taos-offset="100" style="left:23%;top:300px;width:126px;height:21px;">
                         <img src="{{ asset('assets/images/icons/1.png') }}" alt="science" class="w-5 h-5" />
                         Science
                     </div>
@@ -222,7 +222,7 @@
                         Language Arts
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                        data-taos-offset="100" style="left:26%;top:440px;width:126px;height:21px">
+                        data-taos-offset="100" style="left:26%;top:480px;width:126px;height:21px">
                         <img src="{{ asset('assets/images/icons/2.png') }}" alt="history" class="w-5 h-5" />
                         History
                     </div>
@@ -297,12 +297,12 @@
                         Storytelling
                     </div>
                     <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                        data-taos-offset="100" style="left:73%;top:320px;width:196px;height:21px">
+                        data-taos-offset="100" style="left:74%;top:310px;width:196px;height:21px">
                         <img src="{{ asset('assets/images/icons/4.png') }}" alt="health" class="w-5 h-5" />
                         Health
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                        data-taos-offset="100" style="left:74%;top:420px;width:126px;height:21px">
+                        data-taos-offset="100" style="left:74%;top:480px;width:126px;height:21px">
                         <img src="{{ asset('assets/images/icons/11.png') }}" alt="art" class="w-5 h-5" />
                         Art
                     </div>
@@ -334,10 +334,10 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <div class="w-full text-center mt-40 lg:mt-80 lg:w-6/12">
-                    <h2 class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-4xl lg:text-5xl">
+                <div class="w-full text-center mt-40 lg:mt-80 lg:w-9/12">
+                    <h2 class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
                         LEARN ANYTHING,</h2>
-                    <h2 class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-4xl lg:text-5xl">
+                    <h2 class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
                         ANYTIME, <span class="text-primary-yellow font-semibold">ANYWHERE</span></h2>
                 </div>
             </div>
