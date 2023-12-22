@@ -2,7 +2,7 @@
     <GuestLayout>
         <Head title="Register" />
 
-        <div v-if="!canRegister" class="text-white">We're not currently accepting registrations. We're working hard to get the Beta version released by next week.</div>
+        <div v-if="!canRegister" class="text-primary-dark-gray dark:text-white">We're not currently accepting registrations. We're working hard to get the Beta version released by next week.</div>
 
         <form v-else @submit.prevent="submit">
             <div>
