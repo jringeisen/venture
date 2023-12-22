@@ -135,20 +135,20 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5">
-                    <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/1.png')}}" alt="spaceship launching into space" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/1.png')}}" alt="spaceship launching into space" class="w-full h-full cursor-pointer" />
                     </div>
-                    <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/2.png')}}" alt="chameleon on a stick" class="w-full h-full transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/2.png')}}" alt="chameleon on a stick" class="w-full h-full cursor-pointer" />
                     </div>
-                    <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/3.png')}}" alt="sphynx with pyramid in the background" class="w-full h-full transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/3.png')}}" alt="sphynx with pyramid in the background" class="w-full h-full cursor-pointer" />
                     </div>
-                    <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/4.png')}}" alt="face of a bamboon" class="w-full h-full transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110" />
+                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/4.png')}}" alt="face of a bamboon" class="w-full h-full cursor-pointer" />
                     </div>
-                    <div onclick="toggleResponse(this)">
-                        <img src="{{ asset('assets/images/hero/5.png')}}" alt="xray of a hand" class="w-full h-full hidden transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110 md:block" />
+                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/5.png')}}" alt="xray of a hand" class="w-full h-full cursor-pointer hidden md:block" />
                     </div>
                 </div>
             </section>
@@ -432,20 +432,20 @@
             <h2 class="text-center text-4xl text-white font-thin lg:text-7xl">WHAT WILL YOU <span
                     class="text-primary-yellow font-normal">DISCOVER?</span></h2>
             <div class="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-5">
-                <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/15.png') }}" alt="close up of an eye" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/15.png') }}" alt="close up of an eye" class="w-full h-full cursor-pointer" />
                 </div>
-                <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/17.png') }}" alt="snow covered mountains" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/17.png') }}" alt="snow covered mountains" class="w-full h-full cursor-pointer" />
                 </div>
-                <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/19.png') }}" alt="earth from space" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/19.png') }}" alt="earth from space" class="w-full h-full cursor-pointer" />
                 </div>
-                <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/20.png') }}" alt="man with falcon" class="w-full h-full transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110" />
+                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/20.png') }}" alt="man with falcon" class="w-full h-full cursor-pointer" />
                 </div>
-                <div onclick="toggleResponse(this)">
-                    <img src="{{ asset('assets/images/18.png') }}" alt="scientist looking through a microscope" class="w-full h-full hidden transition ease-in-out delay-150 duration-300 cursor-pointer hover:-translate-y-1 hover:scale-110 lg:block" />
+                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/18.png') }}" alt="scientist looking through a microscope" class="w-full h-full hidden cursor-pointer lg:block" />
                 </div>
             </div>
         </section>
