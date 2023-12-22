@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
 
-    <title>Laravel</title>
+    <title>{{ config('app.name') }}</title>
+
+    <link rel="shortcut icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon">
 
     @vite(['resources/css/app.css'])
     <script>
