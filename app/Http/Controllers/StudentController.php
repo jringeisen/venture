@@ -69,7 +69,6 @@ class StudentController extends Controller
     {
         return Inertia::render('Teachers/Students/Show', [
             'student' => (new StudentResource($student->load('promptQuestions')))->resolve(),
-            'date' => $request->input('date', now($request->user()->timezone)->toDateString()),
             'totalQuestions' => $this->studentService->student($student)->totalQuestionsAsked(),
             'dailyQuestions' => $this->studentService->student($student)->totalQuestionsAskedToday(),
             'categoriesWithCounts' => $this->studentService->student($student)->categoriesWithCounts(),
