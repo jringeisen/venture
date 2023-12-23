@@ -3,11 +3,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow p-8 rounded-lg">
+            <div class="bg-white shadow p-8 rounded-lg dark:bg-neutral-800">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-gray-900">Create Student</h1>
-                        <p class="mt-2 text-sm text-gray-700">Create a new student in your account.</p>
+                        <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Create Student</h1>
+                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">Create a new student in your account.</p>
                     </div>
                 </div>
                 <div class="mt-8 flow-root">
@@ -15,62 +15,30 @@
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <form class="space-y-6" @submit.prevent="submit()">
                                 <div>
-                                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                                    <InputLabel for="name" value="Name" />
                                     <div class="mt-2">
-                                        <input
-                                            id="name"
-                                            v-model="form.name"
-                                            name="name"
-                                            type="text"
-                                            autocomplete="name"
-                                            required
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        />
+                                        <TextInput v-model="form.name" id="name" type="text" autocomplete="name" class="w-full" required />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                                    <InputLabel for="email" value="Email" />
                                     <div class="mt-2">
-                                        <input
-                                            id="email"
-                                            v-model="form.email"
-                                            name="email"
-                                            type="email"
-                                            autocomplete="email"
-                                            required
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        />
+                                        <TextInput v-model="form.email" id="email" type="text" autocomplete="email" class="w-full" required />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="grade" class="block text-sm font-medium leading-6 text-gray-900">Grade</label>
+                                    <InputLabel for="grade" value="Grade" />
                                     <div class="mt-2">
-                                        <input
-                                            id="grade"
-                                            v-model="form.grade"
-                                            name="grade"
-                                            type="number"
-                                            autocomplete="grade"
-                                            required
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        />
+                                        <TextInput v-model="form.grade" id="grade" type="text" autocomplete="grade" class="w-full" required />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="age" class="block text-sm font-medium leading-6 text-gray-900">Age</label>
+                                    <InputLabel for="age" value="Age" />
                                     <div class="mt-2">
-                                        <input
-                                            id="age"
-                                            v-model="form.age"
-                                            name="age"
-                                            type="number"
-                                            autocomplete="age"
-                                            required
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        />
+                                        <TextInput v-model="form.age" id="age" type="text" autocomplete="age" class="w-full" required />
                                     </div>
                                 </div>
 
@@ -92,6 +60,8 @@ import { Head, router, useForm } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import TextInput from '@/Components/TextInput.vue';
 
 defineOptions({
     layout: AuthenticatedLayout

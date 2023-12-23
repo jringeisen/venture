@@ -4,18 +4,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 space-y-4 md:grid-cols-12 md:grid-rows-2 md:grid-flow-col md:space-y-0 md:gap-4">
-                <div class="bg-white border dark:bg-gray-800 p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:col-span-3">
-                    <div class="text-gray-500 dark:text-gray-100">Total Questions</div>
-                    <p class="text-4xl font-bold">{{ totalQuestions }}</p>
+                <div class="bg-white border p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:col-span-3 dark:bg-primary-gray dark:border-none">
+                    <div class="text-gray-500 dark:text-neutral-400">Total Questions</div>
+                    <p class="text-4xl font-bold dark:text-neutral-400">{{ totalQuestions }}</p>
                 </div>
 
-                <div class="bg-white border p-6 dark:bg-gray-800 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:col-span-3">
-                    <div class="text-gray-500 dark:text-gray-100">Daily Questions</div>
-                    <p class="text-4xl font-bold">{{ dailyQuestions }}</p>
+                <div class="bg-white border p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:col-span-3 dark:bg-primary-gray dark:border-none">
+                    <div class="text-gray-500 dark:text-neutral-400">Daily Questions</div>
+                    <p class="text-4xl font-bold dark:text-neutral-400">{{ dailyQuestions }}</p>
                 </div>
 
-                <div class="relative bg-white p-6 border dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg md:row-span-2 md:col-span-9">
-                    <div class="absolute text-gray-500 dark:text-gray-100">Subjects</div>
+                <div class="relative bg-white p-6 border overflow-hidden shadow-sm sm:rounded-lg md:row-span-2 md:col-span-9 dark:bg-primary-gray dark:border-none">
+                    <div class="absolute text-gray-500 dark:text-neutral-400">Subjects</div>
                     <apexchart width="100%" height="100%" type="pie" :options="options" :series="series"></apexchart>
                 </div>
             </div>
@@ -39,7 +39,10 @@ const props = defineProps({
 })
 
 const options = ref({
-    labels: props.pieChartData.labels
+    labels: props.pieChartData.labels,
+    legend: {
+        labels: {colors: '#a3a3a3'}
+    }
 });
 
 const series = ref(props.pieChartData.series);

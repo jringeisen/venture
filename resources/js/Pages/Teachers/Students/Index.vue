@@ -3,11 +3,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow p-8 rounded-lg">
+            <div class="bg-white shadow p-8 rounded-lg dark:bg-primary-gray">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-gray-900">Students</h1>
-                        <p class="mt-2 text-sm text-gray-700">
+                        <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Students</h1>
+                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">
                             A list of all the students in your account including their name, title, email and role.
                         </p>
                     </div>
@@ -21,30 +21,30 @@
                     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-                                <table class="min-w-full divide-y divide-gray-300">
-                                    <thead class="bg-gray-50">
+                                <table class="min-w-full divide-y divide-gray-300 dark:divide-neutral-700">
+                                    <thead class="bg-gray-50 dark:bg-neutral-600">
                                         <tr>
                                             <th
                                                 scope="col"
-                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-neutral-300"
                                             >
                                                 Name
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
                                             >
                                                 Email
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
                                             >
                                                 Questions Asked
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
                                             >
                                                 Age
                                             </th>
@@ -53,20 +53,20 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                    <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
                                         <tr v-for="(student, index) in students.data" :key="index">
                                             <td
-                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-primary-gray"
                                             >
                                                 {{ student.name }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
                                                 {{ student.email }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
                                                 {{ student.prompt_questions_count }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
                                                 {{ student.age }}
                                             </td>
                                             <td
@@ -85,7 +85,7 @@
 
                                                     <ul
                                                         v-if="toggleAction === student.id"
-                                                        class="absolute bg-white shadow-lg text-left border rounded-lg right-4 -top-6"
+                                                        class="absolute bg-white shadow-lg text-left border rounded-lg right-4 -top-6 overflow-hidden"
                                                     >
                                                         <Link
                                                             :href="route('students.show', student.id)"
@@ -113,11 +113,11 @@
                                     </tbody>
                                 </table>
                                 <nav
-                                    class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
+                                    class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 dark:bg-neutral-600 dark:border-neutral-700"
                                     aria-label="Pagination"
                                 >
                                     <div class="hidden sm:block">
-                                        <p class="text-sm text-gray-700">
+                                        <p class="text-sm text-gray-700 dark:text-neutral-300">
                                             Showing
                                             <span class="font-medium">{{ students.from }}</span>
                                             to
