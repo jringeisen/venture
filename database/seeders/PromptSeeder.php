@@ -53,8 +53,13 @@ class PromptSeeder extends Seeder
                 5. Sexual/minors: Sexual content involving under-18 individuals.
                 6. Violence: Promotion or glorification of violence.
                 7. Violence/graphic: Extremely graphic violent content.
-                8. Controversial topics such as gender identity and identity politics.
-                Use this guidance strictly.
+                8. Analyze the incoming question for keywords and phrases related to commonly
+                controversial topics. Assess the context and intent of the question. If the question
+                involves topics like 'gender identity,' 'political beliefs,' 'religious views,' or
+                other sensitive subjects, and appears to be seeking opinion-based discussion rather
+                than factual information, flag the question as potentially controversial. Provide a
+                neutral, informative response where appropriate, and indicate that the topic might be
+                sensitive or controversial.
                 EOT
             ],
         ])->each(function ($prompt) {
