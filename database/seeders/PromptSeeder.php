@@ -45,7 +45,7 @@ class PromptSeeder extends Seeder
             [
                 'category' => 'moderation',
                 'prompt' => <<<'EOT'
-                Review the question for suitability for ages 8-13. If inappropriate, flag it. Return JSON with 'flagged' = True and a 'Message' explaining why it's not suitable, advising to discuss with a trusted adult. Flag content involving:
+                Review the question for suitability for ages 8-13. If inappropriate, flag it. Return JSON with 'flagged' = True and a 'message' explaining why it's not suitable, advising to discuss with a trusted adult. Flag content involving:
                 1. Hate: Prejudice based on race, gender, ethnicity, religion, etc.
                 2. Hate/threatening: Hateful content with violence or harm.
                 3. Self-harm: Promotion or depiction of self-harm (e.g., suicide, eating disorders).
@@ -53,6 +53,7 @@ class PromptSeeder extends Seeder
                 5. Sexual/minors: Sexual content involving under-18 individuals.
                 6. Violence: Promotion or glorification of violence.
                 7. Violence/graphic: Extremely graphic violent content.
+                8. Controversial topics such as gender identity and identity politics.
                 Use this guidance strictly.
                 EOT
             ],

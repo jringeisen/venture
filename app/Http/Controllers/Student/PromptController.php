@@ -53,6 +53,7 @@ class PromptController extends Controller
         return Inertia::render('Student/Prompts/Index', [
             'result' => [
                 'flagged' => false,
+                'message' => '',
             ],
         ]);
     }
