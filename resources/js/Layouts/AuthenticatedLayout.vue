@@ -11,7 +11,7 @@
                     leave-from="opacity-100"
                     leave-to="opacity-0"
                 >
-                    <div class="fixed inset-0 bg-gray-900/80" />
+                    <div class="fixed inset-0 bg-neutral-900/80" />
                 </TransitionChild>
 
                 <div class="fixed inset-0 flex">
@@ -42,9 +42,10 @@
                                 </div>
                             </TransitionChild>
                             <!-- Sidebar component, swap this element with another sidebar if you like -->
-                            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white pb-2">
-                                <div class="flex h-16 shrink-0 items-center bg-green-600">
-                                    <p class="text-green-50 text-2xl text-center font-bold w-full dark:text-neutral-400">VENTURE</p>
+                            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-primary-gray pb-2">
+                                <div class="flex h-16 justify-center items-center bg-primary-gray">
+                                    <ApplicationLogo class="w-9 h-9" />
+                                    <p class="text-neutral-100 text-2xl text-center font-bold">VENTURE</p>
                                 </div>
                                 <nav class="flex flex-1 flex-col px-6">
                                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -55,8 +56,8 @@
                                                         :href="item.href"
                                                         :class="[
                                                             item.current
-                                                                ? 'bg-gray-50 text-gray-600'
-                                                                : 'text-gray-700 hover:text-gray-600 hover:bg-gray-50',
+                                                            ? 'bg-gray-100 text-primary-gray dark:bg-neutral-700 dark:text-neutral-400'
+                                                : 'text-gray-300 hover:text-primary-gray hover:bg-gray-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-400',
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                         ]"
                                                     >
@@ -64,8 +65,8 @@
                                                             :is="getIconComponent(item.icon)"
                                                             :class="[
                                                                 item.current
-                                                                    ? 'text-gray-600'
-                                                                    : 'text-gray-400 group-hover:text-gray-600',
+                                                                    ? 'text-primary-gray dark:text-neutral-400'
+                                                                    : 'text-gray-300 group-hover:text-primary-gray dark:text-neutral-400 dark:group-hover:text-neutral-400',
                                                                 'h-6 w-6 shrink-0',
                                                             ]"
                                                             aria-hidden="true"
@@ -175,12 +176,11 @@
             </div>
         </div>
 
-        <div class="sticky top-0 z-40 flex items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+        <div class="sticky top-0 z-40 flex justify-between items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden dark:bg-primary-gray">
             <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = true">
                 <span class="sr-only">Open sidebar</span>
-                <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+                <Bars3Icon class="h-6 w-6 dark:text-neutral-400" aria-hidden="true" />
             </button>
-            <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">Dashboard</div>
             <div
                 v-if="toggleSettingsMenu"
                 @click.prevent="toggleSettingsMenu = false"
@@ -194,11 +194,11 @@
                     href="#"
                     class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-gray-900"
                 >
-                    <div class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-300 w-7 h-7">
-                        <p class="text-xl text-gray-300">{{ $page.props.auth.user.name[0] }}</p>
+                    <div class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-300 w-7 h-7 dark:bg-primary-yellow dark:border-none">
+                        <p class="text-xl text-gray-300 dark:text-primary-gray">{{ $page.props.auth.user.name[0] }}</p>
                     </div>
                     <span class="sr-only">Your profile</span>
-                    <span aria-hidden="true">{{ $page.props.auth.user.name }}</span>
+                    <span aria-hidden="true" class="dark:text-neutral-400">{{ $page.props.auth.user.name }}</span>
                 </a>
 
                 <ul

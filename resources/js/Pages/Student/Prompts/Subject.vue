@@ -1,8 +1,8 @@
 <template>
     <div>
         <div v-if="loading || processing" role="status" class="max-w-sm animate-pulse">
-            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-20 mb-2.5"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-primary-gray w-48 mb-4"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-primary-gray w-20 mb-2.5"></div>
             <span class="sr-only">Loading...</span>
         </div>
         <div v-else class="flex items-center divide-x-4 divide-primary-yellow">
