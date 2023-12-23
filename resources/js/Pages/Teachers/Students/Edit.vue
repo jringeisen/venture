@@ -3,11 +3,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow p-8 rounded-lg">
+            <div class="bg-white shadow p-8 rounded-lg dark:bg-primary-gray">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-gray-900">Edit {{ student.name }}</h1>
-                        <p class="mt-2 text-sm text-gray-700">Update this students details.</p>
+                        <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Edit {{ student.name }}</h1>
+                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">Update this students details.</p>
                     </div>
                 </div>
                 <div class="mt-8 flow-root">
@@ -15,64 +15,36 @@
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <form class="space-y-6" @submit.prevent="submit()">
                                 <div>
-                                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                                    <InputLabel for="name" value="Name" />
                                     <div class="mt-2">
-                                        <input
-                                            id="name"
-                                            v-model="form.name"
-                                            type="text"
-                                            autocomplete="name"
-                                            required
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        />
+                                        <TextInput id="name" v-model="form.name" autocomplete="name" required class="w-full" />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                                    <InputLabel for="email" value="Email" />
                                     <div class="mt-2">
-                                        <input
-                                            id="email"
-                                            v-model="form.email"
-                                            type="email"
-                                            autocomplete="email"
-                                            required
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        />
+                                        <TextInput id="email" v-model="form.email" type="email" autocomplete="email" required class="w-full" />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="grade" class="block text-sm font-medium leading-6 text-gray-900">Grade</label>
+                                    <InputLabel for="grade" value="Grade" />
                                     <div class="mt-2">
-                                        <input
-                                            id="grade"
-                                            v-model="form.grade"
-                                            type="number"
-                                            autocomplete="grade"
-                                            required
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        />
+                                        <TextInput id="grade" v-model="form.grade" type="number" autocomplete="grade" required class="w-full" />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="age" class="block text-sm font-medium leading-6 text-gray-900">Age</label>
+                                    <InputLabel for="age" value="Age" />
                                     <div class="mt-2">
-                                        <input
-                                            id="age"
-                                            v-model="form.age"
-                                            type="number"
-                                            autocomplete="age"
-                                            required
-                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        />
+                                        <TextInput id="age" v-model="form.age" type="number" autocomplete="age" required class="w-full" />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label for="timezone" class="block text-sm font-medium leading-6 text-gray-900">Timezone</label>
-                                    <select id="timezone" v-model="form.timezone" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <InputLabel for="timezone" value="Timezone" />
+                                    <select id="timezone" v-model="form.timezone" class="w-full border-gray-300 focus:border-primary-gray focus:ring-primary-gray rounded-md shadow-sm dark:focus:border-neutral-900 dark:focus:ring-neutral-900 dark:border-neutral-900 dark:bg-primary-gray dark:text-neutral-400 dark:placeholder:text-neutral-400">
                                         <option disabled>Choose a timezone:</option>
                                         <option v-for="(timezone, index) in timezones" selected :value="timezone.value">{{ timezone.label }}</option>
                                     </select>
@@ -97,6 +69,8 @@ import { Head, router, useForm } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import TextInput from '@/Components/TextInput.vue';
 
 defineOptions({
     layout: AuthenticatedLayout

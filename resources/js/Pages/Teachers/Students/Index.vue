@@ -112,38 +112,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <nav
-                                    class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 dark:bg-neutral-600 dark:border-neutral-700"
-                                    aria-label="Pagination"
-                                >
-                                    <div class="hidden sm:block">
-                                        <p class="text-sm text-gray-700 dark:text-neutral-300">
-                                            Showing
-                                            <span class="font-medium">{{ students.from }}</span>
-                                            to
-                                            <span class="font-medium">{{ students.to }}</span>
-                                            of
-                                            <span class="font-medium">{{ students.total }}</span>
-                                            results
-                                        </p>
-                                    </div>
-                                    <div class="flex flex-1 justify-between sm:justify-end">
-                                        <Link
-                                            v-if="students.prev_page_url"
-                                            :href="students.prev_page_url"
-                                            class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
-                                        >
-                                            Previous
-                                        </Link>
-                                        <Link
-                                            v-if="students.next_page_url"
-                                            :href="students.next_page_url"
-                                            class="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
-                                        >
-                                            Next
-                                        </Link>
-                                    </div>
-                                </nav>
+                                <Pagination :data="students" class="dark:bg-neutral-600" />
                             </div>
                         </div>
                     </div>
@@ -159,6 +128,7 @@ import { Head, router, useForm, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import Pagination from '@/Components/Pagination.vue';
 
 defineOptions({
     layout: AuthenticatedLayout
