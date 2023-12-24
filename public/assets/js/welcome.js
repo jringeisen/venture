@@ -55,20 +55,20 @@ document.getElementById('grade-high').addEventListener('click', () => {
     }
 });
 
-function toggleFAQ(event) {
+toggleFAQ = (event) => {
     for (event of event.children) {
         if (event.tagName === 'UL') {
             event.classList.toggle('hidden');
         }
     }
-}
+};
 
-function toggleMobileMenu() {
+toggleMobileMenu = () => {
     const mobileMenu = document.getElementById('mobileMenu');
     mobileMenu.classList.toggle('hidden');
-}
+};
 
-function toggleResponse(element) {
+toggleResponse = (element) => {
     const background = document.getElementById('opaque-background');
     background.classList.toggle('hidden');
 
@@ -79,4 +79,22 @@ function toggleResponse(element) {
     }
 
     element.classList.toggle('z-40');
-}
+};
+
+handleClickOutside = (element) => {
+    element.classList.toggle('hidden');
+
+    const questionCards = document.getElementById('questionCards');
+
+    for (child of questionCards.children) {
+        if (child.classList.contains('z-40')) {
+            child.classList.toggle('z-40');
+        }
+
+        for (grandchild of child.children) {
+            if (grandchild.tagName === 'DIV' && !grandchild.classList.contains('hidden')) {
+                grandchild.classList.toggle('hidden');
+            }
+        }
+    }
+};

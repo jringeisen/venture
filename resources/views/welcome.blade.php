@@ -134,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5">
+                <div id="questionCards" class="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5">
                     <div onclick="toggleResponse(this)" class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                         <img src="{{ asset('assets/images/hero/1.png')}}" alt="spaceship launching into space" class="w-full h-full cursor-pointer" />
                         <div class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-60 top-0 animate-fade-in-right">Hey there, space enthusiast! Space exploration is super exciting, but it's not without its challenges. One biggie is the crazy cost - shooting things into space is seriously pricey! Another hurdle is the extreme conditions out there, like intense radiation and bone-weakening microgravity. And let's not forget about the mind-boggling distance - even getting to our nearest planet neighbor, Mars, is a huge feat!</div>
@@ -946,9 +946,9 @@
             </div>
         </div>
     </footer>
-    <div id="opaque-background" class="absolute hidden inset-0 bg-black opacity-75 z-20"></div>
+    <div onclick="handleClickOutside(this)" id="opaque-background" class="absolute hidden inset-0 bg-black opacity-75 z-20"></div>
     <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
-    <script src="{{ asset('assets/js/welcome.js') }}" defer></script>
+    <script src="{{ asset('assets/js/welcome.js') }}"></script>
 </body>
 
 </html>
