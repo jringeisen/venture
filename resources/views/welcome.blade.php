@@ -343,11 +343,11 @@
             </div>
         </section>
 
-        <section class="h-[700px] lg:h-[600px]">
+        <section class="h-[740px]">
             <div id="grades" class="relative h-full bg-cover bg-center bg-fixed">
                 <div class="absolute inset-0 bg-black opacity-50 h-full z-10"></div>
-                <div class="max-w-xl mx-auto">
-                    <div class="absolute flex space-x-4 top-14 max-w-4xl mx-auto z-10 px-6 lg:space-x-24 lg:px-0">
+                <div class="pt-40 absolute z-10 w-full">
+                    <div class="flex justify-between max-w-4xl mx-auto z-10 px-6 lg:space-x-24 lg:px-0">
                         <div id="grade-lower" class="text-white text-center space-y-1 cursor-pointer">
                             <p class="text-xs tracking-wider">GRADES K-4</p>
                             <p class="tracking-widest">LOWER SCHOOL</p>
@@ -363,8 +363,7 @@
                         </div>
                     </div>
 
-                    <div id="lower-school"
-                        class="absolute text-white z-10 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
+                    <div id="lower-school" class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
                         <h2 class="text-3xl border-b pb-2">LOWER SCHOOL (K-4)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             In our Lower School program, we lay the groundwork for a transformative educational journey.
@@ -380,8 +379,7 @@
                         </p>
                     </div>
 
-                    <div id="middle-school"
-                        class="absolute text-white z-10 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
+                    <div id="middle-school" class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
                         <h2 class="text-3xl border-b pb-2">MIDDLE SCHOOL (5-8)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             Our Middle School curriculum is designed to cater to the unique
@@ -398,8 +396,7 @@
                         </p>
                     </div>
 
-                    <div id="high-school"
-                        class="absolute text-white z-10 right-50 top-48 space-y-2 hidden px-6 md:right-40 md:w-1/2 lg:w-1/3 xl:w-1/4 lg:px-0">
+                    <div id="high-school" class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
                         <h2 class="text-3xl border-b pb-2">HIGH SCHOOL (9-12)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             The High School experience is centered around educational freedom and real-world
@@ -419,18 +416,20 @@
             </div>
         </section>
 
-        <section id="pricing" class="text-center pt-20 space-y-2">
-            <p class="text-white font-semibold tracking-wider">ENROLL NOW</p>
-            <div class="text-3xl text-white max-w-5xl mx-auto leading-snug lg:text-4xl">
-                <p class="font-extralight">Take advantage of our limited-time beta pricing! Experience <span
-                        class="text-primary-yellow font-semibold">Venture</span> for a full month at a special price of
-                    only $20.00. Sign up now and start your ad<span
-                        class="text-primary-yellow font-semibold">venture</span> today!</p>
-            </div>
-            <div class="flex justify-center py-8">
-                <a href="/register"
-                    class="inline-flex items-center px-10 py-4 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">START
-                    A TRIAL</a>
+        <section id="pricing" class="pt-40">
+            <div class="text-center space-y-10">
+                <p class="text-white font-semibold tracking-wider text-4xl">ENROLL NOW</p>
+                <div class="text-3xl text-white max-w-5xl mx-auto leading-snug lg:text-5xl">
+                    <p class="font-extralight">Take advantage of our limited-time beta pricing! Experience <span
+                            class="text-primary-yellow font-semibold">Venture</span> for a full month at a special price of
+                        only $20.00. Sign up now and start your ad<span
+                            class="text-primary-yellow font-semibold">venture</span> today!</p>
+                </div>
+                <div class="flex justify-center py-8">
+                    <a href="/register"
+                        class="inline-flex items-center px-10 py-4 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">START
+                        A TRIAL</a>
+                </div>
             </div>
         </section>
 
