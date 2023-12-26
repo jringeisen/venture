@@ -5,21 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="title" content="Venture - Revolutionizing Homeschooling with OpenAI">
-    <meta name="description" content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
+    <meta name="description"
+        content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
     <meta name="image" content="{{ asset('assets/images/preview-image.png') }}">
     <meta name="type" content="website">
     <meta name="url" content="https://learnwithventure.com">
 
 
     <meta property="og:title" content="Venture - Revolutionizing Homeschooling with OpenAI">
-    <meta property="og:description" content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
+    <meta property="og:description"
+        content="Discover Venture - Revolutionizing Homeschooling with OpenAI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
     <meta property="og:image" content="{{ asset('assets/images/preview-image.png') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://learnwithventure.com">
 
     <title>{{ config('app.name') }}</title>
 
-    <link rel="icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon" />
 
     @vite(['resources/css/app.css'])
     <script>
@@ -87,7 +89,8 @@
                                 stroke="none" fill="#fccc07" fill-rule="evenodd" />
                         </svg>
                     </a>
-                    <button onclick="toggleMobileMenu()" type="button" class="-m-2.5 rounded-md p-2.5 text-primary-yellow">
+                    <button onclick="toggleMobileMenu()" type="button"
+                        class="-m-2.5 rounded-md p-2.5 text-primary-yellow">
                         <span class="sr-only">Close menu</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                             aria-hidden="true">
@@ -99,19 +102,27 @@
                     <div class="-my-6 divide-y divide-gray-500/25">
                         <div class="space-y-2 py-6">
                             <a href="#benefits"
+                                onclick="toggleMobileMenu()"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">BENEFITS</a>
                             <a href="#subjects"
+                                onclick="toggleMobileMenu()"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">SUBJECTS</a>
                             <a href="#pricing"
+                                onclick="toggleMobileMenu()"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">PRICING</a>
                             <a href="#reviews"
+                                onclick="toggleMobileMenu()"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">REVIEWS</a>
                             <a href="#faq"
+                                onclick="toggleMobileMenu()"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">FAQ</a>
                         </div>
                         <div class="py-6">
-                            <a href="/auth-options" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">Log in</a>
-                            <a href="/register" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">Register</a>
+                            <a href="/auth-options"
+                                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">Log
+                                in</a>
+                            <a href="/register"
+                                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">Register</a>
                         </div>
                     </div>
                 </div>
@@ -135,26 +146,264 @@
                     </div>
                 </div>
                 <div id="questionCards" class="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5">
-                    <div onclick="toggleResponse(this)" class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/images/hero/1.png')}}" alt="spaceship launching into space" class="w-full h-full cursor-pointer" />
-                        <div class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-60 top-0 animate-fade-in-right">Hey there, space enthusiast! Space exploration is super exciting, but it's not without its challenges. One biggie is the crazy cost - shooting things into space is seriously pricey! Another hurdle is the extreme conditions out there, like intense radiation and bone-weakening microgravity. And let's not forget about the mind-boggling distance - even getting to our nearest planet neighbor, Mars, is a huge feat!</div>
-                    </div>
-                    <div onclick="toggleResponse(this)" class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/images/hero/2.png')}}" alt="chameleon on a stick" class="w-full h-full cursor-pointer" />
-                        <div class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-60 top-0 animate-fade-in-right overflow-y-auto">
-                            <p>Hey there! So, chameleons are like the rockstars of the animal kingdom when it comes to changing colors. They change color to communicate, regulate their temperature, and camouflage themselves.</p>
+                    <div onclick="toggleResponse(this)"
+                        class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/1.png')}}" alt="spaceship launching into space"
+                            class="w-full h-full cursor-pointer" />
+                        <div
+                            class="absolute hidden bg-primary-gray text-white px-4 pb-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                            <p>Space exploration, a field that has captivated humanity's imagination and scientific
+                                curiosity for decades, presents a myriad of challenges that span across various
+                                disciplines including physics, engineering, biology, and even psychology. The task of
+                                exploring space is complex and multifaceted, requiring a deep understanding of a range
+                                of scientific concepts and the ability to solve unprecedented problems.</p>
                             <br>
-                            <p>Okay, get this: chameleons have special cells called "chromatophores" in their skin. These cells have different colors stored inside them, like a wardrobe full of colorful clothes. When chameleons want to change color, their brain sends signals to these cells, telling them which color to show. It's kind of like a remote-controlled LED light changing colors!</p>
+                            <p>1. The Challenge of Distance and Time</p>
+                            <br>
+                            <p>Your question about the challenges of space exploration is incredibly relevant and
+                                thought-provoking, especially in an era where space is becoming an increasingly
+                                accessible frontier. Space exploration, while a testament to human ingenuity and
+                                curiosity, is fraught with numerous challenges that span a wide range of disciplines,
+                                from physics and engineering to biology and ethics.</p>
+                            <br>
+                            <p>One of the foremost challenges is the vastness of space and the immense distances
+                                involved. For instance, even a journey to our nearest planetary neighbor, Mars, requires
+                                a trip of approximately 140 million miles, taking around seven months one way with
+                                current technology. This distance presents significant challenges in terms of propulsion
+                                and spacecraft design, requiring spacecraft to be highly reliable and capable of
+                                sustaining life for extended periods. The need for life support systems that can provide
+                                air, water, and food over such durations is a complex engineering challenge.</p>
+                            <br>
+                            <p>Another significant challenge is the microgravity environment in space, which has
+                                profound effects on the human body, including muscle atrophy and bone density loss.
+                                Developing effective countermeasures to protect astronauts’ health during long-
+                                duration missions is a crucial area of ongoing research.</p>
+                            <br>
+                            <p>Radiation exposure presents a major hazard in space. Outside of Earth's protective
+                                magnetosphere, astronauts are exposed to high levels of cosmic radiation, which
+                                increases the risk of cancer and other health issues. Designing spacecraft with
+                                adequate radiation shielding is a critical concern, especially for missions beyond low
+                                Earth orbit.</p>
+                            <br>
+                            <p>Communication delays pose another challenge. As spacecraft travel farther from Earth,
+                                the time it takes for signals to travel between Earth and the spacecraft increases,
+                                which
+                                can delay communication. For example, a signal to Mars can take up to 20 minutes.
+                                This delay necessitates a higher level of autonomy for spacecraft and rovers, as well as
+                                pre-planned procedures for astronauts.</p>
+                            <br>
+                            The psychological and sociological aspects of space travel are also significant,
+                            especially for long-duration missions. The isolation, confinement, and distance from
+                            Earth can impact the mental health of astronauts. Ensuring effective team dynamics
+                            and maintaining mental health are critical for the success of these missions.
+                            Cost is another major factor. Space exploration requires substantial financial
+                            investment, and balancing the scientific goals with budget constraints is an ongoing
+                            challenge. This includes the cost of developing, launching, and maintaining missions, as
+                            well as the cost of research and development of new technologies.</p>
+                            <br>
+                            <p>Finally, there is the challenge of ensuring the safety and ethical considerations of
+                                space
+                                exploration. This includes not only the safety of astronauts but also considerations
+                                regarding the potential contamination of celestial bodies and the ethical implications
+                                of
+                                human colonization of other planets.</p>
+                            <br>
+                            <p>In conclusion, space exploration represents a pinnacle of human achievement and
+                                ambition, but it brings with it a multitude of challenges that require innovative
+                                solutions,
+                                interdisciplinary collaboration, and sustained commitment. These challenges are not
+                                just technical but also involve crucial considerations of human health, safety, ethics,
+                                and the very nature of our existence in the cosmos.</p>
                         </div>
                     </div>
-                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/images/hero/3.png')}}" alt="sphynx with pyramid in the background" class="w-full h-full cursor-pointer" />
+                    <div onclick="toggleResponse(this)"
+                        class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/2.png')}}" alt="chameleon on a stick"
+                            class="w-full h-full cursor-pointer" />
+                        <div
+                            class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                            <p>What a fantastic question! Chameleons, the enchanting magicians of the animal world,
+                                possess an awe-inspiring ability to change their skin color,
+                                a phenomenon that is as scientific as it is mesmerizing. These remarkable creatures have
+                                special layers of skin laden with unique cells called
+                                chromatophores. Imagine these cells as tiny, colorful balloons nestled under their skin,
+                                each capable of expanding or contracting to exhibit
+                                different hues. At the very top layer, these chromatophores hold various pigments. When
+                                a chameleon decides to change its color, these cells adjust
+                                their size, allowing more of their color to be visible on the chameleon's surface.</p>
+                            <br>
+                            <p>But the magic doesn't end there. Beneath this colorful layer lies another, akin to a
+                                mirror. It reflects light and alters the
+                                appearance of the colors above it, adding intensity or subtlety to the chameleon's
+                                vibrant display. This extraordinary ability
+                                isn't just for show; it serves several crucial purposes in the chameleon's life.
+                                Contrary to popular belief, chameleons don't
+                                always change color merely to blend in with their surroundings. They also use this
+                                ability to communicate their emotions—darker
+                                colors might signal fear or aggression. In regulating their body temperature, chameleons
+                                can darken on cooler days to absorb more
+                                warmth from the sun. Additionally, during mating season, males dazzle with particularly
+                                bright colors to attract females.</p>
+                            <br>
+                            <p>In essence, the chameleon's color-changing ability is a multifaceted tool, integral to
+                                its survival and communication. It's a vivid
+                                dance of nature, blending science and wonder, and offering us a glimpse into the marvels
+                                of the animal kingdom.</p>
+                        </div>
                     </div>
-                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/images/hero/4.png')}}" alt="face of a bamboon" class="w-full h-full cursor-pointer" />
+                    <div onclick="toggleResponse(this)"
+                        class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/3.png')}}" alt="sphynx with pyramid in the background"
+                            class="w-full h-full cursor-pointer" />
+                        <div
+                            class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                            <p>The construction of the Egyptian pyramids, especially the Great Pyramid of Giza, is a
+                                topic that blends the marvels of ancient
+                                engineering with a dash of mystery. Built over 4,500 years ago, the pyramids stand as a
+                                testament to the ingenuity and skill of
+                                ancient Egyptian builders.</p>
+                            <br>
+                            <p>The Egyptians used limestone blocks, each weighing several tons, to build these
+                                monumental structures. These stones were quarried,
+                                shaped, and then transported to the pyramid construction site. The question of how these
+                                massive stones were moved has intrigued
+                                scientists and historians for years. The most widely accepted theory is that the
+                                Egyptians used a combination of sledges and manpower
+                                to transport these blocks. Recent discoveries suggest that water might have been poured
+                                on the sand in front of the sledges to reduce
+                                friction, making it easier to move the heavy stones.</p>
+                            <br>
+                            <p>Once at the site, the challenge was to lift these blocks into place. The ancient builders
+                                likely used ramps made of mud brick and
+                                rubble to gradually elevate the stones. There are several theories about the design of
+                                these ramps, with some suggesting straight
+                                ramps leading up to the construction site, while others propose a zigzagging or spiral
+                                design around the pyramid.</p>
+                            <br>
+                            <p>The precision with which these pyramids were constructed is astounding. The base of the
+                                Great Pyramid, for instance, is almost perfectly
+                                level, with only a tiny margin of error. The Egyptians achieved this remarkable
+                                precision using basic tools like plumb bobs, leveling
+                                instruments, and sighting rods, combined with skilled craftsmanship and an intimate
+                                knowledge of geometry and astronomy.</p>
+                            <br>
+                            <p>Additionally, the alignment of the pyramids with celestial bodies suggests that the
+                                Egyptians had a deep understanding of astronomy. The
+                                sides of the Great Pyramid, for example, are closely aligned with the cardinal points of
+                                the compass, and the pyramid's descending passageway
+                                points directly to the North Star.</p>
+                        </div>
                     </div>
-                    <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
-                        <img src="{{ asset('assets/images/hero/5.png')}}" alt="xray of a hand" class="w-full h-full cursor-pointer hidden md:block" />
+                    <div onclick="toggleResponse(this)"
+                        class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/4.png')}}" alt="face of a bamboon"
+                            class="w-full h-full cursor-pointer" />
+                        <div
+                            class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full right-full top-0 animate-fade-in-right overflow-y-auto">
+                            <p>Your curiosity about the most endangered animals is not only commendable but also crucial
+                                in
+                                understanding and protecting our planet's biodiversity. In our world today, many species
+                                are
+                                facing the threat of extinction due to various factors, including habitat loss, climate
+                                change, poaching, and pollution. Let's delve into some of these critically endangered
+                                species, understanding their plight and the efforts needed to save them.</p>
+                            <br>
+                            <p>Firstly, the Amur Leopard, a stunning big cat found in the Russian Far East and China, is
+                                facing a particularly dire situation. With less than 100 individuals left in the wild,
+                                the
+                                Amur Leopard is threatened by habitat destruction, poaching, and climate change.
+                                Conservation efforts are focused on protecting their habitat and combating poaching.</p>
+                            <br>
+                            <p>Another critically endangered species is the Javan Rhino, once widespread across
+                                Southeast
+                                Asia but now confined to just one national park in Indonesia. With a population of
+                                around 60
+                                individuals, the Javan Rhino is at risk due to habitat loss and the lack of genetic
+                                diversity, which makes them vulnerable to disease and other natural threats.</p>
+                            <br>
+                            <p>The Vaquita, a small porpoise found in the Gulf of California, is the most endangered
+                                marine
+                                mammal. With a population estimated at fewer than 30 individuals, the Vaquita faces
+                                threats
+                                from illegal fishing activities and entanglement in fishing nets.</p>
+                            <br>
+                            <p>The Sumatran Elephant, a subspecies of the Asian Elephant, is also critically endangered.
+                                Habitat loss due to deforestation and human-elephant conflict are the main threats to
+                                their
+                                survival. Conservationists are working on habitat protection and reducing conflicts
+                                between
+                                elephants and local communities.</p>
+                            <br>
+                            <p>The Mountain Gorilla, found in the forests of the Democratic Republic of Congo, Rwanda,
+                                and
+                                Uganda, has seen a slight increase in population thanks to concerted conservation
+                                efforts.
+                                However, they remain critically endangered due to habitat loss, poaching, and the risk
+                                of
+                                disease transmission from humans.</p>
+                            <br>
+                            <p>These are just a few examples of the most endangered animals in the world. The
+                                conservation
+                                of these species is a complex task that requires international cooperation, strong
+                                conservation policies, and the involvement of local communities. Protecting these
+                                animals is
+                                not just about preserving individual species; it's about maintaining the health and
+                                balance
+                                of entire ecosystems. As we learn more about these endangered species and the challenges
+                                they face, we can better understand the importance of biodiversity and the role each
+                                species
+                                plays in the web of life.</p>
+                        </div>
+                    </div>
+                    <div onclick="toggleResponse(this)"
+                        class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
+                        <img src="{{ asset('assets/images/hero/5.png')}}" alt="xray of a hand"
+                            class="w-full h-full cursor-pointer hidden md:block" />
+                        <div
+                            class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full right-full top-0 animate-fade-in-right overflow-y-auto">
+                            <p>
+                                What a super question you've asked! X-rays are like superpowers that doctors use to look
+                                inside our bodies without having to open them up. Isn't that amazing? Let's find out how
+                                they do this cool trick.
+                            </p>
+                            <br>
+                            <p>
+                                Imagine you have a flashlight that can shine through walls. If you turn it on and point
+                                it at a wall, the light can't go through because the wall is too thick. But what if you
+                                shine it on a piece of paper? The light goes through easily! X-rays work a bit like this
+                                special flashlight, but instead of light, they use a special kind of ray that can pass
+                                through our body.
+                            </p>
+                            <br>
+                            <p>
+                                When you go to the doctor, and they need to see inside you, like checking on your bones,
+                                they use an X-ray machine. You might have seen it in hospitals – it's a big camera, but
+                                instead of taking regular pictures, it takes pictures of the inside of your body. When
+                                the X-ray machine is turned on, it sends these special rays through your body. These
+                                rays are like the light from the flashlight, but they're so powerful that they can pass
+                                through your skin and muscles.
+                            </p>
+                            <br>
+                            <p>
+                                But here's the cool part – your bones are like the wall for these rays. They are too
+                                thick for the X-rays to pass through. So, when the X-rays hit your bones, they stop and
+                                create a kind of shadow. The X-ray machine captures this shadow and turns it into a
+                                picture that we can see. This picture shows the shape of your bones!
+                            </p>
+                            <br>
+                            <p>
+                                It's like having a superpower to see hidden treasures inside our bodies. And because of
+                                these X-rays, doctors can check if your bones are healthy, if they have any cracks (like
+                                when you fall and hurt yourself), or help find other things inside you that they need to
+                                know about to keep you healthy.
+                            </p>
+                            <br>
+                            <p>
+                                So, X-rays are a fantastic tool that helps doctors be like detectives, solving mysteries
+                                inside our bodies! It's pretty awesome how science gives us such cool ways to stay
+                                healthy and safe.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -273,12 +522,14 @@
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:40%;top:640px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/10.png') }}" alt="civics-and-government" class="w-5 h-5" />
+                        <img src="{{ asset('assets/images/icons/10.png') }}" alt="civics-and-government"
+                            class="w-5 h-5" />
                         Civics and Government
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
                         data-taos-offset="100" style="left:72%;top:645px;width:196px;height:21px">
-                        <img src="{{ asset('assets/images/icons/20.png') }}" alt="environmental-studies" class="w-5 h-5" />
+                        <img src="{{ asset('assets/images/icons/20.png') }}" alt="environmental-studies"
+                            class="w-5 h-5" />
                         Environmental Studies
                     </div>
                     <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
@@ -335,9 +586,11 @@
             </div>
             <div class="flex justify-center">
                 <div class="w-full text-center mt-40 lg:mt-80 lg:w-9/12">
-                    <h2 class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
+                    <h2
+                        class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
                         LEARN ANYTHING,</h2>
-                    <h2 class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
+                    <h2
+                        class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
                         ANYTIME, <span class="text-primary-yellow font-semibold">ANYWHERE</span></h2>
                 </div>
             </div>
@@ -363,7 +616,8 @@
                         </div>
                     </div>
 
-                    <div id="lower-school" class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
+                    <div id="lower-school"
+                        class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
                         <h2 class="text-3xl border-b pb-2">LOWER SCHOOL (K-4)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             In our Lower School program, we lay the groundwork for a transformative educational journey.
@@ -379,7 +633,8 @@
                         </p>
                     </div>
 
-                    <div id="middle-school" class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
+                    <div id="middle-school"
+                        class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
                         <h2 class="text-3xl border-b pb-2">MIDDLE SCHOOL (5-8)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             Our Middle School curriculum is designed to cater to the unique
@@ -396,7 +651,8 @@
                         </p>
                     </div>
 
-                    <div id="high-school" class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
+                    <div id="high-school"
+                        class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
                         <h2 class="text-3xl border-b pb-2">HIGH SCHOOL (9-12)</h2>
                         <p class="text-justify tracking-wider leading-5">
                             The High School experience is centered around educational freedom and real-world
@@ -421,7 +677,8 @@
                 <p class="text-white font-semibold tracking-wider text-4xl">ENROLL NOW</p>
                 <div class="text-3xl text-white max-w-5xl mx-auto leading-snug lg:text-5xl">
                     <p class="font-extralight">Take advantage of our limited-time beta pricing! Experience <span
-                            class="text-primary-yellow font-semibold">Venture</span> for a full month at a special price of
+                            class="text-primary-yellow font-semibold">Venture</span> for a full month at a special price
+                        of
                         only $20.00. Sign up now and start your ad<span
                             class="text-primary-yellow font-semibold">venture</span> today!</p>
                 </div>
@@ -437,20 +694,182 @@
             <h2 class="text-center text-4xl text-white font-thin lg:text-7xl">WHAT WILL YOU <span
                     class="text-primary-yellow font-normal">DISCOVER?</span></h2>
             <div class="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-5">
-                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
-                    <img src="{{ asset('assets/images/15.png') }}" alt="close up of an eye" class="w-full h-full cursor-pointer" />
+                <div onclick="toggleResponse(this)"
+                    class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/15.png') }}" alt="close up of an eye"
+                        class="w-full h-full cursor-pointer" />
+                    <div
+                        class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                        <p>You've asked a fascinating question about genetics, a field that's as intriguing as it is
+                            complex! The determination of eye color is a brilliant example of how our genes work in
+                            creating
+                            the unique traits we all have. Understanding eye color involves delving into the realm of
+                            genetics and the interplay of multiple genes.</p>
+                        <br>
+                        <p>Traditionally, it was believed that a single gene determined eye color, with brown being
+                            dominant and blue recessive. However, recent scientific advancements have shown that the
+                            reality
+                            is much more intricate. Eye color is actually determined by multiple genes, with the two
+                            primary
+                            genes being OCA2 and HERC2, located on chromosome 15.</p>
+                        <br>
+                        <p>The OCA2 gene plays a significant role in the production of melanin, the pigment that gives
+                            color to our hair, skin, and eyes. Variations in this gene can lead to different amounts of
+                            melanin in the iris, resulting in various eye colors. For example, a higher concentration of
+                            melanin leads to brown eyes, while less melanin results in blue eyes.</p>
+                        <br>
+                        <p>The HERC2 gene interacts with the OCA2 gene, influencing its expression. A particular region
+                            within the HERC2 gene affects whether the OCA2 gene is turned on or off, thereby
+                            contributing to
+                            the amount of melanin produced in the iris.</p>
+                        <br>
+                        <p>It's important to understand that these genes don't work in isolation. The interplay between
+                            them, along with contributions from other genes, determines the specific shade of eye color.
+                            This complex genetic interaction is why we see such a wide variety of eye colors in people,
+                            from
+                            deep browns to vibrant greens and even hues of grey.</p>
+                        <br>
+                        <p>In conclusion, eye color is a fascinating example of how our genes collaborate to create the
+                            diverse and unique characteristics that make each of us who we are. It's a testament to the
+                            complexity and beauty of genetics, showing us that even something as seemingly simple as eye
+                            color can have a deep and intricate scientific explanation.</p>
+                    </div>
                 </div>
-                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
-                    <img src="{{ asset('assets/images/17.png') }}" alt="snow covered mountains" class="w-full h-full cursor-pointer" />
+                <div onclick="toggleResponse(this)"
+                    class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/17.png') }}" alt="snow covered mountains"
+                        class="w-full h-full cursor-pointer" />
                 </div>
-                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
-                    <img src="{{ asset('assets/images/19.png') }}" alt="earth from space" class="w-full h-full cursor-pointer" />
+                <div onclick="toggleResponse(this)"
+                    class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/19.png') }}" alt="earth from space"
+                        class="w-full h-full cursor-pointer" />
+                    <div
+                        class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                        <p>Your inquiry into how humans affect Earth's climate is both timely and crucial, especially in
+                        the context of ongoing discussions about climate change and environmental stewardship. The
+                        impact of human activities on Earth's climate is profound and multifaceted, involving a range of
+                        factors from greenhouse gas emissions to land use changes.</p>
+                        <br>
+                        <p>At the forefront of this issue is the release of greenhouse gases, such as carbon dioxide (CO2),
+                        methane (CH4), and nitrous oxide (N2O), primarily through fossil fuel combustion (coal, oil, and
+                        natural gas), agriculture, and deforestation. These gases are pivotal in the greenhouse effect,
+                        a natural process where certain gases in Earth's atmosphere trap heat, keeping the planet warm
+                        enough to sustain life. However, human-induced escalation of these gases has intensified this
+                        effect, leading to an overall increase in Earth's average temperature, a phenomenon commonly
+                        known as global warming.</p>
+                        <br>
+                        <p>CO2, the most significant greenhouse gas, is primarily produced by burning fossil fuels for
+                        energy and transportation. When we drive cars, use electricity from coal-fired power plants, or
+                        heat our homes with oil or gas, we are effectively increasing CO2 levels in the atmosphere.
+                        Methane, another potent greenhouse gas, is released during the production and transport of coal,
+                        oil, and natural gas. Additionally, agricultural practices, waste management, and other
+                        industrial processes contribute to methane emissions.</p>
+                        <br>
+                        <p>Deforestation is another critical factor. Trees naturally absorb CO2, one of the greenhouse
+                        gases, from the atmosphere during the process of photosynthesis. When forests are cut down for
+                        timber or to make way for agriculture, not only is this natural absorption capacity reduced, but
+                        the carbon stored in trees is released back into the atmosphere, further exacerbating the
+                        greenhouse effect.</p>
+                        <br>
+                        <p>Furthermore, human activities are altering the natural cycles and systems that regulate our
+                        climate. For example, the increased use of nitrogen-based fertilizers in agriculture leads to
+                        higher levels of nitrous oxide, another greenhouse gas. Industrial processes and certain methods
+                        of electricity generation release sulfur dioxide and nitrogen oxides into the atmosphere,
+                        contributing to acid rain and smog, which in turn affect climate patterns.</p>
+                        <br>
+                        <p>The consequences of these changes are wide-reaching and include rising global temperatures,
+                        melting glaciers and ice caps, rising sea levels, and more frequent and severe weather events
+                        like hurricanes, droughts, and floods. These changes disrupt ecosystems, affect water and food
+                        supply, and pose significant risks to human health and welfare.</p>
+                        <br>
+                        <p>In conclusion, human activities significantly impact Earth's climate through the emission of
+                        greenhouse gases, deforestation, and altering natural cycles. This complex issue requires a
+                        comprehensive understanding and a global response, involving policy changes, technological
+                        innovations, and changes in individual behavior to mitigate these effects and safeguard our
+                        planet for future generations.</p>
+                    </div>
                 </div>
-                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
-                    <img src="{{ asset('assets/images/20.png') }}" alt="man with falcon" class="w-full h-full cursor-pointer" />
+                <div onclick="toggleResponse(this)"
+                    class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/20.png') }}" alt="man with falcon"
+                        class="w-full h-full cursor-pointer" />
+                    <div
+                        class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full right-full top-0 animate-fade-in-right overflow-y-auto">
+                        <p>Exploring the concept of cultural heritage is an insightful way to understand and appreciate the diverse tapestry of
+                        human history and identity. Cultural heritage isn't just about ancient artifacts or historical monuments; it
+                        encompasses a much broader spectrum of elements that collectively tell the story of human societies and their
+                        evolution over time.</p>
+                        <br>
+                        <p>Cultural heritage can be categorized into two main types: tangible and intangible. Tangible cultural heritage
+                        includes physical objects and places that have historical, aesthetic, archaeological, scientific, ethnological, or
+                        anthropological value. This encompasses a wide array of items such as buildings (like the pyramids of Egypt or the
+                        Roman Colosseum), monuments, landscapes, books, works of art, and artifacts. These items serve as a physical
+                        reminder of the history, beliefs, and values of different cultures.</p>
+                        <br>
+                        <p>Intangible cultural heritage, on the other hand, includes non-physical aspects that have cultural significance. This
+                        includes traditions, languages, knowledge, skills, rituals, ceremonies, and other living expressions inherited from
+                        our ancestors and passed on to our descendants. Examples include folklore, oral history, music, dance, festivals,
+                        culinary traditions, and crafts. Intangible heritage is often more challenging to preserve since it is dynamic and
+                        evolves with the culture that practices it.</p>
+                        <br>
+                        <p>Both tangible and intangible cultural heritage are crucial in maintaining cultural diversity in the face of growing
+                        globalization. Understanding and respecting cultural heritage fosters an appreciation for both one's own culture and
+                        that of others. It helps communities to remember their past, understand their present, and envision their future,
+                        contributing to a sense of identity and continuity.</p>
+                        <br>
+                        <p>In recent years, the concept of cultural heritage has expanded to include digital heritage, which is the digital
+                        footprint that cultures leave behind, such as digital art, online journals, or virtual museums. This form of
+                        heritage is becoming increasingly relevant in today's digital world.</p>
+                        <br>
+                        <p>Protecting cultural heritage is also a significant global concern. Factors such as war, terrorism, natural
+                        disasters, neglect, tourism, and globalization can threaten both tangible and intangible heritage. International
+                        organizations like UNESCO work to protect and preserve cultural heritage sites and practices through various
+                        initiatives and conventions.</p>
+                        <br>
+                        <p>In conclusion, cultural heritage is a multifaceted concept that encapsulates the tangible and intangible legacies of
+                        human societies. It plays a vital role in building a collective memory and identity, contributing to the richness
+                        and diversity of cultures around the world. Understanding cultural heritage helps us appreciate the complexity of
+                        human experiences and fosters respect for different ways of life, ultimately contributing to a more harmonious
+                        global community.</p>
+                    </div>
                 </div>
-                <div onclick="toggleResponse(this)" class="transition ease-in-out delay-150 duration-300 hover:scale-110">
-                    <img src="{{ asset('assets/images/18.png') }}" alt="scientist looking through a microscope" class="w-full h-full hidden cursor-pointer lg:block" />
+                <div onclick="toggleResponse(this)"
+                    class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    <img src="{{ asset('assets/images/18.png') }}" alt="scientist looking through a microscope"
+                        class="w-full h-full hidden cursor-pointer lg:block" />
+                    <div
+                        class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full right-full top-0 animate-fade-in-right overflow-y-auto">
+                        <p>What an amazing question you've asked! The scientific method is like a secret recipe for discovering the wonders of the
+                        world around us. It's a series of steps that scientists use to uncover mysteries and answer questions about the
+                        universe, from tiny atoms to vast galaxies, and everything in between. Let's embark on a journey to understand this
+                        fascinating process!</p>
+                        <br>
+                        <p>First, it all starts with curiosity, just like the curiosity that led you to ask this question. Scientists begin with a
+                        question about something they observe. It could be about the stars, the ocean, plants, animals, or even the air we
+                        breathe. Then, they start gathering information and doing research to see what others have already discovered about the
+                        topic. It's like being a detective, collecting clues to solve a mystery.</p>
+                        <br>
+                        <p>Next comes a really creative part: forming a hypothesis. A hypothesis is a smart guess about what the answer might be.
+                        It's based on all the information the scientist has gathered. It's like predicting the end of a story before you've read
+                        the last chapter.</p>
+                        <br>
+                        <p>Now, it's time for some action - the experiment! This is where scientists test their hypothesis. They conduct
+                        experiments, making sure to change only one thing at a time, so they know exactly what causes any changes. Imagine
+                        you're baking cookies and you change the type of sugar you use. If the cookies taste different, you know it's because of
+                        the sugar!</p>
+                        <br>
+                        <p>After the experiment, scientists analyze their results. Sometimes, the results support the hypothesis, and other times,
+                        they don't. Either way, it's a win because they've learned something new! If the hypothesis is not supported, it's back
+                        to the drawing board to come up with a new hypothesis and test it out.</p>
+                        <br>
+                        <p>Finally, scientists share their findings with others. They might write a report, give a talk, or publish their work so
+                        other curious minds like yours can learn from their discoveries.</p>
+                        <br>
+                        <p>The scientific method is a powerful tool that helps us understand the world. It's all about being curious, asking
+                        questions, testing ideas, and always, always learning. This method has led to some of the most incredible discoveries in
+                        science, and who knows? Maybe one day, you'll use the scientific method to make a groundbreaking discovery of your own!</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -946,7 +1365,8 @@
             </div>
         </div>
     </footer>
-    <div onclick="handleClickOutside(this)" id="opaque-background" class="absolute hidden inset-0 bg-black opacity-75 z-20"></div>
+    <div onclick="handleClickOutside(this)" id="opaque-background"
+        class="absolute hidden inset-0 bg-black opacity-75 z-20"></div>
     <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
     <script src="{{ asset('assets/js/welcome.js') }}"></script>
 </body>
