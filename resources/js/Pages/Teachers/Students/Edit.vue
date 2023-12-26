@@ -18,6 +18,7 @@
                                     <InputLabel for="name" value="Name" />
                                     <div class="mt-2">
                                         <TextInput id="name" v-model="form.name" autocomplete="name" required class="w-full" />
+                                        <InputError :message="form.errors.name" />
                                     </div>
                                 </div>
 
@@ -25,6 +26,7 @@
                                     <InputLabel for="email" value="Email" />
                                     <div class="mt-2">
                                         <TextInput id="email" v-model="form.email" type="email" autocomplete="email" required class="w-full" />
+                                        <InputError :message="form.errors.email" />
                                     </div>
                                 </div>
 
@@ -32,6 +34,7 @@
                                     <InputLabel for="grade" value="Grade" />
                                     <div class="mt-2">
                                         <TextInput id="grade" v-model="form.grade" type="number" autocomplete="grade" required class="w-full" />
+                                        <InputError :message="form.errors.grade" />
                                     </div>
                                 </div>
 
@@ -39,6 +42,7 @@
                                     <InputLabel for="age" value="Age" />
                                     <div class="mt-2">
                                         <TextInput id="age" v-model="form.age" type="number" autocomplete="age" required class="w-full" />
+                                        <InputError :message="form.errors.age" />
                                     </div>
                                 </div>
 
@@ -48,7 +52,7 @@
                                         <option disabled>Choose a timezone:</option>
                                         <option v-for="(timezone, index) in timezones" selected :value="timezone.value">{{ timezone.label }}</option>
                                     </select>
-                                    <InputError class="mt-2" :message="form.errors.timezone" />
+                                    <InputError :message="form.errors.timezone" />
                                 </div>
 
                                 <div class="flex justify-end space-x-2">
@@ -71,6 +75,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/InputError.vue';
 
 defineOptions({
     layout: AuthenticatedLayout
