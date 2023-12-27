@@ -17,17 +17,19 @@ class GetContentController extends Controller
             header('Cache-Control: no-cache');
             header('X-Accel-Buffering: no');
 
-            $content = str_replace('[AGE]', $request->user()->age, Prompt::where('category', 'tone')->first()->prompt);
-            $content = str_replace('[GRADE]', $request->user()->grade, $content);
-
             $question = $request->user()->promptQuestions()->latest()->first();
+
+            $prompt = Prompt::whereRaw(
+                '? BETWEEN SUBSTRING_INDEX(category, "-", 1) AND SUBSTRING_INDEX(category, "-", -1)',
+                [$request->user()->age]
+            )->first()->prompt;
 
             $stream = OpenAI::chat()->createStreamed([
                 'model' => 'gpt-3.5-turbo-1106',
                 'messages' => [
                     [
                         'role' => 'system',
-                        'content' => $content,
+                        'content' => $prompt,
                     ],
                     [
                         'role' => 'user',
