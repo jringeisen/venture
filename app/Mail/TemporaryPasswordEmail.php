@@ -22,7 +22,7 @@ class TemporaryPasswordEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mindful - Temporary Password Email',
+            subject: 'Venture - Temporary Password Email',
         );
     }
 
