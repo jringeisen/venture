@@ -84,16 +84,34 @@ toggleResponse = (element) => {
 handleClickOutside = (element) => {
     element.classList.toggle('hidden');
 
-    const questionCards = document.getElementById('questionCards');
+    const sectionOneQuestionCards = document.getElementById('sectionOneQuestionCards');
 
-    for (child of questionCards.children) {
+    for (child of sectionOneQuestionCards.children) {
         if (child.classList.contains('z-40')) {
             child.classList.toggle('z-40');
         }
 
-        for (grandchild of child.children) {
-            if (grandchild.tagName === 'DIV' && !grandchild.classList.contains('hidden')) {
-                grandchild.classList.toggle('hidden');
+        if (child.children) {
+            for (grandchild of child.children) {
+                if (grandchild.tagName === 'DIV' && !grandchild.classList.contains('hidden')) {
+                    grandchild.classList.toggle('hidden');
+                }
+            }
+        }
+    }
+
+    const sectionTwoQuestionCards = document.getElementById('sectionTwoQuestionCards');
+
+    for (child of sectionTwoQuestionCards.children) {
+        if (child.classList.contains('z-40')) {
+            child.classList.toggle('z-40');
+        }
+
+        if (child.children) {
+            for (grandchild of child.children) {
+                if (grandchild.tagName === 'DIV' && !grandchild.classList.contains('hidden')) {
+                    grandchild.classList.toggle('hidden');
+                }
             }
         }
     }
