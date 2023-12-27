@@ -145,13 +145,13 @@
                         </div>
                     </div>
                 </div>
-                <div id="questionCards" class="grid grid-cols-2 gap-4 mt-10 md:grid-cols-5">
+                <div id="sectionOneQuestionCards" class="grid grid-cols-2 gap-1 mt-10 px-4 md:grid-cols-5">
                     <div onclick="toggleResponse(this)"
                         class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                         <img src="{{ asset('assets/images/hero/1.png')}}" alt="spaceship launching into space"
                             class="w-full h-full cursor-pointer" />
                         <div
-                            class="absolute hidden bg-primary-gray text-white px-4 pb-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                            class="absolute hidden bg-primary-gray text-white px-4 pb-4 w-full h-full left-0 top-0 animate-fade-in-right overflow-y-auto md:left-full md:w-72">
                             <p>Space exploration, a field that has captivated humanity's imagination and scientific
                                 curiosity for decades, presents a myriad of challenges that span across various
                                 disciplines including physics, engineering, biology, and even psychology. The task of
@@ -221,7 +221,7 @@
                         <img src="{{ asset('assets/images/hero/2.png')}}" alt="chameleon on a stick"
                             class="w-full h-full cursor-pointer" />
                         <div
-                            class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                            class="absolute hidden bg-primary-gray text-white px-4 pb-4 w-full h-full left-0 top-0 animate-fade-in-right overflow-y-auto md:left-full md:w-72">
                             <p>What a fantastic question! Chameleons, the enchanting magicians of the animal world,
                                 possess an awe-inspiring ability to change their skin color,
                                 a phenomenon that is as scientific as it is mesmerizing. These remarkable creatures have
@@ -256,7 +256,7 @@
                         <img src="{{ asset('assets/images/hero/3.png')}}" alt="sphynx with pyramid in the background"
                             class="w-full h-full cursor-pointer" />
                         <div
-                            class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                            class="absolute hidden bg-primary-gray text-white px-4 pb-4 w-full h-full left-0 top-0 animate-fade-in-right overflow-y-auto md:left-full md:w-72">
                             <p>The construction of the Egyptian pyramids, especially the Great Pyramid of Giza, is a
                                 topic that blends the marvels of ancient
                                 engineering with a dash of mystery. Built over 4,500 years ago, the pyramids stand as a
@@ -299,7 +299,7 @@
                         <img src="{{ asset('assets/images/hero/4.png')}}" alt="face of a bamboon"
                             class="w-full h-full cursor-pointer" />
                         <div
-                            class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full right-full top-0 animate-fade-in-right overflow-y-auto">
+                            class="absolute hidden bg-primary-gray text-white px-4 pb-4 w-full h-full right-0 top-0 animate-fade-in-right overflow-y-auto md:right-full md:w-72">
                             <p>Your curiosity about the most endangered animals is not only commendable but also crucial
                                 in
                                 understanding and protecting our planet's biodiversity. In our world today, many species
@@ -360,7 +360,7 @@
                         <img src="{{ asset('assets/images/hero/5.png')}}" alt="xray of a hand"
                             class="w-full h-full cursor-pointer hidden md:block" />
                         <div
-                            class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full right-full top-0 animate-fade-in-right overflow-y-auto">
+                            class="absolute hidden bg-primary-gray text-white px-4 pb-4 w-full h-full right-0 top-0 animate-fade-in-right overflow-y-auto md:right-full md:w-72">
                             <p>
                                 What a super question you've asked! X-rays are like superpowers that doctors use to look
                                 inside our bodies without having to open them up. Isn't that amazing? Let's find out how
@@ -693,13 +693,13 @@
         <section class="mt-20">
             <h2 class="text-center text-4xl text-white font-thin lg:text-7xl">WHAT WILL YOU <span
                     class="text-primary-yellow font-normal">DISCOVER?</span></h2>
-            <div class="mt-10 grid grid-cols-2 gap-5 lg:grid-cols-5">
+            <div id="sectionTwoQuestionCards" class="mt-10 grid grid-cols-2 gap-1 px-4 md:grid-cols-4 lg:grid-cols-5">
                 <div onclick="toggleResponse(this)"
                     class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                     <img src="{{ asset('assets/images/15.png') }}" alt="close up of an eye"
                         class="w-full h-full cursor-pointer" />
                     <div
-                        class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                        class="absolute hidden bg-primary-gray text-white p-4 w-full h-full left-0 top-0 animate-fade-in-right overflow-y-auto md:left-full md:w-72">
                         <p>You've asked a fascinating question about genetics, a field that's as intriguing as it is
                             complex! The determination of eye color is a brilliant example of how our genes work in
                             creating
@@ -736,7 +736,7 @@
                     </div>
                 </div>
                 <div onclick="toggleResponse(this)"
-                    class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                     <img src="{{ asset('assets/images/17.png') }}" alt="snow covered mountains"
                         class="w-full h-full cursor-pointer" />
                 </div>
@@ -745,7 +745,7 @@
                     <img src="{{ asset('assets/images/19.png') }}" alt="earth from space"
                         class="w-full h-full cursor-pointer" />
                     <div
-                        class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full left-full top-0 animate-fade-in-right overflow-y-auto">
+                        class="absolute hidden bg-primary-gray text-white p-4 w-full h-full right-0 top-0 animate-fade-in-right overflow-y-auto md:right-full md:w-72">
                         <p>Your inquiry into how humans affect Earth's climate is both timely and crucial, especially in
                         the context of ongoing discussions about climate change and environmental stewardship. The
                         impact of human activities on Earth's climate is profound and multifaceted, involving a range of
@@ -791,11 +791,11 @@
                     </div>
                 </div>
                 <div onclick="toggleResponse(this)"
-                    class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                     <img src="{{ asset('assets/images/20.png') }}" alt="man with falcon"
                         class="w-full h-full cursor-pointer" />
                     <div
-                        class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full right-full top-0 animate-fade-in-right overflow-y-auto">
+                        class="absolute hidden bg-primary-gray text-white p-4 w-full h-full right-0 top-0 animate-fade-in-right overflow-y-auto md:right-full md:w-72">
                         <p>Exploring the concept of cultural heritage is an insightful way to understand and appreciate the diverse tapestry of
                         human history and identity. Cultural heritage isn't just about ancient artifacts or historical monuments; it
                         encompasses a much broader spectrum of elements that collectively tell the story of human societies and their
@@ -835,11 +835,11 @@
                     </div>
                 </div>
                 <div onclick="toggleResponse(this)"
-                    class="transition ease-in-out delay-150 duration-300 hover:scale-110">
+                    class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                     <img src="{{ asset('assets/images/18.png') }}" alt="scientist looking through a microscope"
                         class="w-full h-full hidden cursor-pointer lg:block" />
                     <div
-                        class="absolute hidden bg-primary-gray text-white p-4 w-96 h-full right-full top-0 animate-fade-in-right overflow-y-auto">
+                        class="absolute hidden bg-primary-gray text-white p-4 w-full h-full right-0 top-0 animate-fade-in-right overflow-y-auto md:right-full md:w-72">
                         <p>What an amazing question you've asked! The scientific method is like a secret recipe for discovering the wonders of the
                         world around us. It's a series of steps that scientists use to uncover mysteries and answer questions about the
                         universe, from tiny atoms to vast galaxies, and everything in between. Let's embark on a journey to understand this
