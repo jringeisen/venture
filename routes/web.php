@@ -11,7 +11,7 @@ Route::get('/', LandingController::class);
 
 Route::get('/auth-options', function () {
     return \Inertia\Inertia::render('Landing');
-});
+})->name('auth-options');
 
 // Authenticated Routes...
 Route::middleware('auth')->group(function () {
