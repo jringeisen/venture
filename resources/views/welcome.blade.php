@@ -739,6 +739,21 @@
                     class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
                     <img src="{{ asset('assets/images/17.png') }}" alt="snow covered mountains"
                         class="w-full h-full cursor-pointer" />
+                    <div
+                        class="absolute hidden bg-primary-gray text-white p-4 w-full h-full left-0 top-0 animate-fade-in-right overflow-y-auto md:left-full md:w-72">
+                        <p>Hey there, little explorer! Let's talk about how mountains are made. Imagine the Earth is like a giant jigsaw
+                        puzzle. It has big pieces called 'tectonic plates' that slowly move around. Sometimes, these plates push against
+                        each other really hard. When they do, they can push the land up, up, up into the sky. This is how mountains are
+                        born!</p>
+                        <br>
+                        <p>Think of it like when you push your hands together with your palms up and fingers pointing to each other. If you
+                        push hard enough, your fingertips go up, right? That's what happens with the Earth's plates. They push the land
+                        upwards to make tall, majestic mountains.</p>
+                        <br>
+                        <p>And just like magic, over a very long time, these mountains grow taller and become homes for animals, trees, and
+                        even snowy caps. Isn't that amazing? The Earth is always changing and creating new, wonderful things like mountains,
+                        just for us to explore and enjoy!</p>
+                    </div>
                 </div>
                 <div onclick="toggleResponse(this)"
                     class="relative transition ease-in-out delay-150 duration-300 hover:scale-110">
