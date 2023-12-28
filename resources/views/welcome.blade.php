@@ -889,7 +889,7 @@
             </div>
         </section>
 
-        <section id="reviews">
+        <section id="reviews" class="hidden">
             <div class="relative isolate pb-32 pt-24 sm:pt-32">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <div class="mx-auto max-w-xl text-center">
