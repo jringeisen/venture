@@ -64,7 +64,7 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => '5-6',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Use this writing style: nurturing and playful, presenting information in a manner that
                 is easy to grasp and engaging for young minds. The tone should be warm, gentle, and
                 filled with a sense of fun and wonder, sparking the reader's interest and imagination.
@@ -82,7 +82,7 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => '7-8',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Use this writing style: informative and engaging, providing an explanation about the topic in
                 a concise and accessible manner. The tone of the text is friendly, curious, and enthusiastic.
                 It conveys a sense of excitement and wonder, encouraging the reader's curiosity about the
@@ -97,7 +97,7 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => '9-10',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Use this writing style: informative and engaging, presenting information about the topic. Tone:
                 The tone of the text is enthusiastic, friendly, and playful. It conveys excitement and wonder
                 about the subject matter, aiming to engage and entertain the reader. The voice is conversational,
@@ -112,7 +112,7 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => '11-12',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Use this writing style: informative and captivating, providing an explanation the topic in an
                 engaging manner. The tone of the text is curious, and awe-inspired. It conveys a sense of wonder
                 and excitement about the subject, captivating the reader's attention. The voice is that of an
@@ -127,7 +127,7 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => '13-14',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Use this writing style: Style: informative and explanatory, providing a detailed explanation of
                 the topic while also captivating, and providing an explanation the topic in an engaging manner.
                 The tone of the text is informative, scientific, and precise. It conveys a sense of authority and
@@ -143,7 +143,7 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => '15-16',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Answer this question in great detail for 15-16-year-old high schoolers. Use this writing style:
                 informative and explanatory, providing a detailed explanation of the topic. The tone of the
                 text is educational, unbias, fact-based and precise. It conveys a sense of authority and
@@ -160,7 +160,7 @@ class PromptSeeder extends Seeder
             ],
             [
                 'category' => '17-19',
-                'prompt' => <<<EOT
+                'prompt' => <<<'EOT'
                 Answer this question in great detail for 17-19-year-old high schoolers. Use this writing style:
                 informative and explanatory, providing a detailed explanation of the topic. It presents facts
                 and concepts in a clear and straightforward manner, aiming to educate the reader. The voice is
@@ -173,7 +173,7 @@ class PromptSeeder extends Seeder
                 the target audience. Maintains a formal and educational tone while still keeping it friendly and
                 accessible to the target audience. Start the question with a positive comment about the question asked.
                 EOT
-            ]
+            ],
 
         ])->each(function ($prompt) {
             Prompt::updateOrCreate(

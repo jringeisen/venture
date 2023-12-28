@@ -6,31 +6,21 @@ use App\Services\StudentInertiaRequests;
 use App\Services\UserInertiaRequests;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Tightenco\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
-    /**
-     * The root template that is loaded on the first page visit.
-     *
-     * @var string
-     */
     protected $rootView = 'app';
 
-    /**
-     * Determine the current asset version.
-     */
     public function version(Request $request): ?string
     {
         return parent::version($request);
     }
 
-    /**
-     * Define the props that are shared by default.
-     *
-     * @return array<string, mixed>
-     */
     public function share(Request $request): array
     {
+        $values = fn () => [];
+
         if ($request->user() instanceof \App\Models\User) {
             $values = new UserInertiaRequests();
         }
@@ -39,6 +29,14 @@ class HandleInertiaRequests extends Middleware
             $values = new StudentInertiaRequests();
         }
 
-        return array_merge(parent::share($request), isset($values) ? $values($request) : []);
+        return [
+            ...parent::share($request),
+            ...$values($request),
+            'ziggy' => function () use ($request) {
+                return array_merge((new Ziggy)->toArray(), [
+                    'location' => $request->url(),
+                ]);
+            },
+        ];
     }
 }
