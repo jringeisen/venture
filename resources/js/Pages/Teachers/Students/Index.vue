@@ -12,7 +12,7 @@
                         </p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <PrimaryButton @click.prevent="router.get(route('students.create'))"
+                        <PrimaryButton @click.prevent="handleAddStudent()"
                             >Add student</PrimaryButton
                         >
                     </div>
@@ -134,11 +134,12 @@ defineOptions({
     layout: AuthenticatedLayout
 });
 
-defineProps({
+const props = defineProps({
     students: {
         type: Object,
         required: true,
     },
+    subscribed: Boolean,
 });
 
 const form = useForm({});
@@ -148,6 +149,14 @@ const toggleAction = ref(null);
 const deleteStudent = (student) => {
     if (confirm('Are you sure you want to delete this student?')) {
         form.delete(route('students.destroy', student.id));
+    }
+};
+
+const handleAddStudent = () => {
+    if (!props.subscribed) {
+        router.get(route('subscription.checkout.options'));
+    } else {
+        router.get(route('students.create'));
     }
 };
 </script>

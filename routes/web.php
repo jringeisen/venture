@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripeCheckoutController;
+use App\Http\Controllers\StripeCheckoutOptionsController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +30,9 @@ Route::middleware('auth')->group(function () {
             Route::patch('/{student}', [StudentController::class, 'update'])->name('students.update');
             Route::delete('/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
         });
+
+        Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');
+        Route::get('/subscription-checkout-options', StripeCheckoutOptionsController::class)->name('subscription.checkout.options');
     });
 
     Route::prefix('profile')->group(function () {

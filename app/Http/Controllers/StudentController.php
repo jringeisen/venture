@@ -32,13 +32,14 @@ class StudentController extends Controller
             'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) {
                 $query->whereHas('promptAnswer')->filterByDate(today()->toDateString());
             }])->paginate(10),
+            'subscribed' => $request->user()->subscribed(),
         ]);
     }
 
     public function create(): Response
     {
         return Inertia::render('Teachers/Students/Create', [
-            'timezones' => Timezone::orderBy('value', 'asc')->get(),
+            'timezones' => Timezone::orderBy('value', 'asc')->get()
         ]);
     }
 
