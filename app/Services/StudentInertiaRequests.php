@@ -4,7 +4,6 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Tightenco\Ziggy\Ziggy;
 
 class StudentInertiaRequests
 {
@@ -20,11 +19,6 @@ class StudentInertiaRequests
                     ? (new MotivationalMessageService($request->user()))->generate()
                     : null,
             ],
-            'ziggy' => function () use ($request) {
-                return array_merge((new Ziggy)->toArray(), [
-                    'location' => $request->url(),
-                ]);
-            },
         ];
     }
 

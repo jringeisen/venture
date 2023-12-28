@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Tightenco\Ziggy\Ziggy;
 
 class UserInertiaRequests
 {
@@ -18,11 +17,6 @@ class UserInertiaRequests
                 'students' => $this->students(),
                 'navigation' => $this->navigation(),
             ],
-            'ziggy' => function () use ($request) {
-                return array_merge((new Ziggy)->toArray(), [
-                    'location' => $request->url(),
-                ]);
-            },
             'flash' => [
                 'message' => [
                     'id' => fn () => $request->session()->get('message_id'),
