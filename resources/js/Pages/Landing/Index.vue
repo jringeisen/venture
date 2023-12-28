@@ -130,7 +130,7 @@
                         <div @click.prevent="imageOne = !imageOne"
                             class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                             :class="{'z-40': imageOne}">
-                            <img src="assets/images/hero/1.png" alt="spaceship launching into space"
+                            <img src="assets/images/hero/1.jpg" alt="spaceship launching into space"
                                 class="absolute w-full h-full cursor-pointer" />
                             <div
                                 v-if="imageOne"
@@ -202,7 +202,7 @@
                         <div @click.prevent="imageTwo = !imageTwo"
                             class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                             :class="{'z-40': imageTwo}">
-                            <img src="assets/images/hero/2.png" alt="chameleon on a stick"
+                            <img src="assets/images/hero/2.jpg" alt="chameleon on a stick"
                                 class="w-full h-full cursor-pointer" />
                             <div
                                 v-if="imageTwo"
@@ -239,7 +239,7 @@
                         <div @click.prevent="imageThree = !imageThree"
                             class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                             :class="{'z-40': imageThree}">
-                            <img src="assets/images/hero/3.png" alt="sphynx with pyramid in the background"
+                            <img src="assets/images/hero/3.jpg" alt="sphynx with pyramid in the background"
                                 class="w-full h-full cursor-pointer" />
                             <div
                                 v-if="imageThree"
@@ -284,7 +284,7 @@
                         <div @click.prevent="imageFour = !imageFour"
                             class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                             :class="{'z-40': imageFour}">
-                            <img src="assets/images/hero/4.png" alt="face of a bamboon"
+                            <img src="assets/images/hero/4.jpg" alt="face of a bamboon"
                                 class="w-full h-full cursor-pointer" />
                             <div
                                 v-if="imageFour"
@@ -347,7 +347,7 @@
                         <div @click.prevent="imageFive = !imageFive"
                             class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                             :class="{'z-40': imageFive}">
-                            <img src="assets/images/hero/5.png" alt="xray of a hand"
+                            <img src="assets/images/hero/5.jpg" alt="xray of a hand"
                                 class="w-full h-full cursor-pointer hidden md:block" />
                             <div
                                 v-if="imageFive"
@@ -416,160 +416,160 @@
             <section id="subjects" class="w-full bg-gradient-to-t from-black to-transparent h-[400px] lg:h-[800px]">
                 <div class="flex justify-center">
                     <div class="hidden relative w-full lg:block">
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:15%;top:170px;width:196px;height:21px;">
-                            <img src="assets/images/icons/20.png" alt="conservation" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:15%;top:170px;width:196px;height:21px;">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="conservation" class="w-5 h-5" />
                             Conservation
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:26%;top:200px;width:126px;height:21px;">
-                            <img src="assets/images/icons/5.png" alt="astronomy" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:26%;top:200px;width:126px;height:21px;">
+                            <img src="assets/images/icons/5.png" loading="lazy" alt="astronomy" class="w-5 h-5" />
                             Astronomy
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:10%;top:250px;width:196px;height:21px;">
-                            <img src="assets/images/icons/25.png" alt="legal-studies" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:10%;top:250px;width:196px;height:21px;">
+                            <img src="assets/images/icons/25.png" loading="lazy" alt="legal-studies" class="w-5 h-5" />
                             Legal Studies
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:45%;top:209px;width:196px;height:21px">
-                            <img src="assets/images/icons/20.png" alt="geography" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:45%;top:209px;width:196px;height:21px">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="geography" class="w-5 h-5" />
                             Geography
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:67%;top:108px;width:196px;height:21px;">
-                            <img src="assets/images/icons/8.png" alt="coding" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:67%;top:108px;width:196px;height:21px;">
+                            <img src="assets/images/icons/8.png" loading="lazy" alt="coding" class="w-5 h-5" />
                             Coding
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:31%;top:130px;width:330px;height:21px;">
-                            <img src="assets/images/icons/13.png" alt="entrepreneurship" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:31%;top:130px;width:330px;height:21px;">
+                            <img src="assets/images/icons/13.png" loading="lazy" alt="entrepreneurship" class="w-5 h-5" />
                             Entrepreneurship
                         </div>
-                        <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:23%;top:300px;width:126px;height:21px;">
-                            <img src="assets/images/icons/1.png" alt="science" class="w-5 h-5" />
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:23%;top:300px;width:126px;height:21px;">
+                            <img src="assets/images/icons/1.png" loading="lazy" alt="science" class="w-5 h-5" />
                             Science
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:34%;top:275px;width:196px;height:21px">
-                            <img src="assets/images/icons/6.png" alt="space-eploration" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:34%;top:275px;width:196px;height:21px">
+                            <img src="assets/images/icons/6.png" loading="lazy" alt="space-eploration" class="w-5 h-5" />
                             Space Eploration
                         </div>
-                        <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:10%;top:374px;width:126px;height:21px;">
-                            <img src="assets/images/icons/2.png" alt="language-arts" class="w-5 h-5" />
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:10%;top:374px;width:126px;height:21px;">
+                            <img src="assets/images/icons/2.png" loading="lazy" alt="language-arts" class="w-5 h-5" />
                             Language Arts
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:26%;top:480px;width:126px;height:21px">
-                            <img src="assets/images/icons/2.png" alt="history" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:26%;top:480px;width:126px;height:21px">
+                            <img src="assets/images/icons/2.png" loading="lazy" alt="history" class="w-5 h-5" />
                             History
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:18%;top:500px;width:196px;height:21px">
-                            <img src="assets/images/icons/10.png" alt="literature" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:18%;top:500px;width:196px;height:21px">
+                            <img src="assets/images/icons/10.png" loading="lazy" alt="literature" class="w-5 h-5" />
                             Literarture
                         </div>
-                        <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:83%;top:460px;width:196px;height:21px">
-                            <img src="assets/images/icons/28.png" alt="vocational-skills" class="w-5 h-5" />
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:83%;top:460px;width:196px;height:21px">
+                            <img src="assets/images/icons/28.png" loading="lazy" alt="vocational-skills" class="w-5 h-5" />
                             Vocational Skills
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:30%;top:632px;width:196px;height:21px">
-                            <img src="assets/images/icons/26.png" alt="mythology" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:30%;top:632px;width:196px;height:21px">
+                            <img src="assets/images/icons/26.png" loading="lazy" alt="mythology" class="w-5 h-5" />
                             Mythology
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:20%;top:600px;width:330px;height:21px">
-                            <img src="assets/images/icons/14.png" alt="business" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:20%;top:600px;width:330px;height:21px">
+                            <img src="assets/images/icons/14.png" loading="lazy" alt="business" class="w-5 h-5" />
                             Business
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:11%;top:536px;width:196px;height:21px">
-                            <img src="assets/images/icons/15.png" alt="robotics" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:11%;top:536px;width:196px;height:21px">
+                            <img src="assets/images/icons/15.png" loading="lazy" alt="robotics" class="w-5 h-5" />
                             Robotics
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:30%;top:530px;width:196px;height:21px">
-                            <img src="assets/images/icons/4.png" alt="physical-education" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:30%;top:530px;width:196px;height:21px">
+                            <img src="assets/images/icons/4.png" loading="lazy" alt="physical-education" class="w-5 h-5" />
                             Physical Education
                         </div>
-                        <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:80%;top:545px;width:196px;height:21px">
-                            <img src="assets/images/icons/31.png" alt="ancient-cultures" class="w-5 h-5" />
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:80%;top:545px;width:196px;height:21px">
+                            <img src="assets/images/icons/31.png" loading="lazy" alt="ancient-cultures" class="w-5 h-5" />
                             Ancient Cultures
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:45%;top:516px;width:126px;height:21px">
-                            <img src="assets/images/icons/30.png" alt="social-studies" class="w-5 h-5" />
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:45%;top:516px;width:126px;height:21px">
+                            <img src="assets/images/icons/30.png" loading="lazy" alt="social-studies" class="w-5 h-5" />
                             Social Studies
                         </div>
-                        <div class="absolute text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:53%;top:590px;width:126px;height:21px">
-                            <img src="assets/images/icons/24.png" alt="music" class="w-5 h-5" />
+                        <div class="absolute text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:53%;top:590px;width:126px;height:21px">
+                            <img src="assets/images/icons/24.png" loading="lazy" alt="music" class="w-5 h-5" />
                             Music
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:40%;top:640px;width:196px;height:21px">
-                            <img src="assets/images/icons/10.png" alt="civics-and-government"
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:40%;top:640px;width:196px;height:21px">
+                            <img src="assets/images/icons/10.png" loading="lazy" alt="civics-and-government"
                                 class="w-5 h-5" />
                             Civics and Government
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:72%;top:645px;width:196px;height:21px">
-                            <img src="assets/images/icons/20.png" alt="environmental-studies"
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:72%;top:645px;width:196px;height:21px">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="environmental-studies"
                                 class="w-5 h-5" />
                             Environmental Studies
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:62%;top:602px;width:196px;height:21px">
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:62%;top:602px;width:196px;height:21px">
                             <img src="assets/images/icons/32.png" alt="wildlife" class="w-5 h-5" />
                             Wildlife
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:60%;top:481px;width:196px;height:21px">
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:60%;top:481px;width:196px;height:21px">
                             <img src="assets/images/icons/33.png" alt="paleontology" class="w-5 h-5" />
                             Paleontology
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:68%;top:542px;width:126px;height:21px">
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:68%;top:542px;width:126px;height:21px">
                             <img src="assets/images/icons/2.png" alt="storytelling" class="w-5 h-5" />
                             Storytelling
                         </div>
-                        <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:74%;top:310px;width:196px;height:21px">
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:74%;top:310px;width:196px;height:21px">
                             <img src="assets/images/icons/4.png" alt="health" class="w-5 h-5" />
                             Health
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:74%;top:480px;width:126px;height:21px">
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:74%;top:480px;width:126px;height:21px">
                             <img src="assets/images/icons/11.png" alt="art" class="w-5 h-5" />
                             Art
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:61%;top:270px;width:196px;height:21px">
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:61%;top:270px;width:196px;height:21px">
                             <img src="assets/images/icons/17.png" alt="archaeology" class="w-5 h-5" />
                             Archaeology
                         </div>
-                        <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:54%;top:130px;width:196px;height:21px">
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:54%;top:130px;width:196px;height:21px">
                             <img src="assets/images/icons/2.png" alt="creative-writing" class="w-5 h-5" />
                             Creative Writing
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                            data-taos-offset="100" style="left:74%;top:184px;width:196px;height:21px">
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:74%;top:184px;width:196px;height:21px">
                             <img src="assets/images/icons/34.png" alt="computer-science" class="w-5 h-5" />
                             Computer Science
                         </div>
-                        <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:83%;top:299px;width:126px;height:21px">
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:83%;top:299px;width:126px;height:21px">
                             <img src="assets/images/icons/19.png" alt="mathematics" class="w-5 h-5" />
                             Mathematics
                         </div>
-                        <div class="absolute text-sm text-neutral-500 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0 hidden lg:flex"
-                            data-taos-offset="100" style="left:42%;top:108px;width:126px;height:21px">
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:42%;top:108px;width:126px;height:21px">
                             <img src="assets/images/icons/21.png" alt="marine-biology" class="w-5 h-5" />
                             Marine Biology
                         </div>
@@ -588,79 +588,7 @@
             </section>
 
             <section class="h-[740px]">
-                <div id="grades" class="relative h-full bg-cover bg-center bg-fixed">
-                    <div class="absolute inset-0 bg-black opacity-50 h-full z-10"></div>
-                    <div class="pt-40 absolute z-10 w-full">
-                        <div class="flex justify-between max-w-4xl mx-auto z-10 px-6 lg:space-x-24 lg:px-0">
-                            <div id="grade-lower" class="text-white text-center space-y-1 cursor-pointer">
-                                <p class="text-xs tracking-wider">GRADES K-4</p>
-                                <p class="tracking-widest">LOWER SCHOOL</p>
-                            </div>
-
-                            <div id="grade-middle" class="text-white text-center space-y-1 cursor-pointer">
-                                <p class="text-xs tracking-wider">GRADES 5-8</p>
-                                <p class="tracking-widest">MIDDLE SCHOOL</p>
-                            </div>
-                            <div id="grade-high" class="text-white text-center space-y-1 cursor-pointer">
-                                <p class="text-xs tracking-wider">GRADES 9-12</p>
-                                <p class="tracking-widest">HIGH SCHOOL</p>
-                            </div>
-                        </div>
-
-                        <div id="lower-school"
-                            class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
-                            <h2 class="text-3xl border-b pb-2">LOWER SCHOOL (K-4)</h2>
-                            <p class="text-justify tracking-wider leading-5">
-                                In our Lower School program, we lay the groundwork for a transformative educational journey.
-                                Tailored for preschool to fourth grade, our curriculum is a vibrant mosaic of discovery and
-                                foundational learning. Here, we focus on nurturing the natural inquisitiveness of young
-                                learners,
-                                enabling them to question, explore, and understand the world around them. This stage is
-                                vital
-                                for building a robust base for future education. We believe in a parent-led approach at this
-                                level, where our platform acts as a guiding tool for parents, equipping them with resources
-                                to
-                                lead and inspire their children in this exciting phase of learning.
-                            </p>
-                        </div>
-
-                        <div id="middle-school"
-                            class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
-                            <h2 class="text-3xl border-b pb-2">MIDDLE SCHOOL (5-8)</h2>
-                            <p class="text-justify tracking-wider leading-5">
-                                Our Middle School curriculum is designed to cater to the unique
-                                needs of students navigating the transformative years of adolescence.
-                                This stage is marked by an increased sense of independence and
-                                growing curiosity about the world and oneself. Our educational
-                                materials encourage students to engage in personal reflection
-                                while exploring complex concepts and ideas. Emphasizing critical
-                                thinking and creative problem-solving, the curriculum prepares
-                                students for higher levels of academic pursuit, instilling confidence
-                                and a sense of self-reliance. This approach not only enriches their
-                                academic experience but also lays a solid foundation for personal
-                                growth and intellectual curiosity.
-                            </p>
-                        </div>
-
-                        <div id="high-school"
-                            class="text-white mx-auto pt-32 space-y-2 hidden px-6 md:right-40 lg:px-0 lg:w-1/2 xl:w-1/3">
-                            <h2 class="text-3xl border-b pb-2">HIGH SCHOOL (9-12)</h2>
-                            <p class="text-justify tracking-wider leading-5">
-                                The High School experience is centered around educational freedom and real-world
-                                relevancy, diverging from traditional academic rigor. Our approach is tailored
-                                to empower students to explore their passions and interests, connecting learning
-                                directly with real-life applications. This stage is pivotal in shaping students
-                                who are not just prepared for college or careers but are also passionate lifelong
-                                learners. We emphasize personalization of the curriculum, allowing students to
-                                delve into subjects that genuinely captivate them. Our platform supports this journey
-                                of exploration, offering resources that nurture independence, self-motivation, and
-                                practical skills. By focusing on real-world interests and flexible learning paths,
-                                we aim to create an environment where students feel empowered to shape their educational
-                                experiences, preparing them to meet the future with confidence.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <GradeSection />
             </section>
 
             <section id="pricing" class="pt-40">
@@ -688,7 +616,7 @@
                     <div @click.prevent="imageSix = !imageSix"
                         class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                         :class="{'z-40': imageSix}">
-                        <img src="assets/images/15.png" alt="close up of an eye"
+                        <img src="assets/images/15.jpg" loading="lazy" alt="close up of an eye"
                             class="w-full h-full cursor-pointer" />
                         <div
                             v-if="imageSix"
@@ -731,7 +659,7 @@
                     <div @click.prevent="imageSeven = !imageSeven"
                         class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                         :class="{'z-40': imageSeven}">
-                        <img src="assets/images/17.png" alt="snow covered mountains"
+                        <img src="assets/images/17.jpg" loading="lazy" alt="snow covered mountains"
                             class="w-full h-full cursor-pointer" />
                         <div
                             v-if="imageSeven"
@@ -753,7 +681,7 @@
                     <div @click.prevent="imageEight = !imageEight"
                         class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                         :class="{'z-40': imageEight}">
-                        <img src="assets/images/19.png" alt="earth from space"
+                        <img src="assets/images/19.jpg" loading="lazy" alt="earth from space"
                             class="w-full h-full cursor-pointer" />
                         <div
                             v-if="imageEight"
@@ -805,7 +733,7 @@
                     <div @click.prevent="imageNine = !imageNine"
                         class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                         :class="{'z-40': imageNine}">
-                        <img src="assets/images/20.png" alt="man with falcon"
+                        <img src="assets/images/20.jpg" loading="lazy" alt="man with falcon"
                             class="w-full h-full cursor-pointer" />
                         <div
                             v-if="imageNine"
@@ -851,7 +779,7 @@
                     <div @click.prevent="imageTen = !imageTen"
                         class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
                         :class="{'z-40': imageTen}">
-                        <img src="assets/images/18.png" alt="scientist looking through a microscope"
+                        <img src="assets/images/18.jpg" loading="lazy" alt="scientist looking through a microscope"
                             class="w-full h-full hidden cursor-pointer lg:block" />
                         <div
                             v-if="imageTen"
@@ -912,8 +840,8 @@
                             <div class="space-y-8 xl:contents xl:space-y-0">
                                 <div class="space-y-8 xl:row-span-2">
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil.
                                                 Aut enim doloremque et ipsam.”</p>
@@ -926,8 +854,8 @@
                                     </figure>
 
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam
                                                 ut officia rem nulla blanditiis.”</p>
@@ -940,8 +868,8 @@
                                     </figure>
 
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam
                                                 ut officia rem nulla blanditiis.”</p>
@@ -957,8 +885,8 @@
                                 </div>
                                 <div class="space-y-8 xl:row-start-1">
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam
                                                 ut officia rem nulla blanditiis.”</p>
@@ -971,8 +899,8 @@
                                     </figure>
 
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam
                                                 ut officia rem nulla blanditiis.”</p>
@@ -988,8 +916,8 @@
                             <div class="space-y-8 xl:contents xl:space-y-0">
                                 <div class="space-y-8 xl:row-start-1">
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Voluptas quos itaque ipsam in voluptatem est. Iste eos blanditiis
                                                 repudiandae.”</p>
@@ -1002,8 +930,8 @@
                                     </figure>
 
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam
                                                 ut officia rem nulla blanditiis.”</p>
@@ -1017,8 +945,8 @@
                                 </div>
                                 <div class="space-y-8 xl:row-span-2">
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Molestias ea earum quos nostrum doloremque sed. Quaerat quasi aut velit
                                                 incidunt excepturi rerum voluptatem minus harum.”</p>
@@ -1031,8 +959,8 @@
                                     </figure>
 
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam
                                                 ut officia rem nulla blanditiis.”</p>
@@ -1045,8 +973,8 @@
                                     </figure>
 
                                     <figure
-                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0"
-                                        data-taos-offset="100">
+                                        class="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
+                                        data-aos="zoom-in">
                                         <blockquote class="text-gray-900">
                                             <p>“Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsam
                                                 ut officia rem nulla blanditiis.”</p>
@@ -1119,8 +1047,15 @@
 
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import GradeSection from '@/Pages/Landing/Sections/GradeSection.vue';
 import FaqSection from '@/Pages/Landing/Sections/FaqSection.vue';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+onMounted(() => {
+    AOS.init();
+});
 
 const imageOne = ref(false);
 const imageTwo = ref(false);

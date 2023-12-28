@@ -21,6 +21,7 @@
         "@headlessui/vue": "^1.7.16",
         "@heroicons/vue": "^2.0.18",
         "@vue/server-renderer": "^3.3.13",
+        "aos": "^2.3.4",
         "apexcharts": "^3.45.1",
         "lodash": "^4.17.21",
         "moment": "^2.29.4",
