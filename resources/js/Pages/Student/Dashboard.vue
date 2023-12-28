@@ -36,9 +36,9 @@
                     </div>
                 </div>
 
-                <div class="relative bg-white p-6 border overflow-hidden shadow-sm sm:rounded-lg md:row-span-4 md:col-span-8 dark:bg-primary-gray dark:border-none">
+                <div v-if="isClient" class="relative bg-white p-6 border overflow-hidden shadow-sm sm:rounded-lg md:row-span-4 md:col-span-8 dark:bg-primary-gray dark:border-none">
                     <div class="absolute text-gray-500 dark:text-neutral-400">Subjects</div>
-                    <apexchart width="100%" height="100%" type="pie" :options="options" :series="series"></apexchart>
+                    <ApexChart width="100%" height="100%" type="pie" :options="options" :series="series"></ApexChart>
                 </div>
             </div>
         </div>
@@ -49,10 +49,20 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import { Head } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { defineAsyncComponent, onMounted, ref } from 'vue';
 
 defineOptions({
     layout: AuthenticatedLayout
+});
+
+const ApexChart = defineAsyncComponent(() =>
+  import('vue3-apexcharts')
+);
+
+const isClient = ref(false);
+
+onMounted(() => {
+  isClient.value = true;
 });
 
 const props = defineProps({

@@ -76,13 +76,15 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import { capitalize } from 'lodash';
+import pkg from 'lodash';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 const props = defineProps({
     questions: Object,
     topic: String,
 });
+
+const { capitalize } = pkg;
 
 const toggleContent = ref('');
 

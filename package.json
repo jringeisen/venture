@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
@@ -20,7 +20,8 @@
     "dependencies": {
         "@headlessui/vue": "^1.7.16",
         "@heroicons/vue": "^2.0.18",
-        "apexcharts": "^3.44.1",
+        "@vue/server-renderer": "^3.3.13",
+        "apexcharts": "^3.45.1",
         "lodash": "^4.17.21",
         "moment": "^2.29.4",
         "vue-confetti-explosion": "^1.0.2",
