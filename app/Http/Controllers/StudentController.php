@@ -39,7 +39,7 @@ class StudentController extends Controller
     public function create(): Response
     {
         return Inertia::render('Teachers/Students/Create', [
-            'timezones' => Timezone::orderBy('value', 'asc')->get()
+            'timezones' => Timezone::orderBy('value', 'asc')->get(),
         ]);
     }
 

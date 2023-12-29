@@ -12,12 +12,11 @@
                         </p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <PrimaryButton @click.prevent="handleAddStudent()"
-                            >Add student</PrimaryButton
+                        <PrimaryButton @click.prevent="handleAddStudent()">Add student</PrimaryButton
                         >
                     </div>
                 </div>
-                <div class="mt-8 flow-root">
+                <div v-if="students.total > 0" class="mt-8 flow-root">
                     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
@@ -112,7 +111,9 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <Pagination :data="students" class="dark:bg-neutral-600" />
+                                <div v-if="students.total > students.per_page" class="border-t">
+                                    <Pagination :data="students" class="dark:bg-neutral-600" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -135,10 +136,7 @@ defineOptions({
 });
 
 const props = defineProps({
-    students: {
-        type: Object,
-        required: true,
-    },
+    students: Object,
     subscribed: Boolean,
 });
 
@@ -153,7 +151,7 @@ const deleteStudent = (student) => {
 };
 
 const handleAddStudent = () => {
-    if (!props.subscribed) {
+    if (!props.subscribed && props.students.total > 0) {
         router.get(route('subscription.checkout.options'));
     } else {
         router.get(route('students.create'));

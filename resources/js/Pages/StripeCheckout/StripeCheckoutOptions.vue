@@ -3,7 +3,7 @@
 
     <div class="relative isolate px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
-            <p class="mt-2 text-4xl font-bold tracking-tight text-neutral-300 sm:text-5xl">
+            <p class="mt-2 text-4xl font-bold tracking-tight text-primary-gray dark:text-neutral-300 sm:text-5xl">
                 The right price for you, whoever you are
             </p>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -15,7 +16,7 @@ class PasswordResetController extends Controller
         return Inertia::render('Student/PasswordReset');
     }
 
-    public function store(Request $request): string
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'password' => ['required', 'confirmed', 'min:8'],
