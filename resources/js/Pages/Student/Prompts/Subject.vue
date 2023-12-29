@@ -19,7 +19,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { capitalize } from 'lodash';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 const props = defineProps({
