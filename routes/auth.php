@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\AuthOptionsController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -27,6 +28,8 @@ Route::middleware('guest')->group(function () {
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
+
+    Route::get('auth-options', AuthOptionsController::class)->name('auth-options');
 });
 
 Route::middleware('auth')->group(function () {

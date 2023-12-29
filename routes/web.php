@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Route;
 // Guest Routes...
 Route::get('/', LandingController::class);
 
-Route::get('/auth-options', function () {
-    return \Inertia\Inertia::render('Landing');
-});
-
 // Authenticated Routes...
 Route::middleware('auth')->group(function () {
     // Verified Routes...
