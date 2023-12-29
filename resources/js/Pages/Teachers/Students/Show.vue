@@ -35,12 +35,12 @@
                 </div>
 
                 <div
-                    v-if="series.length > 0"
+                    v-if="series.length > 0 && isClient"
                     class="relative bg-white p-6 border overflow-hidden shadow-sm sm:rounded-lg md:row-span-2 md:col-span-8 dark:bg-primary-gray dark:border-none"
                     :class="Object.keys(categoriesWithCounts).length > 0 && series.length > 0 ? 'md:col-span-8' : 'md:col-span-12'"
                 >
                     <div class="absolute text-gray-500 dark:text-neutral-400">Subjects</div>
-                    <apexchart width="100%" height="100%" type="pie" :options="options" :series="series"></apexchart>
+                    <ApexChart width="100%" height="100%" type="pie" :options="options" :series="series"></ApexChart>
                 </div>
             </div>
 
@@ -96,14 +96,16 @@
 
 <script setup>
 import { Head } from '@inertiajs/vue3';
-import { ref } from 'vue';
-import { startCase  } from 'lodash';
+import { defineAsyncComponent, onMounted, ref } from 'vue';
+import pkg from 'lodash';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 
 defineOptions({
     layout: AuthenticatedLayout
 });
+
+const { startCase } = pkg;
 
 const props = defineProps({
     student: Object,
@@ -123,6 +125,16 @@ const handleToggleContent = (id) => {
 
     toggleContent.value = id;
 };
+
+const ApexChart = defineAsyncComponent(() =>
+  import('vue3-apexcharts')
+);
+
+const isClient = ref(false);
+
+onMounted(() => {
+  isClient.value = true;
+});
 
 const options = ref({
     labels: props.pieChartData.labels,

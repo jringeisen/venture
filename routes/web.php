@@ -9,11 +9,7 @@ use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes...
-Route::get('/', LandingController::class);
-
-Route::get('/auth-options', function () {
-    return \Inertia\Inertia::render('Landing');
-});
+Route::get('/', LandingController::class)->name('landing');
 
 // Authenticated Routes...
 Route::middleware('auth')->group(function () {
