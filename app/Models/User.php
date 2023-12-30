@@ -42,4 +42,21 @@ class User extends Authenticatable
             get: fn (?string $value) => $value ?? config('app.timezone')
         );
     }
+
+    public function subscriptionQuantity(): int
+    {
+        $subscriptionItem = $this->subscription('default')->items->first();
+
+        return $subscriptionItem->quantity;
+    }
+
+    public function showInitialPaymentPage(): bool
+    {
+        return ! $this->subscribed() && $this->students->count() >= 1;
+    }
+
+    public function showExceededQuantityPage(): bool
+    {
+        return $this->subscribed() && $this->students->count() > $this->subscriptionQuantity();
+    }
 }

@@ -169,6 +169,7 @@
                                     Logout
                                 </li>
                                 <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">Profile</Link>
+                                <a v-if="$page.props.auth.type === 'teacher'" :href="route('billing.portal')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">Billing</a>
                             </ul>
                         </li>
                     </ul>

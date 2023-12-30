@@ -137,7 +137,8 @@ defineOptions({
 
 const props = defineProps({
     students: Object,
-    subscribed: Boolean,
+    showInitialPaymentPage: Boolean,
+    showExceededQuantityPage: Boolean,
 });
 
 const form = useForm({});
@@ -151,8 +152,10 @@ const deleteStudent = (student) => {
 };
 
 const handleAddStudent = () => {
-    if (!props.subscribed && props.students.total > 0) {
+    if (props.showInitialPaymentPage) {
         router.get(route('subscription.checkout.options'));
+    } else if (props.showExceededQuantityPage) {
+        router.get(route('quantity.exceeded'));
     } else {
         router.get(route('students.create'));
     }

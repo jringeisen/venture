@@ -32,7 +32,8 @@ class StudentController extends Controller
             'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) {
                 $query->whereHas('promptAnswer')->filterByDate(today()->toDateString());
             }])->paginate(10),
-            'subscribed' => $request->user()->subscribed(),
+            'showInitialPaymentPage' => $request->user()->showInitialPaymentPage(),
+            'showExceededQuantityPage' => $request->user()->showExceededQuantityPage(),
         ]);
     }
 

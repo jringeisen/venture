@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Billing\BillingPortalController;
+use App\Http\Controllers\Billing\QuantityExceededController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
@@ -16,6 +18,9 @@ Route::middleware('auth')->group(function () {
     // Verified Routes...
     Route::middleware('verified')->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+        Route::get('/billing-portal', BillingPortalController::class)->name('billing.portal');
+        Route::get('/quantity-exceeded', QuantityExceededController::class)->name('quantity.exceeded');
 
         Route::prefix('students')->group(function () {
             Route::get('/', [StudentController::class, 'index'])->name('students.index');
