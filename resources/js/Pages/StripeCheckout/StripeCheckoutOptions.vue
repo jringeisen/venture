@@ -4,12 +4,11 @@
     <div class="relative isolate px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
             <p class="mt-2 text-4xl font-bold tracking-tight text-primary-gray dark:text-neutral-300 sm:text-5xl">
-                The right price for you, whoever you are
+                Discover Smarter Learning
             </p>
         </div>
-        <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-neutral-300">
-            Qui iusto aut est earum eos quae. Eligendi est at nam aliquid ad quo reprehenderit in aliquid fugiat dolorum
-            voluptatibus.
+        <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-neutral-500 dark:text-neutral-300">
+            You've reached your maximum number of students. Upgrade your plan to add more students.
         </p>
         <div
             class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2"
@@ -87,12 +86,27 @@
                         </svg>
                         24-hour support response time
                     </li>
+                    <li>
+                        <div class="mx-auto max-w-2xl">
+                            <label for="students" class="block text-sm font-medium leading-6 text-neutral-500">How many students?</label>
+                            <select id="students" v-model="student_count" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-neutral-700 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary-gray sm:text-sm sm:leading-6">
+                                <option disabled>Choose number of students</option>
+                                <option selected :value="1">1 x Student - $40</option>
+                                <option :value="2">2 x Student - $50</option>
+                                <option :value="3">3 x Student - $60</option>
+                                <option :value="4">4 x Student - $70</option>
+                                <option :value="5">5 x Student - $80</option>
+                                <option :value="6">6+ x Student - $90</option>
+                            </select>
+                        </div>
+                    </li>
                 </ul>
-                <a
-                    href="#"
-                    aria-describedby="tier-hobby"
-                    class="mt-8 block rounded-md py-2.5 px-3.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10 text-neutral-600 ring-1 ring-inset ring-neutral-200 hover:ring-neutral-300 focus-visible:outline-neutral-600"
-                    >Get started today</a
+                <button
+                    @click.prevent="handleCheckout('monthly')"
+                    type="button"
+                    aria-describedby="tier-monthly"
+                    class="mt-8 w-full rounded-md py-2.5 px-3.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10 text-neutral-600 ring-1 ring-inset ring-neutral-200 hover:ring-neutral-300 focus-visible:outline-neutral-600"
+                    >Get started today</button
                 >
             </div>
             <div class="rounded-3xl p-8 ring-1 ring-gray-900/10 sm:p-10 relative bg-primary-dark-gray shadow-2xl">
@@ -195,23 +209,49 @@
                         </svg>
                         Custom integrations
                     </li>
+                    <li>
+                        <div class="mx-auto max-w-2xl">
+                            <label for="students" class="block text-sm font-medium leading-6 text-neutral-300">How many students?</label>
+                            <select id="students" v-model="student_count" class="mt-2 block w-full bg-neutral-800 rounded-md border-0 py-1.5 pl-3 pr-10 text-neutral-300 ring-1 ring-inset ring-neutral-600 focus:ring-2 focus:ring-primary-gray sm:text-sm sm:leading-6">
+                                <option disabled>Choose number of students</option>
+                                <option selected :value="1">1 x Student - $440</option>
+                                <option :value="2">2 x Student - $550</option>
+                                <option :value="3">3 x Student - $660</option>
+                                <option :value="4">4 x Student - $770</option>
+                                <option :value="5">5 x Student - $880</option>
+                                <option :value="6">6+ x Student - $990</option>
+                            </select>
+                        </div>
+                    </li>
                 </ul>
-                <a
-                    href="#"
-                    aria-describedby="tier-enterprise"
-                    class="mt-8 block rounded-md py-2.5 px-3.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10 bg-primary-yellow text-neutral-800 shadow-sm hover:bg-yellow-500 focus-visible:outline-yellow-500"
-                    >Get started today</a
+                <button
+                    @click.prevent="handleCheckout('annual')"
+                    type="button"
+                    aria-describedby="tier-annual"
+                    class="mt-8 w-full rounded-md py-2.5 px-3.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10 bg-primary-yellow text-neutral-800 shadow-sm hover:bg-yellow-500 focus-visible:outline-yellow-500"
                 >
+                    Get started today
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+
+const student_count = ref(1);
 
 defineOptions({
     layout: AuthenticatedLayout,
 });
+
+const handleCheckout = (plan) => {
+    location.href = route('subscription.checkout', {
+        plan: plan,
+        student_count: student_count.value
+    });
+}
 </script>

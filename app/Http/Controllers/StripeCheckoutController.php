@@ -8,16 +8,19 @@ class StripeCheckoutController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $price = $request->price;
-        $quantity = $request->quantity;
+        if ($request->plan === 'monthly') {
+            $price = config('app.stripe.prices.monthly');
+        } else {
+            $price = config('app.stripe.prices.annual');
+        }
 
         return $request->user()
             ->newSubscription('default', $price)
-            ->quantity($quantity)
+            ->quantity($request->student_count)
             ->allowPromotionCodes()
             ->checkout([
                 'success_url' => 'https://venture.test/success',
-                'cancel_url' => route('dashboard'),
+                'cancel_url' => route('subscription.checkout.options'),
             ]);
     }
 }

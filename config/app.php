@@ -185,4 +185,17 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Stripe Prices for this app
+    |--------------------------------------------------------------------------
+    */
+
+    'stripe' => [
+        'prices' => [
+            'monthly' => env('STRIPE_MONTHLY_PRICE'),
+            'annual' => env('STRIPE_ANNUAL_PRICE'),
+        ],
+    ],
+
 ];
