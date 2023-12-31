@@ -37,13 +37,10 @@ class PromptQuestion extends Model
         return $query->when($date, function (Builder $query) use ($date) {
             $usersTimezone = auth()->user()->timezone;
 
-            $startOfDay = Carbon::parse($date)->timezone($usersTimezone)->startOfDay();
-            $endOfDay = Carbon::parse($date)->timezone($usersTimezone)->endOfDay();
+            $startOfDay = Carbon::parse($date)->timezone($usersTimezone)->startOfDay()->utc();
+            $endOfDay = Carbon::parse($date)->timezone($usersTimezone)->endOfDay()->utc();
 
-            $startOfUtcDay = $startOfDay->setTimezone('UTC');
-            $endOfUtcDay = $endOfDay->setTimezone('UTC');
-
-            $query->whereBetween('created_at', [$startOfUtcDay, $endOfUtcDay]);
+            $query->whereBetween('created_at', [$startOfDay, $endOfDay]);
         });
     }
 }

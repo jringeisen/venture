@@ -15,7 +15,9 @@ class PromptController extends Controller
 {
     public function index(Request $request): Response
     {
-        return Inertia::render('Student/Prompts/Index');
+        return Inertia::render('Student/Prompts/Index', [
+            'canAskQuestions' => $request->user()->canAskQuestions(),
+        ]);
     }
 
     public function store(PromptRequest $request, OpenAIService $openAIService): Response
@@ -24,6 +26,8 @@ class PromptController extends Controller
             'question' => $request->question,
         ]);
 
+        $request->user()->user->increment('total_questions_asked');
+
         $moderation = OpenAI::moderations()->create([
             'model' => 'text-moderation-latest',
             'input' => $request->question,
@@ -31,6 +35,7 @@ class PromptController extends Controller
 
         if ($moderation->results[0]->flagged === true) {
             return Inertia::render('Student/Prompts/Index', [
+                'canAskQuestions' => $request->user()->canAskQuestions(),
                 'result' => [
                     'flagged' => true,
                     'message' => 'This question violates OpenAI\'s policies. Please try another question.',
@@ -47,11 +52,13 @@ class PromptController extends Controller
 
         if (isset($response['flagged']) && $response['flagged'] === true) {
             return Inertia::render('Student/Prompts/Index', [
+                'canAskQuestions' => $request->user()->canAskQuestions(),
                 'result' => $response,
             ]);
         }
 
         return Inertia::render('Student/Prompts/Index', [
+            'canAskQuestions' => $request->user()->canAskQuestions(),
             'result' => [
                 'flagged' => false,
                 'message' => '',

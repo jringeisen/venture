@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -22,7 +23,7 @@ class RegisteredUserController extends Controller
     public function create(): Response
     {
         return Inertia::render('Auth/Register', [
-            'canRegister' => false,
+            'canRegister' => App::environment('local') ? true : false,
         ]);
     }
 

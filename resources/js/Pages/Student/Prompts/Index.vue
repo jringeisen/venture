@@ -2,11 +2,15 @@
     <Head title="Prompts" />
 
     <div class="max-w-full mx-auto px-10 pb-20">
-        <div v-if="!$page.props.auth.canAskQuestions" class="max-w-2xl mx-auto p-4 rounded-lg shadow-lg bg-primary-gray text-neutral-300 text-center">
-            <p>You've reached your limit, please upgrade to continue asking questions.</p>
+        <div v-if="!canAskQuestions" class="max-w-2xl mx-auto p-4 rounded-lg shadow-lg bg-primary-gray text-neutral-300 text-center">
+            <p>
+                Hey there friend. You are currently on our free plan which has a limit of
+                20 questions. In order to continue asking questions your account will need
+                to be upgraded.
+            </p>
         </div>
 
-        <form v-if="$page.props.auth.canAskQuestions" @submit.prevent="submit" class="flex items-center mt-12 relative">
+        <form v-else @submit.prevent="submit" class="flex items-center mt-12 relative">
             <TextInput
                 class="py-2 px-6 text-xl w-full font-bold rounded-full shadow-lg"
                 placeholder="Ask a question to get started..."
@@ -87,6 +91,10 @@
         result: {
             type: Object,
             required: false,
+        },
+        canAskQuestions: {
+            type: Boolean,
+            required: true,
         },
     })
 

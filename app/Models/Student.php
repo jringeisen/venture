@@ -68,7 +68,7 @@ class Student extends Authenticatable
             return true;
         }
 
-        if (! $this->user->subscribed() && $this->promptQuestions()->whereHas('promptAnswer')->count() < config('app.student_free_question_count')) {
+        if (! $this->user->subscribed() && $this->user->total_questions_asked < config('app.student_free_question_count')) {
             return true;
         }
 

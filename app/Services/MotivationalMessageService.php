@@ -28,11 +28,11 @@ class MotivationalMessageService
 
     protected function shouldCreateMessage(): bool
     {
-        $dayMotivationalMessageWasLastSaved = $this->student->motivational_message?->timezone($this->timezone)->startOfDay()->utc();
-        $todaysDate = today()->timezone($this->timezone)->startOfDay()->utc();
+        $dayMotivationalMessageWasLastSaved = $this->student->motivational_message;
+        $todaysDate = now()->timezone($this->timezone)->startOfDay();
 
-        return $this->student->motivational_message
-            && $dayMotivationalMessageWasLastSaved->lessThan($todaysDate);
+        return is_null($dayMotivationalMessageWasLastSaved)
+            || ($this->student->motivational_message && $dayMotivationalMessageWasLastSaved->lessThan($todaysDate));
     }
 
     protected function callOpenAI(): string
@@ -42,7 +42,7 @@ class MotivationalMessageService
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => "Using the tone of {$this->getRandomPerson()}, generate a motivational quote for a child between the ages of 11 and 15.",
+                    'content' => "Using the tone of {$this->getRandomPerson()}, generate a motivational quote for a child that is {$this->student->age} years old.",
                 ],
             ],
             'user' => 'user-'.$this->student->id,
