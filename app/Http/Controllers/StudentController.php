@@ -30,8 +30,19 @@ class StudentController extends Controller
     {
         return Inertia::render('Teachers/Students/Index', [
             'students' => $request->user()->students()->withCount(['promptQuestions' => function (Builder $query) {
-                $query->whereHas('promptAnswer')->filterByDate(today()->toDateString());
-            }])->paginate(10),
+                    $query->whereHas('promptAnswer')->filterByDate(today()->toDateString());
+                }])
+                ->paginate(10)
+                ->through(function (Student $student) {
+                    return [
+                        'id' => $student->id,
+                        'name' => $student->name,
+                        'email' => $student->email,
+                        'grade' => $student->grade,
+                        'age' => $student->age,
+                        'prompt_questions_count' => $student->prompt_questions_count,
+                    ];
+                }),
             'showInitialPaymentPage' => $request->user()->showInitialPaymentPage(),
             'showExceededQuantityPage' => $request->user()->showExceededQuantityPage(),
         ]);

@@ -8,7 +8,7 @@
             </p>
         </div>
         <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-neutral-500 dark:text-neutral-300">
-            You've reached your maximum number of students. Upgrade your plan to add more students.
+            We offer a free plan that allows you to add one student and that student is alotted 20 questions. If you need more students or more questions, you can upgrade to one of our paid plans.
         </p>
         <div
             class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2"

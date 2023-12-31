@@ -57,6 +57,6 @@ class User extends Authenticatable
 
     public function showExceededQuantityPage(): bool
     {
-        return $this->subscribed() && $this->students->count() > $this->subscriptionQuantity();
+        return $this->subscribed() && $this->students->count() >= $this->subscriptionQuantity();
     }
 }

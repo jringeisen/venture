@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         return Inertia::render('Dashboard', [
             'totalQuestions' => (int) PromptQuestion::whereHas('promptAnswer')->count(),
-            'dailyQuestions' => (int) PromptQuestion::filterByDate(now()->toDateString())
+            'dailyQuestions' => (int) PromptQuestion::filterByDate(today()->toDateString())
                 ->whereHas('promptAnswer')
                 ->count(),
             'pieChartData' => $pieChartService

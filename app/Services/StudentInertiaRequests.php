@@ -15,6 +15,7 @@ class StudentInertiaRequests
                 'user' => $request->user(),
                 'navigation' => $this->navigation(),
                 'subjects' => $this->subjects(),
+                'canAskQuestions' => $request->user()->canAskQuestions(),
                 'motivationalMessage' => $request->routeIs('student.dashboard')
                     ? (new MotivationalMessageService($request->user()))->generate()
                     : null,
