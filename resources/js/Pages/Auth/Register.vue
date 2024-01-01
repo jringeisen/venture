@@ -2,9 +2,7 @@
     <GuestLayout>
         <Head title="Register" />
 
-        <div v-if="!canRegister" class="text-primary-dark-gray dark:text-white">We're not currently accepting registrations. We're working hard to get the Beta version released by next week.</div>
-
-        <form v-else @submit.prevent="submit">
+        <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Name" />
 
@@ -89,10 +87,6 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
-
-defineProps({
-    canRegister: Boolean,
-});
 
 const form = useForm({
     name: '',

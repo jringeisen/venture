@@ -22,9 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register', [
-            'canRegister' => App::environment('local') ? true : false,
-        ]);
+        return Inertia::render('Auth/Register');
     }
 
     /**
