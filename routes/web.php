@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 
 // Guest Routes...
 Route::get('/', LandingController::class)->name('landing');
+Route::get('/planner', function () {
+    return 'Planner';
+});
 
 // Authenticated Routes...
 Route::middleware('auth')->group(function () {
