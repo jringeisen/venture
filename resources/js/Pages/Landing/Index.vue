@@ -14,7 +14,7 @@
         <meta property="og:url" content="https://learnwithventure.com">
     </Head>
 
-    <div class="relative bg-neutral-700">
+    <div class="relative bg-primary-dark-gray">
         <header class="sticky top-0 bg-primary-dark-gray z-20">
             <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
