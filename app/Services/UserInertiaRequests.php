@@ -16,6 +16,7 @@ class UserInertiaRequests
                 'user' => $request->user(),
                 'students' => $this->students(),
                 'navigation' => $this->navigation(),
+                'isSubscribed' => $request->user()->subscribed(),
             ],
             'flash' => [
                 'message' => [

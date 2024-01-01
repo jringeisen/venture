@@ -57,7 +57,7 @@
 
                                 <div class="flex justify-end space-x-2">
                                     <SecondaryButton @click.prevent="router.get(route('students.index'))">Cancel</SecondaryButton>
-                                    <PrimaryButton type="submit">Submit</PrimaryButton>
+                                    <PrimaryButton type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Submit</PrimaryButton>
                                 </div>
                             </form>
                         </div>

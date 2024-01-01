@@ -11,13 +11,13 @@ class PromptQuestionObserver
     {
         $user = request()->user();
 
-        $lastQuestionDate = $user->promptQuestions()->latest()->first()->created_at;
+        $lastQuestionDate = $user->promptQuestions()->latest()->first()?->created_at;
 
-        if ($lastQuestionDate->isSameDay(Carbon::today())) {
+        if ($lastQuestionDate && $lastQuestionDate->isSameDay(Carbon::today())) {
             return;
         }
 
-        if ($lastQuestionDate->isSameDay(Carbon::yesterday())) {
+        if ($lastQuestionDate && $lastQuestionDate->isSameDay(Carbon::yesterday())) {
             $user->increment('current_streak');
         } else {
             $user->current_streak = 1;

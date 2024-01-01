@@ -73,17 +73,14 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
-    canResetPassword: {
-        type: Boolean,
-    },
-    status: {
-        type: String,
-    },
+const props = defineProps({
+    canResetPassword: Boolean,
+    status: String,
+    email: String,
 });
 
 const form = useForm({
-    email: '',
+    email: props.email ?? '',
     password: '',
     remember: false,
 });

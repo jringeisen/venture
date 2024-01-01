@@ -185,4 +185,24 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Stripe Prices for this app
+    |--------------------------------------------------------------------------
+    */
+
+    'stripe' => [
+        'prices' => [
+            'monthly' => env('STRIPE_MONTHLY_PRICE'),
+            'annual' => env('STRIPE_ANNUAL_PRICE'),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Student Free Question Count
+    |--------------------------------------------------------------------------
+    */
+
+    'student_free_question_count' => env('STUDENT_FREE_QUESTION_COUNT', 20),
 ];

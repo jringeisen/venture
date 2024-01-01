@@ -47,26 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <nav v-if="questions.data.length > 0" class="flex items-center justify-between bg-white px-4 py-3 sm:px-8 dark:bg-primary-gray" aria-label="Pagination">
-                        <div class="hidden sm:block">
-                            <p class="text-sm text-primary-dark-gray dark:text-neutral-400">
-                                Showing
-                            <span class="font-medium">{{ questions.from }}</span>
-                                to
-                            <span class="font-medium">{{ questions.to }}</span>
-                                of
-                            <span class="font-medium">{{ questions.total }}</span>
-                                results
-                            </p>
-                        </div>
-                        <div class="flex flex-1 justify-between sm:justify-end">
-                            <Link v-if="questions.prev_page_url" :href="questions.prev_page_url" class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 dark:bg-primary-yellow dark:ring-0 dark:border-none">Previous</Link>
-                            <button v-else disabled class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-primary-yellow dark:ring-0 dark:border-none">Previous</button>
-
-                            <Link v-if="questions.next_page_url" :href="questions.next_page_url" class="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 dark:bg-primary-yellow dark:ring-0 dark:border-none">Next</Link>
-                            <button v-else disabled class="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-primary-yellow dark:ring-0 dark:border-none">Next</button>
-                        </div>
-                    </nav>
+                    <Pagination v-if="questions.total > questions.per_page" :data="questions" class="dark:bg-neutral-600" />
                 </div>
             </div>
         </div>
@@ -74,10 +55,11 @@
 </template>
 
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import pkg from 'lodash';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Pagination from '@/Components/Pagination.vue';
 
 const props = defineProps({
     questions: Object,

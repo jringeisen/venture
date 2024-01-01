@@ -2,7 +2,7 @@
     <div>
         <Modal :show="true">
             <div class="p-8 prose">
-                <h1 class="text-2xl font-bold text-center">Good morning!</h1>
+                <h1 class="text-2xl font-bold text-center">Motivation For The Day</h1>
                 <p class="text-center py-4">
                     {{ message }}
                 </p>
