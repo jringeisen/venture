@@ -55,11 +55,6 @@ class MotivationalMessageService
     {
         return collect([
             'Neil Degrasse Tyson',
-            'Joe Rogan',
-            'Elon Musk',
-            'Andy Frisella',
-            'David Goggins',
-            'Jocko Willink',
         ])->random();
     }
 }
