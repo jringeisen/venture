@@ -9,7 +9,9 @@
         <link rel="icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon"/>
 
         <!-- Fathom - beautiful, simple website analytics -->
+        @env('production')
         <script src="https://cdn.usefathom.com/script.js" data-site="KVCJTXET" defer></script>
+        @endenv
         <!-- / Fathom -->
 
         <!-- Scripts -->
