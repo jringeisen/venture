@@ -596,9 +596,8 @@
                     <p class="text-white font-semibold tracking-wider text-4xl">ENROLL NOW</p>
                     <div class="text-3xl text-white max-w-5xl mx-auto leading-snug lg:text-5xl">
                         <p class="font-extralight">
-                            Unlock Exclusive Beta Savings: <span class="text-primary-yellow font-semibold">30% OFF!</span>
-                            Seize this rare opportunity during our beta phase.
-                            Embark on your ad<span class="text-primary-yellow font-semibold">venture</span> today - Sign Up Now!
+                            Unlock Exclusive Beta Savings: <span class="text-primary-yellow font-semibold">GET 30% OFF!</span>
+                            Embark on your ad<span class="text-primary-yellow font-semibold">venture</span> today!
                         </p>
                     </div>
                     <div class="py-8">
