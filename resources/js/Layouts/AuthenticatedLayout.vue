@@ -257,6 +257,6 @@ const getIconComponent = (iconName) => {
 const showBetaPricing = () => {
     return page.props.auth.type === 'teacher'
         && !page.props.auth.isSubscribed
-        && route().current() !== 'subscription.checkout.options';
+        && page.url !== '/subscription-checkout-options';
 }
 </script>
