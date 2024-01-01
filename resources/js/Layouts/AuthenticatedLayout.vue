@@ -169,6 +169,7 @@
                                     Logout
                                 </li>
                                 <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">Profile</Link>
+                                <a v-if="$page.props.auth.type === 'teacher' && $page.props.auth.isSubscribed" :href="route('billing.portal')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">Billing</a>
                             </ul>
                         </li>
                     </ul>
@@ -218,6 +219,10 @@
 
         <main class="relative py-10 lg:pl-72">
             <MotivationalMessage v-if="$page.props.auth.motivationalMessage" :message="$page.props.auth.motivationalMessage" />
+            <div v-if="showBetaPricing()" class="max-w-2xl mx-auto bg-primary-yellow p-4 rounded-lg text-center text-yellow-900">
+                Take advantage of our BETA pricing and get <strong>30% OFF</strong> your first year!
+                <Link :href="route('subscription.checkout.options')" class="underline">Upgrade Now!</Link>
+            </div>
             <div class="px-4 sm:px-6 lg:px-8">
                 <slot></slot>
             </div>
@@ -226,12 +231,14 @@
 </template>
 
 <script setup>
-import { router, Link } from '@inertiajs/vue3';
+import { router, Link, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon, HomeIcon, UsersIcon, DocumentIcon, BookOpenIcon } from '@heroicons/vue/24/outline';
 import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+
+const page = usePage();
 
 const sidebarOpen = ref(false);
 const toggleSettingsMenu = ref(false);
@@ -246,4 +253,10 @@ const iconMap = {
 const getIconComponent = (iconName) => {
     return iconMap[iconName] || null;
 };
+
+const showBetaPricing = () => {
+    return page.props.auth.type === 'teacher'
+        && !page.props.auth.isSubscribed
+        && route().current() !== 'subscription.checkout.options';
+}
 </script>

@@ -47,7 +47,7 @@
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div class="flex flex-col text-right">
-                        <Link :href="route('auth-options')" class="text-sm font-semibold leading-6 text-white">Log in <span
+                        <Link :href="route('auth.options')" class="text-sm font-semibold leading-6 text-white">Log in <span
                                 aria-hidden="true">&rarr;</span></Link>
                         <Link :href="route('register')"
                             class="inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">SIGN
@@ -99,10 +99,10 @@
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">FAQ</a>
                             </div>
                             <div class="py-6">
-                                <a href="/auth-options"
+                                <a :href="route('auth.options')"
                                     class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">Log
                                     in</a>
-                                <a href="/register"
+                                <a :href="route('register')"
                                     class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">Register</a>
                             </div>
                         </div>
@@ -595,16 +595,17 @@
                 <div class="text-center space-y-10">
                     <p class="text-white font-semibold tracking-wider text-4xl">ENROLL NOW</p>
                     <div class="text-3xl text-white max-w-5xl mx-auto leading-snug lg:text-5xl">
-                        <p class="font-extralight">Take advantage of our limited-time beta pricing! Experience <span
-                                class="text-primary-yellow font-semibold">Venture</span> for a full month at a special price
-                            of
-                            only $20.00. Sign up now and start your ad<span
-                                class="text-primary-yellow font-semibold">venture</span> today!</p>
+                        <p class="font-extralight">
+                            Unlock Exclusive Beta Savings: <span class="text-primary-yellow font-semibold">GET 30% OFF!</span>
+                            Embark on your ad<span class="text-primary-yellow font-semibold">venture</span> today!
+                        </p>
                     </div>
-                    <div class="flex justify-center py-8">
+                    <div class="py-8">
                         <Link :href="route('register')"
-                            class="inline-flex items-center px-10 py-4 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">START
-                            A TRIAL</Link>
+                            class="inline-flex items-center px-10 py-4 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
+                            USE CODE BETA2024
+                        </Link>
+                        <p class="text-xs text-neutral-300 mt-2">NO CREDIT CARD REQUIRED!</p>
                     </div>
                 </div>
             </section>

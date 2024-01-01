@@ -23,12 +23,12 @@ class TopicController extends Controller
                 ->with('promptAnswer')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10)
-                ->through(function (PromptQuestion $promptQuestion) {
+                ->through(function (PromptQuestion $promptQuestion) use ($request) {
                     return [
                         'id' => $promptQuestion->id,
                         'question' => $promptQuestion->question,
                         'prompt_answer' => $promptQuestion->promptAnswer,
-                        'created_at' => $promptQuestion->created_at->toFormattedDateString(),
+                        'created_at' => $promptQuestion->created_at->timezone($request->user()->timezone)->toFormattedDateString(),
                     ];
                 }),
         ]);

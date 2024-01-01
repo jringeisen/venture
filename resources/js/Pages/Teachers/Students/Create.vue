@@ -7,7 +7,10 @@
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
                         <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Create Student</h1>
-                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">Create a new student in your account.</p>
+                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">
+                            An email will be sent to the student with a temporary password. When the student logs in
+                            they will be prompted to create a unique password.
+                        </p>
                     </div>
                 </div>
                 <div class="mt-8 flow-root">
@@ -57,7 +60,7 @@
 
                                 <div class="flex justify-end space-x-2">
                                     <SecondaryButton @click.prevent="router.get(route('students.index'))">Cancel</SecondaryButton>
-                                    <PrimaryButton type="submit">Submit</PrimaryButton>
+                                    <PrimaryButton type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Submit</PrimaryButton>
                                 </div>
                             </form>
                         </div>

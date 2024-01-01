@@ -86,7 +86,7 @@
                                 <p class="text-sm text-gray-500 bg-gray-100 rounded-full p-4 text-center dark:bg-neutral-600 dark:text-primary-dark-gray">No questions</p>
                             </div>
                         </div>
-                        <Pagination :data="student.prompt_questions" class="dark:bg-primary-gray" />
+                        <Pagination v-if="student.prompt_questions.total > student.prompt_questions.per_page" :data="student.prompt_questions" class="dark:bg-primary-gray" />
                     </div>
                 </div>
             </div>
