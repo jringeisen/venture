@@ -40,7 +40,7 @@ class PromptQuestion extends Model
             $startOfDay = Carbon::parse($date)->timezone($usersTimezone)->startOfDay()->utc();
             $endOfDay = Carbon::parse($date)->timezone($usersTimezone)->endOfDay()->utc();
 
-            $query->whereBetween('created_at', [$startOfDay, $endOfDay]);
+            $query->whereBetween('prompt_questions.created_at', [$startOfDay, $endOfDay]);
         });
     }
 }
