@@ -106,8 +106,10 @@
                     type="button"
                     aria-describedby="tier-monthly"
                     class="mt-8 w-full rounded-md py-2.5 px-3.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10 text-neutral-600 ring-1 ring-inset ring-neutral-200 hover:ring-neutral-300 focus-visible:outline-neutral-600"
-                    >Get started today</button
                 >
+                    Get started today
+                </button>
+                <p class="text-center text-sm mt-2 uppercase">Use <strong>BETA2024</strong> to save 30%</p>
             </div>
             <div class="rounded-3xl p-8 ring-1 ring-gray-900/10 sm:p-10 relative bg-primary-dark-gray shadow-2xl">
                 <h3 id="tier-enterprise" class="text-base font-semibold leading-7 text-primary-yellow">Annual</h3>
@@ -232,6 +234,7 @@
                 >
                     Get started today
                 </button>
+                <p class="text-center text-sm mt-2 uppercase text-neutral-300">Use <strong>BETA2024</strong> to save 30%</p>
             </div>
         </div>
     </div>

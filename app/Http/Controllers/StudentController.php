@@ -72,6 +72,8 @@ class StudentController extends Controller
 
     public function show(Request $request, Student $student): Response
     {
+        $this->authorize('view', $student);
+
         return Inertia::render('Teachers/Students/Show', [
             'student' => (new StudentResource($student->load('promptQuestions')))->resolve(),
             'totalQuestions' => $this->studentService->student($student)->totalQuestionsAsked(),
@@ -83,6 +85,8 @@ class StudentController extends Controller
 
     public function update(StudentStoreRequest $request, Student $student): RedirectResponse
     {
+        $this->authorize('update', $student);
+
         $student->update($request->validated());
 
         return to_route('students.index');
@@ -90,6 +94,8 @@ class StudentController extends Controller
 
     public function destroy(Student $student): RedirectResponse
     {
+        $this->authorize('update', $student);
+
         $student->delete();
 
         return to_route('students.index');
