@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
@@ -36,6 +37,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function students(): HasMany
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function promptQuestions(): HasManyThrough
+    {
+        return $this->hasManyThrough(PromptQuestion::class, Student::class);
     }
 
     protected function timezone(): Attribute
