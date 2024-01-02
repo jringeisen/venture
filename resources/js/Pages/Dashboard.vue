@@ -28,8 +28,8 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
 import { defineAsyncComponent, onMounted, ref } from 'vue';
+import { Head } from '@inertiajs/vue3';
 
 defineOptions({
     layout: AuthenticatedLayout

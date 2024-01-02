@@ -14,6 +14,7 @@ class ProfileUpdateRequest extends FormRequest
             'name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'timezone' => ['string', 'max:255'],
+            'viewed_starter_guide' => ['boolean'],
         ];
     }
 }
