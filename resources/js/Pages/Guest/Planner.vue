@@ -44,7 +44,6 @@
                     <a href="#pricing" class="text-sm font-semibold leading-6 text-white">PRICING</a>
                     <a href="#reviews" class="text-sm hidden font-semibold leading-6 text-white">REVIEWS</a>
                     <a href="#faq" class="text-sm font-semibold leading-6 text-white">FAQ</a>
-                    <Link :href="route('planner')" class="text-sm font-semibold leading-6 text-primary-yellow">FREE PLANNER</Link>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div class="flex flex-col text-right">
@@ -98,8 +97,6 @@
                                 <a href="#faq"
                                     @click="toggleMobileMenu()"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">FAQ</a>
-                                <Link :href="route('planner')"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-primary-yellow hover:bg-primary-dark-gray">FREE PLANNER</Link>
                             </div>
                             <div class="py-6">
                                 <a :href="route('auth.options')"
@@ -117,286 +114,32 @@
         <div>
             <div class="max-w-7xl mx-auto">
                 <section id="hero" class="mt-10 lg:mt-32">
-                    <div class="flex justify-center">
-                        <div class="px-10 w-full space-y-8 lg:px-0 md:w-2/3 xl:w-8/12">
-                            <h1 class="text-4xl text-white text-center font-thin lg:text-7xl">Curiosity-led learning for
-                                creative minds,
-                                encouraging exploration and discovery.</h1>
-                            <div class="flex justify-center">
-                                <Link :href="route('register')"
-                                    class="inline-flex items-center px-6 py-4 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">LEARN
-                                    WITH VENTURE</Link>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-1 mt-10 px-4 md:grid-cols-5">
-                        <div @click.prevent="imageOne = !imageOne"
-                            class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
-                            :class="{'z-40': imageOne}">
-                            <img src="assets/images/hero/1.jpg" alt="spaceship launching into space"
-                                class="absolute w-full h-full cursor-pointer" />
-                            <div
-                                v-if="imageOne"
-                                class="absolute bg-primary-gray text-white px-4 pb-4 w-full h-full left-0 top-0 animate-fade-in-right overflow-y-auto md:left-full md:w-72">
-                                <p>Space exploration, a field that has captivated humanity's imagination and scientific
-                                    curiosity for decades, presents a myriad of challenges that span across various
-                                    disciplines including physics, engineering, biology, and even psychology. The task of
-                                    exploring space is complex and multifaceted, requiring a deep understanding of a range
-                                    of scientific concepts and the ability to solve unprecedented problems.</p>
-                                <br>
-                                <p>1. The Challenge of Distance and Time</p>
-                                <br>
-                                <p>Your question about the challenges of space exploration is incredibly relevant and
-                                    thought-provoking, especially in an era where space is becoming an increasingly
-                                    accessible frontier. Space exploration, while a testament to human ingenuity and
-                                    curiosity, is fraught with numerous challenges that span a wide range of disciplines,
-                                    from physics and engineering to biology and ethics.</p>
-                                <br>
-                                <p>One of the foremost challenges is the vastness of space and the immense distances
-                                    involved. For instance, even a journey to our nearest planetary neighbor, Mars, requires
-                                    a trip of approximately 140 million miles, taking around seven months one way with
-                                    current technology. This distance presents significant challenges in terms of propulsion
-                                    and spacecraft design, requiring spacecraft to be highly reliable and capable of
-                                    sustaining life for extended periods. The need for life support systems that can provide
-                                    air, water, and food over such durations is a complex engineering challenge.</p>
-                                <br>
-                                <p>Another significant challenge is the microgravity environment in space, which has
-                                    profound effects on the human body, including muscle atrophy and bone density loss.
-                                    Developing effective countermeasures to protect astronauts’ health during long-
-                                    duration missions is a crucial area of ongoing research.</p>
-                                <br>
-                                <p>Radiation exposure presents a major hazard in space. Outside of Earth's protective
-                                    magnetosphere, astronauts are exposed to high levels of cosmic radiation, which
-                                    increases the risk of cancer and other health issues. Designing spacecraft with
-                                    adequate radiation shielding is a critical concern, especially for missions beyond low
-                                    Earth orbit.</p>
-                                <br>
-                                <p>Communication delays pose another challenge. As spacecraft travel farther from Earth,
-                                    the time it takes for signals to travel between Earth and the spacecraft increases,
-                                    which
-                                    can delay communication. For example, a signal to Mars can take up to 20 minutes.
-                                    This delay necessitates a higher level of autonomy for spacecraft and rovers, as well as
-                                    pre-planned procedures for astronauts.</p>
-                                <br>
-                                <p>The psychological and sociological aspects of space travel are also significant,
-                                especially for long-duration missions. The isolation, confinement, and distance from
-                                Earth can impact the mental health of astronauts. Ensuring effective team dynamics
-                                and maintaining mental health are critical for the success of these missions.
-                                Cost is another major factor. Space exploration requires substantial financial
-                                investment, and balancing the scientific goals with budget constraints is an ongoing
-                                challenge. This includes the cost of developing, launching, and maintaining missions, as
-                                well as the cost of research and development of new technologies.</p>
-                                <br>
-                                <p>Finally, there is the challenge of ensuring the safety and ethical considerations of
-                                    space
-                                    exploration. This includes not only the safety of astronauts but also considerations
-                                    regarding the potential contamination of celestial bodies and the ethical implications
-                                    of
-                                    human colonization of other planets.</p>
-                                <br>
-                                <p>In conclusion, space exploration represents a pinnacle of human achievement and
-                                    ambition, but it brings with it a multitude of challenges that require innovative
-                                    solutions,
-                                    interdisciplinary collaboration, and sustained commitment. These challenges are not
-                                    just technical but also involve crucial considerations of human health, safety, ethics,
-                                    and the very nature of our existence in the cosmos.</p>
-                            </div>
-                        </div>
-                        <div @click.prevent="imageTwo = !imageTwo"
-                            class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
-                            :class="{'z-40': imageTwo}">
-                            <img src="assets/images/hero/2.jpg" alt="chameleon on a stick"
-                                class="w-full h-full cursor-pointer" />
-                            <div
-                                v-if="imageTwo"
-                                class="absolute bg-primary-gray text-white px-4 pb-4 w-full h-full left-0 top-0 animate-fade-in-right overflow-y-auto md:left-full md:w-72">
-                                <p>What a fantastic question! Chameleons, the enchanting magicians of the animal world,
-                                    possess an awe-inspiring ability to change their skin color,
-                                    a phenomenon that is as scientific as it is mesmerizing. These remarkable creatures have
-                                    special layers of skin laden with unique cells called
-                                    chromatophores. Imagine these cells as tiny, colorful balloons nestled under their skin,
-                                    each capable of expanding or contracting to exhibit
-                                    different hues. At the very top layer, these chromatophores hold various pigments. When
-                                    a chameleon decides to change its color, these cells adjust
-                                    their size, allowing more of their color to be visible on the chameleon's surface.</p>
-                                <br>
-                                <p>But the magic doesn't end there. Beneath this colorful layer lies another, akin to a
-                                    mirror. It reflects light and alters the
-                                    appearance of the colors above it, adding intensity or subtlety to the chameleon's
-                                    vibrant display. This extraordinary ability
-                                    isn't just for show; it serves several crucial purposes in the chameleon's life.
-                                    Contrary to popular belief, chameleons don't
-                                    always change color merely to blend in with their surroundings. They also use this
-                                    ability to communicate their emotions—darker
-                                    colors might signal fear or aggression. In regulating their body temperature, chameleons
-                                    can darken on cooler days to absorb more
-                                    warmth from the sun. Additionally, during mating season, males dazzle with particularly
-                                    bright colors to attract females.</p>
-                                <br>
-                                <p>In essence, the chameleon's color-changing ability is a multifaceted tool, integral to
-                                    its survival and communication. It's a vivid
-                                    dance of nature, blending science and wonder, and offering us a glimpse into the marvels
-                                    of the animal kingdom.</p>
-                            </div>
-                        </div>
-                        <div @click.prevent="imageThree = !imageThree"
-                            class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
-                            :class="{'z-40': imageThree}">
-                            <img src="assets/images/hero/3.jpg" alt="sphynx with pyramid in the background"
-                                class="w-full h-full cursor-pointer" />
-                            <div
-                                v-if="imageThree"
-                                class="absolute bg-primary-gray text-white px-4 pb-4 w-full h-full left-0 top-0 animate-fade-in-right overflow-y-auto md:left-full md:w-72">
-                                <p>The construction of the Egyptian pyramids, especially the Great Pyramid of Giza, is a
-                                    topic that blends the marvels of ancient
-                                    engineering with a dash of mystery. Built over 4,500 years ago, the pyramids stand as a
-                                    testament to the ingenuity and skill of
-                                    ancient Egyptian builders.</p>
-                                <br>
-                                <p>The Egyptians used limestone blocks, each weighing several tons, to build these
-                                    monumental structures. These stones were quarried,
-                                    shaped, and then transported to the pyramid construction site. The question of how these
-                                    massive stones were moved has intrigued
-                                    scientists and historians for years. The most widely accepted theory is that the
-                                    Egyptians used a combination of sledges and manpower
-                                    to transport these blocks. Recent discoveries suggest that water might have been poured
-                                    on the sand in front of the sledges to reduce
-                                    friction, making it easier to move the heavy stones.</p>
-                                <br>
-                                <p>Once at the site, the challenge was to lift these blocks into place. The ancient builders
-                                    likely used ramps made of mud brick and
-                                    rubble to gradually elevate the stones. There are several theories about the design of
-                                    these ramps, with some suggesting straight
-                                    ramps leading up to the construction site, while others propose a zigzagging or spiral
-                                    design around the pyramid.</p>
-                                <br>
-                                <p>The precision with which these pyramids were constructed is astounding. The base of the
-                                    Great Pyramid, for instance, is almost perfectly
-                                    level, with only a tiny margin of error. The Egyptians achieved this remarkable
-                                    precision using basic tools like plumb bobs, leveling
-                                    instruments, and sighting rods, combined with skilled craftsmanship and an intimate
-                                    knowledge of geometry and astronomy.</p>
-                                <br>
-                                <p>Additionally, the alignment of the pyramids with celestial bodies suggests that the
-                                    Egyptians had a deep understanding of astronomy. The
-                                    sides of the Great Pyramid, for example, are closely aligned with the cardinal points of
-                                    the compass, and the pyramid's descending passageway
-                                    points directly to the North Star.</p>
-                            </div>
-                        </div>
-                        <div @click.prevent="imageFour = !imageFour"
-                            class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
-                            :class="{'z-40': imageFour}">
-                            <img src="assets/images/hero/4.jpg" alt="face of a bamboon"
-                                class="w-full h-full cursor-pointer" />
-                            <div
-                                v-if="imageFour"
-                                class="absolute bg-primary-gray text-white px-4 pb-4 w-full h-full right-0 top-0 animate-fade-in-right overflow-y-auto md:right-full md:w-72">
-                                <p>Your curiosity about the most endangered animals is not only commendable but also crucial
-                                    in
-                                    understanding and protecting our planet's biodiversity. In our world today, many species
-                                    are
-                                    facing the threat of extinction due to various factors, including habitat loss, climate
-                                    change, poaching, and pollution. Let's delve into some of these critically endangered
-                                    species, understanding their plight and the efforts needed to save them.</p>
-                                <br>
-                                <p>Firstly, the Amur Leopard, a stunning big cat found in the Russian Far East and China, is
-                                    facing a particularly dire situation. With less than 100 individuals left in the wild,
-                                    the
-                                    Amur Leopard is threatened by habitat destruction, poaching, and climate change.
-                                    Conservation efforts are focused on protecting their habitat and combating poaching.</p>
-                                <br>
-                                <p>Another critically endangered species is the Javan Rhino, once widespread across
-                                    Southeast
-                                    Asia but now confined to just one national park in Indonesia. With a population of
-                                    around 60
-                                    individuals, the Javan Rhino is at risk due to habitat loss and the lack of genetic
-                                    diversity, which makes them vulnerable to disease and other natural threats.</p>
-                                <br>
-                                <p>The Vaquita, a small porpoise found in the Gulf of California, is the most endangered
-                                    marine
-                                    mammal. With a population estimated at fewer than 30 individuals, the Vaquita faces
-                                    threats
-                                    from illegal fishing activities and entanglement in fishing nets.</p>
-                                <br>
-                                <p>The Sumatran Elephant, a subspecies of the Asian Elephant, is also critically endangered.
-                                    Habitat loss due to deforestation and human-elephant conflict are the main threats to
-                                    their
-                                    survival. Conservationists are working on habitat protection and reducing conflicts
-                                    between
-                                    elephants and local communities.</p>
-                                <br>
-                                <p>The Mountain Gorilla, found in the forests of the Democratic Republic of Congo, Rwanda,
-                                    and
-                                    Uganda, has seen a slight increase in population thanks to concerted conservation
-                                    efforts.
-                                    However, they remain critically endangered due to habitat loss, poaching, and the risk
-                                    of
-                                    disease transmission from humans.</p>
-                                <br>
-                                <p>These are just a few examples of the most endangered animals in the world. The
-                                    conservation
-                                    of these species is a complex task that requires international cooperation, strong
-                                    conservation policies, and the involvement of local communities. Protecting these
-                                    animals is
-                                    not just about preserving individual species; it's about maintaining the health and
-                                    balance
-                                    of entire ecosystems. As we learn more about these endangered species and the challenges
-                                    they face, we can better understand the importance of biodiversity and the role each
-                                    species
-                                    plays in the web of life.</p>
-                            </div>
-                        </div>
-                        <div @click.prevent="imageFive = !imageFive"
-                            class="relative transition ease-in-out delay-150 duration-300 hover:scale-110"
-                            :class="{'z-40': imageFive}">
-                            <img src="assets/images/hero/5.jpg" alt="xray of a hand"
-                                class="w-full h-full cursor-pointer hidden md:block" />
-                            <div
-                                v-if="imageFive"
-                                class="absolute bg-primary-gray text-white px-4 pb-4 w-full h-full right-0 top-0 animate-fade-in-right overflow-y-auto md:right-full md:w-72">
-                                <p>
-                                    What a super question you've asked! X-rays are like superpowers that doctors use to look
-                                    inside our bodies without having to open them up. Isn't that amazing? Let's find out how
-                                    they do this cool trick.
-                                </p>
-                                <br>
-                                <p>
-                                    Imagine you have a flashlight that can shine through walls. If you turn it on and point
-                                    it at a wall, the light can't go through because the wall is too thick. But what if you
-                                    shine it on a piece of paper? The light goes through easily! X-rays work a bit like this
-                                    special flashlight, but instead of light, they use a special kind of ray that can pass
-                                    through our body.
-                                </p>
-                                <br>
-                                <p>
-                                    When you go to the doctor, and they need to see inside you, like checking on your bones,
-                                    they use an X-ray machine. You might have seen it in hospitals – it's a big camera, but
-                                    instead of taking regular pictures, it takes pictures of the inside of your body. When
-                                    the X-ray machine is turned on, it sends these special rays through your body. These
-                                    rays are like the light from the flashlight, but they're so powerful that they can pass
-                                    through your skin and muscles.
-                                </p>
-                                <br>
-                                <p>
-                                    But here's the cool part – your bones are like the wall for these rays. They are too
-                                    thick for the X-rays to pass through. So, when the X-rays hit your bones, they stop and
-                                    create a kind of shadow. The X-ray machine captures this shadow and turns it into a
-                                    picture that we can see. This picture shows the shape of your bones!
-                                </p>
-                                <br>
-                                <p>
-                                    It's like having a superpower to see hidden treasures inside our bodies. And because of
-                                    these X-rays, doctors can check if your bones are healthy, if they have any cracks (like
-                                    when you fall and hurt yourself), or help find other things inside you that they need to
-                                    know about to keep you healthy.
-                                </p>
-                                <br>
-                                <p>
-                                    So, X-rays are a fantastic tool that helps doctors be like detectives, solving mysteries
-                                    inside our bodies! It's pretty awesome how science gives us such cool ways to stay
-                                    healthy and safe.
-                                </p>
+                    <div class="py-16 sm:py-24">
+                        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                            <div class="relative space-y-10 isolate overflow-hidden bg-primary-gray px-6 py-20 shadow-2xl sm:rounded-3xl sm:px-24">
+                                <div class="grid grid-cols-6 gap-3">
+                                    <img src="/assets/images/planner/blue-planner.jpeg" alt="blue planner" class="w-full h-full rounded-lg hover:scale-125" />
+                                    <img src="/assets/images/planner/green-planner.jpeg" alt="green planner" class="w-full h-full rounded-lg hover:scale-125" />
+                                    <img src="/assets/images/planner/orange-planner.jpeg" alt="orange planner" class="w-full h-full rounded-lg hover:scale-125" />
+                                    <img src="/assets/images/planner/red-planner.jpeg" alt="red planner" class="w-full h-full rounded-lg hover:scale-125" />
+                                    <img src="/assets/images/planner/teal-planner.jpeg" alt="teal planner" class="w-full h-full rounded-lg hover:scale-125" />
+                                    <img src="/assets/images/planner/yellow-planner.jpeg" alt="yellow planner" class="w-full h-full rounded-lg hover:scale-125" />
+                                </div>
+
+                                <div>
+                                    <h2 class="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">Receive a FREE planner today!</h2>
+                                    <p class="mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-gray-300">When you opt-in, we will send you all six digital copies.</p>
+                                </div>
+
+                                <form @submit.prevent="handleSubmit()" class="relative mx-auto mt-10 max-w-md">
+                                    <div class="flex gap-x-4">
+                                        <label for="email-address" class="sr-only">Email address</label>
+                                        <TextInput id="email-address" v-model="form.email" type="email" autocomplete="email" required class="w-full" placeholder="Enter your email" />
+                                        <button type="submit" class="inline-flex shrink-0 items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">Notify me</button>
+                                    </div>
+                                    <InputError :message="form.errors.email" class="absolute mt-2" />
+                                    <InputSuccess :message="successMessage" class="absolute mt-2" />
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -1050,27 +793,45 @@
 </template>
 
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import GradeSection from '@/Pages/Landing/Sections/GradeSection.vue';
 import FaqSection from '@/Pages/Landing/Sections/FaqSection.vue';
+import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/InputError.vue';
+import InputSuccess from '@/Components/InputSuccess.vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+const form = useForm({
+    email: '',
+});
 
 onMounted(() => {
     AOS.init();
 });
 
-const imageOne = ref(false);
-const imageTwo = ref(false);
-const imageThree = ref(false);
-const imageFour = ref(false);
-const imageFive = ref(false);
 const imageSix = ref(false);
 const imageSeven = ref(false);
 const imageEight = ref(false);
 const imageNine = ref(false);
 const imageTen = ref(false);
+
+const successMessage = ref('');
+
+const handleSubmit = () => {
+    form.post(route('newsletter-list.subscribe'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset();
+            successMessage.value = 'Thank you for subscribing!';
+
+            setTimeout(() => {
+                successMessage.value = '';
+            }, 3000);
+        },
+    });
+}
 
 const toggleMobileMenu = () => {
     const mobileMenu = document.getElementById('mobileMenu');
@@ -1078,12 +839,7 @@ const toggleMobileMenu = () => {
 }
 
 const shouldShowBackground = () => {
-    return imageOne.value
-        || imageTwo.value
-        || imageThree.value
-        || imageFour.value
-        || imageFive.value
-        || imageSix.value
+    return imageSix.value
         || imageSeven.value
         || imageEight.value
         || imageNine.value
@@ -1091,11 +847,6 @@ const shouldShowBackground = () => {
 }
 
 const handleClickOutside = (event) => {
-    imageOne.value = false;
-    imageTwo.value = false;
-    imageThree.value = false;
-    imageFour.value = false;
-    imageFive.value = false;
     imageSix.value = false;
     imageSeven.value = false;
     imageEight.value = false;

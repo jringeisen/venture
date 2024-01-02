@@ -64,6 +64,22 @@
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
 
+            <div class="mt-4">
+                <div class="flex items-center space-x-3">
+                    <Checkbox
+                        id="terms-of-service"
+                        v-model="form.terms_of_service"
+                        required
+                        autocomplete="terms-of-service"
+                    />
+                    <label for="password_confirmation" class="text-sm">
+                        I agree to the <Link :href="route('terms-of-service')" class="text-dark-gray font-bold">Terms of Service</Link> and <Link :href="route('privacy-policy')" class="text-dark-gray font-bold">Privacy Policy</Link>
+                    </label>
+                </div>
+
+                <InputError class="mt-2" :message="form.errors.terms_of_service" />
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('user.login')"
@@ -86,6 +102,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import Checkbox from '@/Components/Checkbox.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
@@ -93,6 +110,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    terms_of_service: false,
 });
 
 const submit = () => {
