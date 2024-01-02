@@ -17,7 +17,7 @@
                 </div>
             </div>
         </Modal>
-        <div class="absolute left-1/2 top-1/2">
+        <div v-if="isClient" class="absolute left-1/2 top-1/2">
             <ConfettiExplosion :particleCount="300" :force=".5" />
         </div>
     </div>
@@ -27,6 +27,7 @@
 import { usePage, useForm } from '@inertiajs/vue3';
 import ConfettiExplosion from "vue-confetti-explosion";
 import Modal from '@/Components/Modal.vue';
+import { onMounted, ref } from 'vue';
 
 defineProps({
     message: {
@@ -45,4 +46,10 @@ const form = useForm({
 const updateUser = () => {
     form.patch(route('student.students.update', page.props.auth.user));
 }
+
+const isClient = ref(false);
+
+onMounted(() => {
+  isClient.value = true;
+});
 </script>
