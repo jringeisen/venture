@@ -23,16 +23,54 @@
                 </div>
             </div>
         </div>
+        <Modal :show="!viewedStarterGuide" max-width="3xl">
+            <div class="mx-auto bg-white p-10 prose prose-neutral">
+                <h1>Venture Starting Guide</h1>
+                <p>Welcome to Venture, the AI-driven learning platform where education meets innovation. This guide will walk you through the essential steps to get started.</p>
+
+                <h2>1. Create a Student Account</h2>
+                <p>Click Student in the left navigation bar, then Add Student. You'll need to add details like the name, age, grade, and timezone.</p>
+                <p>An email will be sent to the student with a temporary password. They will need to login and reset their password.</p>
+
+                <h2>2. Student Login and Password Change</h2>
+                <p>
+                    The student will need to click the link in the email they receive and use the password provided to login. Once they
+                    have logged in they will be prompted to change their password to something unique.
+                </p>
+
+                <h2>3. Engaging with the AI Learning System</h2>
+                <p>
+                    Now the student can begin learning, they will need to click the Learn link in the left navigation bar. This is where they can start asking questions
+                    and start their journey with Venture.
+                </p>
+
+                <h2>4. Parental Dashboard and Monitoring Progress</h2>
+                <p>
+                    As a parent, you can monitor your child's progress by clicking the Dashboard link in the left navigation bar. This will show you the total number of questions
+                    asked by your child, as well as the number of questions asked today. You can also see the subjects they are learning and how many questions they have asked
+                    in each subject.
+                </p>
+
+                <PrimaryButton @click.prevent="addStudent()" class="w-full py-4 justify-center">Add Student!</PrimaryButton>
+            </div>
+        </Modal>
     </div>
 </template>
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import Modal from '@/Components/Modal.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { defineAsyncComponent, onMounted, ref } from 'vue';
+import { router, Head, useForm } from '@inertiajs/vue3';
 
 defineOptions({
     layout: AuthenticatedLayout
+});
+
+const form = useForm({
+    'viewed_starter_guide': true,
+    'redirect_route': 'students.create',
 });
 
 const ApexChart = defineAsyncComponent(() =>
@@ -46,6 +84,7 @@ onMounted(() => {
 });
 
 const props = defineProps({
+    viewedStarterGuide: Boolean,
     totalQuestions: Number,
     dailyQuestions: Number,
     pieChartData: Object
@@ -59,4 +98,8 @@ const options = ref({
 });
 
 const series = ref(props.pieChartData.series);
+
+const addStudent = () => {
+    form.patch(route('profile.update'));
+}
 </script>
