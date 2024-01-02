@@ -5,6 +5,7 @@ use App\Http\Controllers\Billing\QuantityExceededController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Guest\NewsletterController;
 use App\Http\Controllers\Guest\PlannerController;
+use App\Http\Controllers\Guest\TermsOfServiceController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeCheckoutController;
@@ -19,6 +20,9 @@ Route::middleware('guest')->group(static function () {
 
     Route::post('/newsletter-lists', [NewsletterController::class, 'subscribe'])->name('newsletter-list.subscribe');
     Route::get('/newsletter-lists/{newsletter_list:email}', [NewsletterController::class, 'unsubscribe'])->name('newsletter-list.unsubscribe');
+
+    Route::get('privacy-policy', TermsOfServiceController::class)->name('privacy-policy');
+    Route::get('terms-of-service', TermsOfServiceController::class)->name('terms-of-service');
 });
 
 // Authenticated Routes...
