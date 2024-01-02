@@ -3,6 +3,7 @@
 use App\Http\Controllers\Billing\BillingPortalController;
 use App\Http\Controllers\Billing\QuantityExceededController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Guest\DownloadPlannerController;
 use App\Http\Controllers\Guest\NewsletterController;
 use App\Http\Controllers\Guest\PlannerController;
 use App\Http\Controllers\Guest\TermsOfServiceController;
@@ -19,10 +20,14 @@ Route::middleware('guest')->group(static function () {
     Route::get('/planner', PlannerController::class)->name('planner');
 
     Route::post('/newsletter-lists', [NewsletterController::class, 'subscribe'])->name('newsletter-list.subscribe');
-    Route::get('/newsletter-lists/{newsletter_list:email}', [NewsletterController::class, 'unsubscribe'])->name('newsletter-list.unsubscribe');
+    Route::get('/newsletter-lists/{newsletter_list:email}', [NewsletterController::class, 'unsubscribe'])
+        ->name('newsletter-list.unsubscribe')
+        ->middleware('signed');
 
     Route::get('privacy-policy', TermsOfServiceController::class)->name('privacy-policy');
     Route::get('terms-of-service', TermsOfServiceController::class)->name('terms-of-service');
+
+    Route::get('/student-planner/download', DownloadPlannerController::class)->name('student-planner.download');
 });
 
 // Authenticated Routes...

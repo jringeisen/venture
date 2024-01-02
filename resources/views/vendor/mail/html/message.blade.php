@@ -24,7 +24,7 @@
 <x-mail::footer>
 © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')<br>
 @if(isset($email))
-<a href="{{route('newsletter-list.unsubscribe', $email)}}">unsubscribe</a>
+<a href="{{ URL::signedRoute('newsletter-list.unsubscribe', ['newsletter_list' => $email]) }}">unsubscribe</a>
 @endif
 </x-mail::footer>
 </x-slot:footer>
