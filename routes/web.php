@@ -13,10 +13,13 @@ use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes...
-Route::get('/', LandingController::class)->name('landing');
-Route::get('/planner', PlannerController::class)->name('planner');
+Route::middleware('guest')->group(static function () {
+    Route::get('/', LandingController::class)->name('landing');
+    Route::get('/planner', PlannerController::class)->name('planner');
 
-Route::post('/newsletter-list', [NewsletterController::class, 'store'])->name('newsletter-list.store');
+    Route::post('/newsletter-lists', [NewsletterController::class, 'subscribe'])->name('newsletter-list.subscribe');
+    Route::get('/newsletter-lists/{newsletter_list:email}', [NewsletterController::class, 'unsubscribe'])->name('newsletter-list.unsubscribe');
+});
 
 // Authenticated Routes...
 Route::middleware('auth')->group(function () {

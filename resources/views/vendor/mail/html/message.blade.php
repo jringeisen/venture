@@ -1,3 +1,4 @@
+@props(['email'])
 <x-mail::layout>
 {{-- Header --}}
 <x-slot:header>
@@ -21,7 +22,10 @@
 {{-- Footer --}}
 <x-slot:footer>
 <x-mail::footer>
-© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')<br>
+@if(isset($email))
+<a href="{{route('newsletter-list.unsubscribe', $email)}}">unsubscribe</a>
+@endif
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>

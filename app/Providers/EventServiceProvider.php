@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\NewsletterList;
 use App\Models\PromptQuestion;
+use App\Observers\NewsletterListObserver;
 use App\Observers\PromptQuestionObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -27,6 +29,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         PromptQuestion::observe(PromptQuestionObserver::class);
+        NewsletterList::observe(NewsletterListObserver::class);
     }
 
     /**

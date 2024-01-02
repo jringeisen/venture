@@ -820,7 +820,7 @@ const imageTen = ref(false);
 const successMessage = ref('');
 
 const handleSubmit = () => {
-    form.post(route('newsletter-list.store'), {
+    form.post(route('newsletter-list.subscribe'), {
         preserveScroll: true,
         onSuccess: () => {
             form.reset();
