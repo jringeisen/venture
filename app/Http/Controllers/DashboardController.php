@@ -12,7 +12,6 @@ class DashboardController extends Controller
     public function __invoke(Request $request, PieChartService $pieChartService)
     {
         return Inertia::render('Dashboard', [
-            'viewedStarterGuide' => $request->user()->viewed_starter_guide,
             'totalQuestions' => (int) $request->user()->promptQuestions()->whereHas('promptAnswer')->count(),
             'dailyQuestions' => (int) $request->user()->promptQuestions()->whereHas('promptAnswer')->filterByDate(now())->count(),
             'pieChartData' => $pieChartService

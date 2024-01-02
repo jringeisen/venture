@@ -22,7 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'timezone',
         'total_questions_asked',
-        'viewed_starter_guide',
     ];
 
     protected $hidden = [
@@ -33,7 +32,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
         'total_questions_asked' => 'integer',
-        'viewed_starter_guide' => 'boolean',
     ];
 
     public function students(): HasMany
