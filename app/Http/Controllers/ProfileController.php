@@ -33,7 +33,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route($request->input('redirect_route') ?? 'profile.edit');
+        return Redirect::route('profile.edit');
     }
 
     public function destroy(Request $request): RedirectResponse

@@ -29,15 +29,10 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { defineAsyncComponent, onMounted, ref } from 'vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 
 defineOptions({
     layout: AuthenticatedLayout
-});
-
-const form = useForm({
-    'viewed_starter_guide': true,
-    'redirect_route': 'students.create',
 });
 
 const ApexChart = defineAsyncComponent(() =>
