@@ -3,6 +3,8 @@
 use App\Http\Controllers\Billing\BillingPortalController;
 use App\Http\Controllers\Billing\QuantityExceededController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Guest\NewsletterController;
+use App\Http\Controllers\Guest\PlannerController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeCheckoutController;
@@ -12,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 
 // Guest Routes...
 Route::get('/', LandingController::class)->name('landing');
-Route::get('/planner', function () {
-    return 'Planner';
-});
+Route::get('/planner', PlannerController::class)->name('planner');
+
+Route::post('/newsletter-list', [NewsletterController::class, 'store'])->name('newsletter-list.store');
 
 // Authenticated Routes...
 Route::middleware('auth')->group(function () {
