@@ -105,8 +105,8 @@ const props = defineProps({
 const form = useForm({
     name: props.student.name,
     username: props.student.username,
-    password: null,
-    password_confirmation: null,
+    password: '',
+    password_confirmation: '',
     grade: props.student.grade,
     age: props.student.age,
     timezone: props.student.timezone,

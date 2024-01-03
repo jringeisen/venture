@@ -23,6 +23,7 @@
                                 <table class="min-w-full divide-y divide-gray-300 dark:divide-neutral-700">
                                     <thead class="bg-gray-50 dark:bg-neutral-600">
                                         <tr>
+                                            <th></th>
                                             <th
                                                 scope="col"
                                                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-neutral-300"
@@ -54,6 +55,9 @@
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
                                         <tr v-for="(student, index) in students.data" :key="index">
+                                            <td>
+                                                <Link :href="route('student.login', {username: student.username})" class="ml-3 inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-500 focus:bg-yellow-500 dark:focus:bg-yellow-500 active:bg-yellow-500 dark:active:bg-bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition ease-in-out duration-150">Login</Link>
+                                            </td>
                                             <td
                                                 class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-primary-gray"
                                             >
