@@ -14,7 +14,7 @@ class StudentSeeder extends Seeder
         Student::create([
             'user_id' => User::first()->id,
             'name' => 'Test Student',
-            'email' => 'student@test.com',
+            'username' => 'teststudent',
             'password' => Hash::make('password'),
         ]);
 
