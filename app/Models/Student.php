@@ -15,11 +15,10 @@ class Student extends Authenticatable
 
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
         'grade',
         'age',
-        'is_temporary_password',
         'motivational_message',
         'current_streak',
         'timezone',
@@ -32,10 +31,9 @@ class Student extends Authenticatable
 
     protected $casts = [
         'name' => 'string',
-        'email' => 'string',
+        'username' => 'string',
         'grade' => 'integer',
         'age' => 'integer',
-        'is_temporary_password' => 'boolean',
         'motivational_message' => 'datetime',
         'current_streak' => 'integer',
     ];

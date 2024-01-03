@@ -14,21 +14,14 @@ use Inertia\Response;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
     public function create(): Response
     {
         return Inertia::render('Auth/Student/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
-            'email' => request()->input('email') ?? null,
         ]);
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
@@ -38,9 +31,6 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(RouteServiceProvider::STUDENT_HOME);
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
