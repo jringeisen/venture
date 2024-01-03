@@ -11,7 +11,7 @@ class StudentFactory extends Factory
         return [
             'user_id' => \App\Models\User::first()->id,
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'username' => fake()->userName(),
             'password' => fake()->password(),
             'grade' => fake()->numberBetween(1, 12),
             'age' => fake()->numberBetween(6, 18),

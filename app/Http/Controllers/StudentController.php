@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentStoreRequest;
+use App\Http\Requests\StudentUpdateRequest;
 use App\Http\Resources\StudentResource;
-use App\Mail\TemporaryPasswordEmail;
 use App\Models\Student;
 use App\Models\Timezone;
 use App\Services\StudentService;
@@ -12,8 +12,6 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -47,17 +45,12 @@ class StudentController extends Controller
 
     public function store(StudentStoreRequest $request): RedirectResponse
     {
-        $temporary_password = Str::random(16);
+        $data = $request->validated();
 
-        $student = $request->user()
-            ->students()
-            ->create([
-                ...$request->validated(),
-                'password' => Hash::make($temporary_password),
-            ]);
-
-        Mail::to($request->email)
-            ->send(new TemporaryPasswordEmail($student, $temporary_password));
+        $request->user()->students()->create([
+            ...$data,
+            'password' => Hash::make($data['password']),
+        ]);
 
         return to_route('students.index');
     }
@@ -65,7 +58,7 @@ class StudentController extends Controller
     public function edit(Student $student): Response
     {
         return Inertia::render('Teachers/Students/Edit', [
-            'student' => $student->only('id', 'name', 'email', 'grade', 'age', 'timezone'),
+            'student' => $student->only('id', 'name', 'username', 'grade', 'age', 'timezone'),
             'timezones' => Timezone::orderBy('value', 'asc')->get(),
         ]);
     }
@@ -83,11 +76,20 @@ class StudentController extends Controller
         ]);
     }
 
-    public function update(StudentStoreRequest $request, Student $student): RedirectResponse
+    public function update(StudentUpdateRequest $request, Student $student): RedirectResponse
     {
         $this->authorize('update', $student);
 
-        $student->update($request->validated());
+        $data = $request->validated();
+
+        if ($data['password'] === null) {
+            $student->update($request->only('name', 'username', 'grade', 'age', 'timezone'));
+        } else {
+            $student->update([
+                ...$data,
+                'password' => Hash::make($data['password']),
+            ]);
+        }
 
         return to_route('students.index');
     }

@@ -8,8 +8,7 @@
                     <div class="sm:flex-auto">
                         <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Create Student</h1>
                         <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">
-                            An email will be sent to the student with a temporary password. When the student logs in
-                            they will be prompted to create a unique password.
+                            Create a new student.
                         </p>
                     </div>
                 </div>
@@ -26,10 +25,26 @@
                                 </div>
 
                                 <div>
-                                    <InputLabel for="email" value="Email" />
+                                    <InputLabel for="username" value="Username" />
                                     <div class="mt-2">
-                                        <TextInput v-model="form.email" id="email" type="text" autocomplete="email" class="w-full" required />
-                                        <InputError :message="form.errors.email" />
+                                        <TextInput v-model="form.username" id="username" type="text" autocomplete="username" class="w-full" required />
+                                        <InputError :message="form.errors.username" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <InputLabel for="password" value="Password" />
+                                    <div class="mt-2">
+                                        <TextInput v-model="form.password" id="password" type="password" autocomplete="password" class="w-full" required />
+                                        <InputError :message="form.errors.password" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <InputLabel for="password_confirmation" value="Confirm Password" />
+                                    <div class="mt-2">
+                                        <TextInput v-model="form.password_confirmation" id="password_confirmation" type="password" autocomplete="password_confirmation" class="w-full" required />
+                                        <InputError :message="form.errors.password_confirmation" />
                                     </div>
                                 </div>
 
@@ -90,7 +105,9 @@ defineProps({
 
 const form = useForm({
     name: '',
-    email: '',
+    username: '',
+    password: '',
+    password_confirmation: '',
     grade: '',
     age: '',
     timezone: '',
