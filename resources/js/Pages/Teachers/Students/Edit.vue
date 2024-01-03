@@ -23,10 +23,26 @@
                                 </div>
 
                                 <div>
-                                    <InputLabel for="email" value="Email" />
+                                    <InputLabel for="username" value="Username" />
                                     <div class="mt-2">
-                                        <TextInput id="email" v-model="form.email" type="email" autocomplete="email" required class="w-full" />
+                                        <TextInput id="username" v-model="form.username" type="text" autocomplete="username" required class="w-full" />
                                         <InputError :message="form.errors.email" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <InputLabel for="password" value="Password" />
+                                    <div class="mt-2">
+                                        <TextInput v-model="form.password" id="password" type="password" autocomplete="password" class="w-full" />
+                                        <InputError :message="form.errors.password" />
+                                    </div>
+                                </div>
+
+                                <div v-if="form.password">
+                                    <InputLabel for="password_confirmation" value="Confirm Password" />
+                                    <div class="mt-2">
+                                        <TextInput v-model="form.password_confirmation" id="password_confirmation" type="password" autocomplete="password_confirmation" class="w-full" />
+                                        <InputError :message="form.errors.password_confirmation" />
                                     </div>
                                 </div>
 
@@ -88,7 +104,9 @@ const props = defineProps({
 
 const form = useForm({
     name: props.student.name,
-    email: props.student.email,
+    username: props.student.username,
+    password: '',
+    password_confirmation: '',
     grade: props.student.grade,
     age: props.student.age,
     timezone: props.student.timezone,

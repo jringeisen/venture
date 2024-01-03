@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class StudentInertiaRequests
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): array
     {
         return [
             'auth' => [
@@ -34,7 +34,7 @@ class StudentInertiaRequests
     {
         $subjects = (new StudentService)->student(request()->user())->categoriesWithCounts();
 
-        return collect($subjects)->map(function ($count, $subject) {
+        return collect($subjects)->map(function (int $count, string $subject) {
             return [
                 'name' => ucwords($subject),
                 'href' => '/student/topic/'.Str::slug($subject),

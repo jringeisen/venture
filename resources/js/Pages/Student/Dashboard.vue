@@ -38,7 +38,10 @@
 
                 <div v-if="isClient" class="relative bg-white p-6 border overflow-hidden shadow-sm sm:rounded-lg md:row-span-4 md:col-span-8 dark:bg-primary-gray dark:border-none">
                     <div class="absolute text-gray-500 dark:text-neutral-400">Subjects</div>
-                    <ApexChart width="100%" height="100%" type="pie" :options="options" :series="series"></ApexChart>
+                    <div v-if="series.length === 0" class="flex justify-center items-center w-full h-full">
+                        <p class="bg-neutral-200 w-full text-center p-5 rounded-lg text-neutral-500">No Data</p>
+                    </div>
+                    <ApexChart v-else width="100%" height="100%" type="pie" :options="options" :series="series"></ApexChart>
                 </div>
             </div>
         </div>
