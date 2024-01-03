@@ -68,7 +68,7 @@
                 <div class="flex items-center space-x-3">
                     <Checkbox
                         id="terms-of-service"
-                        v-model="form.terms_of_service"
+                        v-model:checked="form.terms_of_service"
                         required
                         autocomplete="terms-of-service"
                     />
