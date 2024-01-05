@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DownloadPlannerController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        return response()->download(storage_path('app/public/student-planner.zip'));
+        $file = Storage::disk('s3')->temporaryUrl('/downloads/student-planner.zip', now()->addHours(1));
+
+        return response()->download($file);
     }
 }

@@ -5,11 +5,14 @@ namespace App\Observers;
 use App\Mail\OptInMail;
 use App\Models\NewsletterList;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class NewsletterListObserver
 {
     public function created(NewsletterList $newsletterList): void
     {
-        Mail::to($newsletterList->email)->queue(new OptInMail($newsletterList));
+        $temporaryUrl = Storage::disk('s3')->temporaryUrl('/downloads/student-planner.zip', now()->addHours(1));
+
+        Mail::to($newsletterList->email)->queue(new OptInMail($newsletterList, $temporaryUrl));
     }
 }
