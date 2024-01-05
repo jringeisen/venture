@@ -15,7 +15,8 @@ class OptInMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public function __construct(
-        public NewsletterList $newsletterList
+        public NewsletterList $newsletterList,
+        public string $temporaryUrl
     ) {
     }
 
