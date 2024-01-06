@@ -26,7 +26,7 @@ class OpenAIService
                 'user' => 'user-'.$this->user->id,
             ]);
 
-            if (isset($response['usage']['total_tokens'])) {
+            if (isset($this->question) && isset($response['usage']['total_tokens'])) {
                 $this->question->update([
                     'total_tokens' => $this->question->total_tokens + $response['usage']['total_tokens'],
                 ]);
