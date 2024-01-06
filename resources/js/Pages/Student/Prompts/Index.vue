@@ -13,7 +13,7 @@
         <form v-else @submit.prevent="submit" class="flex items-center mt-12 relative">
             <TextInput
                 class="py-2 px-6 text-xl w-full font-bold rounded-full shadow-lg"
-                placeholder="Ask a question to get started..."
+                placeholder="Ask a question or tell us what you want to learn about..."
                 v-model="form.question"
                 @change="form.question = $event.target.value"
             />
