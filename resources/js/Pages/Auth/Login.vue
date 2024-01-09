@@ -1,8 +1,8 @@
 <template>
     <GuestLayout>
-        <Head title="Teacher Login" />
+        <Head title="Parent Login" />
 
-        <p class="text-center font-bold text-2xl pb-4 dark:text-white">Teacher Login</p>
+        <p class="text-center font-bold text-2xl pb-4 dark:text-white">Parent Login</p>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}

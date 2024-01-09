@@ -16,11 +16,11 @@
                             </div>
 
                             <h2 class="mt-6 text-xl font-semibold text-white">
-                                Are you a teacher?
+                                Are you a parent?
                             </h2>
 
                             <p class="mt-4 text-gray-400 text-sm leading-relaxed">
-                                Click here to login as a teacher.
+                                Click here to login as a parent.
                             </p>
                         </div>
 
