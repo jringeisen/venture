@@ -47,8 +47,8 @@
                     <Link :href="route('planner')" class="text-sm font-semibold leading-6 text-primary-yellow">FREE PLANNER</Link>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <div class="flex flex-col text-right">
-                        <Link :href="route('auth.options')" class="text-sm font-semibold leading-6 text-white">Log in <span
+                    <div class="flex items-center text-right">
+                        <Link :href="route('auth.options')" class="text-sm mr-2 font-semibold leading-6 text-white">Log in <span
                                 aria-hidden="true">&rarr;</span></Link>
                         <Link :href="route('register')"
                             class="inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">SIGN
