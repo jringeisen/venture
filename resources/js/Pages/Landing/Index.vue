@@ -605,10 +605,11 @@
 
                         <div class="bg-primary-gray rounded-lg mt-20 p-6">
                             <label for="steps-range" class="block mb-2 text-lg font-medium text-white">Price Slider</label>
-                            <p>
-                                {{ numberOfStudents }} x Student <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) }}</span>/month<br>
+                            <p class="text-4xl">
+                                {{ numberOfStudents }} x Student{{ numberOfStudents > 1 ? 's' : ''}} <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) }}</span>/month |
                                 Cost Per Student <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) / numberOfStudents }}</span>
                             </p>
+                            <p class="text-sm mt-2">Discount is reflected above</p>
                             <input id="steps-range" v-model="numberOfStudents" type="range" min="1" max="6" value="1" step="1" class="w-full h-4 bg-primary-dark-gray accent-primary-yellow rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         </div>
                     </div>
@@ -1115,28 +1116,16 @@ const handleClickOutside = (event) => {
 const numberOfStudents = ref(1);
 
 const calculatePrice = (quantity) => {
-    if (quantity == 1) {
-        return 40;
-    }
+    const basePrice = 40;
+    const priceIncrement = 10;
+    const discountRate = 0.30;
 
-    if (quantity == 2) {
-        return 50;
-    }
-
-    if (quantity == 3) {
-        return 60;
-    }
-
-    if (quantity == 4) {
-        return 70;
-    }
-
-    if (quantity == 5) {
-        return 80;
-    }
-
-    if (quantity == 6) {
-        return 90;
+    if (quantity >= 1 && quantity <= 6) {
+        const price = basePrice + (quantity - 1) * priceIncrement;
+        const discount = price * discountRate;
+        return price - discount;
+    } else {
+        return 'Invalid quantity';
     }
 }
 </script>
