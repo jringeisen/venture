@@ -602,6 +602,16 @@
                             Unlock Exclusive Beta Savings: <span class="text-primary-yellow font-semibold">GET 30% OFF!</span>
                             Embark on your ad<span class="text-primary-yellow font-semibold">venture</span> today!
                         </p>
+
+                        <div class="bg-primary-gray rounded-lg mt-20 p-6">
+                            <label for="steps-range" class="block mb-2 text-lg font-medium text-white">Price Slider</label>
+                            <p class="text-4xl">
+                                {{ numberOfStudents }} x Student{{ numberOfStudents > 1 ? 's' : ''}} <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) }}</span>/month |
+                                Cost Per Student <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) / numberOfStudents }}</span>
+                            </p>
+                            <p class="text-sm mt-2">Discount is reflected above</p>
+                            <input id="steps-range" v-model="numberOfStudents" type="range" min="1" max="6" value="1" step="1" class="w-full h-4 bg-primary-dark-gray accent-primary-yellow rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                        </div>
                     </div>
                     <div class="py-8">
                         <Link :href="route('register')"
@@ -1101,5 +1111,21 @@ const handleClickOutside = (event) => {
     imageEight.value = false;
     imageNine.value = false;
     imageTen.value = false;
+}
+
+const numberOfStudents = ref(1);
+
+const calculatePrice = (quantity) => {
+    const basePrice = 40;
+    const priceIncrement = 10;
+    const discountRate = 0.30;
+
+    if (quantity >= 1 && quantity <= 6) {
+        const price = basePrice + (quantity - 1) * priceIncrement;
+        const discount = price * discountRate;
+        return price - discount;
+    } else {
+        return 'Invalid quantity';
+    }
 }
 </script>
