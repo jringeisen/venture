@@ -610,7 +610,7 @@
                                 Cost Per Student <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) / numberOfStudents }}</span>
                             </p>
                             <p class="text-sm mt-2">Discount is reflected above</p>
-                            <input id="steps-range" v-model="numberOfStudents" type="range" min="1" max="6" value="1" step="1" class="w-full h-4 bg-primary-dark-gray accent-primary-yellow rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                            <input id="steps-range" v-model="numberOfStudents" type="range" min="1" max="6" step="1" class="w-full h-4 bg-primary-dark-gray accent-primary-yellow rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-neutral-700 dark:bg-gray-700">
                         </div>
                     </div>
                     <div class="py-8">
