@@ -605,8 +605,11 @@
 
                         <div class="bg-primary-gray rounded-lg mt-20 p-6">
                             <label for="steps-range" class="block mb-2 text-lg font-medium text-white">Price Slider</label>
-                            <p>{{ numberOfStudents }} x Student = ${{ calculatePrice(numberOfStudents) }} / Per Student = ${{ calculatePrice(numberOfStudents) / numberOfStudents }}</p>
-                            <input id="steps-range" v-model="numberOfStudents" type="range" min="1" max="6" value="1" step="1" class="w-full h-2 bg-primary-dark-gray accent-primary-yellow rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                            <p>
+                                {{ numberOfStudents }} x Student <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) }}</span>/month<br>
+                                Cost Per Student <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) / numberOfStudents }}</span>
+                            </p>
+                            <input id="steps-range" v-model="numberOfStudents" type="range" min="1" max="6" value="1" step="1" class="w-full h-4 bg-primary-dark-gray accent-primary-yellow rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         </div>
                     </div>
                     <div class="py-8">
