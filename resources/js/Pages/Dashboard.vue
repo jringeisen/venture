@@ -55,7 +55,8 @@ const options = ref({
     labels: props.pieChartData.labels,
     legend: {
         labels: {colors: '#a3a3a3'}
-    }
+    },
+    colors: ['#38304F', '#971F1B', '#F2671C', '#3A304F', '#FFCC04', '#214533', '#2C4990'],
 });
 
 const series = ref(props.pieChartData.series);

@@ -27,6 +27,10 @@ class DashboardController extends Controller
         $question = Question::inRandomOrder()->first();
         $numberFormatter = new NumberFormatter('en_US', NumberFormatter::ORDINAL);
 
+        if (!$question) {
+            return [];
+        }
+
         return [
             'text' => $question->text,
             'category' => $question->category,
