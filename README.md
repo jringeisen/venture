@@ -19,8 +19,23 @@ Welcome to Venture, a pioneering platform in the realm of homeschooling. At the 
 
 ### Getting Started
 
-Installation: Instructions on how to install and set up the Venture platform COMING SOON!
-Configuration: Guide on configuring the platform to suit your specific needs COMING SOON!
+Installation:
+- First, pull down the github repo and make sure to run `php artisan composer install`.
+- Next, you'll need to run `php artisan migrate --seed`. This will create your tables and seed them.
+    - This will create a user of `admin@test.com` which you can login with using `password` as the password.
+    - It will also create a student with a username of `teststudent` and a password of `password`.
+
+Configuration:
+- You'll need to set the following variables in your .env file.
+    - OPENAI_API_KEY
+    - STRIPE_KEY
+    - STRIPE_SECRET
+    - STRIPE_WEBHOOK_SECRET
+    - STRIPE_MONTHLY_PRICE
+    - STRIPE_ANNUAL_PRICE
+    - STUDENT_FREE_QUESTION_COUNT
+
+Notes: Most of the emails that are sent are sent via the queue system so you'll need to make sure to run `php artisan queue:work` if your QUEUE_CONNECTION variable is set to database.
 
 ### Contribution
 

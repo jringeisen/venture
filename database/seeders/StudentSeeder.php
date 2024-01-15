@@ -16,6 +16,8 @@ class StudentSeeder extends Seeder
             'name' => 'Test Student',
             'username' => 'teststudent',
             'password' => Hash::make('password'),
+            'age' => 10,
+            'grade' => 5,
         ]);
 
         Student::factory()->count(50)->create();
