@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             StudentSeeder::class,
             PromptSeeder::class,
+            TimezoneSeeder::class,
+            QuestionSeeder::class,
         ]);
     }
 }
