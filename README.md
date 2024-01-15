@@ -24,6 +24,7 @@ Installation:
 - Next, you'll need to run `php artisan migrate --seed`. This will create your tables and seed them.
     - This will create a user of `admin@test.com` which you can login with using `password` as the password.
     - It will also create a student with a username of `teststudent` and a password of `password`.
+- Finally, you'll need to run `npm install && npm run dev`.
 
 Configuration:
 - You'll need to set the following variables in your .env file.
