@@ -57,6 +57,8 @@ class StudentController extends Controller
 
     public function edit(Student $student): Response
     {
+        $this->authorize('update', $student);
+
         return Inertia::render('Teachers/Students/Edit', [
             'student' => $student->only('id', 'name', 'username', 'grade', 'age', 'timezone'),
             'timezones' => Timezone::orderBy('value', 'asc')->get(),
