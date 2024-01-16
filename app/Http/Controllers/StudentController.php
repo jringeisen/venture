@@ -8,6 +8,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Models\Timezone;
 use App\Services\StudentService;
+use App\Services\WordCountService;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -73,6 +74,7 @@ class StudentController extends Controller
             'student' => (new StudentResource($student->load('promptQuestions')))->resolve(),
             'totalQuestions' => $this->studentService->student($student)->totalQuestionsAsked(),
             'dailyQuestions' => $this->studentService->student($student)->totalQuestionsAskedToday(),
+            'totalWordsRead' => (new WordCountService)->calculateWordsForPromptAnswers($student),
             'categoriesWithCounts' => $this->studentService->student($student)->categoriesWithCounts(),
             'pieChartData' => $this->studentService->student($student)->pieChartData(),
         ]);

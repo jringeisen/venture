@@ -3,7 +3,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 space-y-4 md:grid-cols-12 md:grid-rows-2 md:grid-flow-col md:space-y-0 md:gap-4">
+            <div class="grid grid-cols-1 space-y-4 md:grid-cols-12 md:grid-rows-3 md:grid-flow-col md:space-y-0 md:gap-4">
                 <div class="bg-white border p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:col-span-3 dark:bg-primary-gray dark:border-none">
                     <div class="text-gray-500 dark:text-neutral-400">Total Questions</div>
                     <p class="text-4xl font-bold dark:text-neutral-400">{{ totalQuestions }}</p>
@@ -14,7 +14,12 @@
                     <p class="text-4xl font-bold dark:text-neutral-400">{{ dailyQuestions }}</p>
                 </div>
 
-                <div v-if="isClient" class="relative bg-white p-6 border overflow-hidden shadow-sm sm:rounded-lg md:row-span-2 md:col-span-9 dark:bg-primary-gray dark:border-none">
+                <div class="bg-white border p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg md:col-span-3 dark:bg-primary-gray dark:border-none">
+                    <div class="text-gray-500 dark:text-neutral-400">Total Words Read</div>
+                    <p class="text-4xl font-bold dark:text-neutral-400">{{ totalWordsRead }}</p>
+                </div>
+
+                <div v-if="isClient" class="relative bg-white p-6 border overflow-hidden shadow-sm sm:rounded-lg md:row-span-3 md:col-span-9 dark:bg-primary-gray dark:border-none">
                     <div class="absolute text-gray-500 dark:text-neutral-400">Subjects</div>
                     <div v-if="series.length === 0" class="flex justify-center items-center w-full h-full">
                         <p class="bg-neutral-200 w-full text-center p-5 rounded-lg text-neutral-500">No Data</p>
@@ -48,6 +53,7 @@ onMounted(() => {
 const props = defineProps({
     totalQuestions: Number,
     dailyQuestions: Number,
+    totalWordsRead: Number,
     pieChartData: Object
 })
 

@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $question = Question::inRandomOrder()->first();
         $numberFormatter = new NumberFormatter('en_US', NumberFormatter::ORDINAL);
 
-        if (!$question) {
+        if (! $question) {
             return [];
         }
 

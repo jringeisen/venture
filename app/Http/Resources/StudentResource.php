@@ -22,7 +22,12 @@ class StudentResource extends JsonResource
                     return [
                         'id' => $promptQuestion->id,
                         'question' => $promptQuestion->question,
-                        'prompt_answer' => $promptQuestion->promptAnswer,
+                        'prompt_answer' => [
+                            'id' => $promptQuestion->promptAnswer->id,
+                            'subject_category' => $promptQuestion->promptAnswer->subject_category,
+                            'content' => $promptQuestion->promptAnswer->content,
+                            'word_count' => str_word_count($promptQuestion->promptAnswer->content),
+                        ],
                         'created_at' => $promptQuestion->created_at->timezone($request->user()->timezone)->toFormattedDateString(),
                     ];
                 }),
