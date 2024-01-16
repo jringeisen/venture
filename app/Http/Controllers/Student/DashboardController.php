@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Services\StudentService;
+use App\Services\WordCountService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -17,6 +18,7 @@ class DashboardController extends Controller
         return Inertia::render('Student/Dashboard', [
             'totalQuestions' => $studentService->student($request->user())->totalQuestionsAsked(),
             'dailyQuestions' => $studentService->student($request->user())->totalQuestionsAskedToday(),
+            'totalWordsRead' => (new WordCountService())->calculateWordsForPromptAnswers($request->user()),
             'pieChartData' => $studentService->student($request->user())->pieChartData(),
             'randomQuestion' => $this->queryRandomQuestion(),
         ]);
