@@ -266,7 +266,7 @@ const page = usePage();
 const sidebarOpen = ref(false);
 const toggleSettingsMenu = ref(false);
 
-const totalSubjectsCount = Object.values(page.props.auth.subjects)
+const totalSubjectsCount = Object.values(page.props.auth.subjects || {})
     .reduce(
         (accum, item) => accum + item.count,
         0
