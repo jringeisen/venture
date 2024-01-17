@@ -26,7 +26,7 @@ class StudentResource extends JsonResource
                             'id' => $promptQuestion->promptAnswer->id,
                             'subject_category' => $promptQuestion->promptAnswer->subject_category,
                             'content' => $promptQuestion->promptAnswer->content,
-                            'word_count' => str_word_count($promptQuestion->promptAnswer->content),
+                            'word_count' => $promptQuestion->promptAnswer->word_count,
                         ],
                         'created_at' => $promptQuestion->created_at->timezone($request->user()->timezone)->toFormattedDateString(),
                     ];

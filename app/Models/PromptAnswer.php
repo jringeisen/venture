@@ -21,4 +21,9 @@ class PromptAnswer extends Model
     {
         return $this->belongsTo(PromptQuestion::class);
     }
+
+    protected function getWordCountAttribute(): string
+    {
+        return number_format(str_word_count($this->content));
+    }
 }

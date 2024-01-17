@@ -12,7 +12,7 @@ class WordCountService
             ->whereHas('promptAnswer')
             ->get()
             ->reduce(function (int $carry, PromptQuestion $promptQuestion) {
-                return $carry + str_word_count($promptQuestion->promptAnswer->content);
+                return $carry + (int) $promptQuestion->promptAnswer->word_count;
             }, 0);
 
         return number_format($count);
