@@ -120,7 +120,7 @@ const props = defineProps({
     categoriesWithCounts: Object,
     totalQuestions: Number,
     dailyQuestions: Number,
-    totalWordsRead: Number,
+    totalWordsRead: String,
     pieChartData: Object
 });
 
