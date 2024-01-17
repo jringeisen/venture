@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -206,4 +206,12 @@ return [
     */
 
     'student_free_question_count' => env('STUDENT_FREE_QUESTION_COUNT', 20),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Nova Admin Emails
+    |--------------------------------------------------------------------------
+     */
+
+    'nova_admin_emails' => explode(',', env('NOVA_ADMIN_EMAILS', 'admin@learnwithventure.com'))
 ];
