@@ -30,7 +30,10 @@
                                                 <div>
                                                     <p @click.prevent="handleToggleContent(question.id)" class="text-sm text-gray-700 cursor-pointer dark:text-neutral-400">{{ question.question }}</p>
                                                     <div v-if="toggleContent === question.id" class="bg-gray-100 p-2 rounded-lg mt-2 dark:bg-neutral-700">
-                                                        <p class="font-semibold text-sm text-gray-500 dark:text-neutral-400">{{ capitalize(question.prompt_answer.subject_category) }}</p>
+                                                        <div class="flex justify-between items-center">
+                                                            <p class="font-semibold text-sm text-gray-500 dark:text-neutral-400">{{ capitalize(question.prompt_answer.subject_category) }}</p>
+                                                            <p class="font-semibold text-sm text-gray-500 dark:text-neutral-400">{{ question.prompt_answer.word_count }} words</p>
+                                                        </div>
                                                         <p class="mt-2 whitespace-pre-wrap text-sm text-gray-500 dark:text-neutral-400">{{ question.prompt_answer.content }}</p>
                                                     </div>
                                                 </div>
