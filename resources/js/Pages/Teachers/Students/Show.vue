@@ -3,7 +3,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-3 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+            <div class="grid grid-cols-1 gap-3 md:grid-cols-4">
                 <div class="bg-white border p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-none">
                     <div class="text-gray-500 dark:text-neutral-400">Total Questions</div>
                     <p class="text-4xl font-bold dark:text-neutral-400">{{ totalQuestions }}</p>
@@ -12,6 +12,11 @@
                 <div class="bg-white border p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-none">
                     <div class="text-gray-500 dark:text-neutral-400">Daily Questions</div>
                     <p class="text-4xl font-bold dark:text-neutral-400">{{ dailyQuestions }}</p>
+                </div>
+
+                <div class="bg-white border p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-none">
+                    <div class="text-gray-500 dark:text-neutral-400">Total Words Read</div>
+                    <p class="text-4xl font-bold dark:text-neutral-400">{{ totalWordsRead }}</p>
                 </div>
 
                 <div class="bg-white border p-6 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-none">
@@ -70,7 +75,10 @@
                                                 <div>
                                                     <p @click.prevent="handleToggleContent(question.id)" class="text-sm text-gray-700 cursor-pointer dark:text-neutral-400">{{ question.question }}</p>
                                                     <div v-if="toggleContent === question.id" class="bg-gray-100 p-2 rounded-lg mt-2 dark:bg-neutral-700">
-                                                        <p class="font-semibold text-sm text-gray-500 dark:text-neutral-400">{{ startCase(question.prompt_answer.subject_category) }}</p>
+                                                        <div class="flex justify-between">
+                                                            <p class="font-semibold text-sm text-gray-500 dark:text-neutral-400">{{ startCase(question.prompt_answer.subject_category) }}</p>
+                                                            <p class="font-semibold text-sm text-gray-500 dark:text-neutral-400">{{ question.prompt_answer.word_count }} words</p>
+                                                        </div>
                                                         <p class="mt-2 whitespace-pre-wrap text-sm text-gray-500 dark:text-neutral-400">{{ question.prompt_answer.content }}</p>
                                                     </div>
                                                 </div>
@@ -112,6 +120,7 @@ const props = defineProps({
     categoriesWithCounts: Object,
     totalQuestions: Number,
     dailyQuestions: Number,
+    totalWordsRead: Number,
     pieChartData: Object
 });
 

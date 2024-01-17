@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\User;
 use App\Models\Student;
+use App\Models\User;
+
 use function Pest\Faker\fake;
 
 it('allows parent to view the student index page', function () {
@@ -33,7 +34,7 @@ it('allows parent to view the student edit page', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/' . $student->id . '/edit');
+        ->get('/students/'.$student->id.'/edit');
 
     $response->assertOk();
 });
@@ -48,7 +49,7 @@ it('does not allow parent to view the student edit page for a student that is no
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/' . $student->id . '/edit');
+        ->get('/students/'.$student->id.'/edit');
 
     $response->assertForbidden();
 });
@@ -62,7 +63,7 @@ it('allows parent to view the student show page', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/' . $student->id);
+        ->get('/students/'.$student->id);
 
     $response->assertOk();
 });
@@ -77,7 +78,7 @@ it('does not allow parent to view the student show page for a student that is no
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/' . $student->id);
+        ->get('/students/'.$student->id);
 
     $response->assertForbidden();
 });
@@ -150,7 +151,7 @@ it('allows the parent to update one of their students', function () {
 
     $response = $this
         ->actingAs($user)
-        ->patch('/students/' . $student->id, [
+        ->patch('/students/'.$student->id, [
             'name' => 'Test User',
             'username' => 'testuser',
             'password' => 'password',
@@ -181,7 +182,7 @@ it('does not allow parent to update a student thats not theirs', function () {
 
     $response = $this
         ->actingAs($user)
-        ->patch('/students/' . $student->id, [
+        ->patch('/students/'.$student->id, [
             'name' => 'Test User',
             'username' => 'testuser',
             'password' => 'password',
@@ -206,7 +207,7 @@ it('allows the parent to delete a student', function () {
 
     $this
         ->actingAs($user)
-        ->delete('/students/' . $student->id);
+        ->delete('/students/'.$student->id);
 
     $studentCount = Student::count();
 
@@ -221,7 +222,7 @@ it('does not allow parent to delete a student thats not theirs', function () {
 
     $response = $this
         ->actingAs($user)
-        ->delete('/students/' . $student->id);
+        ->delete('/students/'.$student->id);
 
     $response->assertForbidden();
 });

@@ -8,6 +8,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Models\Timezone;
 use App\Services\StudentService;
+use App\Services\WordCountService;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,11 +18,10 @@ use Inertia\Response;
 
 class StudentController extends Controller
 {
-    private StudentService $studentService;
-
-    public function __construct()
-    {
-        $this->studentService = new StudentService;
+    public function __construct(
+        private readonly StudentService $studentService,
+        private readonly WordCountService $wordCountService,
+    ) {
     }
 
     public function index(Request $request): Response
@@ -73,6 +73,7 @@ class StudentController extends Controller
             'student' => (new StudentResource($student->load('promptQuestions')))->resolve(),
             'totalQuestions' => $this->studentService->student($student)->totalQuestionsAsked(),
             'dailyQuestions' => $this->studentService->student($student)->totalQuestionsAskedToday(),
+            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($student),
             'categoriesWithCounts' => $this->studentService->student($student)->categoriesWithCounts(),
             'pieChartData' => $this->studentService->student($student)->pieChartData(),
         ]);
