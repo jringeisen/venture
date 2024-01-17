@@ -18,11 +18,10 @@ use Inertia\Response;
 
 class StudentController extends Controller
 {
-    private StudentService $studentService;
-
-    public function __construct()
-    {
-        $this->studentService = new StudentService;
+    public function __construct(
+        public StudentService $studentService,
+        public WordCountService $wordCountService,
+    ) {
     }
 
     public function index(Request $request): Response
@@ -74,7 +73,7 @@ class StudentController extends Controller
             'student' => (new StudentResource($student->load('promptQuestions')))->resolve(),
             'totalQuestions' => $this->studentService->student($student)->totalQuestionsAsked(),
             'dailyQuestions' => $this->studentService->student($student)->totalQuestionsAskedToday(),
-            'totalWordsRead' => (new WordCountService)->calculateWordsForPromptAnswers($student),
+            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($student),
             'categoriesWithCounts' => $this->studentService->student($student)->categoriesWithCounts(),
             'pieChartData' => $this->studentService->student($student)->pieChartData(),
         ]);

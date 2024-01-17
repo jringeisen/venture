@@ -13,12 +13,17 @@ use NumberFormatter;
 
 class DashboardController extends Controller
 {
+    public function __construct(
+        public WordCountService $wordCountService
+    ) {
+    }
+
     public function index(Request $request, StudentService $studentService): Response
     {
         return Inertia::render('Student/Dashboard', [
             'totalQuestions' => $studentService->student($request->user())->totalQuestionsAsked(),
             'dailyQuestions' => $studentService->student($request->user())->totalQuestionsAskedToday(),
-            'totalWordsRead' => (new WordCountService())->calculateWordsForPromptAnswers($request->user()),
+            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($request->user()),
             'pieChartData' => $studentService->student($request->user())->pieChartData(),
             'randomQuestion' => $this->queryRandomQuestion(),
         ]);
