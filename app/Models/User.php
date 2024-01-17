@@ -11,10 +11,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Nova\Auth\Impersonatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Billable, HasApiTokens, HasFactory, Notifiable;
+    use Billable, HasApiTokens, HasFactory, Impersonatable, Notifiable;
 
     protected $fillable = [
         'name',
