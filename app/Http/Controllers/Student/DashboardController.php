@@ -14,7 +14,7 @@ use NumberFormatter;
 class DashboardController extends Controller
 {
     public function __construct(
-        public WordCountService $wordCountService
+        private readonly WordCountService $wordCountService
     ) {
     }
 

@@ -19,8 +19,8 @@ use Inertia\Response;
 class StudentController extends Controller
 {
     public function __construct(
-        public StudentService $studentService,
-        public WordCountService $wordCountService,
+        private readonly StudentService $studentService,
+        private readonly WordCountService $wordCountService,
     ) {
     }
 
