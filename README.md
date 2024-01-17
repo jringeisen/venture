@@ -29,6 +29,7 @@ Installation:
 Configuration:
 - You'll need to set the following variables in your .env file.
     - OPENAI_API_KEY
+    - OPENAI_ORGANIZATION
     - STRIPE_KEY
     - STRIPE_SECRET
     - STRIPE_WEBHOOK_SECRET
