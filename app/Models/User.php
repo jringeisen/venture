@@ -18,8 +18,14 @@ class User extends Authenticatable implements MustVerifyEmail
     use Billable, HasApiTokens, HasFactory, Impersonatable, Notifiable;
 
     protected $fillable = [
+        'parent_id',
         'name',
         'email',
+        'username',
+        'grade',
+        'age',
+        'motivational_message',
+        'current_streak',
         'password',
         'timezone',
         'total_questions_asked',
@@ -31,13 +37,24 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $casts = [
+        'name' => 'string',
+        'username' => 'string',
+        'grade' => 'integer',
+        'age' => 'integer',
+        'motivational_message' => 'datetime',
+        'current_streak' => 'integer',
         'email_verified_at' => 'datetime',
         'total_questions_asked' => 'integer',
     ];
 
+    public function parent()
+    {
+        return $this->belongsTo(User::class, 'parent_id');
+    }
+
     public function students(): HasMany
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(User::class, 'parent_id');
     }
 
     public function promptQuestions(): HasManyThrough
@@ -67,5 +84,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function showExceededQuantityPage(): bool
     {
         return $this->subscribed() && $this->students->count() >= $this->subscriptionQuantity();
+    }
+
+    public function isParent(): bool
+    {
+        return is_null($this->parent_id);
+    }
+
+    public function isStudent(): bool
+    {
+        return ! is_null($this->parent_id);
     }
 }
