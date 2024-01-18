@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Nova\Auth\Impersonatable;
 
 class Student extends Authenticatable
 {
-    use HasFactory, Impersonatable;
+    use HasFactory;
 
     protected $fillable = [
         'name',
