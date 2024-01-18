@@ -162,16 +162,15 @@ return [
     |
     */
 
-     'brand' => [
-         // TODO: The png would not show up, and the comment above mentions SVG only.
-         // 'logo' => env('APP_URL', 'http://localhost:8000') . '/assets/logo.png',
+    'brand' => [
+        'logo' => public_path('assets/images/logo.svg'),
 
-         'colors' => [
-             "400" => "#FFCC00",
-             "500" => "#FFCC00",
-             "600" => "#FFCC00",
-         ]
-     ],
+        'colors' => [
+            '400' => '#FFCC00',
+            '500' => '#FFCC00',
+            '600' => '#FFCC00',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

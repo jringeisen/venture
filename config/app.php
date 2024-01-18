@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool)env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -213,5 +213,5 @@ return [
     |--------------------------------------------------------------------------
      */
 
-    'nova_admin_emails' => explode(',', env('NOVA_ADMIN_EMAILS', 'admin@learnwithventure.com'))
+    'nova_admin_emails' => explode(',', env('NOVA_ADMIN_EMAILS', 'admin@learnwithventure.com')),
 ];
