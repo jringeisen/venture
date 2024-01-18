@@ -29,4 +29,11 @@ class PromptAnswer extends Model
             get: fn () => number_format(str_word_count($this->content)),
         );
     }
+
+    protected function subjectCategory(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => $value ? $value : 'Not Categorized',
+        );
+    }
 }
