@@ -53,7 +53,7 @@ onMounted(() => {
 const props = defineProps({
     totalQuestions: Number,
     dailyQuestions: Number,
-    totalWordsRead: Number,
+    totalWordsRead: String,
     pieChartData: Object
 })
 

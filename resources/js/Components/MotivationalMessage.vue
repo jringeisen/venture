@@ -1,7 +1,7 @@
 <template>
     <div>
         <Modal :show="true">
-            <div class="p-8 prose">
+            <div class="p-8 prose mx-auto">
                 <h1 class="text-2xl font-bold text-center">Motivation For The Day</h1>
                 <p class="text-center py-4">
                     {{ message }}
