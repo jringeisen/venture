@@ -19,10 +19,9 @@ class GetContentController extends Controller
 
             $question = $request->user()->promptQuestions()->latest()->first();
 
-            $prompt = Prompt::whereRaw(
-                '? BETWEEN SUBSTRING_INDEX(category, "-", 1) AND SUBSTRING_INDEX(category, "-", -1)',
-                [$request->user()->age]
-            )->first()->prompt;
+            $usersAge = $request->user()->age;
+
+            $prompt = Prompt::where('category', 'like', "%$usersAge%")->first()->prompt;
 
             $stream = OpenAI::chat()->createStreamed([
                 'model' => 'gpt-3.5-turbo-1106',

@@ -11,7 +11,7 @@
                     leave-from="opacity-100"
                     leave-to="opacity-0"
                 >
-                    <div class="fixed inset-0 bg-neutral-900/80" />
+                    <div class="fixed inset-0 bg-neutral-900/80"/>
                 </TransitionChild>
 
                 <div class="fixed inset-0 flex">
@@ -37,14 +37,14 @@
                                 <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
                                     <button type="button" class="-m-2.5 p-2.5" @click="sidebarOpen = false">
                                         <span class="sr-only">Close sidebar</span>
-                                        <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true" />
+                                        <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true"/>
                                     </button>
                                 </div>
                             </TransitionChild>
                             <!-- Sidebar component, swap this element with another sidebar if you like -->
                             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-primary-gray pb-2">
                                 <div class="flex h-16 justify-center items-center bg-primary-gray">
-                                    <ApplicationLogo class="w-9 h-9" />
+                                    <ApplicationLogo class="w-9 h-9"/>
                                     <p class="text-neutral-100 text-2xl text-center font-bold">VENTURE</p>
                                 </div>
                                 <nav class="flex flex-1 flex-col px-6">
@@ -91,7 +91,7 @@
             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-primary-gray">
                 <div class="flex h-16 shrink-0 items-center">
                     <p class="flex justify-center items-center text-white text-2xl font-bold w-full dark:text-neutral-400">
-                        <ApplicationLogo class="w-9 h-9" />
+                        <ApplicationLogo class="w-9 h-9"/>
                         VENTURE
                     </p>
                 </div>
@@ -99,7 +99,8 @@
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
                         <li>
                             <ul role="list" class="-mx-2 space-y-1">
-                                <Link v-for="(item, index) in $page.props.auth.navigation" :key="index" :href="item.href" as="li" class="cursor-pointer">
+                                <Link v-for="(item, index) in $page.props.auth.navigation" :key="index"
+                                      :href="item.href" as="li" class="cursor-pointer">
                                     <span
                                         :class="[
                                             item.current
@@ -126,15 +127,24 @@
                         <li v-if="$page.props.auth.subjects && Object.keys($page.props.auth.subjects).length > 0">
                             <div class="text-xs font-semibold leading-6 text-gray-300 uppercase">Subjects</div>
                             <ul role="list" class="mt-2 space-y-1">
-                                <Link v-for="(subject, index) in $page.props.auth.subjects" :key="index" :href="subject.href">
-                                    <a
-                                        href="#"
+                                <Link href="/student/topic/all">
+                                    <button
+                                        class="text-gray-300 hover:text-primary-yellow group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
+                                        :class="{'text-primary-yellow': route().current('student.topic.show', { topic: 'all' })}"
+                                    >
+                                        <span class="truncate">All</span>
+                                        <span class="truncate">{{ totalSubjectsCount }}</span>
+                                    </button>
+                                </Link>
+                                <Link v-for="(subject, index) in $page.props.auth.subjects" :key="index"
+                                      :href="subject.href">
+                                    <button
                                         class="text-gray-300 hover:text-primary-yellow group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
                                         :class="{'text-primary-yellow': subject.current}"
                                     >
                                         <span class="truncate">{{ subject.name }}</span>
                                         <span class="truncate">{{ subject.count }}</span>
-                                    </a>
+                                    </button>
                                 </Link>
                             </ul>
                         </li>
@@ -168,8 +178,15 @@
                                 >
                                     Logout
                                 </li>
-                                <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">Profile</Link>
-                                <a v-if="$page.props.auth.type === 'teacher' && $page.props.auth.isSubscribed" :href="route('billing.portal')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">Billing</a>
+                                <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')"
+                                      class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">
+                                    Profile
+                                </Link>
+                                <Link v-if="$page.props.auth.type === 'teacher' && $page.props.auth.isSubscribed"
+                                      :href="route('billing.portal')"
+                                      class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">
+                                    Billing
+                                </Link>
                             </ul>
                         </li>
                     </ul>
@@ -177,10 +194,11 @@
             </div>
         </div>
 
-        <div class="sticky top-0 z-40 flex justify-between items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden dark:bg-primary-gray">
+        <div
+            class="sticky top-0 z-40 flex justify-between items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden dark:bg-primary-gray">
             <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = true">
                 <span class="sr-only">Open sidebar</span>
-                <Bars3Icon class="h-6 w-6 dark:text-neutral-400" aria-hidden="true" />
+                <Bars3Icon class="h-6 w-6 dark:text-neutral-400" aria-hidden="true"/>
             </button>
             <div
                 v-if="toggleSettingsMenu"
@@ -195,7 +213,8 @@
                     href="#"
                     class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-gray-900"
                 >
-                    <div class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-300 w-7 h-7 dark:bg-primary-yellow dark:border-none">
+                    <div
+                        class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-300 w-7 h-7 dark:bg-primary-yellow dark:border-none">
                         <p class="text-xl text-gray-300 dark:text-primary-gray">{{ $page.props.auth.user.name[0] }}</p>
                     </div>
                     <span class="sr-only">Your profile</span>
@@ -212,14 +231,18 @@
                     >
                         Logout
                     </li>
-                    <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')" class="cursor-pointer px-4 py-1 block hover:bg-gray-100">Profile</Link>
+                    <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')"
+                          class="cursor-pointer px-4 py-1 block hover:bg-gray-100">Profile
+                    </Link>
                 </ul>
             </div>
         </div>
 
         <main class="relative py-10 lg:pl-72">
-            <MotivationalMessage v-if="$page.props.auth.motivationalMessage" :message="$page.props.auth.motivationalMessage" />
-            <div v-if="showBetaPricing()" class="max-w-2xl mx-auto bg-primary-yellow p-4 rounded-lg text-center text-yellow-900">
+            <MotivationalMessage v-if="$page.props.auth.motivationalMessage"
+                                 :message="$page.props.auth.motivationalMessage"/>
+            <div v-if="showBetaPricing()"
+                 class="max-w-2xl mx-auto bg-primary-yellow p-4 rounded-lg text-center text-yellow-900">
                 Take advantage of our BETA pricing and get <strong>30% OFF</strong> your first year!
                 <Link :href="route('subscription.checkout.options')" class="underline">Upgrade Now!</Link>
             </div>
@@ -231,10 +254,10 @@
 </template>
 
 <script setup>
-import { router, Link, usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
-import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon, HomeIcon, UsersIcon, DocumentIcon, BookOpenIcon } from '@heroicons/vue/24/outline';
+import {Link, router, usePage} from '@inertiajs/vue3';
+import {ref} from 'vue';
+import {Dialog, DialogPanel, TransitionChild, TransitionRoot} from '@headlessui/vue';
+import {Bars3Icon, BookOpenIcon, DocumentIcon, HomeIcon, UsersIcon, XMarkIcon} from '@heroicons/vue/24/outline';
 import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
@@ -242,6 +265,12 @@ const page = usePage();
 
 const sidebarOpen = ref(false);
 const toggleSettingsMenu = ref(false);
+
+const totalSubjectsCount = Object.values(page.props.auth.subjects || {})
+    .reduce(
+        (accum, item) => accum + item.count,
+        0
+    );
 
 const iconMap = {
     'home-icon': HomeIcon,
