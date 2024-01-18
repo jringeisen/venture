@@ -24,6 +24,7 @@ class TopicController extends Controller
                     })
                 )
                 ->with('promptAnswer')
+                ->has('promptAnswer')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10)
                 ->through(function (PromptQuestion $promptQuestion) use ($request) {
