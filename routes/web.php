@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/billing-portal', BillingPortalController::class)->name('billing.portal');
         Route::get('/quantity-exceeded', QuantityExceededController::class)->name('quantity.exceeded');
 
-        Route::prefix('parent')->name('parent.')->group(function () {
+        Route::middleware('parent')->prefix('parent')->name('parent.')->group(function () {
             Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
             Route::prefix('users')->name('users.')->group(function () {
@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
             });
         });
 
-        Route::prefix('student')->name('student.')->group(function () {
+        Route::middleware('student')->prefix('student')->name('student.')->group(function () {
             Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
             Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
             Route::post('/prompts', [PromptController::class, 'store'])->name('prompts.store');
