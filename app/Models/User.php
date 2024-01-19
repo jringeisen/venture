@@ -100,4 +100,17 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return ! is_null($this->parent_id);
     }
+
+    public function canAskQuestions(): bool
+    {
+        if ($this->parent->subscribed()) {
+            return true;
+        }
+
+        if (! $this->parent->subscribed() && $this->parent->total_questions_asked < config('app.student_free_question_count')) {
+            return true;
+        }
+
+        return false;
+    }
 }

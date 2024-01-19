@@ -11,6 +11,11 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeCheckoutController;
 use App\Http\Controllers\StripeCheckoutOptionsController;
+use App\Http\Controllers\Student\PromptController;
+use App\Http\Controllers\Student\Prompts\GetContentController;
+use App\Http\Controllers\Student\Prompts\GetQuestionsController;
+use App\Http\Controllers\Student\Prompts\GetSubjectController;
+use App\Http\Controllers\Student\TopicController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,7 +54,16 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{user}', [StudentController::class, 'destroy'])->name('students.destroy');
         });
 
-        Route::get('/student/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])->name('student.dashboard');
+        Route::prefix('student')->name('student.')->group(function () {
+            Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
+            Route::post('/prompts', [PromptController::class, 'store'])->name('prompts.store');
+            Route::post('/prompts/subject', GetSubjectController::class)->name('prompts.subject');
+            Route::get('/prompts/content', GetContentController::class)->name('prompts.content');
+            Route::post('/prompts/questions', GetQuestionsController::class)->name('prompts.questions');
+
+            Route::get('/topic/{topic}', [TopicController::class, 'show'])->name('topic.show');
+        });
 
         Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');
         Route::get('/subscription-checkout-options', StripeCheckoutOptionsController::class)->name('subscription.checkout.options');
