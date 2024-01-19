@@ -82,6 +82,8 @@ class StudentController extends Controller
 
     public function update(StudentUpdateRequest $request, User $user): RedirectResponse
     {
+        $this->authorize('update', $user);
+
         $data = $request->validated();
 
         if (! isset($data['password'])) {
@@ -98,7 +100,7 @@ class StudentController extends Controller
 
     public function destroy(User $user): RedirectResponse
     {
-        $this->authorize('update', $user);
+        $this->authorize('delete', $user);
 
         $user->delete();
 
