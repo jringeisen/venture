@@ -7,6 +7,7 @@ use App\Http\Requests\StudentUpdateRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Models\Timezone;
+use App\Models\User;
 use App\Services\StudentService;
 use App\Services\WordCountService;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -65,7 +66,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function show(Request $request, Student $student): Response
+    public function show(Request $request, User $student): Response
     {
         $this->authorize('view', $student);
 
@@ -79,22 +80,20 @@ class StudentController extends Controller
         ]);
     }
 
-    public function update(StudentUpdateRequest $request, Student $student): RedirectResponse
+    public function update(StudentUpdateRequest $request, User $user): RedirectResponse
     {
-        $this->authorize('update', $student);
-
         $data = $request->validated();
 
-        if ($data['password'] === null) {
-            $student->update($request->only('name', 'username', 'grade', 'age', 'timezone'));
+        if (! isset($data['password'])) {
+            $user->update($request->only('name', 'username', 'grade', 'age', 'timezone', 'motivational_message'));
         } else {
-            $student->update([
+            $user->update([
                 ...$data,
                 'password' => Hash::make($data['password']),
             ]);
         }
 
-        return to_route('students.index');
+        return to_route('student.dashboard');
     }
 
     public function destroy(Student $student): RedirectResponse

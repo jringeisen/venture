@@ -2,23 +2,22 @@
 
 namespace App\Policies;
 
-use App\Models\Student;
 use App\Models\User;
 
 class StudentPolicy
 {
-    public function view(User $user, Student $student): bool
+    public function view(User $authUser, User $user): bool
     {
-        return $user->id === $student->user_id;
+        return $authUser->id === $user->id;
     }
 
-    public function update(User $user, Student $student): bool
+    public function update(User $authUser, User $user): bool
     {
-        return $user->id === $student->user_id;
+        return $authUser->id === $user->id;
     }
 
-    public function delete(User $user, Student $student): bool
+    public function delete(User $authUser, User $user): bool
     {
-        return $user->id === $student->user_id;
+        return $authUser->id === $user->id;
     }
 }

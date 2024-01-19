@@ -39,15 +39,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/billing-portal', BillingPortalController::class)->name('billing.portal');
         Route::get('/quantity-exceeded', QuantityExceededController::class)->name('quantity.exceeded');
 
-        Route::prefix('students')->group(function () {
+        Route::prefix('users')->group(function () {
             Route::get('/', [StudentController::class, 'index'])->name('students.index');
             Route::get('/create', [StudentController::class, 'create'])->name('students.create');
             Route::post('/', [StudentController::class, 'store'])->name('students.store');
-            Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
-            Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
-            Route::patch('/{student}', [StudentController::class, 'update'])->name('students.update');
-            Route::delete('/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
+            Route::get('/{user}', [StudentController::class, 'show'])->name('students.show');
+            Route::get('/{user}/edit', [StudentController::class, 'edit'])->name('students.edit');
+            Route::patch('/{user}', [StudentController::class, 'update'])->name('students.update');
+            Route::delete('/{user}', [StudentController::class, 'destroy'])->name('students.destroy');
         });
+
+        Route::get('/student/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])->name('student.dashboard');
 
         Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');
         Route::get('/subscription-checkout-options', StripeCheckoutOptionsController::class)->name('subscription.checkout.options');
