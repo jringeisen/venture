@@ -39,19 +39,21 @@ Route::middleware('guest')->group(static function () {
 Route::middleware('auth')->group(function () {
     // Verified Routes...
     Route::middleware('verified')->group(function () {
-        Route::get('/dashboard', DashboardController::class)->name('dashboard');
-
         Route::get('/billing-portal', BillingPortalController::class)->name('billing.portal');
         Route::get('/quantity-exceeded', QuantityExceededController::class)->name('quantity.exceeded');
 
-        Route::prefix('users')->group(function () {
-            Route::get('/', [StudentController::class, 'index'])->name('students.index');
-            Route::get('/create', [StudentController::class, 'create'])->name('students.create');
-            Route::post('/', [StudentController::class, 'store'])->name('students.store');
-            Route::get('/{user}', [StudentController::class, 'show'])->name('students.show');
-            Route::get('/{user}/edit', [StudentController::class, 'edit'])->name('students.edit');
-            Route::patch('/{user}', [StudentController::class, 'update'])->name('students.update');
-            Route::delete('/{user}', [StudentController::class, 'destroy'])->name('students.destroy');
+        Route::prefix('parent')->name('parent.')->group(function () {
+            Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+            Route::prefix('users')->name('users.')->group(function () {
+                Route::get('/', [StudentController::class, 'index'])->name('index');
+                Route::get('/create', [StudentController::class, 'create'])->name('create');
+                Route::post('/', [StudentController::class, 'store'])->name('store');
+                Route::get('/{user}', [StudentController::class, 'show'])->name('show');
+                Route::get('/{user}/edit', [StudentController::class, 'edit'])->name('edit');
+                Route::patch('/{user}', [StudentController::class, 'update'])->name('update');
+                Route::delete('/{user}', [StudentController::class, 'destroy'])->name('destroy');
+            });
         });
 
         Route::prefix('student')->name('student.')->group(function () {

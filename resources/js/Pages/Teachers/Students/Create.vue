@@ -118,6 +118,6 @@ const submit = () => {
         ...data,
         grade: parseInt(data.grade),
         age: parseInt(data.age),
-    })).post(route('students.store'));
+    })).post(route('parent.users.store'));
 }
 </script>

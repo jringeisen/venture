@@ -49,8 +49,8 @@ class UserInertiaRequests
     protected function navigation(): array
     {
         return [
-            ['name' => 'Dashboard', 'href' => '/dashboard', 'icon' => 'home-icon', 'current' => request()->routeIs('dashboard')],
-            ['name' => 'Students', 'href' => '/students', 'icon' => 'users-icon', 'current' => request()->routeIs('students.*')],
+            ['name' => 'Dashboard', 'href' => route('parent.dashboard'), 'icon' => 'home-icon', 'current' => request()->routeIs('dashboard')],
+            ['name' => 'Students', 'href' => route('parent.users.index'), 'icon' => 'users-icon', 'current' => request()->routeIs('students.*')],
         ];
     }
 }

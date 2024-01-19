@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Http\Resources\StudentResource;
-use App\Models\Student;
 use App\Models\Timezone;
 use App\Models\User;
 use App\Services\StudentService;
@@ -50,33 +49,34 @@ class StudentController extends Controller
 
         $request->user()->students()->create([
             ...$data,
+            'email_verified_at' => now(),
             'password' => Hash::make($data['password']),
         ]);
 
-        return to_route('students.index');
+        return to_route('parent.users.index');
     }
 
-    public function edit(Student $student): Response
+    public function edit(User $user): Response
     {
-        $this->authorize('update', $student);
+        $this->authorize('update', $user);
 
         return Inertia::render('Teachers/Students/Edit', [
-            'student' => $student->only('id', 'name', 'username', 'grade', 'age', 'timezone'),
+            'student' => $user->only('id', 'name', 'username', 'grade', 'age', 'timezone'),
             'timezones' => Timezone::orderBy('value', 'asc')->get(),
         ]);
     }
 
-    public function show(Request $request, User $student): Response
+    public function show(Request $request, User $user): Response
     {
-        $this->authorize('view', $student);
+        $this->authorize('view', $user);
 
         return Inertia::render('Teachers/Students/Show', [
-            'student' => (new StudentResource($student->load('promptQuestions')))->resolve(),
-            'totalQuestions' => $this->studentService->student($student)->totalQuestionsAsked(),
-            'dailyQuestions' => $this->studentService->student($student)->totalQuestionsAskedToday(),
-            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($student),
-            'categoriesWithCounts' => $this->studentService->student($student)->categoriesWithCounts(),
-            'pieChartData' => $this->studentService->student($student)->pieChartData(),
+            'student' => (new StudentResource($user->load('promptQuestions')))->resolve(),
+            'totalQuestions' => $this->studentService->student($user)->totalQuestionsAsked(),
+            'dailyQuestions' => $this->studentService->student($user)->totalQuestionsAskedToday(),
+            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($user),
+            'categoriesWithCounts' => $this->studentService->student($user)->categoriesWithCounts(),
+            'pieChartData' => $this->studentService->student($user)->pieChartData(),
         ]);
     }
 
@@ -93,15 +93,15 @@ class StudentController extends Controller
             ]);
         }
 
-        return to_route('student.dashboard');
+        return to_route('parent.users.index');
     }
 
-    public function destroy(Student $student): RedirectResponse
+    public function destroy(User $user): RedirectResponse
     {
-        $this->authorize('update', $student);
+        $this->authorize('update', $user);
 
-        $student->delete();
+        $user->delete();
 
-        return to_route('students.index');
+        return to_route('parent.users.index');
     }
 }

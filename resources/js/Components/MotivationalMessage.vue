@@ -47,7 +47,7 @@ const updateUser = () => {
     form.transform((data) => ({
         ...page.props.auth.user,
         ...data,
-    })).patch(route('students.update', page.props.auth.user));
+    })).patch(route('parent.users.update', page.props.auth.user));
 }
 
 const isClient = ref(false);

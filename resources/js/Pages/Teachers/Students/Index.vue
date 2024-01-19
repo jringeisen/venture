@@ -91,14 +91,14 @@
                                                         class="absolute bg-white shadow-lg text-left border rounded-lg right-4 -top-6 overflow-hidden"
                                                     >
                                                         <Link
-                                                            :href="route('students.show', student.id)"
+                                                            :href="route('parent.users.show', student.id)"
                                                             class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
                                                             as="li"
                                                         >
                                                             View
                                                         </Link>
                                                         <Link
-                                                            :href="route('students.edit', student.id)"
+                                                            :href="route('parent.users.edit', student.id)"
                                                             class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
                                                             as="li">
                                                             Edit
@@ -151,7 +151,7 @@ const toggleAction = ref(null);
 
 const deleteStudent = (student) => {
     if (confirm('Are you sure you want to delete this student?')) {
-        form.delete(route('students.destroy', student.id));
+        form.delete(route('parent.users.destroy', student.id));
     }
 };
 
@@ -161,7 +161,7 @@ const handleAddStudent = () => {
     } else if (props.showExceededQuantityPage) {
         router.get(route('quantity.exceeded'));
     } else {
-        router.get(route('students.create'));
+        router.get(route('parent.users.create'));
     }
 };
 </script>
