@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'timezone',
         'total_questions_asked',
+        'email_verified_at',
     ];
 
     protected $hidden = [

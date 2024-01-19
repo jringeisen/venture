@@ -13,7 +13,8 @@ class UserPolicy
 
     public function update(User $authUser, User $user): bool
     {
-        return $authUser->id === $user->parent_id;
+        return $authUser->id === $user->parent_id
+            || $authUser->id === $user->id;
     }
 
     public function delete(User $authUser, User $user): bool

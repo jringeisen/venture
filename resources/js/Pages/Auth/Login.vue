@@ -1,8 +1,8 @@
 <template>
     <GuestLayout>
-        <Head title="Parent Login" />
+        <Head :title="route().current() === 'parent.login' ? 'Parent Login' : 'Student Login'" />
 
-        <p v-if="route().current() === 'login'" class="text-center font-bold text-2xl pb-4 dark:text-white">Parent Login</p>
+        <p v-if="route().current() === 'parent.login'" class="text-center font-bold text-2xl pb-4 dark:text-white">Parent Login</p>
         <p v-else class="text-center font-bold text-2xl pb-4 dark:text-white">Student Login</p>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -11,7 +11,7 @@
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" :value="route().current() === 'login' ? 'Email' : 'Username'" />
+                <InputLabel for="email" :value="route().current() === 'parent.login' ? 'Email' : 'Username'" />
 
                 <TextInput
                     id="username"
@@ -71,25 +71,28 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, router, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
     canResetPassword: {
         type: Boolean,
     },
     status: {
         type: String,
     },
+    username: {
+        type: String,
+    },
 });
 
 const form = useForm({
-    login: '',
+    login: props.username ?? '',
     password: '',
     remember: false,
 });
 
 const submit = () => {
-    form.post(route('login'), {
+    form.post(route('login.post'), {
         onFinish: () => form.reset('password'),
     });
 };

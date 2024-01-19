@@ -65,6 +65,8 @@ Route::middleware('auth')->group(function () {
             Route::post('/prompts/questions', GetQuestionsController::class)->name('prompts.questions');
 
             Route::get('/topic/{topic}', [TopicController::class, 'show'])->name('topic.show');
+
+            Route::patch('/users/{user}', [StudentController::class, 'update'])->name('users.update');
         });
 
         Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');
