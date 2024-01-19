@@ -2,7 +2,8 @@
     <GuestLayout>
         <Head title="Parent Login" />
 
-        <p class="text-center font-bold text-2xl pb-4 dark:text-white">Parent Login</p>
+        <p v-if="route().current() === 'login'" class="text-center font-bold text-2xl pb-4 dark:text-white">Parent Login</p>
+        <p v-else class="text-center font-bold text-2xl pb-4 dark:text-white">Student Login</p>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
@@ -10,19 +11,18 @@
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" :value="route().current() === 'login' ? 'Email' : 'Username'" />
 
                 <TextInput
-                    id="email"
-                    type="email"
+                    id="username"
+                    :type="route().current() === 'login' ? 'email' : 'text'"
                     class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
+                    v-model="form.login"
                     autofocus
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="mt-2" :message="form.errors.login" />
             </div>
 
             <div class="mt-4">
@@ -71,7 +71,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, router, useForm } from '@inertiajs/vue3';
 
 defineProps({
     canResetPassword: {
@@ -83,13 +83,13 @@ defineProps({
 });
 
 const form = useForm({
-    email: '',
+    login: '',
     password: '',
     remember: false,
 });
 
 const submit = () => {
-    form.post(route('user.login'), {
+    form.post(route('login'), {
         onFinish: () => form.reset('password'),
     });
 };

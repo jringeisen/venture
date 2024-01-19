@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -35,7 +35,7 @@ class UserInertiaRequests
             return null;
         }
 
-        return request()->user()?->students->map(function (Student $student) {
+        return request()->user()?->students->map(function (User $student) {
             return [
                 'id' => $student->id,
                 'name' => $student->name,
