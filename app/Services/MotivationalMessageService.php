@@ -2,19 +2,19 @@
 
 namespace App\Services;
 
-use App\Models\Student;
+use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class MotivationalMessageService
 {
-    protected Student $student;
+    protected User $user;
 
     protected string $timezone;
 
-    public function __construct(Student $student)
+    public function __construct(User $user)
     {
-        $this->student = $student;
-        $this->timezone = $student->timezone;
+        $this->user = $user;
+        $this->timezone = $user->timezone;
     }
 
     public function generate(): ?string
@@ -28,11 +28,11 @@ class MotivationalMessageService
 
     protected function shouldCreateMessage(): bool
     {
-        $dayMotivationalMessageWasLastSaved = $this->student->motivational_message;
+        $dayMotivationalMessageWasLastSaved = $this->user->motivational_message;
         $todaysDate = now()->timezone($this->timezone)->startOfDay();
 
         return is_null($dayMotivationalMessageWasLastSaved)
-            || ($this->student->motivational_message && $dayMotivationalMessageWasLastSaved->lessThan($todaysDate));
+            || ($this->user->motivational_message && $dayMotivationalMessageWasLastSaved->lessThan($todaysDate));
     }
 
     protected function callOpenAI(): string
@@ -42,10 +42,10 @@ class MotivationalMessageService
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => "Using the tone of {$this->getRandomPerson()}, generate a motivational quote for a child that is {$this->student->age} years old.",
+                    'content' => "Using the tone of {$this->getRandomPerson()}, generate a motivational quote for a child that is {$this->user->age} years old.",
                 ],
             ],
-            'user' => 'user-'.$this->student->id,
+            'user' => 'user-'.$this->user->id,
         ]);
 
         return $response->choices[0]->message->content;

@@ -19,7 +19,7 @@ class PieChartService
     {
         $query = $model::when($userId, function (Builder $query, int $userId) {
             $query->whereHas('promptQuestion', function (Builder $query) use ($userId) {
-                $query->where('student_id', $userId);
+                $query->where('user_id', $userId);
             });
         });
 

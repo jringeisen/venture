@@ -40,7 +40,7 @@ class OpenAIService
         }
     }
 
-    public function messages(string $role, string $content): self
+    public function messages(string $role, ?string $content): self
     {
         if (is_null($content) || trim($content) === '') {
             throw new \InvalidArgumentException('Content cannot be null or empty');

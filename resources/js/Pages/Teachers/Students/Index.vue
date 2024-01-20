@@ -56,7 +56,7 @@
                                     <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
                                         <tr v-for="(student, index) in students.data" :key="index">
                                             <td>
-                                                <Link :href="route('student.login', {username: student.username})" class="ml-3 inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-500 focus:bg-yellow-500 dark:focus:bg-yellow-500 active:bg-yellow-500 dark:active:bg-bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition ease-in-out duration-150">Login</Link>
+                                                <button @click.prevent="handleStudentLogin(student)" type="button" class="ml-3 inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-500 focus:bg-yellow-500 dark:focus:bg-yellow-500 active:bg-yellow-500 dark:active:bg-bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition ease-in-out duration-150">Login</button>
                                             </td>
                                             <td
                                                 class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-primary-gray"
@@ -91,14 +91,14 @@
                                                         class="absolute bg-white shadow-lg text-left border rounded-lg right-4 -top-6 overflow-hidden"
                                                     >
                                                         <Link
-                                                            :href="route('students.show', student.id)"
+                                                            :href="route('parent.users.show', student.id)"
                                                             class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
                                                             as="li"
                                                         >
                                                             View
                                                         </Link>
                                                         <Link
-                                                            :href="route('students.edit', student.id)"
+                                                            :href="route('parent.users.edit', student.id)"
                                                             class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
                                                             as="li">
                                                             Edit
@@ -151,7 +151,7 @@ const toggleAction = ref(null);
 
 const deleteStudent = (student) => {
     if (confirm('Are you sure you want to delete this student?')) {
-        form.delete(route('students.destroy', student.id));
+        form.delete(route('parent.users.destroy', student.id));
     }
 };
 
@@ -161,7 +161,16 @@ const handleAddStudent = () => {
     } else if (props.showExceededQuantityPage) {
         router.get(route('quantity.exceeded'));
     } else {
-        router.get(route('students.create'));
+        router.get(route('parent.users.create'));
     }
+};
+
+const handleStudentLogin = (student) => {
+    form.post(route('logout'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            router.get(route('student.login', {username: student.username}));
+        },
+    });
 };
 </script>

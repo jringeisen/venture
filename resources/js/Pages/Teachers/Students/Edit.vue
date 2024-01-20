@@ -113,6 +113,6 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.patch(route('students.update', props.student.id));
+    form.patch(route('parent.users.update', props.student.id));
 }
 </script>
