@@ -3,32 +3,38 @@
 namespace App\Rules;
 
 use App\Models\Prompt;
-use App\Services\OpenAIService;
+use App\Services\Interfaces\AIServiceInterface;
 use Closure;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Validation\ValidationRule;
-use OpenAI\Laravel\Facades\OpenAI;
 
 class Moderate implements ValidationRule
 {
+    private readonly AIServiceInterface $service;
+
+    /**
+     * @throws BindingResolutionException
+     */
+    public function __construct()
+    {
+        $this->service = app()->make(AIServiceInterface::class, ['aiService' => 'OpenAI']);
+    }
+
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $moderation = OpenAI::moderations()->create([
-            'model' => 'text-moderation-latest',
-            'input' => $value,
-        ]);
+        $moderationDto = $this->service->moderate($value);
 
-        if ($moderation->results[0]->flagged === true) {
+        if ($moderationDto->moderation->flagged === true) {
             $fail('This question violates OpenAI\'s policies. Please try another question.');
         }
 
-        $response = (new OpenAIService)
+        $response = $this->service
             ->messages('system', Prompt::where('category', 'moderation')->first()->prompt)
             ->messages('user', $value)
-            ->user(request()->user())
-            ->create();
+            ->createChat();
 
-        if (isset($response['flagged']) && $response['flagged'] === true) {
-            $fail($response['message']);
+        if (property_exists($response, 'moderation') && $response->moderation->flagged === true) {
+            $fail($response->moderation->message);
         }
     }
 }
