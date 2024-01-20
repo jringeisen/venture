@@ -31,6 +31,9 @@ Route::prefix('student')
 
             Route::patch('/students/{student}', [StudentController::class, 'update'])->name('students.update');
 
+            Route::post('/activity/update', [StudentController::class, 'updateActivity'])->name('students.activity.update');
+            Route::post('/activity/persist', [StudentController::class, 'persistActivity'])->name('students.activity.persist');
+
             Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
         });
     });
