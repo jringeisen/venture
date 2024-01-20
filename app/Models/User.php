@@ -68,4 +68,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->subscribed() && $this->students->count() >= $this->subscriptionQuantity();
     }
+
+    public function activeTime(): HasMany
+    {
+        return $this->hasMany(ActiveTime::class);
+    }
 }
