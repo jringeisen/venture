@@ -94,6 +94,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
+import { onMounted } from 'vue';
 
 defineOptions({
     layout: AuthenticatedLayout
@@ -101,6 +102,10 @@ defineOptions({
 
 defineProps({
     timezones: Array,
+});
+
+onMounted(() => {
+    setUserTimezone();
 });
 
 const form = useForm({
@@ -118,6 +123,10 @@ const submit = () => {
         ...data,
         grade: parseInt(data.grade),
         age: parseInt(data.age),
-    })).post(route('students.store'));
+    })).post(route('parent.users.store'));
+}
+
+const setUserTimezone = () => {
+    form.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 </script>

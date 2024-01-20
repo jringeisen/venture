@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -35,7 +35,7 @@ class UserInertiaRequests
             return null;
         }
 
-        return request()->user()?->students->map(function (Student $student) {
+        return request()->user()?->students->map(function (User $student) {
             return [
                 'id' => $student->id,
                 'name' => $student->name,
@@ -49,8 +49,8 @@ class UserInertiaRequests
     protected function navigation(): array
     {
         return [
-            ['name' => 'Dashboard', 'href' => '/dashboard', 'icon' => 'home-icon', 'current' => request()->routeIs('dashboard')],
-            ['name' => 'Students', 'href' => '/students', 'icon' => 'users-icon', 'current' => request()->routeIs('students.*')],
+            ['name' => 'Dashboard', 'href' => route('parent.dashboard'), 'icon' => 'home-icon', 'current' => request()->routeIs('dashboard')],
+            ['name' => 'Students', 'href' => route('parent.users.index'), 'icon' => 'users-icon', 'current' => request()->routeIs('students.*')],
         ];
     }
 }
