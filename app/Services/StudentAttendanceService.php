@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\ActiveTime;
 use App\Models\User;
 use Cache;
+use Carbon\Carbon;
 
 class StudentAttendanceService
 {
@@ -64,11 +65,15 @@ class StudentAttendanceService
         if ($record) {
             $record->update(['total_seconds' => $record->total_seconds + $totalSeconds]);
         } else {
+            $now = Carbon::now();
+
             ActiveTime::insert(
                 [
                     'user_id' => $user->id,
                     'date' => date('Y-m-d'),
-                    'total_seconds' => $totalSeconds
+                    'total_seconds' => $totalSeconds,
+                    'created_at' => $now,
+                    'updated_at' => $now
                 ]
             );
         }

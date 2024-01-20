@@ -14,6 +14,8 @@ class ActiveTime extends Model
     protected $fillable = [
         'total_seconds',
         'user_id',
-        'date'
+        'date',
+        'created_at',
+        'updated_at'
     ];
 }
