@@ -21,11 +21,11 @@ class HandleInertiaRequests extends Middleware
     {
         $values = fn () => [];
 
-        if ($request->user() && is_null($request->user()?->parent_id)) {
+        if ($request->user() && $request->user()->isParent()) {
             $values = new UserInertiaRequests();
         }
 
-        if ($request->user() && ! is_null($request->user()?->parent_id)) {
+        if ($request->user() && $request->user()->isStudent()) {
             $values = new StudentInertiaRequests();
         }
 
