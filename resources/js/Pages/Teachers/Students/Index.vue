@@ -46,6 +46,12 @@
                                                 scope="col"
                                                 class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
                                             >
+                                                Active Time <small>(in minutes)</small>
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
+                                            >
                                                 Age
                                             </th>
                                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -68,6 +74,9 @@
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
                                                 {{ student.prompt_questions_count }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
+                                                10 <!-- TODO: Update after merging in Jonathon's code and updating everything -->
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
                                                 {{ student.age }}
