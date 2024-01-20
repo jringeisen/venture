@@ -169,6 +169,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*
+         * AI
+         */
+        \App\Providers\AIServiceProvider::class,
+        \App\Providers\AIAdapterServiceProvider::class
     ])->toArray(),
 
     /*
