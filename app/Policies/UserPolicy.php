@@ -8,7 +8,8 @@ class UserPolicy
 {
     public function view(User $authUser, User $user): bool
     {
-        return $authUser->id === $user->parent_id;
+        return $authUser->id === $user->parent_id
+            || $authUser->id === $user->id;
     }
 
     public function update(User $authUser, User $user): bool
@@ -19,6 +20,7 @@ class UserPolicy
 
     public function delete(User $authUser, User $user): bool
     {
-        return $authUser->id === $user->parent_id;
+        return $authUser->id === $user->parent_id
+            || $authUser->id === $user->id;
     }
 }
