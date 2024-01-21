@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Services\Dto\AIContentDto;
 
 /**
- * @property Student|User $user; TODO: Will need to update after Jonathon's code changes.
+ * @property Student|User $user;
  * @property PromptQuestion $question;
  */
 interface AIServiceInterface {

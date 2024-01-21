@@ -20,7 +20,7 @@ class OpenAIAdapter implements AIAdapterInterface
     /** @var Collection<OpenAIMessageObject> $messages */
     protected Collection $messages;
 
-    protected readonly Student|User $user; // TODO: Will need to update this after Jonathon's code is merged
+    protected readonly Student|User $user;
 
     public function __construct()
     {
@@ -96,7 +96,7 @@ class OpenAIAdapter implements AIAdapterInterface
         return $this;
     }
 
-    public function setUser(Student|User $user): self // TODO: Will need to update this after Jonathon's code is merged
+    public function setUser(Student|User $user): self
     {
         $this->user = $user;
 
