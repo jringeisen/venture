@@ -257,7 +257,7 @@
 import {Link, router, usePage} from '@inertiajs/vue3';
 import {ref} from 'vue';
 import {Dialog, DialogPanel, TransitionChild, TransitionRoot} from '@headlessui/vue';
-import {Bars3Icon, BookOpenIcon, DocumentIcon, HomeIcon, UsersIcon, XMarkIcon} from '@heroicons/vue/24/outline';
+import {Bars3Icon, BookOpenIcon, ChatBubbleLeftEllipsisIcon, DocumentIcon, HomeIcon, UsersIcon, XMarkIcon} from '@heroicons/vue/24/outline';
 import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
@@ -277,6 +277,7 @@ const iconMap = {
     'users-icon': UsersIcon,
     'document-icon': DocumentIcon,
     'book-open': BookOpenIcon,
+    'chat-bubble-left-ellipsis': ChatBubbleLeftEllipsisIcon,
 };
 
 const getIconComponent = (iconName) => {

@@ -68,6 +68,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasManyThrough(PromptAnswer::class, PromptQuestion::class);
     }
 
+    public function feedback(): HasMany
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
     protected function timezone(): Attribute
     {
         return Attribute::make(

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Billing\BillingPortalController;
 use App\Http\Controllers\Billing\QuantityExceededController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\Guest\DownloadPlannerController;
 use App\Http\Controllers\Guest\NewsletterController;
 use App\Http\Controllers\Guest\PlannerController;
@@ -41,6 +42,14 @@ Route::middleware('auth')->group(function () {
     Route::middleware('verified')->group(function () {
         Route::get('/billing-portal', BillingPortalController::class)->name('billing.portal');
         Route::get('/quantity-exceeded', QuantityExceededController::class)->name('quantity.exceeded');
+
+        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+        Route::get('/feedback/create', [FeedbackController::class, 'create'])->name('feedback.create');
+        Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+        Route::get('/feedback/{feedback}', [FeedbackController::class, 'show'])->name('feedback.show');
+        Route::get('/feedback/{feedback}/edit', [FeedbackController::class, 'edit'])->name('feedback.edit');
+        Route::patch('/feedback/{feedback}', [FeedbackController::class, 'update'])->name('feedback.update');
+        Route::delete('/feedback/{feedback}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
 
         Route::middleware('parent')->prefix('parent')->name('parent.')->group(function () {
             Route::get('/dashboard', DashboardController::class)->name('dashboard');
