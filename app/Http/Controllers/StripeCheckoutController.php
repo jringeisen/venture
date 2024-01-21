@@ -19,7 +19,7 @@ class StripeCheckoutController extends Controller
             ->quantity($request->student_count)
             ->allowPromotionCodes()
             ->checkout([
-                'success_url' => route('dashboard'),
+                'success_url' => route('parent.dashboard'),
                 'cancel_url' => route('subscription.checkout.options'),
             ]);
     }

@@ -16,10 +16,10 @@ class TopicController extends Controller
     {
         return Inertia::render('Student/Topic', [
             'topic' => Str::slug($topic),
-            'questions' => PromptQuestion::where('student_id', $request->user()->id)
+            'questions' => PromptQuestion::where('user_id', $request->user()->id)
                 ->when(
                     $topic !== 'all',
-                    fn($query) => $query->whereHas('promptAnswer', function (Builder $query) use ($topic) {
+                    fn ($query) => $query->whereHas('promptAnswer', function (Builder $query) use ($topic) {
                         $query->where('subject_category', Str::replace('-', ' ', $topic));
                     })
                 )

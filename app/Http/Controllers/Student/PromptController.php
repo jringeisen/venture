@@ -23,7 +23,7 @@ class PromptController extends Controller
             'question' => $request->question,
         ]);
 
-        $request->user()->user->increment('total_questions_asked');
+        $request->user()->parent->increment('total_questions_asked');
 
         return Inertia::render('Student/Prompts/Index', [
             'canAskQuestions' => $request->user()->canAskQuestions(),

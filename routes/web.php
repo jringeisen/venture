@@ -11,6 +11,11 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeCheckoutController;
 use App\Http\Controllers\StripeCheckoutOptionsController;
+use App\Http\Controllers\Student\PromptController;
+use App\Http\Controllers\Student\Prompts\GetContentController;
+use App\Http\Controllers\Student\Prompts\GetQuestionsController;
+use App\Http\Controllers\Student\Prompts\GetSubjectController;
+use App\Http\Controllers\Student\TopicController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,19 +39,34 @@ Route::middleware('guest')->group(static function () {
 Route::middleware('auth')->group(function () {
     // Verified Routes...
     Route::middleware('verified')->group(function () {
-        Route::get('/dashboard', DashboardController::class)->name('dashboard');
-
         Route::get('/billing-portal', BillingPortalController::class)->name('billing.portal');
         Route::get('/quantity-exceeded', QuantityExceededController::class)->name('quantity.exceeded');
 
-        Route::prefix('students')->group(function () {
-            Route::get('/', [StudentController::class, 'index'])->name('students.index');
-            Route::get('/create', [StudentController::class, 'create'])->name('students.create');
-            Route::post('/', [StudentController::class, 'store'])->name('students.store');
-            Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
-            Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
-            Route::patch('/{student}', [StudentController::class, 'update'])->name('students.update');
-            Route::delete('/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
+        Route::middleware('parent')->prefix('parent')->name('parent.')->group(function () {
+            Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+            Route::prefix('users')->name('users.')->group(function () {
+                Route::get('/', [StudentController::class, 'index'])->name('index');
+                Route::get('/create', [StudentController::class, 'create'])->name('create');
+                Route::post('/', [StudentController::class, 'store'])->name('store');
+                Route::get('/{user}', [StudentController::class, 'show'])->name('show');
+                Route::get('/{user}/edit', [StudentController::class, 'edit'])->name('edit');
+                Route::patch('/{user}', [StudentController::class, 'update'])->name('update');
+                Route::delete('/{user}', [StudentController::class, 'destroy'])->name('destroy');
+            });
+        });
+
+        Route::middleware('student')->prefix('student')->name('student.')->group(function () {
+            Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
+            Route::post('/prompts', [PromptController::class, 'store'])->name('prompts.store');
+            Route::post('/prompts/subject', GetSubjectController::class)->name('prompts.subject');
+            Route::get('/prompts/content', GetContentController::class)->name('prompts.content');
+            Route::post('/prompts/questions', GetQuestionsController::class)->name('prompts.questions');
+
+            Route::get('/topic/{topic}', [TopicController::class, 'show'])->name('topic.show');
+
+            Route::patch('/users/{user}', [StudentController::class, 'update'])->name('users.update');
         });
 
         Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');

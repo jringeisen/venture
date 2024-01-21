@@ -44,7 +44,10 @@ const form = useForm({
 });
 
 const updateUser = () => {
-    form.patch(route('student.students.update', page.props.auth.user));
+    form.transform((data) => ({
+        ...page.props.auth.user,
+        ...data,
+    })).patch(route('student.users.update', page.props.auth.user));
 }
 
 const isClient = ref(false);
