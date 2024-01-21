@@ -67,6 +67,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/topic/{topic}', [TopicController::class, 'show'])->name('topic.show');
 
             Route::patch('/users/{user}', [StudentController::class, 'update'])->name('users.update');
+
+            Route::post('/activity/update', [StudentController::class, 'updateActivity'])->name('students.activity.update');
+            Route::post('/activity/persist', [StudentController::class, 'persistActivity'])->name('students.activity.persist');
         });
 
         Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');

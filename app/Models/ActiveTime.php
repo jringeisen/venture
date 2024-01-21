@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,8 @@ class ActiveTime extends Model
 
     protected $table = 'active_time';
 
+    protected $appends = ['total_minutes'];
+
     protected $fillable = [
         'total_seconds',
         'user_id',
@@ -18,4 +21,9 @@ class ActiveTime extends Model
         'created_at',
         'updated_at'
     ];
+
+    protected function getTotalMinutesAttribute(): int
+    {
+        return floor($this->total_seconds / 60);
+    }
 }

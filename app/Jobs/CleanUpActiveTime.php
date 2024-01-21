@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Student;
 use App\Models\User;
 use App\Services\StudentAttendanceService;
 use Cache;
@@ -11,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use JsonException;
 
 class CleanUpActiveTime implements ShouldQueue
 {
@@ -18,35 +20,40 @@ class CleanUpActiveTime implements ShouldQueue
 
     /**
      * Execute the job.
+     * @throws JsonException
      */
     public function handle(): void
     {
-        // TODO: Refactor to only students after Jonathon's code merged
-        $students = User::all();
+        $students = User::whereNotNull('parent_id')->get();
 
         $yesterday = Carbon::now()->subDay()->format('Y-m-d');
 
         foreach ($students as $student) {
-            $date = date('Y-m-d');
+            $date = Carbon::now()
+                ->setTimezone($student->timezone)
+                ->format('Y-m-d');
 
             $this->persistActiveTime($student, $date);
             $this->persistActiveTime($student, $yesterday);
         }
     }
 
-    private function persistActiveTime(User $student, string $date): void
+    /**
+     * @throws JsonException
+     */
+    private function persistActiveTime(User|Student $student, string $date): void
     {
         $now = time();
 
         $cacheRecord = Cache::get("$student->id-$date");
 
         if ($cacheRecord) {
-            $cacheRecordJson = json_decode($cacheRecord);
+            $cacheRecordJson = json_decode($cacheRecord, false, 512, JSON_THROW_ON_ERROR);
 
             $lastUpdatedUnixTime = $cacheRecordJson->lastUpdatedTime;
 
             if (($now - $lastUpdatedUnixTime) > 60) {
-                (new StudentAttendanceService())->persist($cacheRecordJson->totalSeconds, $date);
+                (new StudentAttendanceService())->persist($student, $cacheRecordJson->totalSeconds, $date);
             }
         }
     }

@@ -3,17 +3,22 @@
 namespace App\Services;
 
 use App\Models\ActiveTime;
+use App\Models\Student;
 use App\Models\User;
 use Cache;
 use Carbon\Carbon;
+use JsonException;
 
 class StudentAttendanceService
 {
-    public function update(int $totalSeconds): void
+    /**
+     * @throws JsonException
+     */
+    public function update(User|Student $user, int $totalSeconds): void
     {
-        $user = User::find(1); // TODO: Replace with user passed through request once Jonathon's MR finished.
-
-        $date = date('Y-m-d');
+        $date = Carbon::now()
+            ->setTimezone($user->timezone)
+            ->format('Y-m-d');
 
         $cacheRecordExists = Cache::has("$user->id-$date");
 
@@ -22,12 +27,12 @@ class StudentAttendanceService
         } else {
             $cacheRecord = Cache::get("$user->id-$date");
 
-            $cacheRecordJson = json_decode($cacheRecord);
+            $cacheRecordJson = json_decode($cacheRecord, false, 512, JSON_THROW_ON_ERROR);
 
             if ($totalSeconds < $cacheRecordJson->totalSeconds) {
                 // The time has been reset. So persist the last recorded total seconds and reset the cache
                 // with the current value.
-                $this->persist($cacheRecordJson->totalSeconds);
+                $this->persist($user, $cacheRecordJson->totalSeconds);
                 $this->putInCache($user, $totalSeconds);
             } else {
                 $this->updateCache($user, $totalSeconds, $cacheRecordJson->created);
@@ -35,31 +40,34 @@ class StudentAttendanceService
         }
     }
 
-    private function putInCache(User $user, int $totalSeconds): void
+    /**
+     * @throws JsonException
+     */
+    private function putInCache(User|Student $user, int $totalSeconds): void
     {
-        $date = date('Y-m-d');
+        $date = Carbon::now()
+            ->setTimezone($user->timezone)
+            ->format('Y-m-d');
         $time = time();
 
         Cache::put(
             "$user->id-$date",
-            json_encode(
-                [
-                    'totalSeconds' => $totalSeconds,
-                    'created' => $time,
-                    'lastUpdatedTime' => $time
-                ]
-            )
+            json_encode([
+                'totalSeconds' => $totalSeconds,
+                'created' => $time,
+                'lastUpdatedTime' => $time
+            ], JSON_THROW_ON_ERROR)
         );
     }
 
-    public function persist(int $totalSeconds, string|null $date = null): void
+    public function persist(User|Student $user, int $totalSeconds, string|null $date = null): void
     {
-        $user = User::find(1); // TODO: Replace with user passed through request once Jonathon's MR finished.
-
-        $date = $date ?? date('Y-m-d');
+        $date = $date ?? Carbon::now()
+            ->setTimezone($user->timezone)
+            ->format('Y-m-d');
 
         $record = ActiveTime::where('user_id', $user->id)
-            ->where('date', date('Y-m-d'))
+            ->where('date', $date)
             ->first();
 
         if ($record) {
@@ -70,7 +78,7 @@ class StudentAttendanceService
             ActiveTime::insert(
                 [
                     'user_id' => $user->id,
-                    'date' => date('Y-m-d'),
+                    'date' => $date,
                     'total_seconds' => $totalSeconds,
                     'created_at' => $now,
                     'updated_at' => $now
@@ -81,20 +89,23 @@ class StudentAttendanceService
         Cache::delete("$user->id-$date");
     }
 
-    private function updateCache(User $user, int $totalSeconds, int $createdTime): void
+    /**
+     * @throws JsonException
+     */
+    private function updateCache(User|Student $user, int $totalSeconds, int $createdTime): void
     {
-        $date = date('Y-m-d');
+        $date = Carbon::now()
+            ->setTimezone($user->timezone)
+            ->format('Y-m-d');
         $time = time();
 
         Cache::put(
             "$user->id-$date",
-            json_encode(
-                [
-                    'totalSeconds' => $totalSeconds,
-                    'created' => $createdTime,
-                    'lastUpdatedTime' => $time
-                ]
-            )
+            json_encode([
+                'totalSeconds' => $totalSeconds,
+                'created' => $createdTime,
+                'lastUpdatedTime' => $time
+            ], JSON_THROW_ON_ERROR)
         );
     }
 }

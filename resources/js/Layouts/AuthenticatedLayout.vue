@@ -321,6 +321,8 @@ const beforeunload = function() {
             { totalSeconds: elapsedTime / 1000 }
         );
     }
+
+    removeStudentActiveListeners();
 };
 
 const createStudentActiveListeners = () => {
@@ -329,7 +331,15 @@ const createStudentActiveListeners = () => {
     window.addEventListener('beforeunload', beforeunload);
 }
 
+const removeStudentActiveListeners = () => {
+    window.removeEventListener('focus', focus);
+    window.removeEventListener('blur', blur);
+    window.removeEventListener('beforeunload', beforeunload);
+}
+
 if (page.props.auth.type === 'student') {
     createStudentActiveListeners();
+} else {
+    removeStudentActiveListeners();
 }
 </script>
