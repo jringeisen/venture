@@ -173,7 +173,7 @@
                                 class="absolute bottom-14 border bg-white ml-3 w-11/12 shadow-lg py-2 rounded-lg dark:bg-neutral-700 dark:text-neutral-400 dark:border-none"
                             >
                                 <li
-                                    @click.prevent="router.post($page.props.auth.type === 'teacher' ? route('user.logout') : route('student.logout'))"
+                                    @click.prevent="router.post(route('logout'))"
                                     class="cursor-pointer px-4 py-1 hover:bg-gray-100 dark:hover:bg-neutral-600"
                                 >
                                     Logout
@@ -226,7 +226,7 @@
                     class="absolute top-10 border bg-white ml-3 w-40 shadow-lg py-2 rounded-lg"
                 >
                     <li
-                        @click.prevent="router.post($page.props.auth.type === 'teacher' ? route('user.logout') : route('student.logout'))"
+                        @click.prevent="router.post(route('logout'))"
                         class="cursor-pointer px-4 py-1 hover:bg-gray-100"
                     >
                         Logout

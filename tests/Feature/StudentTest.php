@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Student;
 use App\Models\User;
 
 use function Pest\Faker\fake;
@@ -10,7 +9,7 @@ it('allows parent to view the student index page', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/students');
+        ->get('/parent/users');
 
     $response->assertOk();
 });
@@ -20,7 +19,7 @@ it('allows parent to view the student create page', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/create');
+        ->get('/parent/users/create');
 
     $response->assertOk();
 });
@@ -28,13 +27,13 @@ it('allows parent to view the student create page', function () {
 it('allows parent to view the student edit page', function () {
     $user = User::factory()->create();
 
-    $student = Student::factory()->create([
-        'user_id' => $user->id,
+    $student = User::factory()->create([
+        'parent_id' => $user->id,
     ]);
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/'.$student->id.'/edit');
+        ->get('/parent/users/'.$student->id.'/edit');
 
     $response->assertOk();
 });
@@ -43,13 +42,13 @@ it('does not allow parent to view the student edit page for a student that is no
     $user = User::factory()->create();
     $userTwo = User::factory()->create();
 
-    $student = Student::factory()->create([
-        'user_id' => $userTwo->id,
+    $student = User::factory()->create([
+        'parent_id' => $userTwo->id,
     ]);
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/'.$student->id.'/edit');
+        ->get('/parent/users/'.$student->id.'/edit');
 
     $response->assertForbidden();
 });
@@ -57,13 +56,13 @@ it('does not allow parent to view the student edit page for a student that is no
 it('allows parent to view the student show page', function () {
     $user = User::factory()->create();
 
-    $student = Student::factory()->create([
-        'user_id' => $user->id,
+    $student = User::factory()->create([
+        'parent_id' => $user->id,
     ]);
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/'.$student->id);
+        ->get('/parent/users/'.$student->id);
 
     $response->assertOk();
 });
@@ -72,13 +71,13 @@ it('does not allow parent to view the student show page for a student that is no
     $user = User::factory()->create();
     $userTwo = User::factory()->create();
 
-    $student = Student::factory()->create([
-        'user_id' => $userTwo->id,
+    $student = User::factory()->create([
+        'parent_id' => $userTwo->id,
     ]);
 
     $response = $this
         ->actingAs($user)
-        ->get('/students/'.$student->id);
+        ->get('/parent/users/'.$student->id);
 
     $response->assertForbidden();
 });
@@ -90,7 +89,7 @@ it('allows parent to create a student', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/students', [
+        ->post('/parent/users', [
             'name' => fake()->name,
             'username' => $username,
             'password' => 'password',
@@ -102,9 +101,9 @@ it('allows parent to create a student', function () {
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect('/students');
+        ->assertRedirect('/parent/users');
 
-    $student = Student::where('username', $username)->count();
+    $student = User::where('username', $username)->count();
 
     expect($student)->toBe(1);
 });
@@ -114,7 +113,7 @@ it('validates the parents input when creating a student', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/students');
+        ->post('/parent/users');
 
     $response
         ->assertSessionHasErrors(['name', 'username', 'password', 'grade', 'age', 'timezone']);
@@ -123,13 +122,13 @@ it('validates the parents input when creating a student', function () {
 it('does not allow parent to create a student with a username that already exists', function () {
     $user = User::factory()->create();
 
-    $student = Student::factory()->create([
-        'user_id' => $user->id,
+    $student = User::factory()->create([
+        'parent_id' => $user->id,
     ]);
 
     $response = $this
         ->actingAs($user)
-        ->post('/students', [
+        ->post('/parent/users', [
             'name' => fake()->name,
             'username' => $student->username,
             'password' => 'password',
@@ -145,13 +144,13 @@ it('does not allow parent to create a student with a username that already exist
 it('allows the parent to update one of their students', function () {
     $user = User::factory()->create();
 
-    $student = Student::factory()->create([
-        'user_id' => $user->id,
+    $student = User::factory()->create([
+        'parent_id' => $user->id,
     ]);
 
     $response = $this
         ->actingAs($user)
-        ->patch('/students/'.$student->id, [
+        ->patch('/parent/users/'.$student->id, [
             'name' => 'Test User',
             'username' => 'testuser',
             'password' => 'password',
@@ -163,7 +162,7 @@ it('allows the parent to update one of their students', function () {
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect('/students');
+        ->assertRedirect('/parent/users');
 
     $student->refresh();
 
@@ -178,11 +177,11 @@ it('does not allow parent to update a student thats not theirs', function () {
     $user = User::factory()->create();
     $userTwo = User::factory()->create();
 
-    $student = Student::factory()->create(['user_id' => $userTwo->id]);
+    $student = User::factory()->create(['parent_id' => $userTwo->id]);
 
     $response = $this
         ->actingAs($user)
-        ->patch('/students/'.$student->id, [
+        ->patch('/parent/users/'.$student->id, [
             'name' => 'Test User',
             'username' => 'testuser',
             'password' => 'password',
@@ -198,18 +197,16 @@ it('does not allow parent to update a student thats not theirs', function () {
 it('allows the parent to delete a student', function () {
     $user = User::factory()->create();
 
-    $student = Student::factory()->create([
-        'user_id' => $user->id,
-    ]);
+    $student = User::factory()->create(['parent_id' => $user->id]);
 
-    $studentCount = Student::count();
+    $studentCount = User::where('parent_id', $user->id)->count();
     expect($studentCount)->toBe(1);
 
     $this
         ->actingAs($user)
-        ->delete('/students/'.$student->id);
+        ->delete('/parent/users/'.$student->id);
 
-    $studentCount = Student::count();
+    $studentCount = User::where('parent_id', $user->id)->count();
 
     expect($studentCount)->toBe(0);
 });
@@ -218,11 +215,11 @@ it('does not allow parent to delete a student thats not theirs', function () {
     $user = User::factory()->create();
     $userTwo = User::factory()->create();
 
-    $student = Student::factory()->create(['user_id' => $userTwo->id]);
+    $student = User::factory()->create(['parent_id' => $userTwo->id]);
 
     $response = $this
         ->actingAs($user)
-        ->delete('/students/'.$student->id);
+        ->delete('/parent/users/'.$student->id);
 
     $response->assertForbidden();
 });

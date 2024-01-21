@@ -3,12 +3,12 @@
 namespace App\Services;
 
 use App\Models\PromptAnswer;
-use App\Models\Student;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class StudentService
 {
-    private Student $student;
+    private User $student;
 
     private PieChartService $pieChartService;
 
@@ -17,7 +17,7 @@ class StudentService
         $this->pieChartService = new PieChartService;
     }
 
-    public function student(Student $student): self
+    public function student(User $student): self
     {
         $this->student = $student;
 
@@ -45,8 +45,8 @@ class StudentService
     {
         return $this->student->promptAnswers()
             ->whereNotNull('subject_category')
-            ->select('student_id', 'subject_category', DB::raw('count(*) as total'))
-            ->groupBy('student_id', 'subject_category')
+            ->select('user_id', 'subject_category', DB::raw('count(*) as total'))
+            ->groupBy('user_id', 'subject_category')
             ->orderBy('total', 'desc')
             ->get()
             ->pluck('total', 'subject_category')

@@ -18,11 +18,18 @@ class User extends Authenticatable implements MustVerifyEmail
     use Billable, HasApiTokens, HasFactory, Impersonatable, Notifiable;
 
     protected $fillable = [
+        'parent_id',
         'name',
         'email',
+        'username',
+        'grade',
+        'age',
+        'motivational_message',
+        'current_streak',
         'password',
         'timezone',
         'total_questions_asked',
+        'email_verified_at',
     ];
 
     protected $hidden = [
@@ -31,18 +38,34 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $casts = [
+        'name' => 'string',
+        'username' => 'string',
+        'grade' => 'integer',
+        'age' => 'integer',
+        'motivational_message' => 'datetime',
+        'current_streak' => 'integer',
         'email_verified_at' => 'datetime',
         'total_questions_asked' => 'integer',
     ];
 
-    public function students(): HasMany
+    public function parent()
     {
-        return $this->hasMany(Student::class);
+        return $this->belongsTo(User::class, 'parent_id');
     }
 
-    public function promptQuestions(): HasManyThrough
+    public function students(): HasMany
     {
-        return $this->hasManyThrough(PromptQuestion::class, Student::class);
+        return $this->hasMany(User::class, 'parent_id');
+    }
+
+    public function promptQuestions(): HasMany
+    {
+        return $this->hasMany(PromptQuestion::class);
+    }
+
+    public function promptAnswers(): HasManyThrough
+    {
+        return $this->hasManyThrough(PromptAnswer::class, PromptQuestion::class);
     }
 
     protected function timezone(): Attribute
@@ -72,5 +95,28 @@ class User extends Authenticatable implements MustVerifyEmail
     public function activeTime(): HasMany
     {
         return $this->hasMany(ActiveTime::class);
+    }
+
+    public function isParent(): bool
+    {
+        return is_null($this->parent_id);
+    }
+
+    public function isStudent(): bool
+    {
+        return ! is_null($this->parent_id);
+    }
+
+    public function canAskQuestions(): bool
+    {
+        if ($this->parent->subscribed()) {
+            return true;
+        }
+
+        if (! $this->parent->subscribed() && $this->parent->total_questions_asked < config('app.student_free_question_count')) {
+            return true;
+        }
+
+        return false;
     }
 }
