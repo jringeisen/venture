@@ -13,5 +13,6 @@ use App\Services\Dto\AIContentDto;
  */
 interface AIServiceInterface {
     public function createChat(): AIContentDto;
+
     public function moderate(mixed $input): AIContentDto;
 }
