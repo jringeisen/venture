@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FeedbackRequest;
-use Inertia\Inertia;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class FeedbackController extends Controller
 {
@@ -44,14 +46,18 @@ class FeedbackController extends Controller
         //
     }
 
-    public function edit()
+    public function edit(Feedback $feedback): Response
     {
-        //
+        return Inertia::render('Feedback/Edit', [
+            'feedback' => $feedback,
+        ]);
     }
 
-    public function update()
+    public function update(FeedbackRequest $request, Feedback $feedback)
     {
-        //
+        $feedback->update($request->validated());
+
+        return to_route('feedback.index');
     }
 
     public function destroy()

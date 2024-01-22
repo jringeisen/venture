@@ -10,4 +10,13 @@ enum FeedbackStatuses: string
     case RESOLVED = 'resolved';
     case REOPENED = 'reopened';
     case CANCELLED = 'cancelled';
+
+    public static function toSelectArray(): array
+    {
+        return collect(self::cases())
+            ->mapWithKeys(function ($case) {
+                return [$case->value => ucwords(str_replace('_', ' ', $case->name))];
+            })
+            ->toArray();
+    }
 }
