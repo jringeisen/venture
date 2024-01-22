@@ -15,6 +15,7 @@ use App\Http\Controllers\Student\PromptController;
 use App\Http\Controllers\Student\Prompts\GetContentController;
 use App\Http\Controllers\Student\Prompts\GetQuestionsController;
 use App\Http\Controllers\Student\Prompts\GetSubjectController;
+use App\Http\Controllers\Student\StudentActivityController;
 use App\Http\Controllers\Student\TopicController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -68,8 +69,8 @@ Route::middleware('auth')->group(function () {
 
             Route::patch('/users/{user}', [StudentController::class, 'update'])->name('users.update');
 
-            Route::post('/activity/update', [StudentController::class, 'updateActivity'])->name('students.activity.update');
-            Route::post('/activity/persist', [StudentController::class, 'persistActivity'])->name('students.activity.persist');
+            Route::post('/activity/update', [StudentActivityController::class, 'update'])->name('activity.update');
+            Route::post('/activity/persist', [StudentActivityController::class, 'store'])->name('activity.store');
         });
 
         Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');

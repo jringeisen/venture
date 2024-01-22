@@ -293,23 +293,23 @@ const showBetaPricing = () => {
 let startDate = new Date();
 let elapsedTime = 0;
 
-const focus = function() {
+const focus = function () {
     startDate = new Date();
 };
 
-const blur = function() {
+const blur = function () {
     const endDate = new Date();
     const spentTime = endDate.getTime() - startDate.getTime();
 
     elapsedTime += spentTime;
 
     axios.post(
-        '/student/activity/update',
-        { totalSeconds: elapsedTime / 1000 }
+        route('student.activity.update'),
+        {totalSeconds: elapsedTime / 1000}
     );
 };
 
-const beforeunload = function() {
+const beforeunload = function () {
     const endDate = new Date();
     const spentTime = endDate.getTime() - startDate.getTime();
 
@@ -317,8 +317,8 @@ const beforeunload = function() {
 
     if (elapsedTime && elapsedTime > 0) {
         axios.post(
-            '/student/activity/persist',
-            { totalSeconds: elapsedTime / 1000 }
+            route('student.activity.store'),
+            {totalSeconds: elapsedTime / 1000}
         );
     }
 

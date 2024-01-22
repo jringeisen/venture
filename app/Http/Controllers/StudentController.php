@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StudentAttendanceRequest;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Timezone;
 use App\Models\User;
-use App\Services\StudentAttendanceService;
 use App\Services\StudentService;
 use App\Services\WordCountService;
 use Carbon\Carbon;
@@ -18,14 +16,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
-use JsonException;
 
 class StudentController extends Controller
 {
     public function __construct(
-        private readonly StudentService           $studentService,
-        private readonly WordCountService         $wordCountService,
-        private readonly StudentAttendanceService $attendanceService
+        private readonly StudentService   $studentService,
+        private readonly WordCountService $wordCountService
     )
     {
     }
@@ -104,27 +100,6 @@ class StudentController extends Controller
         $user->delete();
 
         return to_route('parent.users.index');
-    }
-
-    public function persistActivity(StudentAttendanceRequest $request): array
-    {
-        $data = $request->validated();
-
-        $this->attendanceService->persist($request->user(), $data['totalSeconds']);
-
-        return ['message' => 'Okay'];
-    }
-
-    /**
-     * @throws JsonException
-     */
-    public function updateActivity(StudentAttendanceRequest $request): array
-    {
-        $data = $request->validated();
-
-        $this->attendanceService->update($request->user(), $data['totalSeconds']);
-
-        return ['message' => 'Okay'];
     }
 
     public function update(StudentUpdateRequest $request, User $user): RedirectResponse

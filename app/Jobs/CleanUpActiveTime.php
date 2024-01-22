@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Student;
 use App\Models\User;
 use App\Services\StudentAttendanceService;
 use Cache;
@@ -18,12 +17,16 @@ class CleanUpActiveTime implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private StudentAttendanceService $studentAttendanceService;
+
     /**
      * Execute the job.
      * @throws JsonException
      */
-    public function handle(): void
+    public function handle(StudentAttendanceService $studentAttendanceService): void
     {
+        $this->studentAttendanceService = $studentAttendanceService;
+
         $students = User::whereNotNull('parent_id')->get();
 
         $yesterday = Carbon::now()->subDay()->format('Y-m-d');
@@ -41,7 +44,7 @@ class CleanUpActiveTime implements ShouldQueue
     /**
      * @throws JsonException
      */
-    private function persistActiveTime(User|Student $student, string $date): void
+    private function persistActiveTime(User $student, string $date): void
     {
         $now = time();
 
@@ -53,7 +56,7 @@ class CleanUpActiveTime implements ShouldQueue
             $lastUpdatedUnixTime = $cacheRecordJson->lastUpdatedTime;
 
             if (($now - $lastUpdatedUnixTime) > 60) {
-                (new StudentAttendanceService())->persist($student, $cacheRecordJson->totalSeconds, $date);
+                $this->studentAttendanceService->persist($student, $cacheRecordJson->totalSeconds, $date);
             }
         }
     }
