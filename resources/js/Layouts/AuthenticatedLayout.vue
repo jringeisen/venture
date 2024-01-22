@@ -288,4 +288,58 @@ const showBetaPricing = () => {
         && !page.props.auth.isSubscribed
         && page.url !== '/subscription-checkout-options';
 }
+
+
+let startDate = new Date();
+let elapsedTime = 0;
+
+const focus = function () {
+    startDate = new Date();
+};
+
+const blur = function () {
+    const endDate = new Date();
+    const spentTime = endDate.getTime() - startDate.getTime();
+
+    elapsedTime += spentTime;
+
+    axios.post(
+        route('student.activity.update'),
+        {totalSeconds: elapsedTime / 1000}
+    );
+};
+
+const beforeunload = function () {
+    const endDate = new Date();
+    const spentTime = endDate.getTime() - startDate.getTime();
+
+    elapsedTime += spentTime;
+
+    if (elapsedTime && elapsedTime > 0) {
+        axios.post(
+            route('student.activity.store'),
+            {totalSeconds: elapsedTime / 1000}
+        );
+    }
+
+    removeStudentActiveListeners();
+};
+
+const createStudentActiveListeners = () => {
+    window.addEventListener('focus', focus);
+    window.addEventListener('blur', blur);
+    window.addEventListener('beforeunload', beforeunload);
+}
+
+const removeStudentActiveListeners = () => {
+    window.removeEventListener('focus', focus);
+    window.removeEventListener('blur', blur);
+    window.removeEventListener('beforeunload', beforeunload);
+}
+
+if (page.props.auth.type === 'student') {
+    createStudentActiveListeners();
+} else {
+    removeStudentActiveListeners();
+}
 </script>
