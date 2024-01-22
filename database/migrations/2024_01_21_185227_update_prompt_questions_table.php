@@ -22,7 +22,10 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('prompt_questions', static function (Blueprint $table) {
-            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('student_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
         });
     }
 };
