@@ -21,6 +21,7 @@
     "dependencies": {
         "@headlessui/vue": "^1.7.16",
         "@heroicons/vue": "^2.0.18",
+        "@sentry/vue": "^7.40.0",
         "@vue/server-renderer": "^3.3.13",
         "aos": "^2.3.4",
         "apexcharts": "^3.45.1",
