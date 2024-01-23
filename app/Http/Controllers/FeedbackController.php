@@ -44,6 +44,8 @@ class FeedbackController extends Controller
 
     public function edit(Feedback $feedback): Response
     {
+        $this->authorize('update', $feedback);
+
         return Inertia::render('Feedback/Edit', [
             'feedback' => $feedback,
         ]);
