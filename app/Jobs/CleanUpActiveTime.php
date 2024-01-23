@@ -21,6 +21,7 @@ class CleanUpActiveTime implements ShouldQueue
 
     /**
      * Execute the job.
+     *
      * @throws JsonException
      */
     public function handle(StudentAttendanceService $studentAttendanceService): void

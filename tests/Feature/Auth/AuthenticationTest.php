@@ -16,7 +16,7 @@ test('student login screen can be rendered', function () {
 });
 
 test('parents can authenticate using the login screen', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->parent()->create();
 
     $response = $this->post('/login', [
         'login' => $user->email,
