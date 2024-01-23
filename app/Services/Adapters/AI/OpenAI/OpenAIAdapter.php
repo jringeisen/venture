@@ -28,7 +28,6 @@ class OpenAIAdapter implements AIAdapterInterface
     }
 
     /**
-     * @return AIContentDto
      * @throws JsonException
      */
     public function request(): AIContentDto
@@ -57,10 +56,6 @@ class OpenAIAdapter implements AIAdapterInterface
         return $this->convertResponse($decodedResponse);
     }
 
-    /**
-     * @param mixed $response
-     * @return AIContentDto
-     */
     public function convertResponse(mixed $response): AIContentDto
     {
         $dto = new AIContentDto();
@@ -110,10 +105,6 @@ class OpenAIAdapter implements AIAdapterInterface
         return $this;
     }
 
-    /**
-     * @param mixed $input
-     * @return AIContentDto
-     */
     public function moderate(mixed $input): AIContentDto
     {
         $dto = new AIContentDto();

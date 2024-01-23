@@ -65,10 +65,6 @@ class OpenAIService implements AIServiceInterface
         return $this;
     }
 
-    /**
-     * @param mixed $input
-     * @return AIContentDto
-     */
     public function moderate(mixed $input): AIContentDto
     {
         return $this->adapter->moderate($input);
