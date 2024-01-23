@@ -20,10 +20,9 @@ use Inertia\Response;
 class StudentController extends Controller
 {
     public function __construct(
-        private readonly StudentService   $studentService,
+        private readonly StudentService $studentService,
         private readonly WordCountService $wordCountService
-    )
-    {
+    ) {
     }
 
     public function index(Request $request): Response
@@ -36,7 +35,7 @@ class StudentController extends Controller
                 }])
                 ->with(
                     'activeTime',
-                    fn(Builder $query) => $query->where(
+                    fn (Builder $query) => $query->where(
                         'date',
                         Carbon::now()
                             ->setTimezone($request->user()->timezone)
@@ -108,7 +107,7 @@ class StudentController extends Controller
 
         $data = $request->validated();
 
-        if (!isset($data['password'])) {
+        if (! isset($data['password'])) {
             $user->update($request->only('name', 'username', 'grade', 'age', 'timezone', 'motivational_message'));
         } else {
             $user->update([

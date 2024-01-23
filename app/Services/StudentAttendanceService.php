@@ -22,7 +22,7 @@ class StudentAttendanceService
 
         $cacheRecordExists = Cache::has("$user->id-$date");
 
-        if (!$cacheRecordExists) {
+        if (! $cacheRecordExists) {
             $this->putInCache($user, $totalSeconds);
         } else {
             $cacheRecord = Cache::get("$user->id-$date");
@@ -55,12 +55,12 @@ class StudentAttendanceService
             json_encode([
                 'totalSeconds' => $totalSeconds,
                 'created' => $time,
-                'lastUpdatedTime' => $time
+                'lastUpdatedTime' => $time,
             ], JSON_THROW_ON_ERROR)
         );
     }
 
-    public function persist(User|Student $user, int $totalSeconds, string|null $date = null): void
+    public function persist(User|Student $user, int $totalSeconds, ?string $date = null): void
     {
         $date = $date ?? Carbon::now()
             ->setTimezone($user->timezone)
@@ -81,7 +81,7 @@ class StudentAttendanceService
                     'date' => $date,
                     'total_seconds' => $totalSeconds,
                     'created_at' => $now,
-                    'updated_at' => $now
+                    'updated_at' => $now,
                 ]
             );
         }
@@ -104,7 +104,7 @@ class StudentAttendanceService
             json_encode([
                 'totalSeconds' => $totalSeconds,
                 'created' => $createdTime,
-                'lastUpdatedTime' => $time
+                'lastUpdatedTime' => $time,
             ], JSON_THROW_ON_ERROR)
         );
     }

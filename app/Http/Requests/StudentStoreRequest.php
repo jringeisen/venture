@@ -10,7 +10,7 @@ class StudentStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:255',
-            'username' => 'required|string|min:3|max:255|unique:students,username',
+            'username' => 'required|string|min:3|max:255|unique:users,username',
             'password' => 'required|string|min:8|max:255|confirmed',
             'password_confirmation' => 'required|string|min:8|max:255',
             'grade' => 'required|numeric|min:1|max:12',

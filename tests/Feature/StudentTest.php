@@ -83,7 +83,7 @@ it('does not allow parent to view the student show page for a student that is no
 });
 
 it('allows parent to create a student', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->parent()->create();
 
     $username = fake()->userName;
 
