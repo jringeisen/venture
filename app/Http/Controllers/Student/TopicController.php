@@ -19,7 +19,7 @@ class TopicController extends Controller
             'questions' => PromptQuestion::where('user_id', $request->user()->id)
                 ->when(
                     $topic !== 'all',
-                    fn ($query) => $query->whereHas('promptAnswer', function (Builder $query) use ($topic) {
+                    fn (Builder $query) => $query->whereHas('promptAnswer', function (Builder $query) use ($topic) {
                         $query->where('subject_category', Str::replace('-', ' ', $topic));
                     })
                 )
