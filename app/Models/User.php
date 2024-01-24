@@ -31,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'timezone',
         'total_questions_asked',
         'email_verified_at',
+        'referred_by',
     ];
 
     protected $hidden = [
@@ -47,6 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'current_streak' => 'integer',
         'email_verified_at' => 'datetime',
         'total_questions_asked' => 'integer',
+        'referred_by' => 'string',
     ];
 
     public function parent(): BelongsTo
