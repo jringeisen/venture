@@ -290,6 +290,7 @@ const showBetaPricing = () => {
         && page.url !== '/subscription-checkout-options';
 }
 
+const isServer = typeof window === 'undefined'
 
 let startDate = new Date();
 let elapsedTime = 0;
@@ -327,15 +328,19 @@ const beforeunload = function () {
 };
 
 const createStudentActiveListeners = () => {
-    window.addEventListener('focus', focus);
-    window.addEventListener('blur', blur);
-    window.addEventListener('beforeunload', beforeunload);
+    if (!isServer) {
+        window.addEventListener('focus', focus);
+        window.addEventListener('blur', blur);
+        window.addEventListener('beforeunload', beforeunload);
+    }
 }
 
 const removeStudentActiveListeners = () => {
-    window.removeEventListener('focus', focus);
-    window.removeEventListener('blur', blur);
-    window.removeEventListener('beforeunload', beforeunload);
+    if (!isServer) {
+        window.removeEventListener('focus', focus);
+        window.removeEventListener('blur', blur);
+        window.removeEventListener('beforeunload', beforeunload);
+    }
 }
 
 if (page.props.auth.type === 'student') {
