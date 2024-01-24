@@ -3,7 +3,8 @@
 namespace App\Services;
 
 use App\Models\User;
-use OpenAI\Laravel\Facades\OpenAI;
+use App\Services\Interfaces\AIServiceInterface;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 class MotivationalMessageService
 {
@@ -11,8 +12,15 @@ class MotivationalMessageService
 
     protected string $timezone;
 
+    protected AIServiceInterface $aIService;
+
+    /**
+     * @throws BindingResolutionException
+     */
     public function __construct(User $user)
     {
+        $this->aIService = app()->make(AIServiceInterface::class, ['aiService' => 'OpenAI']);
+
         $this->user = $user;
         $this->timezone = $user->timezone;
     }
@@ -37,18 +45,13 @@ class MotivationalMessageService
 
     protected function callOpenAI(): string
     {
-        $response = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo-1106',
-            'messages' => [
-                [
-                    'role' => 'system',
-                    'content' => "Using the tone of {$this->getRandomPerson()}, generate a motivational quote for a child that is {$this->user->age} years old.",
-                ],
-            ],
-            'user' => 'user-'.$this->user->id,
-        ]);
+        $this->aIService
+            ->addMessage(
+                'system',
+                "Using the tone of {$this->getRandomPerson()}, generate a motivational quote for a child that is {$this->user->age} years old."
+            );
 
-        return $response->choices[0]->message->content;
+        return $this->aIService->createChat(true)->message;
     }
 
     protected function getRandomPerson(): string

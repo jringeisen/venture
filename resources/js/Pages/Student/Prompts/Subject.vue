@@ -40,7 +40,7 @@ onMounted(() => {
     loading.value = true;
     axios.post('/student/prompts/subject', {question: props.question}).then(response => {
         subject.value = response.data.subject;
-        subCategory.value = response.data.sub_category;
+        subCategory.value = response.data.subCategory;
         loading.value = false;
     });
 });
