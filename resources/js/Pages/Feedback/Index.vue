@@ -77,13 +77,6 @@
                                                         class="absolute bg-white shadow-lg text-left border rounded-lg right-4 -top-6 overflow-hidden"
                                                     >
                                                         <Link
-                                                            :href="route('feedback.show', item.id)"
-                                                            class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
-                                                            as="li"
-                                                        >
-                                                            View
-                                                        </Link>
-                                                        <Link
                                                             :href="route('feedback.edit', item.id)"
                                                             class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
                                                             as="li">
