@@ -4,27 +4,32 @@ namespace App\Http\Controllers\Student\Prompts;
 
 use App\Http\Controllers\Controller;
 use App\Models\Prompt;
-use App\Services\OpenAIService;
+use App\Services\Interfaces\AIServiceInterface;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 
 class GetQuestionsController extends Controller
 {
-    public function __invoke(Request $request, OpenAIService $openAIService)
+    /**
+     * @throws BindingResolutionException
+     */
+    public function __invoke(Request $request)
     {
+        $service = app()->make(AIServiceInterface::class, ['aiService' => 'OpenAI']);
+
         $question = $request->user()->promptQuestions()->latest()->first();
 
-        $response = $openAIService
-            ->messages('system', Prompt::where('category', 'questions')->first()->prompt)
-            ->messages('user', $request->question)
-            ->user($request->user())
+        $response = $service
+            ->addMessage('system', Prompt::where('category', 'questions')->first()->prompt)
+            ->addMessage('user', $request->question)
             ->updateQuestionTokens($question)
-            ->create();
+            ->createChat();
 
-        $question->promptAnswer()->updateOrCreate([
-            'prompt_question_id' => $question->id,
-        ], [
-            'questions' => is_array($response) && isset($response['questions']) ? $response['questions'] : null,
-        ]);
+        $question->promptAnswer()
+            ->updateOrCreate(
+                ['prompt_question_id' => $question->id],
+                ['questions' => $response->questions ?? null]
+            );
 
         return response()->json($response);
     }

@@ -4,27 +4,32 @@ namespace App\Http\Controllers\Student\Prompts;
 
 use App\Http\Controllers\Controller;
 use App\Models\Prompt;
-use App\Services\OpenAIService;
+use App\Services\Interfaces\AIServiceInterface;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 
 class GetSubjectController extends Controller
 {
-    public function __invoke(Request $request, OpenAIService $openAIService)
+    /**
+     * @throws BindingResolutionException
+     */
+    public function __invoke(Request $request)
     {
+        $service = app()->make(AIServiceInterface::class, ['aiService' => 'OpenAI']);
+
         $question = $request->user()->promptQuestions()->latest()->first();
 
-        $response = $openAIService
-            ->messages('system', Prompt::where('category', 'categorize')->first()->prompt)
-            ->messages('user', $request->question)
-            ->user($request->user())
+        $response = $service
+            ->addMessage('system', Prompt::where('category', 'categorize')->first()->prompt)
+            ->addMessage('user', $request->question)
             ->updateQuestionTokens($question)
-            ->create();
+            ->createChat();
 
-        $question->promptAnswer()->updateOrCreate([
-            'prompt_question_id' => $question->id,
-        ], [
-            'subject_category' => strtolower($response['subject']),
-        ]);
+        $question->promptAnswer()
+            ->updateOrCreate(
+                ['prompt_question_id' => $question->id],
+                ['subject_category' => strtolower($response->subject)]
+            );
 
         return response()->json($response);
     }
