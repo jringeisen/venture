@@ -12,7 +12,9 @@ use App\Services\Dto\AIContentDto;
  * @property PromptQuestion $question;
  */
 interface AIServiceInterface {
-    public function createChat(): AIContentDto;
+    public function createChat(bool $isStringResponse = false): AIContentDto;
+
+    public function createStream(): AIContentDto;
 
     public function moderate(mixed $input): AIContentDto;
 }

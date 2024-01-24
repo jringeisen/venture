@@ -29,8 +29,8 @@ class Moderate implements ValidationRule
         }
 
         $response = $this->service
-            ->messages('system', Prompt::where('category', 'moderation')->first()->prompt)
-            ->messages('user', $value)
+            ->addMessage('system', Prompt::where('category', 'moderation')->first()->prompt)
+            ->addMessage('user', $value)
             ->createChat();
 
         if (property_exists($response, 'moderation') && $response->moderation->flagged === true) {

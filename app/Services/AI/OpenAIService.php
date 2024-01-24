@@ -29,11 +29,11 @@ class OpenAIService implements AIServiceInterface
         $this->adapter->setUser($this->user);
     }
 
-    public function createChat(): Dto\AIContentDto
+    public function createChat(bool $isStringResponse = false): Dto\AIContentDto
     {
         try {
             return $this->adapter
-                ->request();
+                ->request($isStringResponse);
         } catch (Exception $e) {
             Log::error('Error in OpenAIServiceService::create: ' . $e->getMessage());
 
@@ -41,7 +41,19 @@ class OpenAIService implements AIServiceInterface
         }
     }
 
-    public function messages(string $role, string $content): self
+    public function createStream(): Dto\AIContentDto
+    {
+        try {
+            return $this->adapter
+                ->requestStream();
+        } catch (Exception $e) {
+            Log::error('Error in OpenAIServiceService::create: ' . $e->getMessage());
+
+            return new AIContentDto();
+        }
+    }
+
+    public function addMessage(string $role, string $content): self
     {
         if (trim($content) === '') {
             throw new InvalidArgumentException('Content cannot be null or empty');

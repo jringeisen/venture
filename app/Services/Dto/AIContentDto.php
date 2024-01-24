@@ -3,6 +3,7 @@
 namespace App\Services\Dto;
 
 use App\Services\Objects\ModerationObject;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AIContentDto
 {
@@ -10,6 +11,8 @@ class AIContentDto
     public readonly string $subCategory;
     public readonly array $questions;
     public readonly ModerationObject $moderation;
+    public readonly string $message;
+    public readonly StreamedResponse $stream;
 
     public function setSubject(string $subject): self
     {
@@ -36,6 +39,20 @@ class AIContentDto
     public function setModeration(ModerationObject $moderationObject): self
     {
         $this->moderation = $moderationObject;
+
+        return $this;
+    }
+
+    public function setMessage(string $message): self
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    public function setStream(StreamedResponse $stream): self
+    {
+        $this->stream = $stream;
 
         return $this;
     }

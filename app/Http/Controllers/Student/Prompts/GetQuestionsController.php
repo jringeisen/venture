@@ -20,8 +20,8 @@ class GetQuestionsController extends Controller
         $question = $request->user()->promptQuestions()->latest()->first();
 
         $response = $service
-            ->messages('system', Prompt::where('category', 'questions')->first()->prompt)
-            ->messages('user', $request->question)
+            ->addMessage('system', Prompt::where('category', 'questions')->first()->prompt)
+            ->addMessage('user', $request->question)
             ->updateQuestionTokens($question)
             ->createChat();
 
