@@ -14,6 +14,7 @@ test('new users can register', function () {
         'email' => 'test@example.com',
         'password' => 'password',
         'password_confirmation' => 'password',
+        'referred_by' => 'facebook',
         'terms_of_service' => true,
     ]);
 
