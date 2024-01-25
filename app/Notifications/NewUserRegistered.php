@@ -39,6 +39,16 @@ class NewUserRegistered extends Notification
 
     public function toSlack(object $notifiable): SlackMessage
     {
+        if ($this->user->isParent()) {
+            return (new SlackMessage)
+                ->text('New Parent Registered: '.$this->user->name.' '.$this->user->email);
+        }
+
+        if ($this->user->isStudent()) {
+            return (new SlackMessage)
+                ->text('New Student Registered: '.$this->user->name.' '.$this->user->email);
+        }
+
         return (new SlackMessage)
             ->text('New User Registered: '.$this->user->name.' '.$this->user->email);
     }

@@ -65,6 +65,36 @@
             </div>
 
             <div class="mt-4">
+                <InputLabel for="referred_by" value="Referred By" />
+
+                <select v-model="form.referred_by" class="w-full border-gray-300 focus:border-primary-gray focus:ring-primary-gray rounded-md shadow-sm dark:focus:border-neutral-900 dark:focus:ring-neutral-900 dark:border-neutral-900 dark:bg-primary-gray dark:text-neutral-400 dark:placeholder:text-neutral-400">
+                    <option value="" disabled>Choose an option:</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="google">Google</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="newsletter">Newsletter</option>
+                    <option value="pinterest">Pinterest</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <InputError class="mt-2" :message="form.errors.referred_by" />
+            </div>
+
+            <div v-if="form.referred_by === 'other'" class="mt-4">
+                <InputLabel for="other" value="Please let us know where you found us." />
+
+                <TextInput
+                    id="other"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.other"
+                    autocomplete="other"
+                />
+
+                <InputError class="mt-2" :message="form.errors.other" />
+            </div>
+
+            <div class="mt-4">
                 <div class="flex items-center space-x-3">
                     <Checkbox
                         id="terms-of-service"
@@ -110,11 +140,18 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    referred_by: '',
+    other: '',
     terms_of_service: false,
 });
 
 const submit = () => {
-    form.post(route('register'), {
+    form
+    .transform((data) => ({
+        ...data,
+        referred_by: data.other ? data.other : data.referred_by,
+    }))
+    .post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
