@@ -35,7 +35,7 @@ class OpenAIService implements AIServiceInterface
             return $this->adapter
                 ->request($isStringResponse);
         } catch (Exception $e) {
-            Log::error('Error in OpenAIServiceService::create: ' . $e->getMessage());
+            Log::error('Error in OpenAIServiceService::create: '.$e->getMessage());
 
             return new AIContentDto();
         }
@@ -47,7 +47,7 @@ class OpenAIService implements AIServiceInterface
             return $this->adapter
                 ->requestStream();
         } catch (Exception $e) {
-            Log::error('Error in OpenAIServiceService::create: ' . $e->getMessage());
+            Log::error('Error in OpenAIServiceService::create: '.$e->getMessage());
 
             return new AIContentDto();
         }

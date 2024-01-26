@@ -243,7 +243,7 @@
                                  :message="$page.props.auth.motivationalMessage"/>
             <div v-if="showBetaPricing()"
                  class="max-w-2xl mx-auto bg-primary-yellow p-4 rounded-lg text-center text-yellow-900">
-                Take advantage of our BETA pricing and get <strong>30% OFF</strong> your first year!
+                Take advantage of our BETA pricing and get <strong>20% OFF</strong> your first year!
                 <Link :href="route('subscription.checkout.options')" class="underline">Upgrade Now!</Link>
             </div>
             <div class="px-4 sm:px-6 lg:px-8">
