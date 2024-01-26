@@ -8,10 +8,15 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class AIContentDto
 {
     public readonly string $subject;
+
     public readonly string $subCategory;
+
     public readonly array $questions;
+
     public readonly ModerationObject $moderation;
+
     public readonly string $message;
+
     public readonly StreamedResponse $stream;
 
     public function setSubject(string $subject): self
@@ -28,7 +33,7 @@ class AIContentDto
         return $this;
     }
 
-    /** @var array<string> $questions */
+    /** @var array<string> */
     public function setQuestions(array $questions): self
     {
         $this->questions = $questions;

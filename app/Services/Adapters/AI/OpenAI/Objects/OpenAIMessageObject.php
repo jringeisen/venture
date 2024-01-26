@@ -5,6 +5,7 @@ namespace App\Services\Adapters\AI\OpenAI\Objects;
 class OpenAIMessageObject
 {
     public readonly string $role;
+
     public readonly string $content;
 
     public function setRole(string $role): self
