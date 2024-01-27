@@ -255,9 +255,17 @@
 
 <script setup>
 import {Link, router, usePage} from '@inertiajs/vue3';
-import {ref} from 'vue';
+import {onMounted, onUnmounted, ref} from 'vue';
 import {Dialog, DialogPanel, TransitionChild, TransitionRoot} from '@headlessui/vue';
-import {Bars3Icon, BookOpenIcon, ChatBubbleLeftEllipsisIcon, DocumentIcon, HomeIcon, UsersIcon, XMarkIcon} from '@heroicons/vue/24/outline';
+import {
+    Bars3Icon,
+    BookOpenIcon,
+    ChatBubbleLeftEllipsisIcon,
+    DocumentIcon,
+    HomeIcon,
+    UsersIcon,
+    XMarkIcon
+} from '@heroicons/vue/24/outline';
 import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
@@ -291,61 +299,123 @@ const showBetaPricing = () => {
 }
 
 const isServer = typeof window === 'undefined'
+const timeoutDuration = 600000;
+const pollDuration = 45000;
+const throttleDuration = 1500;
 
-let startDate = new Date();
-let elapsedTime = 0;
+let startDate = ref(new Date());
+let elapsedTime = ref(0);
+let timeout = ref(null);
+let activityPoll = ref(null);
+let isTimedOut = ref(false);
+let throttled = ref(false);
 
-const focus = function () {
-    startDate = new Date();
+const resetStartDate = function () {
+    startDate.value = new Date();
 };
 
-const blur = function () {
+const updateElapsedTime = function () {
     const endDate = new Date();
-    const spentTime = endDate.getTime() - startDate.getTime();
+    const spentTime = endDate.getTime() - startDate.value.getTime();
 
-    elapsedTime += spentTime;
+    elapsedTime.value += spentTime;
 
     axios.post(
         route('student.activity.update'),
-        {totalSeconds: elapsedTime / 1000}
+        {totalSeconds: elapsedTime.value / 1000}
     );
 };
 
-const beforeunload = function () {
+const persistElapsedTime = function () {
     const endDate = new Date();
-    const spentTime = endDate.getTime() - startDate.getTime();
+    const spentTime = endDate.getTime() - startDate.value.getTime();
 
-    elapsedTime += spentTime;
+    elapsedTime.value += spentTime;
 
-    if (elapsedTime && elapsedTime > 0) {
+    if (elapsedTime.value && elapsedTime.value > 0) {
         axios.post(
             route('student.activity.store'),
-            {totalSeconds: elapsedTime / 1000}
+            {totalSeconds: elapsedTime.value / 1000}
         );
     }
 
-    removeStudentActiveListeners();
+    resetTimeoutAndCheckPoll();
 };
 
 const createStudentActiveListeners = () => {
     if (!isServer) {
-        window.addEventListener('focus', focus);
-        window.addEventListener('blur', blur);
-        window.addEventListener('beforeunload', beforeunload);
+        document.addEventListener('mousemove', resetTimeoutAndCheckPoll);
+        document.addEventListener('keypress', resetTimeoutAndCheckPoll);
+        document.addEventListener('scroll', resetTimeoutAndCheckPoll);
+        document.addEventListener('mousedown', resetTimeoutAndCheckPoll);
+        document.addEventListener('touchstart', resetTimeoutAndCheckPoll);
+        document.addEventListener('click', resetTimeoutAndCheckPoll);
+        document.addEventListener('keydown', resetTimeoutAndCheckPoll);
+
+        activityPoll.value = setInterval(() => {
+            if (!isTimedOut.value) {
+                updateElapsedTime();
+            }
+
+            resetStartDate();
+        }, pollDuration);
+
+        resetTimeoutAndCheckPoll();
     }
 }
 
 const removeStudentActiveListeners = () => {
     if (!isServer) {
-        window.removeEventListener('focus', focus);
-        window.removeEventListener('blur', blur);
-        window.removeEventListener('beforeunload', beforeunload);
+        clearTimeout(timeout.value);
+        clearTimeout(activityPoll.value);
+
+        document.removeEventListener('mousemove', resetTimeoutAndCheckPoll);
+        document.removeEventListener('keypress', resetTimeoutAndCheckPoll);
+        document.removeEventListener('scroll', resetTimeoutAndCheckPoll);
+        document.removeEventListener('mousedown', resetTimeoutAndCheckPoll);
+        document.removeEventListener('touchstart', resetTimeoutAndCheckPoll);
+        document.removeEventListener('click', resetTimeoutAndCheckPoll);
+        document.removeEventListener('keydown', resetTimeoutAndCheckPoll);
     }
 }
 
-if (page.props.auth.type === 'student') {
-    createStudentActiveListeners();
-} else {
+const resetTimeoutAndCheckPoll = () => {
+    throttle(() => {
+        isTimedOut.value = false;
+
+        clearTimeout(timeout.value);
+
+        timeout.value = setTimeout(() => {
+            isTimedOut.value = true;
+
+            persistElapsedTime();
+
+            elapsedTime.value = 0;
+        }, timeoutDuration);
+    }, throttleDuration)
+};
+
+onMounted(() => {
+    if (page.props.auth.type === 'student') {
+        createStudentActiveListeners();
+    }
+})
+
+onUnmounted(() => {
+    persistElapsedTime();
+
     removeStudentActiveListeners();
+});
+
+const throttle = (fn, wait) => {
+    if (!throttled.value) {
+        fn.apply(this);
+
+        throttled.value = true;
+
+        setTimeout(() => {
+            throttled.value = false;
+        }, wait);
+    }
 }
 </script>
