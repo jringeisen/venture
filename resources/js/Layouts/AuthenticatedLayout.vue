@@ -301,12 +301,14 @@ const showBetaPricing = () => {
 const isServer = typeof window === 'undefined'
 const timeoutDuration = 600000;
 const pollDuration = 45000;
+const throttleDuration = 1500;
 
 let startDate = ref(new Date());
 let elapsedTime = ref(0);
 let timeout = ref(null);
 let activityPoll = ref(null);
 let isTimedOut = ref(false);
+let throttled = ref(false);
 
 const resetStartDate = function () {
     startDate.value = new Date();
@@ -378,15 +380,19 @@ const removeStudentActiveListeners = () => {
 }
 
 const resetTimeoutAndCheckPoll = () => {
-    isTimedOut.value = false;
+    throttle(() => {
+        isTimedOut.value = false;
 
-    clearTimeout(timeout.value);
+        clearTimeout(timeout.value);
 
-    timeout.value = setTimeout(() => {
-        isTimedOut.value = true;
+        timeout.value = setTimeout(() => {
+            isTimedOut.value = true;
 
-        elapsedTime.value = 0;
-    }, timeoutDuration);
+            persistElapsedTime();
+
+            elapsedTime.value = 0;
+        }, timeoutDuration);
+    }, throttleDuration)
 };
 
 onMounted(() => {
@@ -400,4 +406,16 @@ onUnmounted(() => {
 
     removeStudentActiveListeners();
 });
+
+const throttle = (fn, wait) => {
+    if (!throttled.value) {
+        fn.apply(this);
+
+        throttled.value = true;
+
+        setTimeout(() => {
+            throttled.value = false;
+        }, wait);
+    }
+}
 </script>
