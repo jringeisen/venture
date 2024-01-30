@@ -304,6 +304,7 @@ const pollDuration = 45000;
 const throttleDuration = 1500;
 
 let startDate = ref(new Date());
+let lastTimeOut = ref(null);
 let elapsedTime = ref(0);
 let timeout = ref(null);
 let activityPoll = ref(null);
@@ -353,7 +354,10 @@ const createStudentActiveListeners = () => {
         document.addEventListener('keydown', resetTimeoutAndCheckPoll);
 
         activityPoll.value = setInterval(() => {
-            if (!isTimedOut.value) {
+            const currentTime = new Date().getTime();
+            const timeSinceLastTimeout = currentTime - lastTimeOut.value;
+
+            if (!isTimedOut.value && (timeSinceLastTimeout <= pollDuration || timeSinceLastTimeout > 10000000)) {
                 updateElapsedTime();
             }
 
@@ -387,6 +391,7 @@ const resetTimeoutAndCheckPoll = () => {
 
         timeout.value = setTimeout(() => {
             isTimedOut.value = true;
+            lastTimeOut.value = new Date().getTime();
 
             persistElapsedTime();
 
