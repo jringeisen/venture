@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('blog_categories_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('blog_category_id')->nullable()->constrained()->onDelete('set null');
             $table->string('title');
             $table->string('slug');
             $table->text('content');

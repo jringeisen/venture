@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +14,7 @@ class BlogPost extends Model
 
     protected $fillable = [
         'user_id',
-        'blog_categories_id',
+        'blog_category_id',
         'title',
         'slug',
         'content',
@@ -27,6 +29,13 @@ class BlogPost extends Model
         'is_published' => 'boolean',
     ];
 
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::parse($value)->toFormattedDateString(),
+        );
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -34,6 +43,6 @@ class BlogPost extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(BlogCategory::class, 'blog_categories_id');
+        return $this->belongsTo(BlogCategory::class, 'blog_category_id');
     }
 }

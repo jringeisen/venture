@@ -43,7 +43,8 @@
                     <a href="#subjects" class="text-sm font-semibold leading-6 text-white">SUBJECTS</a>
                     <a href="#pricing" class="text-sm font-semibold leading-6 text-white">PRICING</a>
                     <a href="#reviews" class="text-sm hidden font-semibold leading-6 text-white">REVIEWS</a>
-                    <a href="#faq" class="text-sm font-semibold leading-6 text-white">FAQ</a>
+                    <a href="#faq" class="hidden text-sm font-semibold leading-6 text-white xl:block">FAQ</a>
+                    <Link :href="route('blog-posts.index')" class="text-sm font-semibold leading-6 text-white">BLOG</Link>
                     <Link :href="route('planner')" class="text-sm font-semibold leading-6 text-primary-yellow">FREE PLANNER</Link>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -98,6 +99,8 @@
                                 <a href="#faq"
                                     @click="toggleMobileMenu()"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">FAQ</a>
+                                <Link :href="route('blog-posts.index')"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">BLOG</Link>
                                 <Link :href="route('planner')"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-primary-yellow hover:bg-primary-dark-gray">FREE PLANNER</Link>
                             </div>
