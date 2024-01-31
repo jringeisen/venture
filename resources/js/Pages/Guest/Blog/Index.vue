@@ -1,22 +1,20 @@
 <template>
     <Head title="Blog Posts">
-        <meta name="title" content="Venture - Blog posts about different categories of education." />
-        <meta
-            name="description"
-            content="Discover Venture - Revolutionizing Homeschooling with AI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential."
+        <meta name="title" content="Venture Blog: Revolutionizing Homeschooling with AI Technology | Innovative AI-Based Learning" />
+        <meta name="description" content="Discover how Venture is transforming homeschooling with cutting-edge AI technology. Explore our blog for insightful articles, success stories, and expert tips on AI-enhanced education. Join the revolution in learning with Venture – where innovation meets homeschooling."
         />
         <meta name="image" content="assets/images/preview-image.png" />
         <meta name="type" content="website" />
-        <meta name="url" content="https://learnwithventure.com" />
+        <meta name="url" content="https://learnwithventure.com/blog-posts" />
 
-        <meta property="og:title" content="Venture - Revolutionizing Homeschooling with AI" />
+        <meta property="og:title" content="Venture Blog: Revolutionizing Homeschooling with AI Technology | Innovative AI-Based Learning" />
         <meta
             property="og:description"
-            content="Discover Venture - Revolutionizing Homeschooling with AI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential."
+            content="Discover how Venture is transforming homeschooling with cutting-edge AI technology. Explore our blog for insightful articles, success stories, and expert tips on AI-enhanced education. Join the revolution in learning with Venture – where innovation meets homeschooling."
         />
         <meta property="og:image" content="assets/images/preview-image.png" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://learnwithventure.com" />
+        <meta property="og:url" content="https://learnwithventure.com/blog-posts" />
     </Head>
 
     <div class="relative bg-primary-dark-gray">
@@ -151,11 +149,12 @@
                         <article
                             v-for="(post, index) in posts.data"
                             :key="index"
-                            class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
+                            class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-neutral-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
                         >
                             <img
+                                v-if="post.featured_image"
                                 :src="post.featured_image"
-                                alt=""
+                                :alt="post.alt_text"
                                 class="absolute inset-0 -z-10 h-full w-full object-cover"
                             />
                             <div class="absolute inset-0 -z-10 bg-gradient-to-t from-neutral-900 via-neutral-900/40"></div>

@@ -1,5 +1,5 @@
 <template>
-    <Head title="Welcome">
+    <Head :title="'Venture - ' + post.title">
         <meta name="title" :content="post.meta_title" />
         <meta name="description" :content="post.meta_description"/>
         <meta name="image" :content="post.featured_image"/>
@@ -128,7 +128,14 @@
         </header>
         <main>
             <div class="prose prose-invert mx-auto">
-                <div>
+                <div class="h-72">
+                    <img
+                        :src="post.featured_image"
+                        :alt="post.alt_text"
+                        class="-z-10 h-full w-full object-cover rounded-lg"
+                    />
+                </div>
+                <div class="mt-10">
                     <h1>{{ post.title }}</h1>
                 </div>
                 <div v-html="post.content" />

@@ -53,55 +53,8 @@ class BlogCategory extends Resource
 
             Textarea::make('Description')
                 ->sortable()
-                ->rules('required', 'max:1000'),
-
-            Text::make('Meta Title')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Textarea::make('Meta Description')
-                ->sortable()
-                ->rules('required', 'max:1500'),
+                ->nullable()
+                ->rules('max:1000'),
         ];
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @return array
-     */
-    public function cards(NovaRequest $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the filters available for the resource.
-     *
-     * @return array
-     */
-    public function filters(NovaRequest $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @return array
-     */
-    public function lenses(NovaRequest $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @return array
-     */
-    public function actions(NovaRequest $request)
-    {
-        return [];
     }
 }

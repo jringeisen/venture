@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('content');
             $table->text('excerpt');
             $table->string('featured_image')->nullable();
+            $table->string('alt_text')->nullable();
             $table->boolean('is_published')->default(false);
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();

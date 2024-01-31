@@ -6,11 +6,12 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Panel;
 
 class BlogPost extends Resource
 {
@@ -62,7 +63,7 @@ class BlogPost extends Resource
                 ->rules('required', 'max:255')
                 ->hideFromIndex(),
 
-            Trix::make('Content')
+            Markdown::make('Content')
                 ->sortable()
                 ->rules('required'),
 
@@ -70,61 +71,49 @@ class BlogPost extends Resource
                 ->sortable()
                 ->rules('required', 'max:2000'),
 
-            Image::make('Featured Image')
-                ->disk('public')
-                ->path('blog/posts')
-                ->nullable(),
-
             Boolean::make('Is Published'),
 
+            Panel::make('Featured Image', $this->featuredImageFields()),
+
+            Panel::make('SEO Fields', $this->seoFields()),
+        ];
+    }
+
+    protected function featuredImageFields()
+    {
+        return [
+            Image::make('Featured Image')
+                ->disk('s3')
+                ->path('/blog-posts/images')
+                ->nullable()
+                ->disableDownload()
+                ->prunable()
+                ->thumbnail(function ($value, $disk) {
+                    return $value;
+                })
+                ->preview(function ($value, $disk) {
+                    return $value;
+                }),
+
+            Text::make('Alt Text')
+                ->rules('max:255')
+                ->hideFromIndex(),
+        ];
+    }
+
+    protected function seoFields()
+    {
+        return [
             Text::make('Meta Title')
                 ->sortable()
-                ->rules('required', 'max:255')
+                ->nullable()
+                ->rules('max:255')
                 ->hideFromIndex(),
 
             Textarea::make('Meta Description')
                 ->sortable()
-                ->rules('required', 'max:1500'),
+                ->nullable()
+                ->rules('max:1500'),
         ];
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @return array
-     */
-    public function cards(NovaRequest $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the filters available for the resource.
-     *
-     * @return array
-     */
-    public function filters(NovaRequest $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @return array
-     */
-    public function lenses(NovaRequest $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @return array
-     */
-    public function actions(NovaRequest $request)
-    {
-        return [];
     }
 }
