@@ -11,7 +11,8 @@ use App\Services\Dto\AIContentDto;
  * @property Student|User $user;
  * @property PromptQuestion $question;
  */
-interface AIServiceInterface {
+interface AIServiceInterface
+{
     public function createChat(bool $isStringResponse = false): AIContentDto;
 
     public function createStream(): AIContentDto;

@@ -17,9 +17,12 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class OpenAIAdapter implements AIAdapterInterface
 {
     protected const MODEL = 'gpt-3.5-turbo-1106';
+
     protected readonly PromptQuestion $question;
-    /** @var Collection<OpenAIMessageObject> $messages */
+
+    /** @var Collection<OpenAIMessageObject> */
     protected Collection $messages;
+
     protected readonly Student|User $user;
 
     public function __construct()
@@ -35,10 +38,10 @@ class OpenAIAdapter implements AIAdapterInterface
         $chatCreationOptions = [
             'model' => self::MODEL,
             'messages' => $this->messages->toArray(),
-            'user' => 'user-' . $this->user->id,
+            'user' => 'user-'.$this->user->id,
         ];
 
-        if (!$isString) {
+        if (! $isString) {
             $chatCreationOptions['response_format'] = ['type' => 'json_object'];
         }
 
@@ -99,7 +102,7 @@ class OpenAIAdapter implements AIAdapterInterface
                     ->createStreamed([
                         'model' => self::MODEL,
                         'messages' => $this->messages->toArray(),
-                        'user' => 'user-' . $this->user->id,
+                        'user' => 'user-'.$this->user->id,
                     ]);
 
                 $message = '';
@@ -126,7 +129,7 @@ class OpenAIAdapter implements AIAdapterInterface
                             );
                     }
 
-                    echo 'data: '. json_encode($data, JSON_THROW_ON_ERROR) ."\n\n";
+                    echo 'data: '.json_encode($data, JSON_THROW_ON_ERROR)."\n\n";
 
                     ob_flush();
                     flush();

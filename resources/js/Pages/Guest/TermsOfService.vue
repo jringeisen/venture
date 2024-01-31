@@ -1,4 +1,6 @@
 <template>
+    <Head title="Terms Of Service" />
+
     <div class="bg-primary-dark-gray">
         <div class="max-w-4xl mx-auto prose prose-neutral py-20 text-neutral-400">
             <p>Privacy Policy and Terms of Service</p>
@@ -112,3 +114,7 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { Head } from '@inertiajs/vue3';
+</script>
