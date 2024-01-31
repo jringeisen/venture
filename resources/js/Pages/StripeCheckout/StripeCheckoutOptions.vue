@@ -19,7 +19,7 @@
                 <h3 id="tier-hobby" class="text-base font-semibold leading-7 text-neutral-700">Monthly</h3>
                 <p class="mt-4 flex items-baseline gap-x-2">
                     <span class="text-base text-gray-500">Starting At</span>
-                    <span class="text-5xl font-bold tracking-tight text-gray-900">$40</span>
+                    <span class="text-5xl font-bold tracking-tight text-gray-900">$20</span>
                     <span class="text-base text-gray-500">/month</span>
                 </p>
                 <p class="mt-6 text-base leading-7 text-gray-600">
@@ -54,7 +54,7 @@
                                 clip-rule="evenodd"
                             />
                         </svg>
-                        Each additional student is $10/month
+                        Each additional student is $20/month
                     </li>
                     <li class="flex gap-x-3">
                         <svg
@@ -91,12 +91,12 @@
                             <label for="students" class="block text-sm font-medium leading-6 text-neutral-500">How many students?</label>
                             <select id="students" v-model="student_count" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-neutral-700 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary-gray sm:text-sm sm:leading-6">
                                 <option disabled>Choose number of students</option>
-                                <option selected :value="1">1 x Student - $40</option>
-                                <option :value="2">2 x Student - $50</option>
+                                <option selected :value="1">1 x Student - $20</option>
+                                <option :value="2">2 x Student - $40</option>
                                 <option :value="3">3 x Student - $60</option>
-                                <option :value="4">4 x Student - $70</option>
-                                <option :value="5">5 x Student - $80</option>
-                                <option :value="6">6+ x Student - $90</option>
+                                <option :value="4">4 x Student - $80</option>
+                                <option :value="5">5 x Student - $100</option>
+                                <option :value="6">6 x Student - $120</option>
                             </select>
                         </div>
                     </li>
@@ -109,12 +109,12 @@
                 >
                     Get started today
                 </button>
-                <p class="text-center text-sm mt-2 uppercase">Use <strong>BETA2024</strong> to save 30%</p>
+                <p class="text-center text-sm mt-2 uppercase">Use <strong>BETA2024</strong> to save 20%</p>
             </div>
             <div class="rounded-3xl p-8 ring-1 ring-gray-900/10 sm:p-10 relative bg-primary-dark-gray shadow-2xl">
                 <h3 id="tier-enterprise" class="text-base font-semibold leading-7 text-primary-yellow">Annual</h3>
                 <p class="mt-4 flex items-baseline gap-x-2">
-                    <span class="text-5xl font-bold tracking-tight text-white">$440</span>
+                    <span class="text-5xl font-bold tracking-tight text-white">$200</span>
                     <span class="text-base text-gray-400">/year</span>
                 </p>
                 <p class="mt-6 text-base leading-7 text-gray-300">
@@ -149,7 +149,7 @@
                                 clip-rule="evenodd"
                             />
                         </svg>
-                        Each additional student is $110/year
+                        Each additional student is $200/year
                     </li>
                     <li class="flex gap-x-3">
                         <svg
@@ -216,12 +216,12 @@
                             <label for="students" class="block text-sm font-medium leading-6 text-neutral-300">How many students?</label>
                             <select id="students" v-model="student_count" class="mt-2 block w-full bg-neutral-800 rounded-md border-0 py-1.5 pl-3 pr-10 text-neutral-300 ring-1 ring-inset ring-neutral-600 focus:ring-2 focus:ring-primary-gray sm:text-sm sm:leading-6">
                                 <option disabled>Choose number of students</option>
-                                <option selected :value="1">1 x Student - $440</option>
-                                <option :value="2">2 x Student - $550</option>
-                                <option :value="3">3 x Student - $660</option>
-                                <option :value="4">4 x Student - $770</option>
-                                <option :value="5">5 x Student - $880</option>
-                                <option :value="6">6+ x Student - $990</option>
+                                <option selected :value="1">1 x Student - $200</option>
+                                <option :value="2">2 x Student - $400</option>
+                                <option :value="3">3 x Student - $600</option>
+                                <option :value="4">4 x Student - $800</option>
+                                <option :value="5">5 x Student - $1000</option>
+                                <option :value="6">6 x Student - $1200</option>
                             </select>
                         </div>
                     </li>
@@ -234,7 +234,7 @@
                 >
                     Get started today
                 </button>
-                <p class="text-center text-sm mt-2 uppercase text-neutral-300">Use <strong>BETA2024</strong> to save 30%</p>
+                <p class="text-center text-sm mt-2 uppercase text-neutral-300">Use <strong>BETA2024</strong> to save 20%</p>
             </div>
         </div>
     </div>

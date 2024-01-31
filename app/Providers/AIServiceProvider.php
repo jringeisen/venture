@@ -32,8 +32,8 @@ class AIServiceProvider extends ServiceProvider
                 AIServiceInterface::class,
                 function (Application $app, array $context) {
                     throw_if(
-                        !isset($context['aiService']),
-                        "AI Service is required to new up an AIServiceInterface"
+                        ! isset($context['aiService']),
+                        'AI Service is required to new up an AIServiceInterface'
                     );
 
                     if ($context['aiService'] === 'OpenAI') {
