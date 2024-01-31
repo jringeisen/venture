@@ -13,7 +13,7 @@ class BlogController extends Controller
     {
         return Inertia::render('Guest/Blog/Index', [
             'posts' => BlogPost::with('user', 'category')
-                ->where('is_published', true)
+                ->published()
                 ->when($request->category, function ($query) use ($request) {
                     $query->whereHas('category', function ($query) use ($request) {
                         $query->where('slug', $request->category);
@@ -21,10 +21,7 @@ class BlogController extends Controller
                 })
                 ->latest()
                 ->get(),
-            'categories' => BlogCategory::whereHas(
-                'posts',
-                fn ($query) => $query->where('is_published', true)
-            )->get(),
+            'categories' => BlogCategory::hasPublishedPosts()->get(),
         ]);
     }
 
