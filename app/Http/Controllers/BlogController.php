@@ -20,7 +20,7 @@ class BlogController extends Controller
                     });
                 })
                 ->latest()
-                ->paginate(10),
+                ->get(),
             'categories' => BlogCategory::whereHas(
                 'posts',
                 fn ($query) => $query->where('is_published', true)
