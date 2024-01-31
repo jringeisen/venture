@@ -11,7 +11,7 @@ class NewsletterListObserver
 {
     public function created(NewsletterList $newsletterList): void
     {
-        $temporaryUrl = Storage::disk('s3')->temporaryUrl('/downloads/student-planner.zip', now()->addHours(48));
+        $temporaryUrl = Storage::temporaryUrl('/downloads/student-planner.zip', now()->addHours(48));
 
         Mail::to($newsletterList->email)->queue(new OptInMail($newsletterList, $temporaryUrl));
     }

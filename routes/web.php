@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Billing\BillingPortalController;
 use App\Http\Controllers\Billing\QuantityExceededController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\Guest\DownloadPlannerController;
@@ -35,6 +36,9 @@ Route::middleware('guest')->group(static function () {
     Route::get('terms-of-service', TermsOfServiceController::class)->name('terms-of-service');
 
     Route::get('/student-planner/download', DownloadPlannerController::class)->name('student-planner.download');
+
+    Route::get('/blog-posts', [BlogController::class, 'index'])->name('blog-posts.index');
+    Route::get('/blog-posts/{blogPost:slug}', [BlogController::class, 'show'])->name('blog-posts.show');
 });
 
 // Authenticated Routes...
