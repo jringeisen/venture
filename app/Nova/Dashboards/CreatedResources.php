@@ -2,9 +2,9 @@
 
 namespace App\Nova\Dashboards;
 
+use App\Nova\Metrics\Dashboards\Trends\ParentsCreated;
 use App\Nova\Metrics\Dashboards\Trends\PromptQuestionsCreated;
 use App\Nova\Metrics\Dashboards\Trends\StudentsCreated;
-use App\Nova\Metrics\Dashboards\Trends\UsersCreated;
 use Laravel\Nova\Dashboard;
 
 class CreatedResources extends Dashboard
@@ -27,7 +27,7 @@ class CreatedResources extends Dashboard
     public function cards()
     {
         return [
-            (new UsersCreated)->width('1/3'),
+            (new ParentsCreated)->width('1/3'),
             (new StudentsCreated)->width('1/3'),
             (new PromptQuestionsCreated)->width('1/3'),
         ];

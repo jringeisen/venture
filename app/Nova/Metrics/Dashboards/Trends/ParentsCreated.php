@@ -7,7 +7,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Trend;
 use Laravel\Nova\Metrics\TrendResult;
 
-class UsersCreated extends Trend
+class ParentsCreated extends Trend
 {
     /**
      * Calculate the value of the metric.
@@ -16,7 +16,7 @@ class UsersCreated extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, User::class);
+        return $this->countByDays($request, User::whereNull('parent_id'));
     }
 
     /**

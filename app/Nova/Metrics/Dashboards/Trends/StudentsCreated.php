@@ -2,7 +2,7 @@
 
 namespace App\Nova\Metrics\Dashboards\Trends;
 
-use App\Models\Student;
+use App\Models\User;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Trend;
 use Laravel\Nova\Metrics\TrendResult;
@@ -16,7 +16,7 @@ class StudentsCreated extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, Student::class);
+        return $this->countByDays($request, User::whereNotNull('parent_id'));
     }
 
     /**
