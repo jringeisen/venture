@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\BlogPost;
 use Inertia\Inertia;
 
 class LandingController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        return Inertia::render('Landing/Index');
+        return Inertia::render('Landing/Index', [
+            'blogCount' => BlogPost::count(),
+        ]);
     }
 }

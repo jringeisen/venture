@@ -2,9 +2,15 @@
 
 namespace App\Providers;
 
+use App\Nova\BlogCategory;
+use App\Nova\BlogPost;
 use App\Nova\Dashboards\CreatedResources;
 use App\Nova\Dashboards\Main;
+use App\Nova\Feedback;
+use App\Nova\User;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -18,6 +24,23 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::mainMenu(function () {
+            return [
+                MenuSection::make('Dashboards', [
+                    MenuItem::dashboard(Main::class),
+                    MenuItem::dashboard(CreatedResources::class),
+                ])->icon('chart-bar')->collapsable(),
+
+                MenuSection::make('Blog Posts', [
+                    MenuItem::resource(BlogCategory::class),
+                    MenuItem::resource(BlogPost::class),
+                ])->icon('book-open')->collapsable(),
+
+                MenuSection::resource(Feedback::class)->icon('mail'),
+                MenuSection::resource(User::class)->icon('users'),
+            ];
+        });
     }
 
     /**
