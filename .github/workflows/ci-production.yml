@@ -1,5 +1,8 @@
-on: push
-name: CI
+on:
+  push:
+    branches:
+      - main
+name: CI Staging
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -21,7 +24,7 @@ jobs:
 
       - name: Get nova setup for installation
         run: |
-          composer config "http-basic.nova.laravel.com" "justin.t.werner@gmail.com" "G4JBFED9GlVIoHiAd4KpEouhZR32oOANpoKkqEaNZP3ThkZ5BL"
+          composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
 
       - name: Install composer dependencies
         run: |
@@ -39,9 +42,9 @@ jobs:
       - name: Run Testsuite
         run: vendor/bin/pest
 
-#  deploy:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Deploy to Laravel Forge
-#        run: curl ${{ secrets.FORGE_DEPLOYMENT_WEBHOOK }}
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Laravel Forge
+        run: curl ${{ secrets.FORGE_PRODUCTION_DEPLOYMENT_WEBHOOK }}
