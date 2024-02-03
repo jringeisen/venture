@@ -8,7 +8,7 @@ jobs:
 
     services:
       mysql:
-        image: mysql:8.3
+        image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: test
@@ -29,18 +29,22 @@ jobs:
         run: |
           composer install --no-scripts
 
-      - name: Prepare Venture
-        run: |
-          cp .env.ci .env
-          php artisan key:generate
-
       - name: Install front-end dependencies
         run: |
           npm install
           npm run build
 
+      - name: Prepare Venture
+        run: |
+          cp .env.ci .env
+          php artisan key:generate
+
       - name: Run Testsuite
         run: vendor/bin/pest tests/
 
+#  deploy:
+#    runs-on: ubuntu-latest
+#
+#    steps:
 #      - name: Deploy to Laravel Forge
 #        run: curl ${{ secrets.FORGE_DEPLOYMENT_WEBHOOK }}
