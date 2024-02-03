@@ -40,7 +40,7 @@ jobs:
           php artisan key:generate
 
       - name: Run Testsuite
-        run: vendor/bin/pest tests/
+        run: vendor/bin/pest
 
 #  deploy:
 #    runs-on: ubuntu-latest
