@@ -47,3 +47,10 @@ Venture is a student-led initiative. We welcome contributions from the community
 ### Support
 
 For support, queries, or feedback, please contact us at support@learnwithventure.com. Your input is invaluable in making Venture a better platform for all.
+
+### Releases
+
+Releases are created in Github Actions via tag v.*. Keep in mind that before a release is created via a tag push, the CHANGELOG.md will have to be updated. Things to keep in mind:
+
+1. The changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+2. This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
