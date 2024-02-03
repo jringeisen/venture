@@ -7,14 +7,12 @@ jobs:
       image: kirschbaumdevelopment/laravel-test-runner:8.3
 
     steps:
+      - uses: actions/checkout@v3
+
       - uses: actions/setup-sqlite@v1
         with:
           sqlite-version: 3.40.0
           sqlite-year: 2022
-
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
 
       - name: Get nova setup for installation
         run: |
