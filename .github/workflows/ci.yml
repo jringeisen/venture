@@ -6,17 +6,12 @@ jobs:
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.3
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: test
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
+      - uses: actions/setup-sqlite@v1
+        with:
+          sqlite-version: 3.40.0
+          sqlite-year: 2022
+
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
