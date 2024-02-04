@@ -3,12 +3,12 @@ on: push
 #    branches:
 #      - staging
 name: CI Staging
+concurrency:
+  group: staging
+  cancel-in-progress: true
 jobs:
   test:
     runs-on: ubuntu-latest
-    concurrency:
-      group: staging
-      cancel-in-progress: true
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.3
 
@@ -47,9 +47,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    concurrency:
-      group: staging
-      cancel-in-progress: true
+    needs: test
 
     steps:
       - name: Deploy to Laravel Forge
