@@ -1,7 +1,7 @@
-on: push
-#  push:
-#    branches:
-#      - staging
+on:
+  push:
+    branches:
+      - staging
 name: CI Staging
 concurrency:
   group: staging
@@ -51,5 +51,4 @@ jobs:
 
     steps:
       - name: Deploy to Laravel Forge
-        run: echo "hey"
-#        run: curl ${{ secrets.FORGE_STAGING_DEPLOYMENT_WEBHOOK }}
+        run: curl ${{ secrets.FORGE_STAGING_DEPLOYMENT_WEBHOOK }}
