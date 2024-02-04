@@ -241,11 +241,6 @@
         <main class="relative py-10 lg:pl-72">
             <MotivationalMessage v-if="$page.props.auth.motivationalMessage"
                                  :message="$page.props.auth.motivationalMessage"/>
-            <div v-if="showBetaPricing()"
-                 class="max-w-2xl mx-auto bg-primary-yellow p-4 rounded-lg text-center text-yellow-900">
-                Take advantage of our BETA pricing and get <strong>20% OFF</strong> your first year!
-                <Link :href="route('subscription.checkout.options')" class="underline">Upgrade Now!</Link>
-            </div>
             <div class="px-4 sm:px-6 lg:px-8">
                 <slot></slot>
             </div>
@@ -291,12 +286,6 @@ const iconMap = {
 const getIconComponent = (iconName) => {
     return iconMap[iconName] || null;
 };
-
-const showBetaPricing = () => {
-    return page.props.auth.type === 'teacher'
-        && !page.props.auth.isSubscribed
-        && page.url !== '/subscription-checkout-options';
-}
 
 const isServer = typeof window === 'undefined'
 const timeoutDuration = 600000;
