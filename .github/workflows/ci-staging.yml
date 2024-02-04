@@ -1,11 +1,14 @@
-on:
-  push:
-    branches:
-      - staging
+on: push
+#  push:
+#    branches:
+#      - staging
 name: CI Staging
 jobs:
   test:
     runs-on: ubuntu-latest
+    concurrency:
+      group: staging
+      cancel-in-progress: true
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.3
 
@@ -44,7 +47,11 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    concurrency:
+      group: staging
+      cancel-in-progress: true
 
     steps:
       - name: Deploy to Laravel Forge
-        run: curl ${{ secrets.FORGE_STAGING_DEPLOYMENT_WEBHOOK }}
+        run: echo "hey"
+#        run: curl ${{ secrets.FORGE_STAGING_DEPLOYMENT_WEBHOOK }}
