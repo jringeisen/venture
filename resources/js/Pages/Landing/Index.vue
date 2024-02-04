@@ -599,34 +599,68 @@
 
             <section id="pricing" class="pt-40">
                 <div class="text-center space-y-10">
-                    <p class="text-white font-semibold tracking-wider text-4xl">ENROLL NOW</p>
-                    <div class="text-3xl text-white max-w-5xl mx-auto leading-snug lg:text-5xl">
-                        <p class="font-extralight">
-                            Unlock Exclusive Beta Savings: <span class="text-primary-yellow font-semibold">GET 20% OFF!</span>
+                    <p class="text-white font-semibold tracking-wider text-4xl">START FREE TRIAL</p>
+                    <div class="text-white max-w-5xl mx-auto leading-snug">
+                        <p class="font-extralight text-3xl lg:text-5xl">
                             Embark on your ad<span class="text-primary-yellow font-semibold">venture</span> today!
                         </p>
 
-                        <div class="bg-primary-gray rounded-lg mt-20 p-6">
-                            <label for="steps-range" class="block mb-2 text-lg font-medium text-white">Price Slider</label>
-                            <p class="text-4xl">
-                                {{ numberOfStudents }} x Student{{ numberOfStudents > 1 ? 's' : ''}} <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) }}</span>/month |
-                                Cost Per Student <span class="text-primary-yellow">${{ calculatePrice(numberOfStudents) / numberOfStudents }}</span>
-                            </p>
-                            <p class="text-sm mt-2">Discount is reflected above</p>
-                            <input id="steps-range" v-model="numberOfStudents" type="range" min="1" max="6" step="1" class="w-full h-4 bg-primary-dark-gray accent-primary-yellow rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-neutral-700 dark:bg-gray-700">
+                        <div class="bg-primary-gray rounded-lg mt-20 p-6 grid grid-cols-3 border divide-x-2">
+                            <div>
+                                <p class="text-4xl text-white font-semibold py-4">Free Plan</p>
+                                <div class="w-2/3 mx-auto">
+                                    <ul class="text-center py-10">
+                                        <li class="text-lg py-1 border-b border-t">1 x Student</li>
+                                        <li class="text-lg py-1 border-b">20 x Questions</li>
+                                        <li class="text-lg py-1 border-b">Customer Support</li>
+                                    </ul>
+                                </div>
+                                <p class="text-4xl text-white font-semibold py-4">$0.00</p>
+                                <Link :href="route('register')"
+                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
+                                    SIGN UP
+                                </Link>
+                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl text-white font-semibold py-4">Monthly Plan</p>
+                                <div class="w-2/3 mx-auto">
+                                    <ul class="text-center py-10">
+                                        <li class="text-lg py-1 border-b border-t">$20 per student</li>
+                                        <li class="text-lg py-1 border-b">Unlimited Questions</li>
+                                        <li class="text-lg py-1 border-b">Priority Customer Support</li>
+                                    </ul>
+                                </div>
+                                <p class="text-4xl text-white font-semibold py-4">$20.00 <span class="font-normal text-sm">per student</span></p>
+                                <Link :href="route('register')"
+                                    class="inline-flex items-center px-10 py-3 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
+                                    START FREE TRIAL
+                                </Link>
+                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                            </div>
+                            <div class="relative">
+                                <p class="text-4xl text-white font-semibold py-4">Annual Plan</p>
+                                <p class="absolute text-primary-yellow font-bold text-center w-full">Save $40 per student!</p>
+                                <div class="w-2/3 mx-auto">
+                                    <ul class="text-center py-10">
+                                        <li class="text-lg py-1 border-b border-t">$200 per student</li>
+                                        <li class="text-lg py-1 border-b">Unlimited Questions</li>
+                                        <li class="text-lg py-1 border-b">Priority Customer Support</li>
+                                    </ul>
+                                </div>
+                                <p class="text-4xl text-white font-semibold py-4">$200.00 <span class="font-normal text-sm">per student</span></p>
+                                <Link :href="route('register')"
+                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
+                                    START FREE TRIAL
+                                </Link>
+                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="py-8">
-                        <Link :href="route('register')"
-                            class="inline-flex items-center px-10 py-4 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
-                            USE CODE BETA2024
-                        </Link>
-                        <p class="text-xs text-neutral-300 mt-2">NO CREDIT CARD REQUIRED!</p>
                     </div>
                 </div>
             </section>
 
-            <section class="mt-20">
+            <section class="mt-60">
                 <h2 class="text-center text-4xl text-white font-thin lg:text-7xl">WHAT WILL YOU <span
                         class="text-primary-yellow font-normal">DISCOVER?</span></h2>
                 <div id="sectionTwoQuestionCards" class="mt-10 grid grid-cols-2 gap-1 px-4 md:grid-cols-4 lg:grid-cols-5">
@@ -1118,21 +1152,5 @@ const handleClickOutside = (event) => {
     imageEight.value = false;
     imageNine.value = false;
     imageTen.value = false;
-}
-
-const numberOfStudents = ref(1);
-
-const calculatePrice = (quantity) => {
-    const basePrice = 20;
-    const priceIncrement = 20;
-    const discountRate = 0.20;
-
-    if (quantity >= 1 && quantity <= 6) {
-        const price = basePrice + (quantity - 1) * priceIncrement;
-        const discount = price * discountRate;
-        return price - discount;
-    } else {
-        return 'Invalid quantity';
-    }
 }
 </script>
