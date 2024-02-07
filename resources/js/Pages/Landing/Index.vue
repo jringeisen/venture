@@ -617,7 +617,7 @@
                                 </div>
                                 <p class="text-4xl text-white font-semibold py-4">$0.00</p>
                                 <Link :href="route('register')"
-                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
+                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray dark:text-primary-yellow transition ease-in-out duration-150">
                                     SIGN UP
                                 </Link>
                                 <p class="text-xs mt-2">NO CARD REQUIRED!</p>
@@ -650,7 +650,7 @@
                                 </div>
                                 <p class="text-4xl text-white font-semibold py-4">$200.00 <span class="font-normal text-sm">per student</span></p>
                                 <Link :href="route('register')"
-                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
+                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray dark:text-primary-yellow transition ease-in-out duration-150">
                                     START FREE TRIAL
                                 </Link>
                                 <p class="text-xs mt-2">NO CARD REQUIRED!</p>
