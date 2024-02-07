@@ -600,12 +600,12 @@
             <section id="pricing" class="pt-40">
                 <div class="text-center space-y-10">
                     <p class="text-white font-semibold tracking-wider text-4xl">START FREE TRIAL</p>
-                    <div class="text-white max-w-5xl mx-auto leading-snug">
+                    <div class="text-white max-w-5xl mx-auto leading-snug px-8 lg:px-0">
                         <p class="font-extralight text-3xl lg:text-5xl">
                             Embark on your ad<span class="text-primary-yellow font-semibold">venture</span> today!
                         </p>
 
-                        <div class="bg-primary-gray rounded-lg mt-20 p-6 grid grid-cols-3 border divide-x-2">
+                        <div class="bg-primary-gray rounded-lg mt-20 p-6 grid grid-cols-1 border space-y-10 divide-y-2 lg:space-y-0 lg:divide-y-0 lg:divide-x-2 lg:grid-cols-3">
                             <div>
                                 <p class="text-4xl text-white font-semibold py-4">Free Plan</p>
                                 <div class="w-2/3 mx-auto">
