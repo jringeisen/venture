@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class OpenAIAdapter implements AIAdapterInterface
 {
-    protected const MODEL = 'gpt-3.5-turbo-1106';
+    protected const MODEL = 'gpt-3.5-turbo-0125';
 
     protected readonly PromptQuestion $question;
 
