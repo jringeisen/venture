@@ -79,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white border p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-none">
+                <div class="bg-white border p-3 space-y-2 overflow-hidden col-span-2 shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-none xl:col-span-1">
                     <div class="flex items-center space-x-4">
                         <div class="bg-primary-yellow h-12 w-12 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -87,7 +87,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold dark:text-neutral-400">{{ $page.props.auth.user.current_streak }}</p>
+                            <p class="text-2xl font-bold dark:text-neutral-400">{{ activeTime }}</p>
                             <div class="text-xs text-gray-500 truncate dark:text-neutral-400">Active Time</div>
                         </div>
                     </div>
@@ -216,14 +216,14 @@ const props = defineProps({
     totalQuestions: Number,
     dailyQuestions: Number,
     totalWordsRead: String,
-    pieChartData: Object,
-    randomQuestion: Object,
+    lineChartData: Object,
+    activeTime: String,
 });
 
 const series = ref([
     {
-        name: "Desktops",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        name: 'Time Spent Learning',
+        data: props.lineChartData.series
     }
 ]);
 
@@ -254,7 +254,16 @@ const chartOptions = ref({
         strokeDashArray: 4,
     },
     xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        categories: props.lineChartData.labels,
+    },
+    yaxis: {
+        labels: {
+            formatter: function (value) {
+                const hours = Math.floor(value / 3600);
+                const minutes = Math.floor((value % 3600) / 60);
+                return `${hours}:${minutes}`;
+            }
+        }
     }
 })
 </script>
