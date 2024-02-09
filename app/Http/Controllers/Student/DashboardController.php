@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
     public function __construct(
         private readonly WordCountService $wordCountService,
-        private readonly StudentService $studentService
+        private readonly StudentService $studentService,
     ) {
     }
 
@@ -23,7 +23,7 @@ class DashboardController extends Controller
             'totalQuestions' => $this->studentService->student($request->user())->totalQuestionsAsked(),
             'dailyQuestions' => $this->studentService->student($request->user())->totalQuestionsAskedToday(),
             'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($request->user()),
-            'lineChartData' => $this->studentService->student($request->user())->lineChartData(),
+            'lineChartData' => $this->studentService->lineChartData(),
             'activeTime' => $this->studentService->student($request->user())->activeTime(),
         ]);
     }

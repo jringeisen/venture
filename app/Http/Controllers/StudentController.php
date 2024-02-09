@@ -78,7 +78,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function show(Request $request, User $user): Response
+    public function show(User $user): Response
     {
         $this->authorize('view', $user);
 
@@ -88,7 +88,7 @@ class StudentController extends Controller
             'dailyQuestions' => $this->studentService->student($user)->totalQuestionsAskedToday(),
             'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($user),
             'categoriesWithCounts' => $this->studentService->student($user)->categoriesWithCounts(),
-            'pieChartData' => $this->studentService->student($user)->pieChartData(),
+            'lineChartData' => $this->studentService->student($user)->lineChartData(),
         ]);
     }
 

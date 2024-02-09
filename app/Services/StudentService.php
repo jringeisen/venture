@@ -3,19 +3,11 @@
 namespace App\Services;
 
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class StudentService
 {
     private User $student;
-
-    private PieChartService $pieChartService;
-
-    public function __construct()
-    {
-        $this->pieChartService = new PieChartService;
-    }
 
     public function student(User $student): self
     {
@@ -55,38 +47,11 @@ class StudentService
 
     public function lineChartData(): array
     {
-        $baseMonths = [
-            'Jan' => 0,
-            'Feb' => 0,
-            'Mar' => 0,
-            'Apr' => 0,
-            'May' => 0,
-            'Jun' => 0,
-            'Jul' => 0,
-            'Aug' => 0,
-            'Sept' => 0,
-            'Oct' => 0,
-            'Nov' => 0,
-            'Dec' => 0,
-        ];
-
-        $months = DB::table('active_time')
-            ->selectRaw('MONTH(created_at) as month, SUM(total_seconds) as total_seconds')
-            ->groupBy('month')
-            ->get()
-            ->reduce(function ($carry, $item) {
-                $monthName = Carbon::createFromFormat('!m', $item->month)->format('M');
-                $carry[$monthName] = $item->total_seconds;
-
-                return $carry;
-            }, []);
-
-        $values = array_merge($baseMonths, $months);
-
-        $labels = array_keys($values);
-        $series = array_values($values);
-
-        return compact('labels', 'series');
+        return (new LineChartService)
+            ->data($this->student->id)
+            ->labels('labels')
+            ->series('series')
+            ->get();
     }
 
     public function activeTime(): string
