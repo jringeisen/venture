@@ -1,5 +1,18 @@
 <template>
-    <Head title="Terms Of Service" />
+    <Head title="Terms of Service">
+        <meta name="title" content="Venture | The Terms of Service for our K-12 Curiosity-led Homeschool Curriculum">
+        <meta name="description" content="Terms of Service for our personalized learning platform for homeschooling">
+        <meta name="image" content="assets/images/preview-image.png">
+        <meta name="type" content="website">
+        <meta name="url" content="https://learnwithventure.com">
+
+
+        <meta property="og:title" content="Venture | The Terms of Service for our K-12 Curiosity-led Homeschool Curriculum">
+        <meta property="og:description" content="Terms of Service for our personalized learning platform for homeschooling">
+        <meta property="og:image" content="assets/images/preview-image.png">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://learnwithventure.com">
+    </Head>
 
     <div class="bg-primary-dark-gray">
         <div class="max-w-4xl mx-auto prose prose-neutral py-20 text-neutral-400">
