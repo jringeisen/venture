@@ -1,14 +1,14 @@
 <template>
     <Head title="Welcome">
-        <meta name="title" content="Venture - Revolutionizing Homeschooling with AI">
-        <meta name="description" content="Discover Venture - Revolutionizing Homeschooling with AI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
+        <meta name="title" content="Venture | K-12 Curiosity-led Homeschool Curriculum with a FREE Planner">
+        <meta name="description" content="Personalized learning platform for homeschooling. Get your FREE planner today!">
         <meta name="image" content="assets/images/preview-image.png">
         <meta name="type" content="website">
         <meta name="url" content="https://learnwithventure.com">
 
 
-        <meta property="og:title" content="Venture - Revolutionizing Homeschooling with AI">
-        <meta property="og:description" content="Discover Venture - Revolutionizing Homeschooling with AI. Our platform offers personalized, AI-enhanced learning experiences tailored for your child's unique educational journey. Embrace the future of education with cutting-edge technology and expert support, ensuring a comprehensive, engaging, and effective homeschooling environment. Join Venture and unlock your child's full potential.">
+        <meta property="og:title" content="Venture | K-12 Curiosity-led Homeschool Curriculum with a FREE Planner">
+        <meta property="og:description" content="Personalized learning platform for homeschooling. Get your FREE planner today!">
         <meta property="og:image" content="assets/images/preview-image.png">
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://learnwithventure.com">
