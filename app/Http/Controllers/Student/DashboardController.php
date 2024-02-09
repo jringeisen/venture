@@ -19,12 +19,15 @@ class DashboardController extends Controller
 
     public function index(Request $request): Response
     {
+        $timeframe = $request->get('timeframe', 'yearly');
+
         return Inertia::render('Student/Dashboard', [
             'totalQuestions' => $this->studentService->student($request->user())->totalQuestionsAsked(),
             'dailyQuestions' => $this->studentService->student($request->user())->totalQuestionsAskedToday(),
             'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($request->user()),
-            'lineChartData' => $this->studentService->lineChartData(),
-            'activeTime' => $this->studentService->student($request->user())->activeTime(),
+            'lineChartData' => $this->studentService->lineChartData($timeframe),
+            'activeTime' => $this->studentService->student($request->user())->activeTime($timeframe),
+            'timeframe' => $timeframe,
         ]);
     }
 }

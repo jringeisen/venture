@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Services\Charts\Types\LineChartService;
 use Illuminate\Support\Facades\DB;
 
 class StudentService
@@ -45,19 +46,42 @@ class StudentService
             ->toArray();
     }
 
-    public function lineChartData(): array
+    public function lineChartData(string $timeframe = 'yearly'): array
     {
-        return (new LineChartService)
-            ->data($this->student->id)
-            ->labels('labels')
-            ->series('series')
-            ->get();
+        return (new LineChartService($timeframe))->getDataForUser($this->student->id);
     }
 
-    public function activeTime(): string
+    public function activeTime(string $timeframe = 'yearly'): string
     {
+        if ($timeframe === 'weekly') {
+            return $this->formatActiveTime(
+                DB::table('active_time')
+                    ->where('user_id', $this->student->id)
+                    ->whereBetween('created_at', [
+                        now(request()->user()->timezone)->startOfWeek(),
+                        now(request()->user()->timezone)->endOfWeek(),
+                    ])
+                    ->sum('total_seconds')
+            );
+        }
+
+        if ($timeframe === 'monthly') {
+            return $this->formatActiveTime(
+                DB::table('active_time')
+                    ->where('user_id', $this->student->id)
+                    ->whereBetween('created_at', [
+                        now(request()->user()->timezone)->startOfMonth(),
+                        now(request()->user()->timezone)->endOfMonth(),
+                    ])
+                    ->sum('total_seconds')
+            );
+        }
+
         return $this->formatActiveTime(
-            $this->student->activeTime->sum('total_seconds')
+            DB::table('active_time')
+                ->where('user_id', $this->student->id)
+                ->whereYear('created_at', now(request()->user()->timezone)->year)
+                ->sum('total_seconds')
         );
     }
 
