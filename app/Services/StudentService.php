@@ -2,19 +2,18 @@
 
 namespace App\Services;
 
-use App\Models\PromptAnswer;
 use App\Models\User;
+use App\Services\Charts\Types\LineChartService;
 use Illuminate\Support\Facades\DB;
 
 class StudentService
 {
     private User $student;
 
-    private PieChartService $pieChartService;
-
-    public function __construct()
-    {
-        $this->pieChartService = new PieChartService;
+    public function __construct(
+        private readonly ActiveTimeService $activeTimeService,
+        private readonly LineChartService $lineChartService,
+    ) {
     }
 
     public function student(User $student): self
@@ -24,10 +23,11 @@ class StudentService
         return $this;
     }
 
-    public function totalQuestionsAsked(): int
+    public function totalQuestionsAsked(string $timeframe): int
     {
         return $this->student
             ->promptQuestions()
+            ->filterByTimeframe($timeframe)
             ->whereHas('promptAnswer')
             ->count();
     }
@@ -53,12 +53,13 @@ class StudentService
             ->toArray();
     }
 
-    public function pieChartData(): array
+    public function lineChartData(string $timeframe = 'yearly'): array
     {
-        return $this->pieChartService
-            ->data(PromptAnswer::class, 'subject_category', $this->student->id)
-            ->labels('subject_category')
-            ->series('total')
-            ->get();
+        return $this->lineChartService->getDataForUser($timeframe, $this->student->id);
+    }
+
+    public function activeTime(string $timeframe = 'yearly'): string
+    {
+        return $this->activeTimeService->fetchTotalTimeForUser($timeframe, $this->student->id);
     }
 }
