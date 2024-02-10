@@ -9,6 +9,6 @@ class BillingPortalController extends Controller
 {
     public function __invoke(Request $request)
     {
-        return $request->user()->redirectToBillingPortal(route('dashboard'));
+        return $request->user()->redirectToBillingPortal(route('parent.dashboard'));
     }
 }
