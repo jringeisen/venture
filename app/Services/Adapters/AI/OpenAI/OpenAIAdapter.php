@@ -125,7 +125,7 @@ class OpenAIAdapter implements AIAdapterInterface
                             ->promptAnswer()
                             ->updateOrCreate(
                                 ['prompt_question_id' => $this->question->id],
-                                ['content' => $message]
+                                ['content' => $message, 'word_count' => str_word_count($message)]
                             );
                     }
 

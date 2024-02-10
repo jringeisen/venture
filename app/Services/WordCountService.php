@@ -2,22 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\PromptQuestion;
+use App\Models\PromptAnswer;
 
 class WordCountService
 {
     public function calculateTotalWordsRead(string $timeframe, mixed $userId = null): string
     {
-        $count = PromptQuestion::query()
-            ->when($userId, fn ($query) => $query->where('user_id', $userId))
-            ->when(! $userId, fn ($query) => $query->whereHas('user', fn ($query) => $query->where('parent_id', request()->user()->id)))
+        $count = PromptAnswer::query()
+            ->when($userId, fn ($query) => $query->whereHas('promptQuestion', fn ($query) => $query->where('user_id', $userId)))
+            ->when(! $userId, fn ($query) => $query->whereHas('promptQuestion.user', fn ($query) => $query->where('parent_id', request()->user()->id)))
             ->filterByTimeframe($timeframe)
-            ->with('promptAnswer')
-            ->whereHas('promptAnswer')
-            ->get()
-            ->reduce(function (int $carry, PromptQuestion $promptQuestion) {
-                return $carry + (int) $promptQuestion->promptAnswer->word_count;
-            }, 0);
+            ->sum('word_count');
 
         return number_format($count);
     }
