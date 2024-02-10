@@ -87,11 +87,10 @@ class StudentController extends Controller
         $timeframe = $request->get('timeframe', 'yearly');
 
         return Inertia::render('Teachers/Students/Show', [
-            'student' => (new StudentResource($user->load('promptQuestions')))->resolve(),
+            'student' => (new StudentResource($user))->resolve(),
             'totalQuestions' => $this->studentService->student($user)->totalQuestionsAsked($timeframe),
             'dailyQuestions' => $this->studentService->student($user)->totalQuestionsAskedToday(),
             'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($timeframe, $user->id),
-            'categoriesWithCounts' => $this->studentService->student($user)->categoriesWithCounts(),
             'lineChartData' => $this->studentService->student($user)->lineChartData($timeframe),
             'activeTime' => $this->studentService->student($user)->activeTime($timeframe),
             'timeframe' => $timeframe,
