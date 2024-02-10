@@ -90,7 +90,7 @@ class StudentController extends Controller
             'student' => (new StudentResource($user->load('promptQuestions')))->resolve(),
             'totalQuestions' => $this->studentService->student($user)->totalQuestionsAsked($timeframe),
             'dailyQuestions' => $this->studentService->student($user)->totalQuestionsAskedToday(),
-            'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($user, $timeframe),
+            'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($timeframe, $user),
             'categoriesWithCounts' => $this->studentService->student($user)->categoriesWithCounts(),
             'lineChartData' => $this->studentService->student($user)->lineChartData($timeframe),
             'activeTime' => $this->studentService->student($user)->activeTime($timeframe),
