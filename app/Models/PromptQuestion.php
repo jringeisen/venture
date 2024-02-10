@@ -43,4 +43,27 @@ class PromptQuestion extends Model
             $query->whereBetween('prompt_questions.created_at', [$startOfDay, $endOfDay]);
         });
     }
+
+    public function scopeFilterByTimeframe(Builder $query, string $timeframe): Builder
+    {
+        return $query->when($timeframe, function (Builder $query) use ($timeframe) {
+            $usersTimezone = request()->user()->timezone;
+
+            $query->when($timeframe === 'yearly', function (Builder $query) use ($usersTimezone) {
+                $query->whereYear('prompt_questions.created_at', now($usersTimezone)->year);
+            })
+                ->when($timeframe === 'monthly', function (Builder $query) use ($usersTimezone) {
+                    $query->whereBetween('prompt_questions.created_at', [
+                        now($usersTimezone)->startOfMonth(),
+                        now($usersTimezone)->endOfMonth(),
+                    ]);
+                })
+                ->when($timeframe === 'weekly', function (Builder $query) use ($usersTimezone) {
+                    $query->whereBetween('prompt_questions.created_at', [
+                        now($usersTimezone)->startOfWeek(),
+                        now($usersTimezone)->endOfWeek(),
+                    ]);
+                });
+        });
+    }
 }
