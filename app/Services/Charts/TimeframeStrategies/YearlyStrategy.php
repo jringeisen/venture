@@ -2,18 +2,19 @@
 
 namespace App\Services\Charts\TimeframeStrategies;
 
+use App\Models\ActiveTime;
 use App\Services\Charts\Interfaces\TimeframeStrategy;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class YearlyStrategy implements TimeframeStrategy
 {
-    public function fetchData(string $userId): Collection
+    public function fetchData(mixed $userId = null): Collection
     {
-        return DB::table('active_time')
-            ->where('user_id', $userId)
+        return ActiveTime::query()
+            ->when($userId, fn ($query) => $query->where('user_id', $userId))
+            ->when(! $userId, fn ($query) => $query->whereHas('user', fn ($query) => $query->where('parent_id', request()->user()->id)))
             ->selectRaw('MONTH(date) as month, SUM(total_seconds) as total_seconds')
             ->groupBy('month')
             ->get();

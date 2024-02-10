@@ -4,7 +4,7 @@ namespace App\Services\Charts\Types;
 
 class LineChartService
 {
-    public function getDataForUser(mixed $userId, string $timeframe): array
+    public function getDataForUser(string $timeframe, mixed $userId = null): array
     {
         $strategyClass = 'App\Services\Charts\TimeframeStrategies\\'.ucfirst($timeframe).'Strategy';
         $strategy = new $strategyClass;

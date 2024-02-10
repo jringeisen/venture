@@ -55,11 +55,11 @@ class StudentService
 
     public function lineChartData(string $timeframe = 'yearly'): array
     {
-        return $this->lineChartService->getDataForUser($this->student->id, $timeframe);
+        return $this->lineChartService->getDataForUser($timeframe, $this->student->id);
     }
 
     public function activeTime(string $timeframe = 'yearly'): string
     {
-        return $this->activeTimeService->fetchTotalTimeForUser($this->student->id, $timeframe);
+        return $this->activeTimeService->fetchTotalTimeForUser($timeframe, $this->student->id);
     }
 }

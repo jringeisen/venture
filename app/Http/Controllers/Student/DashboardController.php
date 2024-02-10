@@ -24,7 +24,7 @@ class DashboardController extends Controller
         return Inertia::render('Student/Dashboard', [
             'totalQuestions' => $studentService->student($request->user())->totalQuestionsAsked($timeframe),
             'dailyQuestions' => $studentService->student($request->user())->totalQuestionsAskedToday(),
-            'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($request->user(), $timeframe),
+            'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($timeframe, $request->user()->id),
             'lineChartData' => $studentService->lineChartData($timeframe),
             'activeTime' => $studentService->student($request->user())->activeTime($timeframe),
             'timeframe' => $timeframe,

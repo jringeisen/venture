@@ -6,10 +6,11 @@ use App\Models\ActiveTime;
 
 class ActiveTimeService
 {
-    public function fetchTotalTimeForUser(int $userId, string $timeframe): string
+    public function fetchTotalTimeForUser(string $timeframe, mixed $userId = null): string
     {
         $totalSecondsDuringTimeframe = ActiveTime::query()
-            ->where('user_id', $userId)
+            ->when($userId, fn ($query) => $query->where('user_id', $userId))
+            ->when(! $userId, fn ($query) => $query->whereHas('user', fn ($query) => $query->where('parent_id', request()->user()->id)))
             ->filterByTimeframe($timeframe)
             ->sum('total_seconds');
 
