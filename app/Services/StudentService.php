@@ -53,36 +53,10 @@ class StudentService
 
     public function activeTime(string $timeframe = 'yearly'): string
     {
-        if ($timeframe === 'weekly') {
-            return $this->formatActiveTime(
-                DB::table('active_time')
-                    ->where('user_id', $this->student->id)
-                    ->whereBetween('created_at', [
-                        now(request()->user()->timezone)->startOfWeek(),
-                        now(request()->user()->timezone)->endOfWeek(),
-                    ])
-                    ->sum('total_seconds')
-            );
-        }
+        $strategyClass = 'App\Services\Stats\ActiveTime\\'.ucfirst($timeframe).'Strategy';
+        $strategy = new $strategyClass;
 
-        if ($timeframe === 'monthly') {
-            return $this->formatActiveTime(
-                DB::table('active_time')
-                    ->where('user_id', $this->student->id)
-                    ->whereBetween('created_at', [
-                        now(request()->user()->timezone)->startOfMonth(),
-                        now(request()->user()->timezone)->endOfMonth(),
-                    ])
-                    ->sum('total_seconds')
-            );
-        }
-
-        return $this->formatActiveTime(
-            DB::table('active_time')
-                ->where('user_id', $this->student->id)
-                ->whereYear('created_at', now(request()->user()->timezone)->year)
-                ->sum('total_seconds')
-        );
+        return $strategy->fetchFormattedDataForUser($this->student->id);
     }
 
     protected function formatActiveTime(int $seconds): string
