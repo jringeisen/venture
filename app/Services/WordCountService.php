@@ -12,6 +12,7 @@ class WordCountService
             ->when($userId, fn ($query) => $query->where('user_id', $userId))
             ->when(! $userId, fn ($query) => $query->whereHas('user', fn ($query) => $query->where('parent_id', request()->user()->id)))
             ->filterByTimeframe($timeframe)
+            ->with('promptAnswer')
             ->whereHas('promptAnswer')
             ->get()
             ->reduce(function (int $carry, PromptQuestion $promptQuestion) {

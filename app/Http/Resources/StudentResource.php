@@ -15,6 +15,7 @@ class StudentResource extends JsonResource
             'name' => $this->name,
             'current_streak' => $this->current_streak,
             'prompt_questions' => $this->promptQuestions()
+                ->with('promptAnswer')
                 ->whereHas('promptAnswer')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10)
