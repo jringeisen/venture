@@ -167,7 +167,6 @@ const { startCase } = pkg;
 
 const props = defineProps({
     student: Object,
-    categoriesWithCounts: Object,
     totalQuestions: Number,
     dailyQuestions: Number,
     totalWordsRead: String,
