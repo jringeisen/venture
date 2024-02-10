@@ -20,7 +20,7 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'totalQuestions' => (int) $request->user()->promptQuestions()->whereHas('promptAnswer')->count(),
             'dailyQuestions' => (int) $request->user()->promptQuestions()->whereHas('promptAnswer')->filterByDate(now())->count(),
-            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($request->user()),
+            'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($request->user(), 'yearly'),
             'pieChartData' => $pieChartService
                 ->data(PromptAnswer::class, 'subject_category')
                 ->labels('subject_category')

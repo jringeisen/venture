@@ -6,9 +6,10 @@ use App\Models\PromptQuestion;
 
 class WordCountService
 {
-    public function calculateWordsForPromptAnswers(mixed $user): string
+    public function calculateTotalWordsRead(mixed $user, string $timeframe): string
     {
         $count = $user->promptQuestions()
+            ->filterByTimeframe($timeframe)
             ->whereHas('promptAnswer')
             ->get()
             ->reduce(function (int $carry, PromptQuestion $promptQuestion) {

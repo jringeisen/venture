@@ -10,6 +10,12 @@ class StudentService
 {
     private User $student;
 
+    public function __construct(
+        private readonly ActiveTimeService $activeTimeService,
+        private readonly LineChartService $lineChartService,
+    ) {
+    }
+
     public function student(User $student): self
     {
         $this->student = $student;
@@ -17,10 +23,11 @@ class StudentService
         return $this;
     }
 
-    public function totalQuestionsAsked(): int
+    public function totalQuestionsAsked(string $timeframe): int
     {
         return $this->student
             ->promptQuestions()
+            ->filterByTimeframe($timeframe)
             ->whereHas('promptAnswer')
             ->count();
     }
@@ -48,23 +55,11 @@ class StudentService
 
     public function lineChartData(string $timeframe = 'yearly'): array
     {
-        return (new LineChartService($timeframe))->getDataForUser($this->student->id);
+        return $this->lineChartService->getDataForUser($this->student->id, $timeframe);
     }
 
     public function activeTime(string $timeframe = 'yearly'): string
     {
-        $strategyClass = 'App\Services\Stats\ActiveTime\\'.ucfirst($timeframe).'Strategy';
-        $strategy = new $strategyClass;
-
-        return $strategy->fetchFormattedDataForUser($this->student->id);
-    }
-
-    protected function formatActiveTime(int $seconds): string
-    {
-        $days = intdiv($seconds, 86400);
-        $hours = intdiv($seconds % 86400, 3600);
-        $minutes = intdiv($seconds % 3600, 60);
-
-        return $days.'d '.$hours.'h '.$minutes.'m';
+        return $this->activeTimeService->fetchTotalTimeForUser($this->student->id, $timeframe);
     }
 }

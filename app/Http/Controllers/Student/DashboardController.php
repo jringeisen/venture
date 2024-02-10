@@ -13,20 +13,20 @@ class DashboardController extends Controller
 {
     public function __construct(
         private readonly WordCountService $wordCountService,
-        private readonly StudentService $studentService,
     ) {
     }
 
     public function index(Request $request): Response
     {
         $timeframe = $request->get('timeframe', 'yearly');
+        $studentService = app(StudentService::class);
 
         return Inertia::render('Student/Dashboard', [
-            'totalQuestions' => $this->studentService->student($request->user())->totalQuestionsAsked(),
-            'dailyQuestions' => $this->studentService->student($request->user())->totalQuestionsAskedToday(),
-            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($request->user()),
-            'lineChartData' => $this->studentService->lineChartData($timeframe),
-            'activeTime' => $this->studentService->student($request->user())->activeTime($timeframe),
+            'totalQuestions' => $studentService->student($request->user())->totalQuestionsAsked($timeframe),
+            'dailyQuestions' => $studentService->student($request->user())->totalQuestionsAskedToday(),
+            'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($request->user(), $timeframe),
+            'lineChartData' => $studentService->lineChartData($timeframe),
+            'activeTime' => $studentService->student($request->user())->activeTime($timeframe),
             'timeframe' => $timeframe,
         ]);
     }
