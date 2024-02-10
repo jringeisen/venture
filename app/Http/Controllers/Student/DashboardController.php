@@ -3,47 +3,31 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\Models\Question;
 use App\Services\StudentService;
 use App\Services\WordCountService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
-use NumberFormatter;
 
 class DashboardController extends Controller
 {
     public function __construct(
-        private readonly WordCountService $wordCountService
+        private readonly WordCountService $wordCountService,
     ) {
     }
 
-    public function index(Request $request, StudentService $studentService): Response
+    public function index(Request $request): Response
     {
+        $timeframe = $request->get('timeframe', 'yearly');
+        $studentService = app(StudentService::class);
+
         return Inertia::render('Student/Dashboard', [
-            'totalQuestions' => $studentService->student($request->user())->totalQuestionsAsked(),
+            'totalQuestions' => $studentService->student($request->user())->totalQuestionsAsked($timeframe),
             'dailyQuestions' => $studentService->student($request->user())->totalQuestionsAskedToday(),
-            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($request->user()),
-            'pieChartData' => $studentService->student($request->user())->pieChartData(),
-            'randomQuestion' => $this->queryRandomQuestion(),
+            'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($timeframe, $request->user()->id),
+            'lineChartData' => $studentService->lineChartData($timeframe),
+            'activeTime' => $studentService->student($request->user())->activeTime($timeframe),
+            'timeframe' => $timeframe,
         ]);
-    }
-
-    protected function queryRandomQuestion(): array
-    {
-        $question = Question::inRandomOrder()->first();
-        $numberFormatter = new NumberFormatter('en_US', NumberFormatter::ORDINAL);
-
-        if (! $question) {
-            return [];
-        }
-
-        return [
-            'text' => $question->text,
-            'category' => $question->category,
-            'sub_category' => $question->sub_category,
-            'grade' => $numberFormatter->format($question->grade),
-            'image' => $question->image,
-        ];
     }
 }

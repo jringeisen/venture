@@ -33,7 +33,7 @@ class StudentInertiaRequests
 
     protected function subjects(): array
     {
-        $subjects = (new StudentService)->student(request()->user())->categoriesWithCounts();
+        $subjects = app(StudentService::class)->student(request()->user())->categoriesWithCounts();
 
         return collect($subjects)->map(function (int $count, string $subject) {
             return [
