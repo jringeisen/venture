@@ -19,10 +19,12 @@ use Inertia\Response;
 
 class StudentController extends Controller
 {
+    private StudentService $studentService;
+
     public function __construct(
-        private readonly StudentService $studentService,
         private readonly WordCountService $wordCountService
     ) {
+        $this->studentService = app(StudentService::class);
     }
 
     public function index(Request $request): Response
@@ -82,13 +84,17 @@ class StudentController extends Controller
     {
         $this->authorize('view', $user);
 
+        $timeframe = $request->get('timeframe', 'yearly');
+
         return Inertia::render('Teachers/Students/Show', [
             'student' => (new StudentResource($user->load('promptQuestions')))->resolve(),
-            'totalQuestions' => $this->studentService->student($user)->totalQuestionsAsked(),
+            'totalQuestions' => $this->studentService->student($user)->totalQuestionsAsked($timeframe),
             'dailyQuestions' => $this->studentService->student($user)->totalQuestionsAskedToday(),
-            'totalWordsRead' => $this->wordCountService->calculateWordsForPromptAnswers($user),
+            'totalWordsRead' => $this->wordCountService->calculateTotalWordsRead($user, $timeframe),
             'categoriesWithCounts' => $this->studentService->student($user)->categoriesWithCounts(),
-            'pieChartData' => $this->studentService->student($user)->pieChartData(),
+            'lineChartData' => $this->studentService->student($user)->lineChartData($timeframe),
+            'activeTime' => $this->studentService->student($user)->activeTime($timeframe),
+            'timeframe' => $timeframe,
         ]);
     }
 
