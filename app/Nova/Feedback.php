@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Enums\FeedbackStatuses;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -23,6 +24,10 @@ class Feedback extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            BelongsTo::make('User')
+                ->searchable()
+                ->sortable(),
 
             Text::make('Title')
                 ->sortable()
