@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Feedback;
 use App\Models\NewsletterList;
 use App\Models\PromptQuestion;
 use App\Models\User;
+use App\Observers\FeedbackObserver;
 use App\Observers\NewsletterListObserver;
 use App\Observers\PromptQuestionObserver;
 use App\Observers\UserObserver;
@@ -33,6 +35,7 @@ class EventServiceProvider extends ServiceProvider
         PromptQuestion::observe(PromptQuestionObserver::class);
         NewsletterList::observe(NewsletterListObserver::class);
         User::observe(UserObserver::class);
+        Feedback::observe(FeedbackObserver::class);
     }
 
     /**
