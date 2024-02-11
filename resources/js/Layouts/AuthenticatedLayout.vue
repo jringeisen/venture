@@ -242,7 +242,7 @@
             <MotivationalMessage v-if="$page.props.auth.motivationalMessage"
                                  :message="$page.props.auth.motivationalMessage"/>
             <div class="px-4 sm:px-6 lg:px-8">
-                <div v-if="showUpgradeBanner" class="max-w-7xl mx-auto sm:px-8">
+                <div v-if="showUpgradeBanner()" class="max-w-7xl mx-auto sm:px-8">
                     <div class="bg-primary-yellow rounded-lg text-center p-4">
                         <p class="text-yellow-900">
                             You are currently on the free plan. <Link :href="route('subscription.checkout.options')" class="font-bold underline">Upgrade</Link> to the premium plan to unlock all features.
@@ -297,6 +297,7 @@ const getIconComponent = (iconName) => {
 const showUpgradeBanner = () => {
     return !page.props.auth.isSubscribed
         && !route().current('subscription.checkout.options')
+        && !route().current('subscription.checkout.success')
         && page.props.auth.type === 'teacher';
 };
 

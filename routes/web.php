@@ -13,6 +13,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeCheckoutController;
 use App\Http\Controllers\StripeCheckoutOptionsController;
+use App\Http\Controllers\StripeCheckoutSuccessController;
 use App\Http\Controllers\Student\PromptController;
 use App\Http\Controllers\Student\Prompts\GetContentController;
 use App\Http\Controllers\Student\Prompts\GetQuestionsController;
@@ -87,6 +88,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');
         Route::get('/subscription-checkout-options', StripeCheckoutOptionsController::class)->name('subscription.checkout.options');
+        Route::get('/subscription-checkout-success', StripeCheckoutSuccessController::class)->name('subscription.checkout.success');
     });
 
     Route::prefix('profile')->group(function () {
