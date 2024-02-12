@@ -2,19 +2,23 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Laravel\Nova\Contracts\ImpersonatesUsers;
 
 class StudentInertiaRequests
 {
     public function __invoke(Request $request): array
     {
+        $impersonator = app(ImpersonatesUsers::class);
+
         return [
             'auth' => [
                 'type' => 'student',
                 'user' => $request->user(),
                 'navigation' => $this->navigation(),
                 'subjects' => $this->subjects(),
+                'isImpersonated' => $impersonator->impersonating($request),
                 'motivationalMessage' => $request->routeIs('student.dashboard')
                     ? (new MotivationalMessageService($request->user()))->generate()
                     : null,
