@@ -38,10 +38,10 @@ class OpenAIAdapter implements AIAdapterInterface
         $chatCreationOptions = [
             'model' => self::MODEL,
             'messages' => $this->messages->toArray(),
-            'user' => 'user-'.$this->user->id,
+            'user' => 'user-' . $this->user->id,
         ];
 
-        if (! $isString) {
+        if (!$isString) {
             $chatCreationOptions['response_format'] = ['type' => 'json_object'];
         }
 
@@ -83,7 +83,7 @@ class OpenAIAdapter implements AIAdapterInterface
             $dto->setSubCategory($response->sub_category);
         } elseif (property_exists($response, 'questions')) {
             $dto->setQuestions($response->questions);
-        } else {
+        } elseif (is_string($response)) {
             $dto->setMessage($response);
         }
 
@@ -102,7 +102,7 @@ class OpenAIAdapter implements AIAdapterInterface
                     ->createStreamed([
                         'model' => self::MODEL,
                         'messages' => $this->messages->toArray(),
-                        'user' => 'user-'.$this->user->id,
+                        'user' => 'user-' . $this->user->id,
                     ]);
 
                 $message = '';
@@ -129,7 +129,7 @@ class OpenAIAdapter implements AIAdapterInterface
                             );
                     }
 
-                    echo 'data: '.json_encode($data, JSON_THROW_ON_ERROR)."\n\n";
+                    echo 'data: ' . json_encode($data, JSON_THROW_ON_ERROR) . "\n\n";
 
                     ob_flush();
                     flush();

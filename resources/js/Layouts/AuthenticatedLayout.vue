@@ -304,6 +304,10 @@ const getIconComponent = (iconName) => {
 };
 
 const showUpgradeBanner = () => {
+    if (isServer) {
+        return false;
+    }
+
     return !page.props.auth.isSubscribed
         && !route().current('subscription.checkout.options')
         && !route().current('subscription.checkout.success')
