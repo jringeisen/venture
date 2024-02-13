@@ -9,10 +9,9 @@ use App\Http\Controllers\Guest\DownloadPlannerController;
 use App\Http\Controllers\Guest\NewsletterController;
 use App\Http\Controllers\Guest\PlannerController;
 use App\Http\Controllers\Guest\TermsOfServiceController;
+use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StartImpersonationController;
-use App\Http\Controllers\StopImpersonationController;
 use App\Http\Controllers\StripeCheckoutController;
 use App\Http\Controllers\StripeCheckoutOptionsController;
 use App\Http\Controllers\StripeCheckoutSuccessController;
@@ -24,7 +23,6 @@ use App\Http\Controllers\Student\StudentActivityController;
 use App\Http\Controllers\Student\TopicController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Nova\Contracts\ImpersonatesUsers;
 
 // Guest Routes...
 Route::middleware('guest')->group(static function () {
@@ -62,11 +60,11 @@ Route::middleware('auth')->group(function () {
         Route::middleware('parent')->prefix('parent')->name('parent.')->group(function () {
             Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-            Route::prefix('users')->name('users.')->group(function () {
+            Route::prefix('users')->name('users.')->group(static function () {
                 Route::get('/', [StudentController::class, 'index'])->name('index');
+                Route::get('/create', [StudentController::class, 'create'])->name('create');
+                Route::post('/', [StudentController::class, 'store'])->name('store');
                 Route::get('/{user}', [StudentController::class, 'show'])->name('show');
-                Route::get('/users/create', [StudentController::class, 'create'])->name('create');
-                Route::post('/users', [StudentController::class, 'store'])->name('store');
                 Route::get('/{user}/edit', [StudentController::class, 'edit'])->name('edit');
                 Route::patch('/{user}', [StudentController::class, 'update'])->name('update');
                 Route::delete('/{user}', [StudentController::class, 'destroy'])->name('destroy');
@@ -93,8 +91,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/subscription-checkout-options', StripeCheckoutOptionsController::class)->name('subscription.checkout.options');
         Route::get('/subscription-checkout-success', StripeCheckoutSuccessController::class)->name('subscription.checkout.success');
 
-        Route::get('/users/{user}/impersonate-user', StartImpersonationController::class)->name('users.start.impersonating');
-        Route::get('/users/stop-impersonating', StopImpersonationController::class)->name('users.stop.impersonating');
+        Route::get('/users/{user}/impersonate-user', [ImpersonationController::class, 'start'])->name('users.start.impersonating');
+        Route::get('/users/stop-impersonating', [ImpersonationController::class, 'stop'])->name('users.stop.impersonating');
     });
 
     Route::prefix('profile')->group(function () {

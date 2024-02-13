@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Laravel\Nova\Contracts\ImpersonatesUsers;
 
 class StudentInertiaRequests
