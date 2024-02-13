@@ -16,8 +16,18 @@ class IsParent
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->user()->isParent()) {
+        $user = $request->user();
+
+        if ($user->isStudent()) {
             return redirect(RouteServiceProvider::STUDENT_HOME);
+        }
+
+        if ($request->route()->named('parent.users.create') || $request->route()->named('parent.users.store')) {
+            return $next($request);
+        }
+
+        if (! $user->students()->count()) {
+            return redirect()->route('parent.users.create', ['status' => 'onboarding']);
         }
 
         return $next($request);

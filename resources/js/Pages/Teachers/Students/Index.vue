@@ -66,7 +66,7 @@
                                         <td>
                                             <button @click.prevent="handleStudentLogin(student)" type="button"
                                                     class="ml-3 inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-500 focus:bg-yellow-500 dark:focus:bg-yellow-500 active:bg-yellow-500 dark:active:bg-bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition ease-in-out duration-150">
-                                                Login
+                                                Start Learning
                                             </button>
                                         </td>
                                         <td
@@ -182,11 +182,6 @@ const handleAddStudent = () => {
 };
 
 const handleStudentLogin = (student) => {
-    form.post(route('logout'), {
-        preserveScroll: true,
-        onSuccess: () => {
-            router.get(route('student.login', {username: student.username}));
-        },
-    });
+    form.get(route('users.start.impersonating', student.id));
 };
 </script>
