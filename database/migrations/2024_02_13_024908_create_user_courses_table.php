@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
-            $table->timestamp('started_at');
-            $table->timestamp('completed_at');
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('completed_at')->nullable();
 
             $table->timestamps();
         });
