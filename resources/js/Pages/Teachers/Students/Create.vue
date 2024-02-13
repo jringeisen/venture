@@ -1,8 +1,13 @@
 <template>
     <Head title="Create Student" />
 
-    <div class="py-12">
+    <div class="pt-0">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div v-if="isOnboarding()" class="bg-primary-yellow rounded-lg p-4 mb-10 text-center">
+                <h1 class="text-yellow-900 text-xl font-bold">Welcome to Venture!</h1>
+                <p class="text-yellow-900">To get started you will need to add a student which you can do with the form below.</p>
+            </div>
+
             <div class="bg-white shadow p-8 rounded-lg dark:bg-neutral-800">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
@@ -129,4 +134,12 @@ const submit = () => {
 const setUserTimezone = () => {
     form.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
+
+const isOnboarding = () => {
+    return getQueryStatus() === 'onboarding';
+};
+
+const getQueryStatus = () => {
+    return new URLSearchParams(window.location.search).get('status');
+};
 </script>

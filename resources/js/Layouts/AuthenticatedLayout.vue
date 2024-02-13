@@ -242,11 +242,18 @@
             <MotivationalMessage v-if="$page.props.auth.motivationalMessage"
                                  :message="$page.props.auth.motivationalMessage"/>
             <div class="px-4 sm:px-6 lg:px-8">
-                <div v-if="showUpgradeBanner()" class="max-w-7xl mx-auto sm:px-8">
-                    <div class="bg-primary-yellow rounded-lg text-center p-4">
-                        <p class="text-yellow-900">
-                            You are currently on the free plan. <Link :href="route('subscription.checkout.options')" class="font-bold underline">Upgrade</Link> to the premium plan to unlock all features.
-                        </p>
+                <div class="max-w-7xl mx-auto sm:px-8">
+                    <div v-if="showUpgradeBanner() && !isOnboarding()">
+                        <UpgradeBanner />
+                    </div>
+
+                    <div v-if="isBeingImpersonated()" class="pb-6">
+                        <PrimaryButton @click.prevent="router.get(route('users.stop.impersonating'))" class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                            </svg>
+                            Back to Parent Portal
+                        </PrimaryButton>
                     </div>
                 </div>
                 <slot></slot>
@@ -270,6 +277,8 @@ import {
 } from '@heroicons/vue/24/outline';
 import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import UpgradeBanner from '@/Components/UpgradeBanner.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const page = usePage();
 
@@ -303,6 +312,19 @@ const showUpgradeBanner = () => {
         && !route().current('subscription.checkout.options')
         && !route().current('subscription.checkout.success')
         && page.props.auth.type === 'teacher';
+};
+
+const isOnboarding = () => {
+    return getQueryStatus() === 'onboarding';
+};
+
+const getQueryStatus = () => {
+    return new URLSearchParams(window.location.search).get('status');
+};
+
+const isBeingImpersonated = () => {
+    return page.props.auth.type === 'student'
+        && page.props.auth.isImpersonated;
 };
 
 const isServer = typeof window === 'undefined'
