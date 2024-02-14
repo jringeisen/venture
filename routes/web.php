@@ -9,6 +9,7 @@ use App\Http\Controllers\Guest\DownloadPlannerController;
 use App\Http\Controllers\Guest\NewsletterController;
 use App\Http\Controllers\Guest\PlannerController;
 use App\Http\Controllers\Guest\TermsOfServiceController;
+use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeCheckoutController;
@@ -59,7 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::middleware('parent')->prefix('parent')->name('parent.')->group(function () {
             Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-            Route::prefix('users')->name('users.')->group(function () {
+            Route::prefix('users')->name('users.')->group(static function () {
                 Route::get('/', [StudentController::class, 'index'])->name('index');
                 Route::get('/create', [StudentController::class, 'create'])->name('create');
                 Route::post('/', [StudentController::class, 'store'])->name('store');
@@ -89,6 +90,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');
         Route::get('/subscription-checkout-options', StripeCheckoutOptionsController::class)->name('subscription.checkout.options');
         Route::get('/subscription-checkout-success', StripeCheckoutSuccessController::class)->name('subscription.checkout.success');
+
+        Route::get('/users/{user}/impersonate-user', [ImpersonationController::class, 'start'])->name('users.start.impersonating');
+        Route::get('/users/stop-impersonating', [ImpersonationController::class, 'stop'])->name('users.stop.impersonating');
     });
 
     Route::prefix('profile')->group(function () {

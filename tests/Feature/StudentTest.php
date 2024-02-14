@@ -4,8 +4,19 @@ use App\Models\User;
 
 use function Pest\Faker\fake;
 
+it('onboarding redirects parent to create a student', function () {
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->get('/parent/users');
+
+    $response->assertRedirectToRoute('parent.users.create', ['status' => 'onboarding']);
+});
+
 it('allows parent to view the student index page', function () {
     $user = User::factory()->create();
+    $student = User::factory()->create(['parent_id' => $user->id]);
 
     $response = $this
         ->actingAs($user)
@@ -16,6 +27,7 @@ it('allows parent to view the student index page', function () {
 
 it('allows parent to view the student create page', function () {
     $user = User::factory()->create();
+    $student = User::factory()->create(['parent_id' => $user->id]);
 
     $response = $this
         ->actingAs($user)
@@ -42,13 +54,12 @@ it('does not allow parent to view the student edit page for a student that is no
     $user = User::factory()->create();
     $userTwo = User::factory()->create();
 
-    $student = User::factory()->create([
-        'parent_id' => $userTwo->id,
-    ]);
+    $studentOne = User::factory()->create(['parent_id' => $userTwo->id]);
+    $studentTwo = User::factory()->create(['parent_id' => $user->id]);
 
     $response = $this
         ->actingAs($user)
-        ->get('/parent/users/'.$student->id.'/edit');
+        ->get('/parent/users/'.$studentOne->id.'/edit');
 
     $response->assertForbidden();
 });
@@ -71,13 +82,12 @@ it('does not allow parent to view the student show page for a student that is no
     $user = User::factory()->create();
     $userTwo = User::factory()->create();
 
-    $student = User::factory()->create([
-        'parent_id' => $userTwo->id,
-    ]);
+    $studentOne = User::factory()->create(['parent_id' => $userTwo->id]);
+    $studentTwo = User::factory()->create(['parent_id' => $user->id]);
 
     $response = $this
         ->actingAs($user)
-        ->get('/parent/users/'.$student->id);
+        ->get('/parent/users/'.$studentOne->id);
 
     $response->assertForbidden();
 });
@@ -177,11 +187,12 @@ it('does not allow parent to update a student thats not theirs', function () {
     $user = User::factory()->create();
     $userTwo = User::factory()->create();
 
-    $student = User::factory()->create(['parent_id' => $userTwo->id]);
+    $studentOne = User::factory()->create(['parent_id' => $userTwo->id]);
+    $studentTwo = User::factory()->create(['parent_id' => $user->id]);
 
     $response = $this
         ->actingAs($user)
-        ->patch('/parent/users/'.$student->id, [
+        ->patch('/parent/users/'.$studentOne->id, [
             'name' => 'Test User',
             'username' => 'testuser',
             'password' => 'password',
@@ -215,11 +226,12 @@ it('does not allow parent to delete a student thats not theirs', function () {
     $user = User::factory()->create();
     $userTwo = User::factory()->create();
 
-    $student = User::factory()->create(['parent_id' => $userTwo->id]);
+    $studentOne = User::factory()->create(['parent_id' => $user->id]);
+    $studentTwo = User::factory()->create(['parent_id' => $userTwo->id]);
 
     $response = $this
         ->actingAs($user)
-        ->delete('/parent/users/'.$student->id);
+        ->delete('/parent/users/'.$studentTwo->id);
 
     $response->assertForbidden();
 });
