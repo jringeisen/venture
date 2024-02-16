@@ -83,6 +83,7 @@ class BlogPost extends Resource
     {
         return [
             Image::make('Featured Image')
+                ->disk('s3')
                 ->path('/blog-posts/images')
                 ->nullable()
                 ->disableDownload()
