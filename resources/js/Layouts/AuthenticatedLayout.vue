@@ -267,6 +267,7 @@ import {Link, router, usePage} from '@inertiajs/vue3';
 import {onMounted, onUnmounted, ref} from 'vue';
 import {Dialog, DialogPanel, TransitionChild, TransitionRoot} from '@headlessui/vue';
 import {
+    AcademicCapIcon,
     Bars3Icon,
     BookOpenIcon,
     ChatBubbleLeftEllipsisIcon,
@@ -297,6 +298,7 @@ const iconMap = {
     'document-icon': DocumentIcon,
     'book-open': BookOpenIcon,
     'chat-bubble-left-ellipsis': ChatBubbleLeftEllipsisIcon,
+    'academic-cap': AcademicCapIcon
 };
 
 const getIconComponent = (iconName) => {

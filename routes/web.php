@@ -3,6 +3,7 @@
 use App\Http\Controllers\Billing\BillingPortalController;
 use App\Http\Controllers\Billing\QuantityExceededController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\Guest\DownloadPlannerController;
@@ -68,6 +69,13 @@ Route::middleware('auth')->group(function () {
                 Route::get('/{user}/edit', [StudentController::class, 'edit'])->name('edit');
                 Route::patch('/{user}', [StudentController::class, 'update'])->name('update');
                 Route::delete('/{user}', [StudentController::class, 'destroy'])->name('destroy');
+            });
+
+            Route::prefix('courses')->name('courses.')->group(static function () {
+                Route::get('/', [CourseController::class, 'index'])->name('index');
+                Route::post('/filter', [CourseController::class, 'filter'])->name('filter');
+                Route::get('/{course}', [CourseController::class, 'show'])->name('show');
+                Route::post('/{course}/{user}', [CourseController::class, 'enroll'])->name('enroll');
             });
         });
 

@@ -51,6 +51,7 @@ class UserInertiaRequests
         return [
             ['name' => 'Dashboard', 'href' => route('parent.dashboard'), 'icon' => 'home-icon', 'current' => request()->routeIs('dashboard')],
             ['name' => 'Students', 'href' => route('parent.users.index'), 'icon' => 'users-icon', 'current' => request()->routeIs('parent.users.*')],
+            ['name' => 'Courses', 'href' => route('parent.courses.index'), 'icon' => 'academic-cap', 'current' => request()->routeIs('parent.courses.*')],
             ['name' => 'Feedback', 'href' => route('feedback.index'), 'icon' => 'chat-bubble-left-ellipsis', 'current' => request()->routeIs('feedback.*')],
         ];
     }
