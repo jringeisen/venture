@@ -123,6 +123,8 @@ const form = useForm({
     timezone: '',
 });
 
+const isServer = typeof window === 'undefined'
+
 const submit = () => {
     form.transform((data) => ({
         ...data,
@@ -140,6 +142,8 @@ const isOnboarding = () => {
 };
 
 const getQueryStatus = () => {
+    if (isServer) return;
+
     return new URLSearchParams(window.location.search).get('status');
 };
 </script>
