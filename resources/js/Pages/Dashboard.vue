@@ -138,16 +138,18 @@ const isDarkMode = ref(false);
 onMounted(() => {
     isClient.value = true;
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        isDarkMode.value = e.matches;
-        chartOptions.value = {
-            title: {
-                style: {
-                    color: e.matches ? '#a3a3a3' : '#0a0a0a',
+    if (isClient.value) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            isDarkMode.value = e.matches;
+            chartOptions.value = {
+                title: {
+                    style: {
+                        color: e.matches ? '#a3a3a3' : '#0a0a0a',
+                    }
                 }
             }
-        }
-    });
+        });
+    }
 });
 
 const series = ref([
