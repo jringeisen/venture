@@ -319,6 +319,8 @@ const isOnboarding = () => {
 };
 
 const getQueryStatus = () => {
+    if (isServer) return;
+
     return new URLSearchParams(window.location.search).get('status');
 };
 
