@@ -134,9 +134,9 @@
             <div class="bg-primary-dark-gray py-20">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <div class="mx-auto max-w-4xl text-center">
-                        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Insightful Learning: The AI-Infused Homeschool Blog</h2>
-                        <p class="mt-2 text-lg leading-8 text-white">
-                            Where AI and Education Merge: A Thoughtful Exploration of Modern Homeschooling
+                        <h1 class="text-3xl font-bold text-white tracking-wider sm:text-5xl">LATEST ARTICLES</h1>
+                        <p class="mt-2 text-xl leading-8 text-white tracking-wider">
+                            Learn something new with <span class="text-primary-yellow">Venture</span>
                         </p>
 
                         <div class="flex flex-row flex-wrap mt-10 justify-between">
