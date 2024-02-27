@@ -3,7 +3,9 @@
 use App\Http\Controllers\Billing\BillingPortalController;
 use App\Http\Controllers\Billing\QuantityExceededController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Course\CourseController;
+use App\Http\Controllers\Course\CourseEnrollmentController;
+use App\Http\Controllers\Course\FilterCourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\Guest\DownloadPlannerController;
@@ -73,9 +75,9 @@ Route::middleware('auth')->group(function () {
 
             Route::prefix('courses')->name('courses.')->group(static function () {
                 Route::get('/', [CourseController::class, 'index'])->name('index');
-                Route::post('/filter', [CourseController::class, 'filter'])->name('filter');
+                Route::post('/filter', FilterCourseController::class)->name('filter');
                 Route::get('/{course}', [CourseController::class, 'show'])->name('show');
-                Route::post('/{course}/{user}', [CourseController::class, 'enroll'])->name('enroll');
+                Route::post('/{course}/{user}', CourseEnrollmentController::class)->name('enroll');
             });
         });
 

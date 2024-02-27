@@ -1,43 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Course;
 
-use App\Models\CategoriesGrade;
+use App\Http\Controllers\Controller;
 use App\Models\Course;
-use App\Services\Courses\CourseService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Inertia\Inertia;
-use Inertia\Response;
 
-class CourseController extends Controller
+class FilterCourseController extends Controller
 {
-    public function __construct(private readonly CourseService $courseService)
-    {
-    }
-
-    public function index(): Response
-    {
-        return Inertia::render('Teachers/Courses/Index', [
-            'courses' => Course::paginate(12),
-            'categories' => CategoriesGrade::all()->pluck('category')->sort()->all(),
-            'lengths' => $this->courseService->getLengths(),
-            'levels' => $this->courseService->getLevels(),
-        ]);
-    }
-
-    public function show()
-    {
-
-    }
-
-    public function enroll()
-    {
-
-    }
-
-    public function filter(Request $request): LengthAwarePaginator
+    public function __invoke(Request $request): LengthAwarePaginator
     {
         $categories = $request->input('categories');
         $lengths = $request->input('lengths');

@@ -2,7 +2,7 @@
     <Head title="Courses"/>
 
     <div class="py-12">
-        <div v-if="courses.total < 4" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div v-if="courses.total < 4 && (categoryFilters.length === 0 && levelFilters.length === 0 && lengthFilters.length === 0 && search === '') && !loading" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="500" height="500"
                      viewBox="0 0 1177.82 724.47"><title>under
@@ -327,8 +327,8 @@
                         <text-input class="block w-full p-4 text-xl" placeholder="Search by course, subject, or topic"
                                     :model-value="search" v-model="search"/>
                         <div
-                            class="border-l-2 border-gray-200 absolute inset-y-0 right-[210px] my-3 flex items-center hidden md:block"></div>
-                        <div class="absolute inset-y-0 right-[80px] flex items-center hidden md:block">
+                            class="border-l-2 border-gray-200 absolute inset-y-0 right-[210px] my-3 items-center hidden md:flex"></div>
+                        <div class="absolute inset-y-0 right-[80px] items-center hidden md:flex">
                             <label for="searchBy" class="sr-only">searchBy</label>
                             <select id="searchBy" name="searchBy"
                                     class="h-full rounded-md border-0 bg-transparent py-0 pl-3 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-primary-yellow md:text-lg"
@@ -338,7 +338,7 @@
                                 <option>Topic</option>
                             </select>
                         </div>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 hidden md:inline-flex"
+                        <div class="absolute inset-y-0 right-0 items-center pr-3 hidden md:flex"
                              aria-hidden="true">
                             <MagnifyingGlassCircleIcon class="h-12 w-12 text-primary-yellow"/>
                         </div>
@@ -440,14 +440,16 @@
                             class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             <li v-for="course in courses.data" :key="course.title"
                                 class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow cursor-pointer hover:bg-gray-50 hover:shadow-lg">
-                                <img class="object-fill rounded-t-lg" :src="course.image" alt=""/>
-                                <div class="flex flex-1 flex-col p-5">
-                                    <h3 class="mt-3 text-sm font-medium text-gray-900">{{ course.title }}</h3>
-                                    <dl class="mt-2 flex flex-grow flex-col justify-between">
-                                        <dt class="sr-only">Description</dt>
-                                        <dd class="text-sm text-gray-500">{{ course.description }}</dd>
-                                    </dl>
-                                </div>
+                                <Link :href="route('parent.courses.show', course.id)">
+                                    <img class="object-fill rounded-t-lg" :src="course.image" alt=""/>
+                                    <div class="flex flex-1 flex-col p-5">
+                                        <h3 class="mt-3 text-sm font-medium text-gray-900">{{ course.title }}</h3>
+                                        <dl class="mt-2 flex flex-grow flex-col justify-between">
+                                            <dt class="sr-only">Description</dt>
+                                            <dd class="text-sm text-gray-500">{{ course.description }}</dd>
+                                        </dl>
+                                    </div>
+                                </Link>
                             </li>
                         </ul>
 
@@ -496,11 +498,15 @@
 <script setup>
 import {MagnifyingGlassCircleIcon} from '@heroicons/vue/24/solid';
 import {ArrowPathIcon} from '@heroicons/vue/24/outline';
-import {Head} from '@inertiajs/vue3';
+import {Head, Link} from '@inertiajs/vue3';
 import {ref, watch} from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import TextInput from "@/Components/TextInput.vue";
 import axios from "axios";
+import pkg from 'lodash';
+
+const { debounce } = pkg;
+
 
 defineOptions({
     layout: AuthenticatedLayout
@@ -531,8 +537,6 @@ let errorMessage = ref('');
 
 let page = ref(1);
 
-let debounceTimer = ref(null);
-
 let showMobileMenu = ref(false);
 
 const toggleMobileMenu = () => {
@@ -540,6 +544,8 @@ const toggleMobileMenu = () => {
 }
 
 const resetFilters = () => {
+    loading.value = true;
+
     categoryFilters.value = [];
     lengthFilters.value = [];
     levelFilters.value = [];
@@ -571,17 +577,15 @@ const previousPage = () => {
     );
 }
 
-const debounceFilteredCourses = (args) => debounce(filteredCourses(args), 1000);
-
 watch(
     [categoryFilters, lengthFilters, levelFilters, search],
     (filters) => {
+        loading.value = true;
+
         debounceFilteredCourses(filters);
     })
 
-const filteredCourses = async ([categories, lengths, levels, search]) => {
-    loading.value = true;
-
+const filteredCourses = ([categories, lengths, levels, search]) => {
     axios.post(
         route(
             'parent.courses.filter',
@@ -613,17 +617,5 @@ const filteredCourses = async ([categories, lengths, levels, search]) => {
         )
 }
 
-const debounce = (fn, wait) => {
-    return function (...args) {
-        if (debounceTimer.value) {
-            clearTimeout(debounceTimer.value);
-        }
-
-        const context = this;
-
-        debounceTimer.value = setTimeout(() => {
-            fn.apply(context, args);
-        }, wait);
-    }
-}
+const debounceFilteredCourses = debounce(filteredCourses, 200);
 </script>
