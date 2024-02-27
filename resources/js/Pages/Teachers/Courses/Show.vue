@@ -23,7 +23,8 @@
                                 </dt>
                                 <DisclosurePanel as="dd" class="mt-2 pr-12">
                                     <ol class="list-decimal my-5 ml-4">
-                                        <li class="text-base leading-7 text-gray-600 my-3" v-for="question in questions">
+                                        <li class="text-base leading-7 text-gray-600 my-3"
+                                            v-for="question in questions">
                                             {{ question.prompt }}
                                         </li>
                                     </ol>
@@ -69,7 +70,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {ClockIcon, GlobeAmericasIcon, MinusSmallIcon, PlusSmallIcon} from "@heroicons/vue/24/outline/index.js";
 import pkg from 'lodash';
 
-const {groupBy, sortBy} = pkg;
+const {groupBy} = pkg;
 
 defineOptions({
     layout: AuthenticatedLayout
@@ -83,8 +84,6 @@ const weeksOfQuestions = groupBy(
     props.course.course_prompts,
     (prompt) => prompt.week_number
 );
-
-console.warn(weeksOfQuestions);
 
 const details = [
     {
