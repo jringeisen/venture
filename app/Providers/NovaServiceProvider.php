@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Nova\BlogCategory;
 use App\Nova\BlogPost;
+use App\Nova\CategoriesGrade;
+use App\Nova\Course;
+use App\Nova\CoursePrompt;
 use App\Nova\Dashboards\CreatedResources;
 use App\Nova\Dashboards\Main;
 use App\Nova\Feedback;
@@ -36,6 +39,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(BlogCategory::class),
                     MenuItem::resource(BlogPost::class),
                 ])->icon('book-open')->collapsable(),
+
+                MenuSection::make('Courses', [
+                    MenuItem::resource(Course::class),
+                    MenuItem::resource(CategoriesGrade::class),
+                    MenuItem::resource(CoursePrompt::class),
+                ])->icon('academic-cap')->collapsable(),
 
                 MenuSection::resource(Feedback::class)->icon('mail'),
                 MenuSection::resource(User::class)->icon('users'),
