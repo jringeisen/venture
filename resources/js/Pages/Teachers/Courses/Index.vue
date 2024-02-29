@@ -514,7 +514,7 @@ defineOptions({
 
 const props = defineProps({
     courses: Object,
-    categories: Array,
+    categories: Object,
     lengths: Array,
     levels: Array
 });
@@ -588,7 +588,7 @@ watch(
 const filteredCourses = ([categories, lengths, levels, search]) => {
     axios.post(
         route(
-            'parent.courses.filter',
+            'parent.courses.enroll',
             {
                 page: page.value
             }

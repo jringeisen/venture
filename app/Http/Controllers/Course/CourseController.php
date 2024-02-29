@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoriesGrade;
 use App\Models\Course;
 use App\Services\Courses\CourseService;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -25,10 +26,11 @@ class CourseController extends Controller
         ]);
     }
 
-    public function show(Course $course): Response
+    public function show(Course $course, Request $request): Response
     {
         return Inertia::render('Teachers/Courses/Show', [
             'course' => $course->load(['categoryGrade', 'coursePrompts']),
+            'students' => $request->user()->students
         ]);
     }
 }
