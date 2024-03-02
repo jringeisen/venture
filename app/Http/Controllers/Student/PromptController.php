@@ -13,9 +13,7 @@ class PromptController extends Controller
     public function index(Request $request): Response
     {
         return Inertia::render('Student/Prompts/Index', [
-            'linkClicked' => (bool) $request->linkClicked,
             'canAskQuestions' => $request->user()->canAskQuestions(),
-            'questions' => $request->questions,
         ]);
     }
 
@@ -29,8 +27,6 @@ class PromptController extends Controller
 
         return Inertia::render('Student/Prompts/Index', [
             'canAskQuestions' => $request->user()->canAskQuestions(),
-            'linkClicked' => (bool) $request->linkClicked,
-            'questions' => $request->questions,
             'result' => [
                 'flagged' => false,
                 'message' => '',

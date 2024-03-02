@@ -36,10 +36,12 @@ class PromptSeeder extends Seeder
             [
                 'category' => 'questions',
                 'prompt' => <<<'EOT'
-                Create an curriculum outline for the subject for the kids to learn more about the topic below.
+                Create a curriculum outline for the subject for the kids to learn more about the topic below.
                 Don't number anything and simply list out the topics to the question. Each of the topics needs
                 to be able to be on it's own. (exclude things like "conclusion" "Wrapping up"). Give me the results
-                in a list and in json format with a key of questions. Include at least 10 items in the list.
+                in a list and in json format with a key of questions and each item being an object that contains
+                a question and a selected property set to false like such {question: "Why is the sky blue", selected: false}.
+                Include at least 10 items in the list.
                 EOT
             ],
             [
