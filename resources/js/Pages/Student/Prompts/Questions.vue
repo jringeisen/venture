@@ -38,22 +38,37 @@ const props = defineProps({
         type: Boolean,
         required: true,
     },
+    questions: {
+        type: Array,
+        required: false,
+    },
+    linkClicked: {
+        type: Boolean,
+        required: true,
+        default: false,
+    }
 })
 
 const emit = defineEmits(['questionClicked']);
 
-const questions = ref([]);
+const questions = ref(props.questions);
 const loading = ref(false);
 
 onMounted(() => {
-    loading.value = true;
-    axios.post('/student/prompts/questions', {question: props.question}).then(response => {
-        questions.value = response.data.questions;
-        loading.value = false;
-    });
+    if (!props.linkClicked) {
+        loading.value = true;
+
+        axios.post('/student/prompts/questions', {question: props.question}).then(response => {
+            questions.value = response.data.questions;
+            loading.value = false;
+        });
+    }
 });
 
 const questionClicked = (question) => {
-    emit('questionClicked', question);
+    emit('questionClicked', {
+        question: question,
+        questions: questions.value,
+    });
 }
 </script>

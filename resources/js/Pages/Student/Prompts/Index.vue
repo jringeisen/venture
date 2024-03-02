@@ -60,6 +60,8 @@
                         <Questions
                             :question="form.question"
                             :processing="form.processing"
+                            :linkClicked="props.linkClicked"
+                            :questions="props.questions"
                             @questionClicked="(event) => handleQuestionClicked(event)"
                         />
                     </div>
@@ -96,6 +98,15 @@
             type: Boolean,
             required: true,
         },
+        questions: {
+            type: Array,
+            required: false,
+        },
+        linkClicked: {
+            type: Boolean,
+            required: true,
+            default: false
+        }
     })
 
     const form = useForm({
@@ -106,12 +117,15 @@
 
     const submit = () => {
         flagged.value = false;
-        form.post(route('student.prompts.store'));
+        form.post(route('student.prompts.store', {linkClicked: false}));
     }
 
-    const handleQuestionClicked = (question) => {
-        form.question = question;
-        form.post(route('student.prompts.store'));
+    const handleQuestionClicked = (event) => {
+        form.question = event.question;
+        form.post(route('student.prompts.store', {
+            linkClicked: true,
+            questions: event.questions
+        }));
     }
 
     watch(() => props.result, (result) => {
