@@ -107,10 +107,12 @@
     const submit = () => {
         flagged.value = false;
         form.post(route('student.prompts.store'));
+
+        localStorage.removeItem('questions');
     }
 
-    const handleQuestionClicked = (question) => {
-        form.question = question;
+    const handleQuestionClicked = (event) => {
+        form.question = event.question;
         form.post(route('student.prompts.store'));
     }
 
