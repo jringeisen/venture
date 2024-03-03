@@ -13,12 +13,13 @@
             <div class="whitespace-pre-wrap mt-14">
                 <ul>
                     <li
-                        v-for="(question, index) in questions"
+                        v-for="(item, index) in questions"
                         :key="index"
                         class="mb-2.5 cursor-pointer text-primary-yellow underline"
-                        @click.prevent="questionClicked(question)"
+                        :class="{'text-yellow-300 font-bold': item.selected}"
+                        @click.prevent="questionClicked(item)"
                     >
-                        {{ question }}
+                        {{ item.question }}
                     </li>
                 </ul>
             </div>
@@ -42,18 +43,30 @@ const props = defineProps({
 
 const emit = defineEmits(['questionClicked']);
 
-const questions = ref([]);
+const questions = ref(JSON.parse(localStorage.getItem('questions')) || []);
 const loading = ref(false);
 
 onMounted(() => {
-    loading.value = true;
-    axios.post('/student/prompts/questions', {question: props.question}).then(response => {
-        questions.value = response.data.questions;
-        loading.value = false;
-    });
+    if (questions.value.length === 0) {
+        loading.value = true;
+
+        axios.post('/student/prompts/questions', {question: props.question}).then(response => {
+            questions.value = response.data.questions;
+            loading.value = false;
+        });
+    }
 });
 
-const questionClicked = (question) => {
-    emit('questionClicked', question);
+const questionClicked = (item) => {
+    const formattedQuestions = questions.value.map((q, index) => {
+        return {
+            'question': q.question,
+            'selected': q.question === item.question || q.selected
+        }
+    });
+
+    localStorage.setItem('questions', JSON.stringify(formattedQuestions));
+
+    emit('questionClicked', {question: item.question});
 }
 </script>
