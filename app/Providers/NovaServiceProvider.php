@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Nova\BlogCategory;
 use App\Nova\BlogPost;
+use App\Nova\Course;
 use App\Nova\Dashboards\CreatedResources;
 use App\Nova\Dashboards\Main;
 use App\Nova\Feedback;
@@ -37,6 +38,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(BlogPost::class),
                 ])->icon('book-open')->collapsable(),
 
+                MenuSection::resource(Course::class)->icon('book-open'),
                 MenuSection::resource(Feedback::class)->icon('mail'),
                 MenuSection::resource(User::class)->icon('users'),
             ];
