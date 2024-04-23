@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeCheckoutController;
 use App\Http\Controllers\StripeCheckoutOptionsController;
 use App\Http\Controllers\StripeCheckoutSuccessController;
+use App\Http\Controllers\Student\CourseController;
 use App\Http\Controllers\Student\PromptController;
 use App\Http\Controllers\Student\Prompts\GetContentController;
 use App\Http\Controllers\Student\Prompts\GetQuestionsController;
@@ -73,8 +74,12 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('student')->prefix('student')->name('student.')->group(function () {
             Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
+
+            Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+
             Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
             Route::post('/prompts', [PromptController::class, 'store'])->name('prompts.store');
+
             Route::post('/prompts/subject', GetSubjectController::class)->name('prompts.subject');
             Route::get('/prompts/content', GetContentController::class)->name('prompts.content');
             Route::post('/prompts/questions', GetQuestionsController::class)->name('prompts.questions');

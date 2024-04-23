@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Enums\CourseLevels;
 use App\Enums\CourseSubjects;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Course extends Model
 {
@@ -32,9 +33,13 @@ class Course extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn (?string $value) => $value
-                ? Storage::temporaryUrl($value, now()->addMinutes(5))
-                : null,
+            get: function (?string $value) {
+                if (Str::contains($value, ['pexels'])) {
+                    return $value;
+                }
+
+                return $value ? Storage::temporaryUrl($value, now()->addMinutes(5)) : null;
+            },
         );
     }
 }

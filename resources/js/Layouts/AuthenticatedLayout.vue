@@ -267,6 +267,7 @@ import {Link, router, usePage} from '@inertiajs/vue3';
 import {onMounted, onUnmounted, ref} from 'vue';
 import {Dialog, DialogPanel, TransitionChild, TransitionRoot} from '@headlessui/vue';
 import {
+    AcademicCapIcon,
     Bars3Icon,
     BookOpenIcon,
     ChatBubbleLeftEllipsisIcon,
@@ -292,6 +293,7 @@ const totalSubjectsCount = Object.values(page.props.auth.subjects || {})
     );
 
 const iconMap = {
+    'academic-cap': AcademicCapIcon,
     'home-icon': HomeIcon,
     'users-icon': UsersIcon,
     'document-icon': DocumentIcon,

@@ -12,6 +12,9 @@ enum CourseSubjects: string
     case BUSINESS = 'business';
     case LIFE_SKILLS = 'life_skills';
     case FINANCIAL = 'financial';
+    case MATHEMATCIS = 'mathematics';
+    case HISTORY = 'history';
+    case ENGLISH = 'english';
 
     public static function toSelectArray(): array
     {
@@ -20,5 +23,10 @@ enum CourseSubjects: string
                 return [$case->value => ucwords(str_replace('_', ' ', $case->value))];
             })
             ->toArray();
+    }
+
+    public static function getRandomValue(): string
+    {
+        return collect(self::cases())->random()->value;
     }
 }

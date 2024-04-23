@@ -17,4 +17,9 @@ enum CourseLengths: string
             })
             ->toArray();
     }
+
+    public static function getRandomValue(): string
+    {
+        return collect(self::cases())->random()->value;
+    }
 }
