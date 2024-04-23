@@ -6,7 +6,14 @@
             <h2 class="text-2xl font-semibold">Browse Courses</h2>
             <p class="text-xs w-full leading-4 md:w-2/3 lg:w-1/2">Explore a world of learning with our diverse range of courses. Unlock new knowledge and skills at your own pace. Start your journey of discovery today.</p>
 
-            <input type="email" name="email" id="email" class="mt-6 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-yellow sm:text-sm sm:leading-6" placeholder="Search course, subject, or topic">
+            <div class="relative">
+                <input type="text" id="search" v-model="form.search" autocomplete="off" class="mt-6 block w-full rounded-full border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-yellow sm:text-sm sm:leading-6" placeholder="Search course, subject, or topic">
+                <div @click.prevent="handleSearch" class="bg-primary-yellow rounded-full absolute top-1 right-1.5 p-1.5 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </div>
+            </div>
 
             <p class="text-xs mt-2">Popular: Atronomy, Marine Biology, American History</p>
         </div>
@@ -20,22 +27,10 @@
                         </svg>
                     </div>
                     <ul class="py-2">
-                        <li>
+                        <li v-for="(subject, index) in subjects">
                             <div class="flex items-center">
-                                <input id="natural-sciences" type="checkbox" class="h-3 w-3 rounded border-gray-300 text-primary-yellow focus:ring-primary-yellow">
-                                <label for="natural-sciences" class="ml-3 block text-xs leading-6 text-gray-900 whitespace-nowrap">Natural Sciences (15)</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="flex items-center">
-                                <input id="social-sciences" type="checkbox" class="h-3 w-3 rounded border-gray-300 text-primary-yellow focus:ring-primary-yellow">
-                                <label for="social-sciences" class="ml-3 block text-xs leading-6 text-gray-900 whitespace-nowrap">Social Sciences (2)</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="flex items-center">
-                                <input id="formal-sciences" type="checkbox" class="h-3 w-3 rounded border-gray-300 text-primary-yellow focus:ring-primary-yellow">
-                                <label for="formal-sciences" class="ml-3 block text-xs leading-6 text-gray-900 whitespace-nowrap">Formal Sciences (10)</label>
+                                <input :id="subject.text" type="checkbox" v-model="form.subjects" class="h-3 w-3 rounded border-gray-300 text-primary-yellow focus:ring-primary-yellow">
+                                <label :for="subject.text" class="ml-3 block text-xs leading-6 text-gray-900 whitespace-nowrap">{{ humanReadableString(subject.text) }} ({{ subject.count }})</label>
                             </div>
                         </li>
                     </ul>
@@ -45,13 +40,13 @@
             <div class="h-screen w-full px-8 py-4">
                 <div class="border-b pb-2">
                     <ul class="flex text-xs space-x-4 text-gray-600">
-                        <li>All Courses (160)</li>
+                        <li>All Courses ({{ courses.length }})</li>
                         <li>Courses</li>
                     </ul>
                 </div>
                 <div class="py-4">
                     <div class="flex items-center justify-between">
-                        <h3 class="font-semibold">Showing 160 results</h3>
+                        <h3 class="font-semibold">Showing {{ courses.length }} results</h3>
                         <p class="text-xs">
                             <span class="text-gray-600">Sort by:</span> <span class="font-semibold">Most Popular</span>
                         </p>
@@ -86,11 +81,24 @@
 </template>
 
 <script setup>
+import { useForm, Head } from '@inertiajs/vue3'
+
 const props = defineProps({
     courses: Array,
+    search: String,
+    subjects: Array,
 });
 
+const form = useForm({
+  search: '',
+  subjects: [],
+})
+
+const handleSearch = () => {
+    form.get(route('student.courses.index'), form.search);
+};
+
 const humanReadableString = (str) => {
-    return str.replace(/_/g, '-').replace(/([A-Z])/g, ' $1').trim();
+    return str.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
 };
 </script>
