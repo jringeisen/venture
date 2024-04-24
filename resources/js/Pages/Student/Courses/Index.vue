@@ -23,8 +23,8 @@
 
             <p class="text-xs mt-2">Popular: Atronomy, Marine Biology, American History</p>
         </div>
-        <div class="flex w-full">
-            <div class="h-screen w-64 px-8 py-4">
+        <div class="flex max-w-7xl mx-auto">
+            <div class="w-64 px-8 py-4">
                 <div>
                     <div class="flex items-center justify-between">
                         <p class="text-sm font-bold">Courses</p>
@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="h-screen w-full px-8 py-4">
+            <div class="w-full px-8 py-4">
                 <div class="border-b pb-2">
                     <ul class="flex text-xs space-x-4 text-gray-600">
                         <li>All Courses ({{ courses.length }})</li>
@@ -59,10 +59,8 @@
                     </div>
 
                     <div class="grid grid-cols-1 gap-2 mt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        <div v-for="course in courses" :key="course.id" class="bg-white rounded-lg shadow-md">
-                            <Link as="div" :href="route('student.courses.show', course.slug)">
-                                <img :src="course.image" alt="course.title" class="w-full h-40 object-cover rounded-t-lg">
-                            </Link>
+                        <Link v-for="course in courses" :key="course.id" class="bg-white rounded-lg shadow-md" as="a" :href="route('student.courses.show', course.slug)">
+                            <img :src="course.image" alt="course.title" class="w-full h-40 object-cover rounded-t-lg">
                             <div class="p-3">
                                 <p class="text-xs font-semibold pb-4">{{ course.title }}</p>
                                 <p class="flex items-center text-xs text-gray-700">
@@ -78,7 +76,7 @@
                                     {{ humanReadableString(course.length) }}
                                 </p>
                             </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>

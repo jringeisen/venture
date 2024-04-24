@@ -1,7 +1,7 @@
 <template>
     <Head title="Courses" />
 
-    <div>
+    <div class="bg-gray-200 h-screen">
         <div class="w-full bg-primary-gray px-10 py-8">
             <div class="text-xs space-x-1 text-white">
                 <Link as="a" :href="route('student.dashboard')" class="text-gray-400">Dashboard</Link>
@@ -39,13 +39,44 @@
                     <p>(122)</p>
                 </div>
             </div>
-
+        </div>
+        <div>
             <div class="flex relative md:space-x-3">
-                <div class="h-screen bg-blue-400 w-full"></div>
+                <div class="w-full py-10 pl-10 pr-16 max-w-4xl">
+                    <div>
+                        <h2 class="font-semibold pb-3 text-md">What You'll Learn</h2>
+                        <div class="grid grid-cols-2 gap-4 bg-white rounded-lg border-2 border-gray-300 p-4">
+                            <div class="flex text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1 shrink-0 mt-0.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                                Grasp the foundational concepts of astronomy
+                            </div>
+                            <div class="flex text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1 shrink-0 mt-0.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                                Dive into the stories and significance behind major constellations and celestial bodies.
+                            </div>
+                            <div class="flex text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1 shrink-0 mt-0.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                                Master the practical skills of celestial navigation and using astronomical tools.
+                            </div>
+                            <div class="flex text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1 shrink-0 mt-0.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                                Learn about the environmental impact of light pollution on night sky observation.
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="h-screen w-60 shrink-0 hidden md:block"></div>
+                <div class="w-60 shrink-0 hidden md:block"></div>
 
-                <div class="absolute w-60 right-0 -top-32 rounded-lg hidden p-3 bg-white divide-y-2 space-y-3 md:block">
+                <div class="absolute shadow w-60 right-10 -top-40 rounded-lg hidden p-3 bg-white divide-y-2 space-y-3 md:block">
                     <div class="space-y-3">
                         <img :src="course.image" class="object-cover rounded-lg" />
                         <button class="bg-primary-yellow text-white w-full rounded-full py-2 text-sm">Enroll In Course</button>
