@@ -76,6 +76,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
 
             Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+            Route::get('/courses/{course:slug}', [CourseController::class, 'show'])->name('courses.show');
 
             Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
             Route::post('/prompts', [PromptController::class, 'store'])->name('prompts.store');

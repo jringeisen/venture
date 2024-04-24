@@ -2,8 +2,14 @@
     <Head title="Courses" />
 
     <div>
-        <div class="w-full bg-primary-gray px-10 py-10 text-white">
-            <h2 class="text-2xl font-semibold">Browse Courses</h2>
+        <div class="w-full bg-primary-gray px-10 py-8 text-white">
+            <div class="text-xs space-x-1">
+                <Link as="a" :href="route('student.dashboard')" class="text-gray-400">Dashboard</Link>
+                <span class="text-gray-400">></span>
+                <Link as="a" :href="route('student.courses.index')" class="font-bold">Courses</Link>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-3">Browse Courses</h2>
             <p class="text-xs w-full leading-4 md:w-2/3 lg:w-1/2">Explore a world of learning with our diverse range of courses. Unlock new knowledge and skills at your own pace. Start your journey of discovery today.</p>
 
             <div class="relative">
@@ -54,9 +60,9 @@
 
                     <div class="grid grid-cols-1 gap-2 mt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         <div v-for="course in courses" :key="course.id" class="bg-white rounded-lg shadow-md">
-                            <div>
+                            <Link as="div" :href="route('student.courses.show', course.slug)">
                                 <img :src="course.image" alt="course.title" class="w-full h-40 object-cover rounded-t-lg">
-                            </div>
+                            </Link>
                             <div class="p-3">
                                 <p class="text-xs font-semibold pb-4">{{ course.title }}</p>
                                 <p class="flex items-center text-xs text-gray-700">
@@ -81,7 +87,7 @@
 </template>
 
 <script setup>
-import { useForm, Head } from '@inertiajs/vue3'
+import { useForm, Head, Link } from '@inertiajs/vue3'
 
 const props = defineProps({
     courses: Array,
