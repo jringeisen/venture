@@ -406,192 +406,123 @@
                 </section>
 
                 <section id="benefits" class="flex justify-center text-white pt-32">
-                    <div class="px-6 w-full lg:w-6/12 lg:px-0">
+                    <div class="px-6 w-full lg:w-8/12 lg:px-0">
                         <h2 class="text-center text-4xl tracking-widest">THE FUTURE OF EDUCATION</h2>
                         <p class="text-center tracking-widest leading-7 py-6">
-                            Discover Venture, where students navigate their unique path through knowledge,
-                            transcending traditional limits for a deeply personalized experience. Here, curiosity
-                            guides learning, sparking a lifelong passion and independent thinking tailored to
-                            each learner. Join us in shaping innovative thinkers and pioneers in an exciting,
-                            curiosity-led educational future.
+                            At Venture, we believe that learning should have no limits and be accessible to all.
+                            Our goal is to foster a generation of learners who are not just recipients of information
+                            but empowered to explore, question, and innovate in their quest for knowledge. Join us in our
+                            commitment to transforming the educational landscape, making learning an accessible, exciting
+                            adventure for all students.
                         </p>
                     </div>
                 </section>
-            </div>
 
-            <section id="subjects" class="w-full bg-gradient-to-t from-black to-transparent h-[400px] lg:h-[800px]">
-                <div class="flex justify-center">
-                    <div class="hidden relative w-full lg:block">
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:15%;top:170px;width:196px;height:21px;">
-                            <img src="assets/images/icons/20.png" loading="lazy" alt="conservation" class="w-5 h-5" />
-                            Conservation
+                <section>
+                    <div class="flex mt-32 py-20">
+                        <div class="space-y-6 w-full">
+                            <p class="text-primary-yellow uppercase">Our Mission</p>
+                            <h3 class="text-4xl text-white font-thin w-3/4">Every child should have the freedom to learn.</h3>
+                            <p class="text-white tracking-wider w-3/4">
+                                We're bringing world-class education to all children,
+                                harnessing AI to overcome the barriers of location and access.
+                                Every topic, every learner—let's make it possible together.
+                            </p>
+                            <ul class="text-white space-y-3">
+                                <li class="flex items-center text-lg font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow">
+                                        <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
+                                    </svg>
+                                    617 million children lack basic math and reading skills globally.
+                                </li>
+                                <li class="flex items-center text-lg font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow">
+                                        <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
+                                    </svg>
+                                    75% of students feel unprepared for future careers.
+                                </li>
+                                <li class="flex items-center text-lg font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow">
+                                        <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
+                                    </svg>
+                                    Personalized interest-led learning lifts academic success.
+                                </li>
+                            </ul>
                         </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:26%;top:200px;width:126px;height:21px;">
-                            <img src="assets/images/icons/5.png" loading="lazy" alt="astronomy" class="w-5 h-5" />
-                            Astronomy
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:10%;top:250px;width:196px;height:21px;">
-                            <img src="assets/images/icons/25.png" loading="lazy" alt="legal-studies" class="w-5 h-5" />
-                            Legal Studies
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:45%;top:209px;width:196px;height:21px">
-                            <img src="assets/images/icons/20.png" loading="lazy" alt="geography" class="w-5 h-5" />
-                            Geography
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:67%;top:108px;width:196px;height:21px;">
-                            <img src="assets/images/icons/8.png" loading="lazy" alt="coding" class="w-5 h-5" />
-                            Coding
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:31%;top:130px;width:330px;height:21px;">
-                            <img src="assets/images/icons/13.png" loading="lazy" alt="entrepreneurship" class="w-5 h-5" />
-                            Entrepreneurship
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:23%;top:300px;width:126px;height:21px;">
-                            <img src="assets/images/icons/1.png" loading="lazy" alt="science" class="w-5 h-5" />
-                            Science
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:34%;top:275px;width:196px;height:21px">
-                            <img src="assets/images/icons/6.png" loading="lazy" alt="space-eploration" class="w-5 h-5" />
-                            Space Eploration
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:10%;top:374px;width:126px;height:21px;">
-                            <img src="assets/images/icons/2.png" loading="lazy" alt="language-arts" class="w-5 h-5" />
-                            Language Arts
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:26%;top:480px;width:126px;height:21px">
-                            <img src="assets/images/icons/2.png" loading="lazy" alt="history" class="w-5 h-5" />
-                            History
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:18%;top:500px;width:196px;height:21px">
-                            <img src="assets/images/icons/10.png" loading="lazy" alt="literature" class="w-5 h-5" />
-                            Literarture
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:83%;top:460px;width:196px;height:21px">
-                            <img src="assets/images/icons/28.png" loading="lazy" alt="vocational-skills" class="w-5 h-5" />
-                            Vocational Skills
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:30%;top:632px;width:196px;height:21px">
-                            <img src="assets/images/icons/26.png" loading="lazy" alt="mythology" class="w-5 h-5" />
-                            Mythology
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:20%;top:600px;width:330px;height:21px">
-                            <img src="assets/images/icons/14.png" loading="lazy" alt="business" class="w-5 h-5" />
-                            Business
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:11%;top:536px;width:196px;height:21px">
-                            <img src="assets/images/icons/15.png" loading="lazy" alt="robotics" class="w-5 h-5" />
-                            Robotics
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:30%;top:530px;width:196px;height:21px">
-                            <img src="assets/images/icons/4.png" loading="lazy" alt="physical-education" class="w-5 h-5" />
-                            Physical Education
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:80%;top:545px;width:196px;height:21px">
-                            <img src="assets/images/icons/31.png" loading="lazy" alt="ancient-cultures" class="w-5 h-5" />
-                            Ancient Cultures
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:45%;top:516px;width:126px;height:21px">
-                            <img src="assets/images/icons/30.png" loading="lazy" alt="social-studies" class="w-5 h-5" />
-                            Social Studies
-                        </div>
-                        <div class="absolute text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:53%;top:590px;width:126px;height:21px">
-                            <img src="assets/images/icons/24.png" loading="lazy" alt="music" class="w-5 h-5" />
-                            Music
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:40%;top:640px;width:196px;height:21px">
-                            <img src="assets/images/icons/10.png" loading="lazy" alt="civics-and-government"
-                                class="w-5 h-5" />
-                            Civics and Government
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:72%;top:645px;width:196px;height:21px">
-                            <img src="assets/images/icons/20.png" loading="lazy" alt="environmental-studies"
-                                class="w-5 h-5" />
-                            Environmental Studies
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:62%;top:602px;width:196px;height:21px">
-                            <img src="assets/images/icons/32.png" alt="wildlife" class="w-5 h-5" />
-                            Wildlife
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:60%;top:481px;width:196px;height:21px">
-                            <img src="assets/images/icons/33.png" alt="paleontology" class="w-5 h-5" />
-                            Paleontology
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:68%;top:542px;width:126px;height:21px">
-                            <img src="assets/images/icons/2.png" alt="storytelling" class="w-5 h-5" />
-                            Storytelling
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:74%;top:310px;width:196px;height:21px">
-                            <img src="assets/images/icons/4.png" alt="health" class="w-5 h-5" />
-                            Health
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:74%;top:480px;width:126px;height:21px">
-                            <img src="assets/images/icons/11.png" alt="art" class="w-5 h-5" />
-                            Art
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:61%;top:270px;width:196px;height:21px">
-                            <img src="assets/images/icons/17.png" alt="archaeology" class="w-5 h-5" />
-                            Archaeology
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:54%;top:130px;width:196px;height:21px">
-                            <img src="assets/images/icons/2.png" alt="creative-writing" class="w-5 h-5" />
-                            Creative Writing
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:74%;top:184px;width:196px;height:21px">
-                            <img src="assets/images/icons/34.png" alt="computer-science" class="w-5 h-5" />
-                            Computer Science
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:83%;top:299px;width:126px;height:21px">
-                            <img src="assets/images/icons/19.png" alt="mathematics" class="w-5 h-5" />
-                            Mathematics
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:42%;top:108px;width:126px;height:21px">
-                            <img src="assets/images/icons/21.png" alt="marine-biology" class="w-5 h-5" />
-                            Marine Biology
+                        <div class="bg-white rounded-lg px-6 py-8 max-w-lg">
+                            <div class="space-y-4">
+                                <p class="font-bold text-lg">Make A Donation</p>
+                                <p class="text-lg">
+                                    Your donation makes it possible to provide free education to children
+                                    across the globe. Every penny you donate goes directly towards making
+                                    our mission possible
+                                </p>
+                            </div>
+                            <div class="mt-10">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 33%"></div>
+                                </div>
+                                <div class="flex justify-between mt-2">
+                                    <p>Raise: <span class="font-bold">$1,820</span></p>
+                                    <p>Goal: <span class="font-bold">$5,500</span></p>
+                                </div>
+
+                                <div class="mt-6 flex rounded-md shadow-sm">
+                                    <span class="inline-flex items-center bg-primary-yellow rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </span>
+                                    <input type="text" id="donation-amount" v-model="form.donationAmount" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 text-gray-900 font-bold ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="100.00">
+                                </div>
+
+                                <div class="mt-4 space-y-3">
+                                    <div class="flex space-x-3">
+                                        <button
+                                            @click.prevent="form.donationAmount = 10"
+                                            class="px-4 py-2 font-semibold rounded-lg"
+                                            :class="form.donationAmount === 10 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                            $10
+                                        </button>
+                                        <button
+                                            @click.prevent="form.donationAmount = 25"
+                                            class="px-4 py-2 font-semibold rounded-lg"
+                                            :class="form.donationAmount === 25 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                            $25
+                                        </button>
+                                        <button
+                                            @click.prevent="form.donationAmount = 50"
+                                            class="px-4 py-2 font-semibold rounded-lg"
+                                            :class="form.donationAmount === 50 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                            $50
+                                        </button>
+                                        <button
+                                            @click.prevent="form.donationAmount = 100"
+                                            class="px-4 py-2 font-semibold rounded-lg"
+                                            :class="form.donationAmount === 100 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                            $100
+                                        </button>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <button
+                                            @click.prevent="form.donationAmount = 250"
+                                            class="px-4 py-2 font-semibold rounded-lg"
+                                            :class="form.donationAmount === 250 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                            $250
+                                        </button>
+                                        <button
+                                            @click.prevent="form.donationAmount = 50"
+                                            class="px-4 py-2 font-semibold rounded-lg"
+                                            :class="form.donationAmount === 50 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                            CUSTOM AMOUNT
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="flex justify-center">
-                    <div class="w-full text-center mt-40 lg:mt-80 lg:w-9/12">
-                        <h2
-                            class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
-                            LEARN ANYTHING,</h2>
-                        <h2
-                            class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
-                            ANYTIME, <span class="text-primary-yellow font-semibold">ANYWHERE</span></h2>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
             <section class="h-[740px]">
                 <GradeSection />
@@ -1043,8 +974,178 @@
                 </div>
             </section>
 
-            <section id="faq" class="max-w-7xl mx-auto">
-                <FaqSection />
+            <section id="subjects" class="w-full bg-gradient-to-t from-black to-transparent h-[400px] lg:h-[800px]">
+                <div class="flex justify-center">
+                    <div class="hidden relative w-full lg:block">
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:15%;top:170px;width:196px;height:21px;">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="conservation" class="w-5 h-5" />
+                            Conservation
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:26%;top:200px;width:126px;height:21px;">
+                            <img src="assets/images/icons/5.png" loading="lazy" alt="astronomy" class="w-5 h-5" />
+                            Astronomy
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:10%;top:250px;width:196px;height:21px;">
+                            <img src="assets/images/icons/25.png" loading="lazy" alt="legal-studies" class="w-5 h-5" />
+                            Legal Studies
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:45%;top:209px;width:196px;height:21px">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="geography" class="w-5 h-5" />
+                            Geography
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:67%;top:108px;width:196px;height:21px;">
+                            <img src="assets/images/icons/8.png" loading="lazy" alt="coding" class="w-5 h-5" />
+                            Coding
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:31%;top:130px;width:330px;height:21px;">
+                            <img src="assets/images/icons/13.png" loading="lazy" alt="entrepreneurship" class="w-5 h-5" />
+                            Entrepreneurship
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:23%;top:300px;width:126px;height:21px;">
+                            <img src="assets/images/icons/1.png" loading="lazy" alt="science" class="w-5 h-5" />
+                            Science
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:34%;top:275px;width:196px;height:21px">
+                            <img src="assets/images/icons/6.png" loading="lazy" alt="space-eploration" class="w-5 h-5" />
+                            Space Eploration
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:10%;top:374px;width:126px;height:21px;">
+                            <img src="assets/images/icons/2.png" loading="lazy" alt="language-arts" class="w-5 h-5" />
+                            Language Arts
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:26%;top:480px;width:126px;height:21px">
+                            <img src="assets/images/icons/2.png" loading="lazy" alt="history" class="w-5 h-5" />
+                            History
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:18%;top:500px;width:196px;height:21px">
+                            <img src="assets/images/icons/10.png" loading="lazy" alt="literature" class="w-5 h-5" />
+                            Literarture
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:83%;top:460px;width:196px;height:21px">
+                            <img src="assets/images/icons/28.png" loading="lazy" alt="vocational-skills" class="w-5 h-5" />
+                            Vocational Skills
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:30%;top:632px;width:196px;height:21px">
+                            <img src="assets/images/icons/26.png" loading="lazy" alt="mythology" class="w-5 h-5" />
+                            Mythology
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:20%;top:600px;width:330px;height:21px">
+                            <img src="assets/images/icons/14.png" loading="lazy" alt="business" class="w-5 h-5" />
+                            Business
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:11%;top:536px;width:196px;height:21px">
+                            <img src="assets/images/icons/15.png" loading="lazy" alt="robotics" class="w-5 h-5" />
+                            Robotics
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:30%;top:530px;width:196px;height:21px">
+                            <img src="assets/images/icons/4.png" loading="lazy" alt="physical-education" class="w-5 h-5" />
+                            Physical Education
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:80%;top:545px;width:196px;height:21px">
+                            <img src="assets/images/icons/31.png" loading="lazy" alt="ancient-cultures" class="w-5 h-5" />
+                            Ancient Cultures
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:45%;top:516px;width:126px;height:21px">
+                            <img src="assets/images/icons/30.png" loading="lazy" alt="social-studies" class="w-5 h-5" />
+                            Social Studies
+                        </div>
+                        <div class="absolute text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:53%;top:590px;width:126px;height:21px">
+                            <img src="assets/images/icons/24.png" loading="lazy" alt="music" class="w-5 h-5" />
+                            Music
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:40%;top:640px;width:196px;height:21px">
+                            <img src="assets/images/icons/10.png" loading="lazy" alt="civics-and-government"
+                                class="w-5 h-5" />
+                            Civics and Government
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:72%;top:645px;width:196px;height:21px">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="environmental-studies"
+                                class="w-5 h-5" />
+                            Environmental Studies
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:62%;top:602px;width:196px;height:21px">
+                            <img src="assets/images/icons/32.png" alt="wildlife" class="w-5 h-5" />
+                            Wildlife
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:60%;top:481px;width:196px;height:21px">
+                            <img src="assets/images/icons/33.png" alt="paleontology" class="w-5 h-5" />
+                            Paleontology
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:68%;top:542px;width:126px;height:21px">
+                            <img src="assets/images/icons/2.png" alt="storytelling" class="w-5 h-5" />
+                            Storytelling
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:74%;top:310px;width:196px;height:21px">
+                            <img src="assets/images/icons/4.png" alt="health" class="w-5 h-5" />
+                            Health
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:74%;top:480px;width:126px;height:21px">
+                            <img src="assets/images/icons/11.png" alt="art" class="w-5 h-5" />
+                            Art
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:61%;top:270px;width:196px;height:21px">
+                            <img src="assets/images/icons/17.png" alt="archaeology" class="w-5 h-5" />
+                            Archaeology
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:54%;top:130px;width:196px;height:21px">
+                            <img src="assets/images/icons/2.png" alt="creative-writing" class="w-5 h-5" />
+                            Creative Writing
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:74%;top:184px;width:196px;height:21px">
+                            <img src="assets/images/icons/34.png" alt="computer-science" class="w-5 h-5" />
+                            Computer Science
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:83%;top:299px;width:126px;height:21px">
+                            <img src="assets/images/icons/19.png" alt="mathematics" class="w-5 h-5" />
+                            Mathematics
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:42%;top:108px;width:126px;height:21px">
+                            <img src="assets/images/icons/21.png" alt="marine-biology" class="w-5 h-5" />
+                            Marine Biology
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-full text-center mt-40 lg:mt-80 lg:w-9/12">
+                        <h2
+                            class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
+                            LEARN ANYTHING,</h2>
+                        <h2
+                            class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
+                            ANYTIME, <span class="text-primary-yellow font-semibold">ANYWHERE</span></h2>
+                    </div>
+                </div>
             </section>
         </div>
         <footer class="py-20 max-w-2xl mx-auto">
@@ -1097,10 +1198,9 @@
 </template>
 
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import GradeSection from '@/Pages/Landing/Sections/GradeSection.vue';
-import FaqSection from '@/Pages/Landing/Sections/FaqSection.vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -1110,6 +1210,10 @@ defineProps({
 
 onMounted(() => {
     AOS.init();
+});
+
+const form = useForm({
+    donationAmount: 100,
 });
 
 const imageOne = ref(false);
