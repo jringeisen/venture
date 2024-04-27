@@ -43,7 +43,6 @@
                     <a href="#subjects" class="text-sm font-semibold leading-6 text-white">SUBJECTS</a>
                     <a href="#pricing" class="text-sm font-semibold leading-6 text-white">PRICING</a>
                     <a href="#reviews" class="text-sm hidden font-semibold leading-6 text-white">REVIEWS</a>
-                    <a href="#faq" class="hidden text-sm font-semibold leading-6 text-white xl:block">FAQ</a>
                     <Link v-if="blogCount >= 3" :href="route('blog-posts.index')" class="text-sm font-semibold leading-6 text-white">BLOG</Link>
                     <Link :href="route('planner')" class="text-sm font-semibold leading-6 text-primary-yellow">FREE PLANNER</Link>
                 </div>
@@ -51,9 +50,8 @@
                     <div class="flex items-center text-right">
                         <Link :href="route('auth.options')" class="text-sm mr-2 font-semibold leading-6 text-white">Log in <span
                                 aria-hidden="true">&rarr;</span></Link>
-                        <Link :href="route('register')"
-                            class="inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">SIGN
-                            UP NOW</Link>
+                        <a href="#donate"
+                            class="inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">DONATE</a>
                     </div>
                 </div>
             </nav>
@@ -96,9 +94,9 @@
                                 <a href="#reviews"
                                     @click="toggleMobileMenu()"
                                     class="-mx-3 hidden rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">REVIEWS</a>
-                                <a href="#faq"
+                                <a href="#donate"
                                     @click="toggleMobileMenu()"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">FAQ</a>
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">DONATE</a>
                                 <Link v-if="blogCount >= 3" :href="route('blog-posts.index')"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">BLOG</Link>
                                 <Link :href="route('planner')"
@@ -417,182 +415,144 @@
                         </p>
                     </div>
                 </section>
+            </div>
 
-                <section>
-                    <div class="flex mt-32 py-20">
-                        <div class="space-y-6 w-full">
-                            <p class="text-primary-yellow uppercase">Our Mission</p>
-                            <h3 class="text-4xl text-white font-thin w-3/4">Every child should have the freedom to learn.</h3>
-                            <p class="text-white tracking-wider w-3/4">
-                                We're bringing world-class education to all children,
-                                harnessing AI to overcome the barriers of location and access.
-                                Every topic, every learner—let's make it possible together.
-                            </p>
-                            <ul class="text-white space-y-3">
-                                <li class="flex items-center text-lg font-semibold">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow">
+            <section id="donate" class="relative">
+                <video class="absolute inset-0 w-full h-[720px] object-cover object-center brightness-75" autoplay loop muted>
+                    <source src="https://static.showit.co/file/73Y8eDVBTqKMc3flhEUamw/129955/8mb_video-arz-ebptslej.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="relative flex flex-col mt-32 py-20 items-center text-center lg:px-6 lg:text-left lg:max-w-6xl lg:mx-auto lg:flex-row">
+                    <div class="space-y-6 w-full">
+                        <p class="text-primary-yellow uppercase">Our Mission</p>
+                        <h3 class="text-5xl text-white font-thin leading-tight">
+                            Every child should have <br>
+                            the freedom to learn.
+                        </h3>
+                        <p class="text-white tracking-wider leading-loose">
+                            We're bringing world-class education to all children,<br>
+                            harnessing AI to overcome the barriers of location<br>
+                            and access. Every topic, every learner—let's make it<br>
+                            possible together.
+                        </p>
+                        <div class="flex justify-center lg:justify-start">
+                            <ul class="text-white space-y-1 lg:space-y-6">
+                                <li class="flex items-center font-semibold lg:text-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow mr-2">
                                         <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
                                     </svg>
                                     617 million children lack basic math and reading skills globally.
                                 </li>
-                                <li class="flex items-center text-lg font-semibold">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow">
+                                <li class="flex items-center font-semibold lg:text-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow mr-2">
                                         <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
                                     </svg>
                                     75% of students feel unprepared for future careers.
                                 </li>
-                                <li class="flex items-center text-lg font-semibold">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow">
+                                <li class="flex items-center font-semibold lg:text-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow mr-2">
                                         <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
                                     </svg>
                                     Personalized interest-led learning lifts academic success.
                                 </li>
                             </ul>
                         </div>
-                        <div class="bg-white rounded-lg px-6 py-8 max-w-lg">
-                            <div class="space-y-4">
-                                <p class="font-bold text-lg">Make A Donation</p>
-                                <p class="text-lg">
-                                    Your donation makes it possible to provide free education to children
-                                    across the globe. Every penny you donate goes directly towards making
-                                    our mission possible
-                                </p>
-                            </div>
-                            <div class="mt-10">
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                    <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 33%"></div>
-                                </div>
-                                <div class="flex justify-between mt-2">
-                                    <p>Raise: <span class="font-bold">$1,820</span></p>
-                                    <p>Goal: <span class="font-bold">$5,500</span></p>
-                                </div>
-
-                                <div class="mt-6 flex rounded-md shadow-sm">
-                                    <span class="inline-flex items-center bg-primary-yellow rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                        </svg>
-                                    </span>
-                                    <input type="text" id="donation-amount" v-model="form.donationAmount" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-1.5 text-gray-900 font-bold ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="100.00">
-                                </div>
-
-                                <div class="mt-4 space-y-3">
-                                    <div class="flex space-x-3">
-                                        <button
-                                            @click.prevent="form.donationAmount = 10"
-                                            class="px-4 py-2 font-semibold rounded-lg"
-                                            :class="form.donationAmount === 10 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
-                                            $10
-                                        </button>
-                                        <button
-                                            @click.prevent="form.donationAmount = 25"
-                                            class="px-4 py-2 font-semibold rounded-lg"
-                                            :class="form.donationAmount === 25 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
-                                            $25
-                                        </button>
-                                        <button
-                                            @click.prevent="form.donationAmount = 50"
-                                            class="px-4 py-2 font-semibold rounded-lg"
-                                            :class="form.donationAmount === 50 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
-                                            $50
-                                        </button>
-                                        <button
-                                            @click.prevent="form.donationAmount = 100"
-                                            class="px-4 py-2 font-semibold rounded-lg"
-                                            :class="form.donationAmount === 100 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
-                                            $100
-                                        </button>
-                                    </div>
-                                    <div class="flex space-x-3">
-                                        <button
-                                            @click.prevent="form.donationAmount = 250"
-                                            class="px-4 py-2 font-semibold rounded-lg"
-                                            :class="form.donationAmount === 250 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
-                                            $250
-                                        </button>
-                                        <button
-                                            @click.prevent="form.donationAmount = 50"
-                                            class="px-4 py-2 font-semibold rounded-lg"
-                                            :class="form.donationAmount === 50 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
-                                            CUSTOM AMOUNT
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </section>
-            </div>
-
-            <section class="h-[740px]">
-                <GradeSection />
-            </section>
-
-            <section id="pricing" class="pt-40">
-                <div class="text-center space-y-10">
-                    <p class="text-white font-semibold tracking-wider text-4xl">START FREE TRIAL</p>
-                    <div class="text-white max-w-5xl mx-auto leading-snug px-8 lg:px-0">
-                        <p class="font-extralight text-3xl lg:text-5xl">
-                            Embark on your ad<span class="text-primary-yellow font-semibold">venture</span> today!
-                        </p>
-
-                        <div class="bg-primary-gray rounded-lg mt-20 p-6 grid grid-cols-1 border space-y-10 divide-y-2 lg:space-y-0 lg:divide-y-0 lg:divide-x-2 lg:grid-cols-3">
-                            <div>
-                                <p class="text-4xl text-white font-semibold py-4">Free Plan</p>
-                                <div class="w-2/3 mx-auto">
-                                    <ul class="text-center py-10">
-                                        <li class="text-lg py-1 border-b border-t">1 x Student</li>
-                                        <li class="text-lg py-1 border-b">20 x Questions</li>
-                                        <li class="text-lg py-1 border-b">Customer Support</li>
-                                    </ul>
-                                </div>
-                                <p class="text-4xl text-white font-semibold py-4">$0.00</p>
-                                <Link :href="route('register')"
-                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray dark:text-primary-yellow transition ease-in-out duration-150">
-                                    SIGN UP
-                                </Link>
-                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                    <div class="bg-white rounded-lg px-6 py-8 max-w-lg mt-10 lg:mt-0">
+                        <div class="space-y-4">
+                            <p class="font-bold text-lg">Make A Donation</p>
+                            <p class="text-lg">
+                                Your donation makes it possible to provide free education to children
+                                across the globe. Every penny you donate goes directly towards making
+                                our mission possible
+                            </p>
+                        </div>
+                        <div class="mt-10">
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 33%"></div>
                             </div>
-                            <div>
-                                <p class="text-4xl text-white font-semibold py-4">Monthly Plan</p>
-                                <div class="w-2/3 mx-auto">
-                                    <ul class="text-center py-10">
-                                        <li class="text-lg py-1 border-b border-t">$20 per student</li>
-                                        <li class="text-lg py-1 border-b">Unlimited Questions</li>
-                                        <li class="text-lg py-1 border-b">Priority Customer Support</li>
-                                    </ul>
-                                </div>
-                                <p class="text-4xl text-white font-semibold py-4">$20.00 <span class="font-normal text-sm">per student</span></p>
-                                <Link :href="route('register')"
-                                    class="inline-flex items-center px-10 py-3 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
-                                    START FREE TRIAL
-                                </Link>
-                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                            <div class="flex justify-between mt-2">
+                                <p>Raise: <span class="font-bold">$1,820</span></p>
+                                <p>Goal: <span class="font-bold">$5,500</span></p>
                             </div>
-                            <div class="relative">
-                                <p class="text-4xl text-white font-semibold py-4">Annual Plan</p>
-                                <p class="absolute text-primary-yellow font-bold text-center w-full">Save $40 per student!</p>
-                                <div class="w-2/3 mx-auto">
-                                    <ul class="text-center py-10">
-                                        <li class="text-lg py-1 border-b border-t">$200 per student</li>
-                                        <li class="text-lg py-1 border-b">Unlimited Questions</li>
-                                        <li class="text-lg py-1 border-b">Priority Customer Support</li>
-                                    </ul>
+
+                            <div class="mt-6 flex rounded-md shadow-sm">
+                                <span class="inline-flex items-center bg-primary-yellow rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                </span>
+                                <input type="number" step="any" id="donation-amount" v-model="form.donationAmount" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-3 text-gray-900 font-bold ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-yellow sm:text-xl sm:leading-6" placeholder="100.00">
+                            </div>
+
+                            <div class="mt-4 space-y-3">
+                                <div class="flex space-x-3">
+                                    <button
+                                        @click.prevent="form.donationAmount = 10"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 10 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        $10
+                                    </button>
+                                    <button
+                                        @click.prevent="form.donationAmount = 25"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 25 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        $25
+                                    </button>
+                                    <button
+                                        @click.prevent="form.donationAmount = 50"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 50 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        $50
+                                    </button>
+                                    <button
+                                        @click.prevent="form.donationAmount = 100"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 100 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        $100
+                                    </button>
                                 </div>
-                                <p class="text-4xl text-white font-semibold py-4">$200.00 <span class="font-normal text-sm">per student</span></p>
-                                <Link :href="route('register')"
-                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray dark:text-primary-yellow transition ease-in-out duration-150">
-                                    START FREE TRIAL
-                                </Link>
-                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                                <div class="flex space-x-3">
+                                    <button
+                                        @click.prevent="form.donationAmount = 250"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 250 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        $250
+                                    </button>
+                                    <button
+                                        @click.prevent="form.donationAmount = 0"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="![10, 25, 50, 100, 250].includes(form.donationAmount) ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        CUSTOM AMOUNT
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mt-8">
+                                <a :href="paymentLink">
+                                    <p class="w-full bg-primary-yellow text-white font-bold rounded-md py-3 text-center">DONATE NOW</p>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="mt-60">
-                <h2 class="text-center text-4xl text-white font-thin lg:text-7xl">WHAT WILL YOU <span
+            <section class="max-w-7xl mx-auto my-40">
+                <div class="text-center space-y-6">
+                    <p class="text-white font-bold text-xl tracking-wider">LEARNERS AND STUDENTS</p>
+                    <h3 class="text-6xl tracking-widest font-thin text-white">You can learn anything.</h3>
+                    <p class="text-lg text-white leading-loose tracking-wider">
+                        Your journey towards mastering new skills, understanding<br>
+                        complex concepts, and unlocking your full potential starts<br>
+                        here. With a world of knowledge at your fingertips, there’s<br>
+                        no limit to what you can discover and achieve.
+                    </p>
+                    <button class="bg-primary-yellow py-3 px-20 rounded-lg tracking-widest">LEARN WITH VENTURE</button>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-center text-4xl text-white font-thin tracking-widest lg:text-7xl">WHAT WILL YOU <span
                         class="text-primary-yellow font-normal">DISCOVER?</span></h2>
                 <div id="sectionTwoQuestionCards" class="mt-10 grid grid-cols-2 gap-1 px-4 md:grid-cols-4 lg:grid-cols-5">
                     <div @click.prevent="imageSix = !imageSix"
@@ -795,6 +755,96 @@
                             <p>The scientific method is a powerful tool that helps us understand the world. It's all about being curious, asking
                             questions, testing ideas, and always, always learning. This method has led to some of the most incredible discoveries in
                             science, and who knows? Maybe one day, you'll use the scientific method to make a groundbreaking discovery of your own!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pricing" class="pt-40">
+                <div class="text-center space-y-6">
+                    <p class="text-white font-semibold text-xl tracking-wider">CROWDFUNDING CAMPAIGNS</p>
+                    <div class="text-white max-w-5xl mx-auto leading-snug px-8 space-y-10 lg:px-0">
+                        <h3 class="font-thin text-3xl tracking-widest lg:text-6xl">
+                            CROWDFUNDING
+                        </H3>
+
+                        <p class="leading-loose text-lg tracking-wider">
+                            Join us in our crowdfunding campaign to support a small, passionate team working<br>
+                            voluntarily to transform educational experiences worldwide. We're in the process of<br>
+                            becoming a nonprofit, but until then, your contributions are crucial. They allow us to<br>
+                            keep building our vision and enhance our platform's capabilities.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-10 pt-10">
+                            <div class="bg-white overflow-hidden rounded-2xl relative">
+                                <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
+                                <div class="absolute -mt-10 px-8 w-full">
+                                    <div class="bg-white rounded-lg border p-4 border-gray-300">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 2.22%"></div>
+                                        </div>
+                                        <div class="flex justify-between mt-2 text-black text-xs">
+                                            <p>Raise: <span class="font-bold">$1,000</span></p>
+                                            <p>Goal: <span class="font-bold">$45,000</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-6 py-10">
+                                    <div class="text-left text-black space-y-3">
+                                        <h4 class="font-bold text-lg">Support Backend Course Curriculum Development</h4>
+                                        <p class="text-sm">Your contribution helps us build the backbone of future courses. With your support, we'll develop the backend infrastructure necessary to deliver engaging and effective online learning experiences. Join us in shaping the educational landscape for tomorrow's learners.</p>
+                                    </div>
+                                    <a href="https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg">
+                                        <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="bg-white overflow-hidden rounded-2xl relative">
+                                <img src="https://images.pexels.com/photos/1206101/pexels-photo-1206101.jpeg?cs=srgb&dl=pexels-iqwan-alif-493640-1206101.jpg&fm=jpg" class="object-cover w-full h-52" />
+                                <div class="absolute -mt-10 px-8 w-full">
+                                    <div class="bg-white rounded-lg border p-4 border-gray-300">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 0.5%"></div>
+                                        </div>
+                                        <div class="flex justify-between mt-2 text-black text-xs">
+                                            <p>Raise: <span class="font-bold">$2,400</span></p>
+                                            <p>Goal: <span class="font-bold">$500,000</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-6 py-10">
+                                    <div class="text-left text-black space-y-3">
+                                        <h4 class="font-bold text-lg">A $50 Donation Supports a Year of Learning for a Student</h4>
+                                        <p class="text-sm">A $50 donation funds a student's learning journey for an entire year. Your generosity unlocks boundless opportunities for them on Venture, providing unlimited access to learning resources and educational support. Every donation makes a lasting impact on their educational success.</p>
+                                    </div>
+                                    <a href="https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg">
+                                        <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="bg-white overflow-hidden rounded-2xl relative">
+                                <img src="https://images.pexels.com/photos/3764402/pexels-photo-3764402.jpeg?cs=srgb&dl=pexels-olly-3764402.jpg&fm=jpg" class="object-cover w-full h-52" />
+                                <div class="absolute -mt-10 px-8 w-full">
+                                    <div class="bg-white rounded-lg border p-4 border-gray-300">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 8%"></div>
+                                        </div>
+                                        <div class="flex justify-between mt-2 text-black text-xs">
+                                            <p>Raise: <span class="font-bold">$2,400</span></p>
+                                            <p>Goal: <span class="font-bold">$30,000</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-6 py-10">
+                                    <div class="text-left text-black space-y-3">
+                                        <h4 class="font-bold text-lg">Breaking Language Barriers: Enable Global Access</h4>
+                                        <p class="text-sm">Your contribution drives our efforts to expand language support on our platform. With your support, we'll enhance the codebase to ensure personalized learning experiences in every language. Let's make education accessible to all, regardless of language barriers.</p>
+                                    </div>
+                                    <a href="https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg">
+                                        <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1203,6 +1253,7 @@ import { ref, onMounted } from 'vue';
 import GradeSection from '@/Pages/Landing/Sections/GradeSection.vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { watch } from 'vue';
 
 defineProps({
     blogCount: Number,
@@ -1215,6 +1266,8 @@ onMounted(() => {
 const form = useForm({
     donationAmount: 100,
 });
+
+const paymentLink = ref('');
 
 const imageOne = ref(false);
 const imageTwo = ref(false);
@@ -1257,4 +1310,27 @@ const handleClickOutside = (event) => {
     imageNine.value = false;
     imageTen.value = false;
 }
+
+watch(() => form.donationAmount, (value) => {
+    switch (value) {
+        case 10:
+            paymentLink.value = 'https://buy.stripe.com/4gwg2z8HC4zcc5G4gh';
+            break;
+        case 25:
+            paymentLink.value = 'https://buy.stripe.com/8wMaIf9LG8Ps6Lm6oq';
+            break;
+        case 50:
+            paymentLink.value = 'https://buy.stripe.com/dR68A74rm9Tw5Hi7sv';
+            break;
+        case 100:
+            paymentLink.value = 'https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg';
+            break;
+        case 250:
+            paymentLink.value = 'https://buy.stripe.com/00gdUr7Dy8PsedOeUY';
+            break;
+        default:
+            paymentLink.value = 'https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg';
+            break;
+    }
+});
 </script>
