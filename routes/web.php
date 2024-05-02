@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Billing\BillingPortalController;
-use App\Http\Controllers\Billing\QuantityExceededController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
@@ -12,9 +10,6 @@ use App\Http\Controllers\Guest\TermsOfServiceController;
 use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StripeCheckoutController;
-use App\Http\Controllers\StripeCheckoutOptionsController;
-use App\Http\Controllers\StripeCheckoutSuccessController;
 use App\Http\Controllers\Student\PromptController;
 use App\Http\Controllers\Student\Prompts\GetContentController;
 use App\Http\Controllers\Student\Prompts\GetQuestionsController;
@@ -47,9 +42,6 @@ Route::middleware('guest')->group(static function () {
 Route::middleware('auth')->group(function () {
     // Verified Routes...
     Route::middleware('verified')->group(function () {
-        Route::get('/billing-portal', BillingPortalController::class)->name('billing.portal');
-        Route::get('/quantity-exceeded', QuantityExceededController::class)->name('quantity.exceeded');
-
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
         Route::get('/feedback/create', [FeedbackController::class, 'create'])->name('feedback.create');
         Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
@@ -86,10 +78,6 @@ Route::middleware('auth')->group(function () {
             Route::post('/activity/update', [StudentActivityController::class, 'update'])->name('activity.update');
             Route::post('/activity/persist', [StudentActivityController::class, 'store'])->name('activity.store');
         });
-
-        Route::get('/subscription-checkout', StripeCheckoutController::class)->name('subscription.checkout');
-        Route::get('/subscription-checkout-options', StripeCheckoutOptionsController::class)->name('subscription.checkout.options');
-        Route::get('/subscription-checkout-success', StripeCheckoutSuccessController::class)->name('subscription.checkout.success');
 
         Route::get('/users/{user}/impersonate-user', [ImpersonationController::class, 'start'])->name('users.start.impersonating');
         Route::get('/users/stop-impersonating', [ImpersonationController::class, 'stop'])->name('users.stop.impersonating');

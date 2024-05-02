@@ -547,7 +547,7 @@
                         here. With a world of knowledge at your fingertips, there’s<br>
                         no limit to what you can discover and achieve.
                     </p>
-                    <button class="bg-primary-yellow py-3 px-20 rounded-lg tracking-widest">LEARN WITH VENTURE</button>
+                    <Link :href="route('register')" as="button" class="bg-primary-yellow py-3 px-20 rounded-lg tracking-widest">LEARN WITH VENTURE</Link>
                 </div>
             </section>
 
@@ -775,7 +775,7 @@
                             keep building our vision and enhance our platform's capabilities.
                         </p>
 
-                        <div class="grid grid-cols-3 gap-10 pt-10">
+                        <div class="grid grid-cols-1 gap-10 pt-10 sm:grid-cols-2 lg:grid-cols-3">
                             <div class="bg-white overflow-hidden rounded-2xl relative">
                                 <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
                                 <div class="absolute -mt-10 px-8 w-full">
@@ -817,7 +817,7 @@
                                         <h4 class="font-bold text-lg">A $50 Donation Supports a Year of Learning for a Student</h4>
                                         <p class="text-sm">A $50 donation funds a student's learning journey for an entire year. Your generosity unlocks boundless opportunities for them on Venture, providing unlimited access to learning resources and educational support. Every donation makes a lasting impact on their educational success.</p>
                                     </div>
-                                    <a href="https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg">
+                                    <a href="https://buy.stripe.com/dR68A74rm9Tw5Hi7sv">
                                         <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
                                     </a>
                                 </div>
