@@ -12,9 +12,7 @@ class PromptController extends Controller
 {
     public function index(Request $request): Response
     {
-        return Inertia::render('Student/Prompts/Index', [
-            'canAskQuestions' => $request->user()->canAskQuestions(),
-        ]);
+        return Inertia::render('Student/Prompts/Index');
     }
 
     public function store(PromptRequest $request): Response
@@ -26,7 +24,6 @@ class PromptController extends Controller
         $request->user()->parent->increment('total_questions_asked');
 
         return Inertia::render('Student/Prompts/Index', [
-            'canAskQuestions' => $request->user()->canAskQuestions(),
             'result' => [
                 'flagged' => false,
                 'message' => '',

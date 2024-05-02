@@ -19,9 +19,6 @@ class StudentInertiaRequests
                 'navigation' => $this->navigation(),
                 'subjects' => $this->subjects(),
                 'isImpersonated' => $impersonator->impersonating($request),
-                'motivationalMessage' => $request->routeIs('student.dashboard')
-                    ? (new MotivationalMessageService($request->user()))->generate()
-                    : null,
             ],
         ];
     }

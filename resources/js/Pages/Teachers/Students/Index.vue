@@ -155,8 +155,6 @@ defineOptions({
 
 const props = defineProps({
     students: Object,
-    showInitialPaymentPage: Boolean,
-    showExceededQuantityPage: Boolean,
 });
 
 const form = useForm({});

@@ -182,11 +182,6 @@
                                       class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">
                                     Profile
                                 </Link>
-                                <Link v-if="$page.props.auth.type === 'teacher' && $page.props.auth.isSubscribed"
-                                      :href="route('billing.portal')"
-                                      class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">
-                                    Billing
-                                </Link>
                             </ul>
                         </li>
                     </ul>
@@ -239,8 +234,6 @@
         </div>
 
         <main class="relative py-10 lg:pl-72">
-            <MotivationalMessage v-if="$page.props.auth.motivationalMessage"
-                                 :message="$page.props.auth.motivationalMessage"/>
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="max-w-7xl mx-auto sm:px-8">
                     <div v-if="isBeingImpersonated()" class="pb-6">
@@ -271,7 +264,6 @@ import {
     UsersIcon,
     XMarkIcon
 } from '@heroicons/vue/24/outline';
-import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 

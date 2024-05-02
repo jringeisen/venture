@@ -2,15 +2,7 @@
     <Head title="Prompts" />
 
     <div class="max-w-7xl mx-auto pb-20 sm:px-8">
-        <div v-if="!canAskQuestions" class="max-w-2xl mx-auto p-4 rounded-lg shadow-lg bg-primary-gray text-neutral-300 text-center">
-            <p>
-                Hey there friend. You are currently on our free plan which has a limit of
-                20 questions. In order to continue asking questions your account will need
-                to be upgraded.
-            </p>
-        </div>
-
-        <form v-else @submit.prevent="submit" class="flex items-center mt-6 relative">
+        <form @submit.prevent="submit" class="flex items-center mt-6 relative">
             <TextInput
                 class="py-2 px-6 text-xl w-full font-bold rounded-full shadow-lg"
                 placeholder="Ask a question or tell us what you want to learn about..."
@@ -91,10 +83,6 @@
         result: {
             type: Object,
             required: false,
-        },
-        canAskQuestions: {
-            type: Boolean,
-            required: true,
         },
     })
 

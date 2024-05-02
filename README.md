@@ -35,7 +35,6 @@ Configuration:
     - STRIPE_WEBHOOK_SECRET
     - STRIPE_MONTHLY_PRICE
     - STRIPE_ANNUAL_PRICE
-    - STUDENT_FREE_QUESTION_COUNT
     - NOVA_LICENSE_KEY
 
 Notes: Most of the emails that are sent are sent via the queue system so you'll need to make sure to run `php artisan queue:work` if your QUEUE_CONNECTION variable is set to database.
