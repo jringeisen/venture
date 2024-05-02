@@ -777,7 +777,7 @@
 
                         <div class="grid grid-cols-1 gap-10 pt-10 sm:grid-cols-2 lg:grid-cols-3">
                             <div class="bg-white overflow-hidden rounded-2xl relative">
-                                <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
+                                <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
                                 <div class="absolute -mt-10 px-8 w-full">
                                     <div class="bg-white rounded-lg border p-4 border-gray-300">
                                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -800,7 +800,7 @@
                                 </div>
                             </div>
                             <div class="bg-white overflow-hidden rounded-2xl relative">
-                                <img src="https://images.pexels.com/photos/1206101/pexels-photo-1206101.jpeg?cs=srgb&dl=pexels-iqwan-alif-493640-1206101.jpg&fm=jpg" class="object-cover w-full h-52" />
+                                <img src="https://images.pexels.com/photos/9302788/pexels-photo-9302788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
                                 <div class="absolute -mt-10 px-8 w-full">
                                     <div class="bg-white rounded-lg border p-4 border-gray-300">
                                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -823,7 +823,7 @@
                                 </div>
                             </div>
                             <div class="bg-white overflow-hidden rounded-2xl relative">
-                                <img src="https://images.pexels.com/photos/3764402/pexels-photo-3764402.jpeg?cs=srgb&dl=pexels-olly-3764402.jpg&fm=jpg" class="object-cover w-full h-52" />
+                                <img src="https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
                                 <div class="absolute -mt-10 px-8 w-full">
                                     <div class="bg-white rounded-lg border p-4 border-gray-300">
                                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
