@@ -469,10 +469,10 @@
                         </div>
                         <div class="mt-10">
                             <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 33%"></div>
+                                <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:' + progressForAllDonations()"></div>
                             </div>
                             <div class="flex justify-between mt-2">
-                                <p>Raise: <span class="font-bold">$1,820</span></p>
+                                <p>Raise: <span class="font-bold">${{ sumDonations / 100 }}</span></p>
                                 <p>Goal: <span class="font-bold">$5,500</span></p>
                             </div>
 
@@ -794,7 +794,7 @@
                                         <h4 class="font-bold text-lg">Support Backend Course Curriculum Development</h4>
                                         <p class="text-sm">Your contribution helps us build the backbone of future courses. With your support, we'll develop the backend infrastructure necessary to deliver engaging and effective online learning experiences. Join us in shaping the educational landscape for tomorrow's learners.</p>
                                     </div>
-                                    <a href="https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg">
+                                    <a :href="paymentLinks[100]">
                                         <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
                                     </a>
                                 </div>
@@ -817,7 +817,7 @@
                                         <h4 class="font-bold text-lg">A $50 Donation Supports a Year of Learning for a Student</h4>
                                         <p class="text-sm">A $50 donation funds a student's learning journey for an entire year. Your generosity unlocks boundless opportunities for them on Venture, providing unlimited access to learning resources and educational support. Every donation makes a lasting impact on their educational success.</p>
                                     </div>
-                                    <a href="https://buy.stripe.com/dR68A74rm9Tw5Hi7sv">
+                                    <a :href="paymentLinks[50]">
                                         <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
                                     </a>
                                 </div>
@@ -840,7 +840,7 @@
                                         <h4 class="font-bold text-lg">Breaking Language Barriers: Enable Global Access</h4>
                                         <p class="text-sm">Your contribution drives our efforts to expand language support on our platform. With your support, we'll enhance the codebase to ensure personalized learning experiences in every language. Let's make education accessible to all, regardless of language barriers.</p>
                                     </div>
-                                    <a href="https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg">
+                                    <a :href="paymentLinks[100]">
                                         <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
                                     </a>
                                 </div>
@@ -1250,13 +1250,14 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
-import GradeSection from '@/Pages/Landing/Sections/GradeSection.vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { watch } from 'vue';
 
-defineProps({
+const props = defineProps({
     blogCount: Number,
+    paymentLinks: Object,
+    sumDonations: Number,
 })
 
 onMounted(() => {
@@ -1311,26 +1312,13 @@ const handleClickOutside = (event) => {
     imageTen.value = false;
 }
 
+const progressForAllDonations = () => {
+    const goal = 5500
+
+    return Math.round(((props.sumDonations / 100) / goal) * 100) + '%';
+}
+
 watch(() => form.donationAmount, (value) => {
-    switch (value) {
-        case 10:
-            paymentLink.value = 'https://buy.stripe.com/4gwg2z8HC4zcc5G4gh';
-            break;
-        case 25:
-            paymentLink.value = 'https://buy.stripe.com/8wMaIf9LG8Ps6Lm6oq';
-            break;
-        case 50:
-            paymentLink.value = 'https://buy.stripe.com/dR68A74rm9Tw5Hi7sv';
-            break;
-        case 100:
-            paymentLink.value = 'https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg';
-            break;
-        case 250:
-            paymentLink.value = 'https://buy.stripe.com/00gdUr7Dy8PsedOeUY';
-            break;
-        default:
-            paymentLink.value = 'https://buy.stripe.com/6oEg2zaPK8Ps0mY4gg';
-            break;
-    }
+    paymentLink.value = props.paymentLinks[value];
 });
 </script>
