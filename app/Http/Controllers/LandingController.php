@@ -13,7 +13,7 @@ class LandingController extends Controller
         return Inertia::render('Landing/Index', [
             'blogCount' => BlogPost::count(),
             'paymentLinks' => config('services.stripe.payment_links'),
-            'sumDonations' => (int) Donation::sum('amount'),
+            'totalGoalProgress' => Donation::totalGoalProgress(),
         ]);
     }
 }

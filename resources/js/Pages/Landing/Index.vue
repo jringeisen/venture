@@ -469,10 +469,10 @@
                         </div>
                         <div class="mt-10">
                             <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:' + progressForAllDonations()"></div>
+                                <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:' + totalGoalProgress.progress + ';'"></div>
                             </div>
                             <div class="flex justify-between mt-2">
-                                <p>Raise: <span class="font-bold">${{ sumDonations / 100 }}</span></p>
+                                <p>Raise: <span class="font-bold">{{ totalGoalProgress.amount }}</span></p>
                                 <p>Goal: <span class="font-bold">$5,500</span></p>
                             </div>
 
@@ -1257,7 +1257,7 @@ import { watch } from 'vue';
 const props = defineProps({
     blogCount: Number,
     paymentLinks: Object,
-    sumDonations: Number,
+    totalGoalProgress: Array,
 })
 
 onMounted(() => {
@@ -1310,12 +1310,6 @@ const handleClickOutside = (event) => {
     imageEight.value = false;
     imageNine.value = false;
     imageTen.value = false;
-}
-
-const progressForAllDonations = () => {
-    const goal = 5500
-
-    return Math.round(((props.sumDonations / 100) / goal) * 100) + '%';
 }
 
 watch(() => form.donationAmount, (value) => {
