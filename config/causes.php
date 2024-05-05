@@ -9,8 +9,8 @@ return [
         'image' => 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         'goal' => Number::currency(45000),
         'goalValue' => 45000,
-        'paymentLink' => 'https://buy.stripe.com/test_aEU6sh65M2R924w005',
-        'plink' => 'plink_1PCrK8Aolv7LEvcOHKRTpWbF',
+        'paymentLink' => env('STRIPE_CAUSE_ONE'),
+        'plink' => env('STRIPE_CAUSE_ONE_PLINK'),
     ],
     'cause_two' => [
         'title' => 'A $50 Donation Supports a Year of Learning for a Student',
@@ -18,8 +18,8 @@ return [
         'image' => 'https://images.pexels.com/photos/9302788/pexels-photo-9302788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         'goal' => Number::currency(500000),
         'goalValue' => 500000,
-        'paymentLink' => 'https://buy.stripe.com/test_00g6sh51IfDVcJaeV0',
-        'plink' => 'plink_1PCrMeAolv7LEvcOvWehivgb',
+        'paymentLink' => env('STRIPE_CAUSE_TWO'),
+        'plink' => env('STRIPE_CAUSE_TWO_PLINK'),
     ],
     'cause_three' => [
         'title' => 'Breaking Language Barriers: Enable Global Access',
@@ -27,7 +27,7 @@ return [
         'image' => 'https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         'goal' => Number::currency(30000),
         'goalValue' => 30000,
-        'paymentLink' => 'https://buy.stripe.com/test_00g6sh79QezR4cE28f',
-        'plink' => 'plink_1PCrOSAolv7LEvcO8zEFZdLd',
+        'paymentLink' => env('STRIPE_CAUSE_THREE'),
+        'plink' => env('STRIPE_CAUSE_THREE_PLINK'),
     ],
 ];
