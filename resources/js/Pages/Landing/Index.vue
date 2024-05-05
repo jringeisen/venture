@@ -469,7 +469,7 @@
                                 <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:22%;'"></div>
                             </div>
                             <div class="flex justify-between mt-2">
-                                <p>Raise: <span class="font-bold">{{ totalSumDonations }}</span></p>
+                                <p>Raised: <span class="font-bold">{{ totalSumDonations }}</span></p>
                                 <p>Goal: <span class="font-bold">$100,000,000</span></p>
                             </div>
 
@@ -781,7 +781,7 @@
                                             <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:'+cause.progress"></div>
                                         </div>
                                         <div class="flex justify-between mt-2 text-black text-xs">
-                                            <p>Raise: <span class="font-bold">{{ cause.raised }}</span></p>
+                                            <p>Raised: <span class="font-bold">{{ cause.raised }}</span></p>
                                             <p>Goal: <span class="font-bold">{{ cause.goal }}</span></p>
                                         </div>
                                     </div>
@@ -1209,7 +1209,6 @@ const props = defineProps({
     blogCount: Number,
     paymentLinks: Object,
     totalSumDonations: String,
-    donations: Object,
     causes: Object,
 })
 
@@ -1221,7 +1220,7 @@ const form = useForm({
     donationAmount: 100,
 });
 
-const paymentLink = ref('');
+const paymentLink = ref('https://buy.stripe.com/test_6oEdUJ1PwdvN5gI003');
 
 const imageOne = ref(false);
 const imageTwo = ref(false);
@@ -1266,6 +1265,10 @@ const handleClickOutside = (event) => {
 }
 
 watch(() => form.donationAmount, (value) => {
+    if (value === 0) {
+        location.href = paymentLink.value;
+    }
+
     paymentLink.value = props.paymentLinks[value];
 });
 </script>

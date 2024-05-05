@@ -17,7 +17,6 @@ class LandingController extends Controller
             'blogCount' => BlogPost::count(),
             'paymentLinks' => config('services.stripe.payment_links'),
             'totalSumDonations' => Number::currency(Donation::totalSum() / 100),
-            'donations' => $donations,
             'causes' => collect(config('causes'))->map(function ($cause) use ($donations) {
                 return array_merge($cause, [
                     'raised' => Number::currency($donations->where('payment_link', $cause['plink'])->first()?->amount / 100 ?? 0),
