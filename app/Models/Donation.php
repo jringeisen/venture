@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Number;
+use Illuminate\Support\Collection;
 
 class Donation extends Model
 {
     use HasFactory;
-
-    public static $TOTAL_GOAL = 5500;
 
     protected $fillable = [
         'email',
@@ -26,13 +24,13 @@ class Donation extends Model
         'payment_link' => 'string',
     ];
 
-    public static function totalGoalProgress(): array
+    public static function totalSum(): int
     {
-        $sum = (int) Donation::sum('amount');
+        return Donation::sum('amount');
+    }
 
-        return [
-            'amount' => Number::currency($sum / 100),
-            'progress' => Number::percentage((($sum / 100) / self::$TOTAL_GOAL) * 100),
-        ];
+    public static function sumAmountByPaymentLink(): Collection
+    {
+        return Donation::selectRaw('SUM(amount) as amount, payment_link')->groupBy('payment_link')->get();
     }
 }

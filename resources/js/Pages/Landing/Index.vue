@@ -40,16 +40,18 @@
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
                     <a href="#benefits" class="text-sm font-semibold leading-6 text-white">BENEFITS</a>
+                    <a href="#mission" class="text-sm font-semibold leading-6 text-white">MISSION</a>
+                    <a href="#causes" class="text-sm font-semibold leading-6 text-white">DONATE</a>
                     <a href="#subjects" class="text-sm font-semibold leading-6 text-white">SUBJECTS</a>
-                    <a href="#pricing" class="text-sm font-semibold leading-6 text-white">PRICING</a>
-                    <a href="#reviews" class="text-sm hidden font-semibold leading-6 text-white">REVIEWS</a>
-                    <Link v-if="blogCount >= 3" :href="route('blog-posts.index')" class="text-sm font-semibold leading-6 text-white">BLOG</Link>
-                    <Link :href="route('planner')" class="text-sm font-semibold leading-6 text-primary-yellow">FREE PLANNER</Link>
+                    <Link :href="route('blog-posts.index')" class="text-sm font-semibold leading-6 text-white">BLOG</Link>
+                    <Link :href="route('register')" class="text-sm font-semibold leading-6 text-white">REGISTER</Link>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div class="flex items-center text-right">
-                        <Link :href="route('auth.options')" class="text-sm mr-2 font-semibold leading-6 text-white">Log in <span
-                                aria-hidden="true">&rarr;</span></Link>
+                        <div class="flex flex-col">
+                            <Link :href="route('auth.options')" class="text-sm mr-2 font-semibold leading-6 text-white">Log in <span
+                                    aria-hidden="true">&rarr;</span></Link>
+                        </div>
                         <a href="#donate"
                             class="inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">DONATE</a>
                     </div>
@@ -85,22 +87,17 @@
                                 <a href="#benefits"
                                     @click="toggleMobileMenu()"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">BENEFITS</a>
+                                <a href="#mission"
+                                    @click="toggleMobileMenu()"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">MISSION</a>
+                                <a href="#causes"
+                                    @click="toggleMobileMenu()"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">DONATE</a>
                                 <a href="#subjects"
                                     @click="toggleMobileMenu()"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">SUBJECTS</a>
-                                <a href="#pricing"
-                                    @click="toggleMobileMenu()"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">PRICING</a>
-                                <a href="#reviews"
-                                    @click="toggleMobileMenu()"
-                                    class="-mx-3 hidden rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">REVIEWS</a>
-                                <a href="#donate"
-                                    @click="toggleMobileMenu()"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">DONATE</a>
-                                <Link v-if="blogCount >= 3" :href="route('blog-posts.index')"
+                                <Link :href="route('blog-posts.index')"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">BLOG</Link>
-                                <Link :href="route('planner')"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-primary-yellow hover:bg-primary-dark-gray">FREE PLANNER</Link>
                             </div>
                             <div class="py-6">
                                 <a :href="route('auth.options')"
@@ -417,7 +414,7 @@
                 </section>
             </div>
 
-            <section id="donate" class="relative">
+            <section id="mission" class="relative">
                 <video class="absolute inset-0 w-full h-[720px] object-cover object-center brightness-75" autoplay loop muted>
                     <source src="https://static.showit.co/file/73Y8eDVBTqKMc3flhEUamw/129955/8mb_video-arz-ebptslej.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -469,16 +466,16 @@
                         </div>
                         <div class="mt-10">
                             <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:' + totalGoalProgress.progress + ';'"></div>
+                                <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:22%;'"></div>
                             </div>
                             <div class="flex justify-between mt-2">
-                                <p>Raise: <span class="font-bold">{{ totalGoalProgress.amount }}</span></p>
-                                <p>Goal: <span class="font-bold">$5,500</span></p>
+                                <p>Raise: <span class="font-bold">{{ totalSumDonations }}</span></p>
+                                <p>Goal: <span class="font-bold">$100,000,000</span></p>
                             </div>
 
                             <div class="mt-6 flex rounded-md shadow-sm">
                                 <span class="inline-flex items-center bg-primary-yellow rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                     </svg>
                                 </span>
@@ -490,25 +487,25 @@
                                     <button
                                         @click.prevent="form.donationAmount = 10"
                                         class="px-4 py-2 font-semibold rounded-lg"
-                                        :class="form.donationAmount === 10 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        :class="form.donationAmount === 10 ? 'bg-primary-yellow': 'bg-yellow-200'">
                                         $10
                                     </button>
                                     <button
                                         @click.prevent="form.donationAmount = 25"
                                         class="px-4 py-2 font-semibold rounded-lg"
-                                        :class="form.donationAmount === 25 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        :class="form.donationAmount === 25 ? 'bg-primary-yellow': 'bg-yellow-200'">
                                         $25
                                     </button>
                                     <button
                                         @click.prevent="form.donationAmount = 50"
                                         class="px-4 py-2 font-semibold rounded-lg"
-                                        :class="form.donationAmount === 50 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        :class="form.donationAmount === 50 ? 'bg-primary-yellow': 'bg-yellow-200'">
                                         $50
                                     </button>
                                     <button
                                         @click.prevent="form.donationAmount = 100"
                                         class="px-4 py-2 font-semibold rounded-lg"
-                                        :class="form.donationAmount === 100 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        :class="form.donationAmount === 100 ? 'bg-primary-yellow': 'bg-yellow-200'">
                                         $100
                                     </button>
                                 </div>
@@ -516,20 +513,20 @@
                                     <button
                                         @click.prevent="form.donationAmount = 250"
                                         class="px-4 py-2 font-semibold rounded-lg"
-                                        :class="form.donationAmount === 250 ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        :class="form.donationAmount === 250 ? 'bg-primary-yellow': 'bg-yellow-200'">
                                         $250
                                     </button>
                                     <button
                                         @click.prevent="form.donationAmount = 0"
                                         class="px-4 py-2 font-semibold rounded-lg"
-                                        :class="![10, 25, 50, 100, 250].includes(form.donationAmount) ? 'bg-primary-yellow text-white': 'bg-yellow-200'">
+                                        :class="![10, 25, 50, 100, 250].includes(form.donationAmount) ? 'bg-primary-yellow': 'bg-yellow-200'">
                                         CUSTOM AMOUNT
                                     </button>
                                 </div>
                             </div>
                             <div class="mt-8">
                                 <a :href="paymentLink">
-                                    <p class="w-full bg-primary-yellow text-white font-bold rounded-md py-3 text-center">DONATE NOW</p>
+                                    <p class="w-full bg-primary-yellow text-black font-bold rounded-md py-3 text-center">DONATE NOW</p>
                                 </a>
                             </div>
                         </div>
@@ -760,7 +757,7 @@
                 </div>
             </section>
 
-            <section id="pricing" class="pt-40">
+            <section id="causes" class="pt-40">
                 <div class="text-center space-y-6">
                     <p class="text-white font-semibold text-xl tracking-wider">CROWDFUNDING CAMPAIGNS</p>
                     <div class="text-white max-w-5xl mx-auto leading-snug px-8 space-y-10 lg:px-0">
@@ -776,71 +773,25 @@
                         </p>
 
                         <div class="grid grid-cols-1 gap-10 pt-10 sm:grid-cols-2 lg:grid-cols-3">
-                            <div class="bg-white overflow-hidden rounded-2xl relative">
-                                <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
+                            <div v-for="(cause, index) in causes" class="bg-white overflow-hidden rounded-2xl relative">
+                                <img :src="cause.image" class="object-cover w-full h-52" />
                                 <div class="absolute -mt-10 px-8 w-full">
                                     <div class="bg-white rounded-lg border p-4 border-gray-300">
                                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 2.22%"></div>
+                                            <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:'+cause.progress"></div>
                                         </div>
                                         <div class="flex justify-between mt-2 text-black text-xs">
-                                            <p>Raise: <span class="font-bold">$1,000</span></p>
-                                            <p>Goal: <span class="font-bold">$45,000</span></p>
+                                            <p>Raise: <span class="font-bold">{{ cause.raised }}</span></p>
+                                            <p>Goal: <span class="font-bold">{{ cause.goal }}</span></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="px-6 py-10">
                                     <div class="text-left text-black space-y-3">
-                                        <h4 class="font-bold text-lg">Support Backend Course Curriculum Development</h4>
-                                        <p class="text-sm">Your contribution helps us build the backbone of future courses. With your support, we'll develop the backend infrastructure necessary to deliver engaging and effective online learning experiences. Join us in shaping the educational landscape for tomorrow's learners.</p>
+                                        <h4 class="font-bold text-lg">{{ cause.text }}</h4>
+                                        <p class="text-sm">{{ cause.description }}</p>
                                     </div>
-                                    <a :href="paymentLinks[100]">
-                                        <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="bg-white overflow-hidden rounded-2xl relative">
-                                <img src="https://images.pexels.com/photos/9302788/pexels-photo-9302788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
-                                <div class="absolute -mt-10 px-8 w-full">
-                                    <div class="bg-white rounded-lg border p-4 border-gray-300">
-                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 0.5%"></div>
-                                        </div>
-                                        <div class="flex justify-between mt-2 text-black text-xs">
-                                            <p>Raise: <span class="font-bold">$2,400</span></p>
-                                            <p>Goal: <span class="font-bold">$500,000</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-6 py-10">
-                                    <div class="text-left text-black space-y-3">
-                                        <h4 class="font-bold text-lg">A $50 Donation Supports a Year of Learning for a Student</h4>
-                                        <p class="text-sm">A $50 donation funds a student's learning journey for an entire year. Your generosity unlocks boundless opportunities for them on Venture, providing unlimited access to learning resources and educational support. Every donation makes a lasting impact on their educational success.</p>
-                                    </div>
-                                    <a :href="paymentLinks[50]">
-                                        <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="bg-white overflow-hidden rounded-2xl relative">
-                                <img src="https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="object-cover w-full h-52" />
-                                <div class="absolute -mt-10 px-8 w-full">
-                                    <div class="bg-white rounded-lg border p-4 border-gray-300">
-                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 8%"></div>
-                                        </div>
-                                        <div class="flex justify-between mt-2 text-black text-xs">
-                                            <p>Raise: <span class="font-bold">$2,400</span></p>
-                                            <p>Goal: <span class="font-bold">$30,000</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-6 py-10">
-                                    <div class="text-left text-black space-y-3">
-                                        <h4 class="font-bold text-lg">Breaking Language Barriers: Enable Global Access</h4>
-                                        <p class="text-sm">Your contribution drives our efforts to expand language support on our platform. With your support, we'll enhance the codebase to ensure personalized learning experiences in every language. Let's make education accessible to all, regardless of language barriers.</p>
-                                    </div>
-                                    <a :href="paymentLinks[100]">
+                                    <a :href="cause.paymentLink">
                                         <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
                                     </a>
                                 </div>
@@ -1257,7 +1208,9 @@ import { watch } from 'vue';
 const props = defineProps({
     blogCount: Number,
     paymentLinks: Object,
-    totalGoalProgress: Array,
+    totalSumDonations: String,
+    donations: Object,
+    causes: Object,
 })
 
 onMounted(() => {

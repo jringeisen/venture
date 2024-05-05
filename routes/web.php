@@ -5,7 +5,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\Guest\DownloadPlannerController;
 use App\Http\Controllers\Guest\NewsletterController;
-use App\Http\Controllers\Guest\PlannerController;
 use App\Http\Controllers\Guest\TermsOfServiceController;
 use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\LandingController;
@@ -22,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 // Guest Routes...
 Route::middleware('guest')->group(static function () {
     Route::get('/', LandingController::class)->name('landing');
-    Route::get('/planner', PlannerController::class)->name('planner');
 
     Route::post('/newsletter-lists', [NewsletterController::class, 'subscribe'])->name('newsletter-list.subscribe');
     Route::get('/newsletter-lists/{newsletter_list:email}', [NewsletterController::class, 'unsubscribe'])
