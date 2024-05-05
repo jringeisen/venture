@@ -40,20 +40,20 @@
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
                     <a href="#benefits" class="text-sm font-semibold leading-6 text-white">BENEFITS</a>
+                    <a href="#mission" class="text-sm font-semibold leading-6 text-white">MISSION</a>
+                    <a href="#causes" class="text-sm font-semibold leading-6 text-white">DONATE</a>
                     <a href="#subjects" class="text-sm font-semibold leading-6 text-white">SUBJECTS</a>
-                    <a href="#pricing" class="text-sm font-semibold leading-6 text-white">PRICING</a>
-                    <a href="#reviews" class="text-sm hidden font-semibold leading-6 text-white">REVIEWS</a>
-                    <a href="#faq" class="hidden text-sm font-semibold leading-6 text-white xl:block">FAQ</a>
-                    <Link v-if="blogCount >= 3" :href="route('blog-posts.index')" class="text-sm font-semibold leading-6 text-white">BLOG</Link>
-                    <Link :href="route('planner')" class="text-sm font-semibold leading-6 text-primary-yellow">FREE PLANNER</Link>
+                    <Link :href="route('blog-posts.index')" class="text-sm font-semibold leading-6 text-white">BLOG</Link>
+                    <Link :href="route('register')" class="text-sm font-semibold leading-6 text-white">REGISTER</Link>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div class="flex items-center text-right">
-                        <Link :href="route('auth.options')" class="text-sm mr-2 font-semibold leading-6 text-white">Log in <span
-                                aria-hidden="true">&rarr;</span></Link>
-                        <Link :href="route('register')"
-                            class="inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">SIGN
-                            UP NOW</Link>
+                        <div class="flex flex-col">
+                            <Link :href="route('auth.options')" class="text-sm mr-2 font-semibold leading-6 text-white">Log in <span
+                                    aria-hidden="true">&rarr;</span></Link>
+                        </div>
+                        <a href="#donate"
+                            class="inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">DONATE</a>
                     </div>
                 </div>
             </nav>
@@ -87,22 +87,17 @@
                                 <a href="#benefits"
                                     @click="toggleMobileMenu()"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">BENEFITS</a>
+                                <a href="#mission"
+                                    @click="toggleMobileMenu()"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">MISSION</a>
+                                <a href="#causes"
+                                    @click="toggleMobileMenu()"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">DONATE</a>
                                 <a href="#subjects"
                                     @click="toggleMobileMenu()"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">SUBJECTS</a>
-                                <a href="#pricing"
-                                    @click="toggleMobileMenu()"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">PRICING</a>
-                                <a href="#reviews"
-                                    @click="toggleMobileMenu()"
-                                    class="-mx-3 hidden rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">REVIEWS</a>
-                                <a href="#faq"
-                                    @click="toggleMobileMenu()"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">FAQ</a>
-                                <Link v-if="blogCount >= 3" :href="route('blog-posts.index')"
+                                <Link :href="route('blog-posts.index')"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-primary-dark-gray">BLOG</Link>
-                                <Link :href="route('planner')"
-                                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-primary-yellow hover:bg-primary-dark-gray">FREE PLANNER</Link>
                             </div>
                             <div class="py-6">
                                 <a :href="route('auth.options')"
@@ -406,262 +401,155 @@
                 </section>
 
                 <section id="benefits" class="flex justify-center text-white pt-32">
-                    <div class="px-6 w-full lg:w-6/12 lg:px-0">
+                    <div class="px-6 w-full lg:w-8/12 lg:px-0">
                         <h2 class="text-center text-4xl tracking-widest">THE FUTURE OF EDUCATION</h2>
                         <p class="text-center tracking-widest leading-7 py-6">
-                            Discover Venture, where students navigate their unique path through knowledge,
-                            transcending traditional limits for a deeply personalized experience. Here, curiosity
-                            guides learning, sparking a lifelong passion and independent thinking tailored to
-                            each learner. Join us in shaping innovative thinkers and pioneers in an exciting,
-                            curiosity-led educational future.
+                            At Venture, we believe that learning should have no limits and be accessible to all.
+                            Our goal is to foster a generation of learners who are not just recipients of information
+                            but empowered to explore, question, and innovate in their quest for knowledge. Join us in our
+                            commitment to transforming the educational landscape, making learning an accessible, exciting
+                            adventure for all students.
                         </p>
                     </div>
                 </section>
             </div>
 
-            <section id="subjects" class="w-full bg-gradient-to-t from-black to-transparent h-[400px] lg:h-[800px]">
-                <div class="flex justify-center">
-                    <div class="hidden relative w-full lg:block">
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:15%;top:170px;width:196px;height:21px;">
-                            <img src="assets/images/icons/20.png" loading="lazy" alt="conservation" class="w-5 h-5" />
-                            Conservation
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:26%;top:200px;width:126px;height:21px;">
-                            <img src="assets/images/icons/5.png" loading="lazy" alt="astronomy" class="w-5 h-5" />
-                            Astronomy
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:10%;top:250px;width:196px;height:21px;">
-                            <img src="assets/images/icons/25.png" loading="lazy" alt="legal-studies" class="w-5 h-5" />
-                            Legal Studies
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:45%;top:209px;width:196px;height:21px">
-                            <img src="assets/images/icons/20.png" loading="lazy" alt="geography" class="w-5 h-5" />
-                            Geography
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:67%;top:108px;width:196px;height:21px;">
-                            <img src="assets/images/icons/8.png" loading="lazy" alt="coding" class="w-5 h-5" />
-                            Coding
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:31%;top:130px;width:330px;height:21px;">
-                            <img src="assets/images/icons/13.png" loading="lazy" alt="entrepreneurship" class="w-5 h-5" />
-                            Entrepreneurship
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:23%;top:300px;width:126px;height:21px;">
-                            <img src="assets/images/icons/1.png" loading="lazy" alt="science" class="w-5 h-5" />
-                            Science
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:34%;top:275px;width:196px;height:21px">
-                            <img src="assets/images/icons/6.png" loading="lazy" alt="space-eploration" class="w-5 h-5" />
-                            Space Eploration
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:10%;top:374px;width:126px;height:21px;">
-                            <img src="assets/images/icons/2.png" loading="lazy" alt="language-arts" class="w-5 h-5" />
-                            Language Arts
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:26%;top:480px;width:126px;height:21px">
-                            <img src="assets/images/icons/2.png" loading="lazy" alt="history" class="w-5 h-5" />
-                            History
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:18%;top:500px;width:196px;height:21px">
-                            <img src="assets/images/icons/10.png" loading="lazy" alt="literature" class="w-5 h-5" />
-                            Literarture
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:83%;top:460px;width:196px;height:21px">
-                            <img src="assets/images/icons/28.png" loading="lazy" alt="vocational-skills" class="w-5 h-5" />
-                            Vocational Skills
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:30%;top:632px;width:196px;height:21px">
-                            <img src="assets/images/icons/26.png" loading="lazy" alt="mythology" class="w-5 h-5" />
-                            Mythology
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:20%;top:600px;width:330px;height:21px">
-                            <img src="assets/images/icons/14.png" loading="lazy" alt="business" class="w-5 h-5" />
-                            Business
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:11%;top:536px;width:196px;height:21px">
-                            <img src="assets/images/icons/15.png" loading="lazy" alt="robotics" class="w-5 h-5" />
-                            Robotics
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:30%;top:530px;width:196px;height:21px">
-                            <img src="assets/images/icons/4.png" loading="lazy" alt="physical-education" class="w-5 h-5" />
-                            Physical Education
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:80%;top:545px;width:196px;height:21px">
-                            <img src="assets/images/icons/31.png" loading="lazy" alt="ancient-cultures" class="w-5 h-5" />
-                            Ancient Cultures
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:45%;top:516px;width:126px;height:21px">
-                            <img src="assets/images/icons/30.png" loading="lazy" alt="social-studies" class="w-5 h-5" />
-                            Social Studies
-                        </div>
-                        <div class="absolute text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:53%;top:590px;width:126px;height:21px">
-                            <img src="assets/images/icons/24.png" loading="lazy" alt="music" class="w-5 h-5" />
-                            Music
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:40%;top:640px;width:196px;height:21px">
-                            <img src="assets/images/icons/10.png" loading="lazy" alt="civics-and-government"
-                                class="w-5 h-5" />
-                            Civics and Government
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:72%;top:645px;width:196px;height:21px">
-                            <img src="assets/images/icons/20.png" loading="lazy" alt="environmental-studies"
-                                class="w-5 h-5" />
-                            Environmental Studies
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:62%;top:602px;width:196px;height:21px">
-                            <img src="assets/images/icons/32.png" alt="wildlife" class="w-5 h-5" />
-                            Wildlife
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:60%;top:481px;width:196px;height:21px">
-                            <img src="assets/images/icons/33.png" alt="paleontology" class="w-5 h-5" />
-                            Paleontology
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:68%;top:542px;width:126px;height:21px">
-                            <img src="assets/images/icons/2.png" alt="storytelling" class="w-5 h-5" />
-                            Storytelling
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:74%;top:310px;width:196px;height:21px">
-                            <img src="assets/images/icons/4.png" alt="health" class="w-5 h-5" />
-                            Health
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:74%;top:480px;width:126px;height:21px">
-                            <img src="assets/images/icons/11.png" alt="art" class="w-5 h-5" />
-                            Art
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:61%;top:270px;width:196px;height:21px">
-                            <img src="assets/images/icons/17.png" alt="archaeology" class="w-5 h-5" />
-                            Archaeology
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:54%;top:130px;width:196px;height:21px">
-                            <img src="assets/images/icons/2.png" alt="creative-writing" class="w-5 h-5" />
-                            Creative Writing
-                        </div>
-                        <div class="flex absolute text-sm text-neutral-500"
-                            data-aos="zoom-in" style="left:74%;top:184px;width:196px;height:21px">
-                            <img src="assets/images/icons/34.png" alt="computer-science" class="w-5 h-5" />
-                            Computer Science
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:83%;top:299px;width:126px;height:21px">
-                            <img src="assets/images/icons/19.png" alt="mathematics" class="w-5 h-5" />
-                            Mathematics
-                        </div>
-                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
-                            data-aos="zoom-in" style="left:42%;top:108px;width:126px;height:21px">
-                            <img src="assets/images/icons/21.png" alt="marine-biology" class="w-5 h-5" />
-                            Marine Biology
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div class="w-full text-center mt-40 lg:mt-80 lg:w-9/12">
-                        <h2
-                            class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
-                            LEARN ANYTHING,</h2>
-                        <h2
-                            class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
-                            ANYTIME, <span class="text-primary-yellow font-semibold">ANYWHERE</span></h2>
-                    </div>
-                </div>
-            </section>
-
-            <section class="h-[740px]">
-                <GradeSection />
-            </section>
-
-            <section id="pricing" class="pt-40">
-                <div class="text-center space-y-10">
-                    <p class="text-white font-semibold tracking-wider text-4xl">START FREE TRIAL</p>
-                    <div class="text-white max-w-5xl mx-auto leading-snug px-8 lg:px-0">
-                        <p class="font-extralight text-3xl lg:text-5xl">
-                            Embark on your ad<span class="text-primary-yellow font-semibold">venture</span> today!
+            <section id="mission" class="relative">
+                <video class="absolute inset-0 w-full h-[720px] object-cover object-center brightness-75" autoplay loop muted>
+                    <source src="https://static.showit.co/file/73Y8eDVBTqKMc3flhEUamw/129955/8mb_video-arz-ebptslej.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="relative flex flex-col mt-32 py-20 items-center text-center lg:px-6 lg:text-left lg:max-w-6xl lg:mx-auto lg:flex-row">
+                    <div class="space-y-6 w-full">
+                        <p class="text-primary-yellow uppercase">Our Mission</p>
+                        <h3 class="text-5xl text-white font-thin leading-tight">
+                            Every child should have <br>
+                            the freedom to learn.
+                        </h3>
+                        <p class="text-white tracking-wider leading-loose">
+                            We're bringing world-class education to all children,<br>
+                            harnessing AI to overcome the barriers of location<br>
+                            and access. Every topic, every learner—let's make it<br>
+                            possible together.
                         </p>
+                        <div class="flex justify-center lg:justify-start">
+                            <ul class="text-white space-y-1 lg:space-y-6">
+                                <li class="flex items-center font-semibold lg:text-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow mr-2">
+                                        <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
+                                    </svg>
+                                    617 million children lack basic math and reading skills globally.
+                                </li>
+                                <li class="flex items-center font-semibold lg:text-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow mr-2">
+                                        <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
+                                    </svg>
+                                    75% of students feel unprepared for future careers.
+                                </li>
+                                <li class="flex items-center font-semibold lg:text-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-8 w-8 text-primary-yellow mr-2">
+                                        <path d="M170.718 216.482L141.6 245.6l93.6 93.6 208-208-29.118-29.118L235.2 279.918l-64.482-63.436zM422.4 256c0 91.518-74.883 166.4-166.4 166.4S89.6 347.518 89.6 256 164.482 89.6 256 89.6c15.6 0 31.2 2.082 45.764 6.241L334 63.6C310.082 53.2 284.082 48 256 48 141.6 48 48 141.6 48 256s93.6 208 208 208 208-93.6 208-208h-41.6z"></path>
+                                    </svg>
+                                    Personalized interest-led learning lifts academic success.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg px-6 py-8 max-w-lg mt-10 lg:mt-0">
+                        <div class="space-y-4">
+                            <p class="font-bold text-lg">Make A Donation</p>
+                            <p class="text-lg">
+                                Your donation makes it possible to provide free education to children
+                                across the globe. Every penny you donate goes directly towards making
+                                our mission possible
+                            </p>
+                        </div>
+                        <div class="mt-10">
+                            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:22%;'"></div>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <p>Raised: <span class="font-bold">{{ totalSumDonations }}</span></p>
+                                <p>Goal: <span class="font-bold">$100,000,000</span></p>
+                            </div>
 
-                        <div class="bg-primary-gray rounded-lg mt-20 p-6 grid grid-cols-1 border space-y-10 divide-y-2 lg:space-y-0 lg:divide-y-0 lg:divide-x-2 lg:grid-cols-3">
-                            <div>
-                                <p class="text-4xl text-white font-semibold py-4">Free Plan</p>
-                                <div class="w-2/3 mx-auto">
-                                    <ul class="text-center py-10">
-                                        <li class="text-lg py-1 border-b border-t">1 x Student</li>
-                                        <li class="text-lg py-1 border-b">20 x Questions</li>
-                                        <li class="text-lg py-1 border-b">Customer Support</li>
-                                    </ul>
-                                </div>
-                                <p class="text-4xl text-white font-semibold py-4">$0.00</p>
-                                <Link :href="route('register')"
-                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray dark:text-primary-yellow transition ease-in-out duration-150">
-                                    SIGN UP
-                                </Link>
-                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                            <div class="mt-6 flex rounded-md shadow-sm">
+                                <span class="inline-flex items-center bg-primary-yellow rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                </span>
+                                <input type="number" step="any" id="donation-amount" v-model="form.donationAmount" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 py-3 text-gray-900 font-bold ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-yellow sm:text-xl sm:leading-6" placeholder="100.00">
                             </div>
-                            <div>
-                                <p class="text-4xl text-white font-semibold py-4">Monthly Plan</p>
-                                <div class="w-2/3 mx-auto">
-                                    <ul class="text-center py-10">
-                                        <li class="text-lg py-1 border-b border-t">$20 per student</li>
-                                        <li class="text-lg py-1 border-b">Unlimited Questions</li>
-                                        <li class="text-lg py-1 border-b">Priority Customer Support</li>
-                                    </ul>
+
+                            <div class="mt-4 space-y-3">
+                                <div class="flex space-x-3">
+                                    <button
+                                        @click.prevent="form.donationAmount = 10"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 10 ? 'bg-primary-yellow': 'bg-yellow-200'">
+                                        $10
+                                    </button>
+                                    <button
+                                        @click.prevent="form.donationAmount = 25"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 25 ? 'bg-primary-yellow': 'bg-yellow-200'">
+                                        $25
+                                    </button>
+                                    <button
+                                        @click.prevent="form.donationAmount = 50"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 50 ? 'bg-primary-yellow': 'bg-yellow-200'">
+                                        $50
+                                    </button>
+                                    <button
+                                        @click.prevent="form.donationAmount = 100"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 100 ? 'bg-primary-yellow': 'bg-yellow-200'">
+                                        $100
+                                    </button>
                                 </div>
-                                <p class="text-4xl text-white font-semibold py-4">$20.00 <span class="font-normal text-sm">per student</span></p>
-                                <Link :href="route('register')"
-                                    class="inline-flex items-center px-10 py-3 bg-primary-yellow border border-transparent rounded-md font-semibold text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray transition ease-in-out duration-150">
-                                    START FREE TRIAL
-                                </Link>
-                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                                <div class="flex space-x-3">
+                                    <button
+                                        @click.prevent="form.donationAmount = 250"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="form.donationAmount === 250 ? 'bg-primary-yellow': 'bg-yellow-200'">
+                                        $250
+                                    </button>
+                                    <button
+                                        @click.prevent="form.donationAmount = 0"
+                                        class="px-4 py-2 font-semibold rounded-lg"
+                                        :class="![10, 25, 50, 100, 250].includes(form.donationAmount) ? 'bg-primary-yellow': 'bg-yellow-200'">
+                                        CUSTOM AMOUNT
+                                    </button>
+                                </div>
                             </div>
-                            <div class="relative">
-                                <p class="text-4xl text-white font-semibold py-4">Annual Plan</p>
-                                <p class="absolute text-primary-yellow font-bold text-center w-full">Save $40 per student!</p>
-                                <div class="w-2/3 mx-auto">
-                                    <ul class="text-center py-10">
-                                        <li class="text-lg py-1 border-b border-t">$200 per student</li>
-                                        <li class="text-lg py-1 border-b">Unlimited Questions</li>
-                                        <li class="text-lg py-1 border-b">Priority Customer Support</li>
-                                    </ul>
-                                </div>
-                                <p class="text-4xl text-white font-semibold py-4">$200.00 <span class="font-normal text-sm">per student</span></p>
-                                <Link :href="route('register')"
-                                    class="inline-flex items-center px-10 py-3 border border-primary-yellow rounded-md font-semibold text-primary-yellow uppercase tracking-widest hover:bg-yellow-500 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-dark-gray focus:ring-offset-2 dark:focus:ring-offset-primary-dark-gray dark:text-primary-yellow transition ease-in-out duration-150">
-                                    START FREE TRIAL
-                                </Link>
-                                <p class="text-xs mt-2">NO CARD REQUIRED!</p>
+                            <div class="mt-8">
+                                <a :href="paymentLink">
+                                    <p class="w-full bg-primary-yellow text-black font-bold rounded-md py-3 text-center">DONATE NOW</p>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="mt-60">
-                <h2 class="text-center text-4xl text-white font-thin lg:text-7xl">WHAT WILL YOU <span
+            <section class="max-w-7xl mx-auto my-40">
+                <div class="text-center space-y-6">
+                    <p class="text-white font-bold text-xl tracking-wider">LEARNERS AND STUDENTS</p>
+                    <h3 class="text-6xl tracking-widest font-thin text-white">You can learn anything.</h3>
+                    <p class="text-lg text-white leading-loose tracking-wider">
+                        Your journey towards mastering new skills, understanding<br>
+                        complex concepts, and unlocking your full potential starts<br>
+                        here. With a world of knowledge at your fingertips, there’s<br>
+                        no limit to what you can discover and achieve.
+                    </p>
+                    <Link :href="route('register')" as="button" class="bg-primary-yellow py-3 px-20 rounded-lg tracking-widest">LEARN WITH VENTURE</Link>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-center text-4xl text-white font-thin tracking-widest lg:text-7xl">WHAT WILL YOU <span
                         class="text-primary-yellow font-normal">DISCOVER?</span></h2>
                 <div id="sectionTwoQuestionCards" class="mt-10 grid grid-cols-2 gap-1 px-4 md:grid-cols-4 lg:grid-cols-5">
                     <div @click.prevent="imageSix = !imageSix"
@@ -869,6 +757,50 @@
                 </div>
             </section>
 
+            <section id="causes" class="pt-40">
+                <div class="text-center space-y-6">
+                    <p class="text-white font-semibold text-xl tracking-wider">CROWDFUNDING CAMPAIGNS</p>
+                    <div class="text-white max-w-5xl mx-auto leading-snug px-8 space-y-10 lg:px-0">
+                        <h3 class="font-thin text-3xl tracking-widest lg:text-6xl">
+                            CROWDFUNDING
+                        </H3>
+
+                        <p class="leading-loose text-lg tracking-wider">
+                            Join us in our crowdfunding campaign to support a small, passionate team working<br>
+                            voluntarily to transform educational experiences worldwide. We're in the process of<br>
+                            becoming a nonprofit, but until then, your contributions are crucial. They allow us to<br>
+                            keep building our vision and enhance our platform's capabilities.
+                        </p>
+
+                        <div class="grid grid-cols-1 gap-10 pt-10 sm:grid-cols-2 lg:grid-cols-3">
+                            <div v-for="(cause, index) in causes" class="bg-white overflow-hidden rounded-2xl relative">
+                                <img :src="cause.image" class="object-cover w-full h-52" />
+                                <div class="absolute -mt-10 px-8 w-full">
+                                    <div class="bg-white rounded-lg border p-4 border-gray-300">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                            <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:'+cause.progress"></div>
+                                        </div>
+                                        <div class="flex justify-between mt-2 text-black text-xs">
+                                            <p>Raised: <span class="font-bold">{{ cause.raised }}</span></p>
+                                            <p>Goal: <span class="font-bold">{{ cause.goal }}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-6 py-10">
+                                    <div class="text-left text-black space-y-3">
+                                        <h4 class="font-bold text-lg">{{ cause.text }}</h4>
+                                        <p class="text-sm">{{ cause.description }}</p>
+                                    </div>
+                                    <a :href="cause.paymentLink">
+                                        <p class="bg-primary-yellow text-black w-full py-3 rounded-lg mt-6 tracking-widest">DONATE NOW</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="reviews" class="hidden">
                 <div class="relative isolate pb-32 pt-24 sm:pt-32">
                     <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -1043,8 +975,178 @@
                 </div>
             </section>
 
-            <section id="faq" class="max-w-7xl mx-auto">
-                <FaqSection />
+            <section id="subjects" class="w-full bg-gradient-to-t from-black to-transparent h-[400px] lg:h-[800px]">
+                <div class="flex justify-center">
+                    <div class="hidden relative w-full lg:block">
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:15%;top:170px;width:196px;height:21px;">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="conservation" class="w-5 h-5" />
+                            Conservation
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:26%;top:200px;width:126px;height:21px;">
+                            <img src="assets/images/icons/5.png" loading="lazy" alt="astronomy" class="w-5 h-5" />
+                            Astronomy
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:10%;top:250px;width:196px;height:21px;">
+                            <img src="assets/images/icons/25.png" loading="lazy" alt="legal-studies" class="w-5 h-5" />
+                            Legal Studies
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:45%;top:209px;width:196px;height:21px">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="geography" class="w-5 h-5" />
+                            Geography
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:67%;top:108px;width:196px;height:21px;">
+                            <img src="assets/images/icons/8.png" loading="lazy" alt="coding" class="w-5 h-5" />
+                            Coding
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:31%;top:130px;width:330px;height:21px;">
+                            <img src="assets/images/icons/13.png" loading="lazy" alt="entrepreneurship" class="w-5 h-5" />
+                            Entrepreneurship
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:23%;top:300px;width:126px;height:21px;">
+                            <img src="assets/images/icons/1.png" loading="lazy" alt="science" class="w-5 h-5" />
+                            Science
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:34%;top:275px;width:196px;height:21px">
+                            <img src="assets/images/icons/6.png" loading="lazy" alt="space-eploration" class="w-5 h-5" />
+                            Space Eploration
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:10%;top:374px;width:126px;height:21px;">
+                            <img src="assets/images/icons/2.png" loading="lazy" alt="language-arts" class="w-5 h-5" />
+                            Language Arts
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:26%;top:480px;width:126px;height:21px">
+                            <img src="assets/images/icons/2.png" loading="lazy" alt="history" class="w-5 h-5" />
+                            History
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:18%;top:500px;width:196px;height:21px">
+                            <img src="assets/images/icons/10.png" loading="lazy" alt="literature" class="w-5 h-5" />
+                            Literarture
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:83%;top:460px;width:196px;height:21px">
+                            <img src="assets/images/icons/28.png" loading="lazy" alt="vocational-skills" class="w-5 h-5" />
+                            Vocational Skills
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:30%;top:632px;width:196px;height:21px">
+                            <img src="assets/images/icons/26.png" loading="lazy" alt="mythology" class="w-5 h-5" />
+                            Mythology
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:20%;top:600px;width:330px;height:21px">
+                            <img src="assets/images/icons/14.png" loading="lazy" alt="business" class="w-5 h-5" />
+                            Business
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:11%;top:536px;width:196px;height:21px">
+                            <img src="assets/images/icons/15.png" loading="lazy" alt="robotics" class="w-5 h-5" />
+                            Robotics
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:30%;top:530px;width:196px;height:21px">
+                            <img src="assets/images/icons/4.png" loading="lazy" alt="physical-education" class="w-5 h-5" />
+                            Physical Education
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:80%;top:545px;width:196px;height:21px">
+                            <img src="assets/images/icons/31.png" loading="lazy" alt="ancient-cultures" class="w-5 h-5" />
+                            Ancient Cultures
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:45%;top:516px;width:126px;height:21px">
+                            <img src="assets/images/icons/30.png" loading="lazy" alt="social-studies" class="w-5 h-5" />
+                            Social Studies
+                        </div>
+                        <div class="absolute text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:53%;top:590px;width:126px;height:21px">
+                            <img src="assets/images/icons/24.png" loading="lazy" alt="music" class="w-5 h-5" />
+                            Music
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:40%;top:640px;width:196px;height:21px">
+                            <img src="assets/images/icons/10.png" loading="lazy" alt="civics-and-government"
+                                class="w-5 h-5" />
+                            Civics and Government
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:72%;top:645px;width:196px;height:21px">
+                            <img src="assets/images/icons/20.png" loading="lazy" alt="environmental-studies"
+                                class="w-5 h-5" />
+                            Environmental Studies
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:62%;top:602px;width:196px;height:21px">
+                            <img src="assets/images/icons/32.png" alt="wildlife" class="w-5 h-5" />
+                            Wildlife
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:60%;top:481px;width:196px;height:21px">
+                            <img src="assets/images/icons/33.png" alt="paleontology" class="w-5 h-5" />
+                            Paleontology
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:68%;top:542px;width:126px;height:21px">
+                            <img src="assets/images/icons/2.png" alt="storytelling" class="w-5 h-5" />
+                            Storytelling
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:74%;top:310px;width:196px;height:21px">
+                            <img src="assets/images/icons/4.png" alt="health" class="w-5 h-5" />
+                            Health
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:74%;top:480px;width:126px;height:21px">
+                            <img src="assets/images/icons/11.png" alt="art" class="w-5 h-5" />
+                            Art
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:61%;top:270px;width:196px;height:21px">
+                            <img src="assets/images/icons/17.png" alt="archaeology" class="w-5 h-5" />
+                            Archaeology
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:54%;top:130px;width:196px;height:21px">
+                            <img src="assets/images/icons/2.png" alt="creative-writing" class="w-5 h-5" />
+                            Creative Writing
+                        </div>
+                        <div class="flex absolute text-sm text-neutral-500"
+                            data-aos="zoom-in" style="left:74%;top:184px;width:196px;height:21px">
+                            <img src="assets/images/icons/34.png" alt="computer-science" class="w-5 h-5" />
+                            Computer Science
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:83%;top:299px;width:126px;height:21px">
+                            <img src="assets/images/icons/19.png" alt="mathematics" class="w-5 h-5" />
+                            Mathematics
+                        </div>
+                        <div class="absolute text-sm text-neutral-500 hidden lg:flex"
+                            data-aos="zoom-in" style="left:42%;top:108px;width:126px;height:21px">
+                            <img src="assets/images/icons/21.png" alt="marine-biology" class="w-5 h-5" />
+                            Marine Biology
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-full text-center mt-40 lg:mt-80 lg:w-9/12">
+                        <h2
+                            class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
+                            LEARN ANYTHING,</h2>
+                        <h2
+                            class="text-3xl font-light tracking-widest leading-relaxed text-white md:text-5xl lg:text-6xl xl:text-7xl">
+                            ANYTIME, <span class="text-primary-yellow font-semibold">ANYWHERE</span></h2>
+                    </div>
+                </div>
             </section>
         </div>
         <footer class="py-20 max-w-2xl mx-auto">
@@ -1097,20 +1199,28 @@
 </template>
 
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
-import GradeSection from '@/Pages/Landing/Sections/GradeSection.vue';
-import FaqSection from '@/Pages/Landing/Sections/FaqSection.vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { watch } from 'vue';
 
-defineProps({
+const props = defineProps({
     blogCount: Number,
+    paymentLinks: Object,
+    totalSumDonations: String,
+    causes: Object,
 })
 
 onMounted(() => {
     AOS.init();
 });
+
+const form = useForm({
+    donationAmount: 100,
+});
+
+const paymentLink = ref('https://buy.stripe.com/test_6oEdUJ1PwdvN5gI003');
 
 const imageOne = ref(false);
 const imageTwo = ref(false);
@@ -1153,4 +1263,12 @@ const handleClickOutside = (event) => {
     imageNine.value = false;
     imageTen.value = false;
 }
+
+watch(() => form.donationAmount, (value) => {
+    if (value === 0) {
+        location.href = paymentLink.value;
+    }
+
+    paymentLink.value = props.paymentLinks[value];
+});
 </script>

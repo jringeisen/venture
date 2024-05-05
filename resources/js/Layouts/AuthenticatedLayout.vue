@@ -182,11 +182,6 @@
                                       class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">
                                     Profile
                                 </Link>
-                                <Link v-if="$page.props.auth.type === 'teacher' && $page.props.auth.isSubscribed"
-                                      :href="route('billing.portal')"
-                                      class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">
-                                    Billing
-                                </Link>
                             </ul>
                         </li>
                     </ul>
@@ -239,14 +234,8 @@
         </div>
 
         <main class="relative py-10 lg:pl-72">
-            <MotivationalMessage v-if="$page.props.auth.motivationalMessage"
-                                 :message="$page.props.auth.motivationalMessage"/>
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="max-w-7xl mx-auto sm:px-8">
-                    <div v-if="showUpgradeBanner() && !isOnboarding()">
-                        <UpgradeBanner />
-                    </div>
-
                     <div v-if="isBeingImpersonated()" class="pb-6">
                         <PrimaryButton @click.prevent="router.get(route('users.stop.impersonating'))" class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
@@ -275,9 +264,7 @@ import {
     UsersIcon,
     XMarkIcon
 } from '@heroicons/vue/24/outline';
-import MotivationalMessage from '@/Components/MotivationalMessage.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import UpgradeBanner from '@/Components/UpgradeBanner.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const page = usePage();
@@ -301,27 +288,6 @@ const iconMap = {
 
 const getIconComponent = (iconName) => {
     return iconMap[iconName] || null;
-};
-
-const showUpgradeBanner = () => {
-    if (isServer) {
-        return false;
-    }
-
-    return !page.props.auth.isSubscribed
-        && !route().current('subscription.checkout.options')
-        && !route().current('subscription.checkout.success')
-        && page.props.auth.type === 'teacher';
-};
-
-const isOnboarding = () => {
-    return getQueryStatus() === 'onboarding';
-};
-
-const getQueryStatus = () => {
-    if (isServer) return;
-
-    return new URLSearchParams(window.location.search).get('status');
 };
 
 const isBeingImpersonated = () => {

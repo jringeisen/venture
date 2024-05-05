@@ -12,9 +12,7 @@
                         </p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <PrimaryButton @click.prevent="handleAddStudent()">Add student
-                        </PrimaryButton
-                        >
+                        <PrimaryButton @click.prevent="handleAddStudent()">Add student</PrimaryButton>
                     </div>
                 </div>
                 <div v-if="students.total > 0" class="mt-8 flow-root">
@@ -157,8 +155,6 @@ defineOptions({
 
 const props = defineProps({
     students: Object,
-    showInitialPaymentPage: Boolean,
-    showExceededQuantityPage: Boolean,
 });
 
 const form = useForm({});
@@ -172,13 +168,7 @@ const deleteStudent = (student) => {
 };
 
 const handleAddStudent = () => {
-    if (props.showInitialPaymentPage) {
-        router.get(route('subscription.checkout.options'));
-    } else if (props.showExceededQuantityPage) {
-        router.get(route('quantity.exceeded'));
-    } else {
-        router.get(route('parent.users.create'));
-    }
+    router.get(route('parent.users.create'));
 };
 
 const handleStudentLogin = (student) => {

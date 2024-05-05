@@ -45,8 +45,6 @@ class StudentController extends Controller
                     )
                 )
                 ->paginate(10),
-            'showInitialPaymentPage' => $request->user()->showInitialPaymentPage(),
-            'showExceededQuantityPage' => $request->user()->showExceededQuantityPage(),
         ]);
     }
 

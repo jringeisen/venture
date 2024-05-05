@@ -37,4 +37,14 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+
+    'stripe' => [
+        'payment_links' => [
+            '10' => env('STRIPE_10_PAYMENT_LINK'),
+            '25' => env('STRIPE_25_PAYMENT_LINK'),
+            '50' => env('STRIPE_50_PAYMENT_LINK'),
+            '100' => env('STRIPE_100_PAYMENT_LINK'),
+            '250' => env('STRIPE_250_PAYMENT_LINK'),
+        ],
+    ],
 ];
