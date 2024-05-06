@@ -1,23 +1,24 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\Guest\DownloadPlannerController;
-use App\Http\Controllers\Guest\NewsletterController;
-use App\Http\Controllers\Guest\TermsOfServiceController;
-use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImpersonationController;
+use App\Http\Controllers\Student\TopicController;
 use App\Http\Controllers\Student\CourseController;
 use App\Http\Controllers\Student\PromptController;
-use App\Http\Controllers\Student\Prompts\GetContentController;
-use App\Http\Controllers\Student\Prompts\GetQuestionsController;
-use App\Http\Controllers\Student\Prompts\GetSubjectController;
+use App\Http\Controllers\Guest\NewsletterController;
+use App\Http\Controllers\Guest\TermsOfServiceController;
+use App\Http\Controllers\Guest\DownloadPlannerController;
+use App\Http\Controllers\Student\Courses\EnrollController;
 use App\Http\Controllers\Student\StudentActivityController;
-use App\Http\Controllers\Student\TopicController;
-use App\Http\Controllers\StudentController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Student\Prompts\GetContentController;
+use App\Http\Controllers\Student\Prompts\GetSubjectController;
+use App\Http\Controllers\Student\Prompts\GetQuestionsController;
 
 // Guest Routes...
 Route::middleware('guest')->group(static function () {
@@ -67,6 +68,8 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
             Route::get('/courses/{course:slug}', [CourseController::class, 'show'])->name('courses.show');
+
+            Route::post('/courses/{course:slug}/enroll', EnrollController::class)->name('courses.enroll');
 
             Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
             Route::post('/prompts', [PromptController::class, 'store'])->name('prompts.store');

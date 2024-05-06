@@ -4,12 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Timezone;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class TimezoneSeeder extends Seeder
 {
     public function run()
     {
-        $data = json_decode(file_get_contents(asset('/assets/timezones.json')), true);
+        $data = Storage::disk('public')->json('timezones.json');
 
         Timezone::truncate();
 

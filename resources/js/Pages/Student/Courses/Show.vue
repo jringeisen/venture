@@ -79,7 +79,7 @@
                 <div class="absolute shadow w-60 right-10 -top-40 rounded-lg hidden p-3 bg-white divide-y-2 space-y-3 md:block">
                     <div class="space-y-3">
                         <img :src="course.image" class="object-cover rounded-lg" />
-                        <button class="bg-primary-yellow text-white w-full rounded-full py-2 text-sm">Enroll In Course</button>
+                        <button @click.prevent="enrollInCourse(course)" class="bg-primary-yellow text-white w-full rounded-full py-2 text-sm">Enroll In Course</button>
                         <div class="flex space-x-3">
                             <button class="border border-primary-yellow text-primary-yellow w-full rounded-full py-2 text-sm">Download Curriculum</button>
                             <button class="border border-primary-yellow text-primary-yellow w-14 flex justify-center items-center rounded-full py-2 text-sm">
@@ -132,9 +132,17 @@
 </template>
 
 <script setup>
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, useForm } from '@inertiajs/vue3'
 
 defineProps({
     course: Object
 })
+
+const form = useForm({
+    course: null,
+});
+
+const enrollInCourse = (course) => {
+    form.post(route('student.courses.enroll', course));
+}
 </script>
