@@ -59,17 +59,4 @@ class Student extends Authenticatable
             get: fn (?string $value) => $value ?? config('app.timezone')
         );
     }
-
-    public function canAskQuestions(): bool
-    {
-        if ($this->user->subscribed()) {
-            return true;
-        }
-
-        if (! $this->user->subscribed() && $this->user->total_questions_asked < config('app.student_free_question_count')) {
-            return true;
-        }
-
-        return false;
-    }
 }
