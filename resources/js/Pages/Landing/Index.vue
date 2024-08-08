@@ -465,14 +465,6 @@
                             </p>
                         </div>
                         <div class="mt-10">
-                            <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:22%;'"></div>
-                            </div>
-                            <div class="flex justify-between mt-2">
-                                <p>Raised: <span class="font-bold">{{ totalSumDonations }}</span></p>
-                                <p>Goal: <span class="font-bold">$100,000,000</span></p>
-                            </div>
-
                             <div class="mt-6 flex rounded-md shadow-sm">
                                 <span class="inline-flex items-center bg-primary-yellow rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-black">
@@ -775,17 +767,6 @@
                         <div class="grid grid-cols-1 gap-10 pt-10 sm:grid-cols-2 lg:grid-cols-3">
                             <div v-for="(cause, index) in causes" class="bg-white overflow-hidden rounded-2xl relative">
                                 <img :src="cause.image" class="object-cover w-full h-52" />
-                                <div class="absolute -mt-10 px-8 w-full">
-                                    <div class="bg-white rounded-lg border p-4 border-gray-300">
-                                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                            <div class="bg-primary-yellow h-2.5 rounded-full" :style="'width:'+cause.progress"></div>
-                                        </div>
-                                        <div class="flex justify-between mt-2 text-black text-xs">
-                                            <p>Raised: <span class="font-bold">{{ cause.raised }}</span></p>
-                                            <p>Goal: <span class="font-bold">{{ cause.goal }}</span></p>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="px-6 py-10">
                                     <div class="text-left text-black space-y-3">
                                         <h4 class="font-bold text-lg">{{ cause.text }}</h4>
@@ -1208,7 +1189,6 @@ import { watch } from 'vue';
 const props = defineProps({
     blogCount: Number,
     paymentLinks: Object,
-    totalSumDonations: String,
     causes: Object,
 })
 
