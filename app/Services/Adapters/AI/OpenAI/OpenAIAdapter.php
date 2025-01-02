@@ -131,7 +131,6 @@ class OpenAIAdapter implements AIAdapterInterface
 
                     echo 'data: '.json_encode($data, JSON_THROW_ON_ERROR)."\n\n";
 
-                    ob_flush();
                     flush();
 
                     sleep(0.5);

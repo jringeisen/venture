@@ -53,9 +53,9 @@ class OpenAIService implements AIServiceInterface
         }
     }
 
-    public function addMessage(string $role, string $content): self
+    public function addMessage(string $role, ?string $content): self
     {
-        if (trim($content) === '') {
+        if (is_null($content) || trim($content) === '') {
             throw new InvalidArgumentException('Content cannot be null or empty');
         }
 
