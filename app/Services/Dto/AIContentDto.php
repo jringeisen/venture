@@ -26,7 +26,7 @@ class AIContentDto
         return $this;
     }
 
-    public function setSubCategory(string $subCategory): self
+    public function setSubCategory(?string $subCategory): self
     {
         $this->subCategory = $subCategory;
 
