@@ -176,6 +176,11 @@ return [
          */
         \App\Providers\AIServiceProvider::class,
         \App\Providers\AIAdapterServiceProvider::class,
+
+        /*
+         * COURSES
+         */
+        \App\Providers\CourseServiceProvider::class
     ])->toArray(),
 
     /*
