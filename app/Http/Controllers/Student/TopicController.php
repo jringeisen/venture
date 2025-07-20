@@ -20,7 +20,16 @@ class TopicController extends Controller
                 ->when(
                     $topic !== 'all',
                     fn (Builder $query) => $query->whereHas('promptAnswer', function (Builder $query) use ($topic) {
-                        $query->where('subject_category', Str::replace('-', ' ', $topic));
+                        $query->where('subject_category', Str::replace('-', ' ', $topic))
+                              ->whereNotNull('content')
+                              ->where('content', '!=', '');
+                    })
+                )
+                ->when(
+                    $topic === 'all',
+                    fn (Builder $query) => $query->whereHas('promptAnswer', function (Builder $query) {
+                        $query->whereNotNull('content')
+                              ->where('content', '!=', '');
                     })
                 )
                 ->with('promptAnswer')
