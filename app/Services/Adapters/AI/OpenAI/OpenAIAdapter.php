@@ -168,7 +168,7 @@ class OpenAIAdapter implements AIAdapterInterface
         $moderation = OpenAI::moderations()
             ->create(
                 [
-                    'model' => 'text-moderation-latest',
+                    'model' => 'omni-moderation-latest',
                     'input' => $input,
                 ]
             );
