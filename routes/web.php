@@ -71,6 +71,26 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/topic/{topic}', [TopicController::class, 'show'])->name('topic.show');
 
+            // Course routes
+            Route::prefix('courses')->name('courses.')->group(function () {
+                Route::get('/', [\App\Http\Controllers\Student\CourseController::class, 'index'])->name('index');
+                Route::get('/enrolled', [\App\Http\Controllers\Student\CourseController::class, 'enrolled'])->name('enrolled');
+                Route::get('/search', [\App\Http\Controllers\Student\CourseController::class, 'search'])->name('search');
+                Route::get('/subject/{subject}', [\App\Http\Controllers\Student\CourseController::class, 'bySubject'])->name('by-subject');
+                Route::get('/{course}', [\App\Http\Controllers\Student\CourseController::class, 'show'])->name('show');
+                Route::post('/{course}/enroll', [\App\Http\Controllers\Student\CourseController::class, 'enroll'])->name('enroll');
+                
+                // Course learning routes
+                Route::get('/{course}/learn/{week?}', [\App\Http\Controllers\Student\CourseProgressController::class, 'learn'])->name('learn');
+                Route::post('/{course}/week/{week}/complete', [\App\Http\Controllers\Student\CourseProgressController::class, 'completeWeek'])->name('complete-week');
+                Route::get('/{course}/week/{week}/content', [\App\Http\Controllers\Student\CourseProgressController::class, 'getContent'])->name('content');
+                Route::post('/{course}/progress', [\App\Http\Controllers\Student\CourseProgressController::class, 'updateProgress'])->name('update-progress');
+                
+                // Course trivia routes
+                Route::get('/{course}/week/{week}/trivia', [\App\Http\Controllers\Student\CourseProgressController::class, 'getTrivia'])->name('trivia');
+                Route::post('/{course}/week/{week}/trivia', [\App\Http\Controllers\Student\CourseProgressController::class, 'submitTrivia'])->name('submit-trivia');
+            });
+
             Route::patch('/users/{user}', [StudentController::class, 'update'])->name('users.update');
 
             Route::post('/activity/update', [StudentActivityController::class, 'update'])->name('activity.update');
