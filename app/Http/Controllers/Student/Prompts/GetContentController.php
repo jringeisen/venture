@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Student\Prompts;
 
 use App\Http\Controllers\Controller;
 use App\Models\Prompt;
-use App\Services\Interfaces\AIServiceInterface;
+use App\Services\OpenAI\OpenAIChatService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Throwable;
@@ -14,10 +14,8 @@ class GetContentController extends Controller
     /**
      * @throws Throwable
      */
-    public function __invoke(Request $request): StreamedResponse
+    public function __invoke(Request $request, OpenAIChatService $chatService): StreamedResponse
     {
-        $aIService = app()->make(AIServiceInterface::class, ['aiService' => 'OpenAI']);
-
         $usersAge = $request->user()->age;
 
         $prompt = Prompt::where('category', 'like', "%$usersAge%")->first()->prompt;
@@ -26,18 +24,12 @@ class GetContentController extends Controller
 
         throw_unless($question, "No prompt question exists for the given user: {$request->user()->id}");
 
-        $aIService
-            ->addMessage(
-                'system',
-                $prompt
-            )
-            ->addMessage(
-                'user',
-                $question->question
-            );
+        $chatService
+            ->setUser($request->user())
+            ->addMessage('system', $prompt)
+            ->addMessage('user', $question->question)
+            ->updateQuestionTokens($question);
 
-        $aIService->updateQuestionTokens($question);
-
-        return $aIService->createStream()->stream;
+        return $chatService->createStream()->stream;
     }
 }
