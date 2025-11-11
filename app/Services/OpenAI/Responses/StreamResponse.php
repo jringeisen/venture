@@ -8,6 +8,5 @@ class StreamResponse
 {
     public function __construct(
         public readonly StreamedResponse $stream
-    ) {
-    }
+    ) {}
 }

@@ -10,8 +10,7 @@ class ChatResponse
         public readonly ?array $questions = null,
         public readonly ?ModerationResponse $moderation = null,
         public readonly ?string $message = null
-    ) {
-    }
+    ) {}
 
     public static function fromJson(object $response): self
     {

@@ -5,12 +5,11 @@ namespace App\Services\OpenAI\Responses;
 class QuestionsResponse
 {
     /**
-     * @param  array<string>  $questions
+     * @param array<string> $questions
      */
     public function __construct(
         public readonly array $questions
-    ) {
-    }
+    ) {}
 
     public static function fromJson(object $response): self
     {
