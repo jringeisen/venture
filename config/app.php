@@ -174,8 +174,7 @@ return [
         /*
          * AI
          */
-        \App\Providers\AIServiceProvider::class,
-        \App\Providers\AIAdapterServiceProvider::class,
+        \App\Providers\OpenAIServiceProvider::class,
     ])->toArray(),
 
     /*

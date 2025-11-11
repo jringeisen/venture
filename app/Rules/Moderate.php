@@ -3,32 +3,27 @@
 namespace App\Rules;
 
 use App\Models\Prompt;
-use App\Services\Interfaces\AIServiceInterface;
+use App\Services\OpenAI\OpenAIChatService;
+use App\Services\OpenAI\OpenAIModerationService;
 use Closure;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class Moderate implements ValidationRule
 {
-    private readonly AIServiceInterface $service;
-
-    /**
-     * @throws BindingResolutionException
-     */
-    public function __construct()
-    {
-        $this->service = app()->make(AIServiceInterface::class, ['aiService' => 'OpenAI']);
-    }
-
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $moderationDto = $this->service->moderate($value);
+        $moderationService = app(OpenAIModerationService::class);
+        $chatService = app(OpenAIChatService::class);
 
-        if ($moderationDto->moderation->flagged === true) {
+        // First check with OpenAI's built-in moderation API
+        $moderationResponse = $moderationService->moderate($value);
+
+        if ($moderationResponse->flagged === true) {
             $fail('This question violates OpenAI\'s policies. Please try another question.');
         }
 
-        $response = $this->service
+        // Then check with custom moderation prompt
+        $response = $chatService
             ->addMessage('system', Prompt::where('category', 'moderation')->first()->prompt)
             ->addMessage('user', $value)
             ->createChat();

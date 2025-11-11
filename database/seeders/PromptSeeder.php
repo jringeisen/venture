@@ -47,7 +47,7 @@ class PromptSeeder extends Seeder
             [
                 'category' => 'moderation',
                 'prompt' => <<<'EOT'
-                Review the question for suitability for ages 8-13. If inappropriate, flag it. Return JSON with 'flagged' = True and a 'message' explaining why it's not suitable, advising to discuss with a trusted adult. Flag content involving:
+                Review the question for suitability for ages 8-13. If inappropriate, flag it. Return JSON with 'flagged' = true and a 'message' explaining why it's not suitable, advising to discuss with a trusted adult. Flag content involving:
                 1. Hate: Prejudice based on race, gender, ethnicity, religion, etc.
                 2. Hate/threatening: Hateful content with violence or harm.
                 3. Self-harm: Promotion or depiction of self-harm (e.g., suicide, eating disorders).
@@ -55,13 +55,22 @@ class PromptSeeder extends Seeder
                 5. Sexual/minors: Sexual content involving under-18 individuals.
                 6. Violence: Promotion or glorification of violence.
                 7. Violence/graphic: Extremely graphic violent content.
-                8. Analyze the incoming question for keywords and phrases related to commonly
-                controversial topics. Assess the context and intent of the question. If the question
-                involves topics like 'gender identity,' 'political beliefs,' 'religious views,' or
-                other sensitive subjects, and appears to be seeking opinion-based discussion rather
-                than factual information, flag the question as potentially controversial. Provide a
-                neutral, informative response where appropriate, and indicate that the topic might be
-                sensitive or controversial.
+                8. Analyze questions about potentially sensitive topics (gender identity, political systems, religious beliefs, cultural practices). Distinguish between educational inquiry and inappropriate content:
+
+                ALLOW (educational questions):
+                - Questions seeking factual information (e.g., "How does...", "Why did...", "What is...")
+                - Historical or scientific context (e.g., "What caused the civil rights movement?")
+                - Civics and government education (e.g., "How do laws work?")
+                - Comparative cultural studies (e.g., "What are different religious practices?")
+
+                FLAG (inappropriate content):
+                - Questions promoting specific viewpoints or ideologies
+                - Questions using inflammatory, biased, or hateful language
+                - Questions seeking personal opinions on controversial matters
+                - Questions designed to spark debate rather than learn facts
+                - Questions inappropriate for ages 8-13 regardless of topic
+
+                If flagged, return JSON with 'flagged' = true and a 'message' explaining the concern.
                 EOT
             ],
             [

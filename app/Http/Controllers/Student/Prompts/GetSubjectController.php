@@ -4,22 +4,17 @@ namespace App\Http\Controllers\Student\Prompts;
 
 use App\Http\Controllers\Controller;
 use App\Models\Prompt;
-use App\Services\Interfaces\AIServiceInterface;
-use Illuminate\Contracts\Container\BindingResolutionException;
+use App\Services\OpenAI\OpenAIChatService;
 use Illuminate\Http\Request;
 
 class GetSubjectController extends Controller
 {
-    /**
-     * @throws BindingResolutionException
-     */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, OpenAIChatService $chatService)
     {
-        $service = app()->make(AIServiceInterface::class, ['aiService' => 'OpenAI']);
-
         $question = $request->user()->promptQuestions()->latest()->first();
 
-        $response = $service
+        $response = $chatService
+            ->setUser($request->user())
             ->addMessage('system', Prompt::where('category', 'categorize')->first()->prompt)
             ->addMessage('user', $request->question)
             ->updateQuestionTokens($question)
