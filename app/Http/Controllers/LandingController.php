@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use App\Models\Donation;
 use Inertia\Inertia;
 
 class LandingController extends Controller
