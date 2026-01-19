@@ -12,12 +12,11 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
-use Laravel\Nova\Auth\Impersonatable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Billable, HasApiTokens, HasFactory, Impersonatable, Notifiable;
+    use Billable, HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
         'parent_id',
@@ -97,6 +96,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isStudent(): bool
     {
         return ! is_null($this->parent_id);
+    }
+
+    public function isAdmin(): bool
+    {
+        $adminEmails = config('app.admin_emails') ?? [];
+
+        return is_array($adminEmails) && in_array($this->email, $adminEmails);
     }
 
     /**

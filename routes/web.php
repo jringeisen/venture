@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogCategoryController as AdminBlogCategoryController;
+use App\Http\Controllers\Admin\BlogPostController as AdminBlogPostController;
+use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+use App\Http\Controllers\Admin\CoursePromptController as AdminCoursePromptController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
@@ -40,6 +47,35 @@ Route::middleware('guest')->group(static function () {
 Route::middleware('auth')->group(function () {
     // Verified Routes...
     Route::middleware('verified')->group(function () {
+        // Admin Routes
+        Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+            Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+            // Courses
+            Route::resource('courses', AdminCourseController::class)->except(['show']);
+
+            // Course Prompts (nested under courses)
+            Route::get('courses/{course}/prompts/create', [AdminCoursePromptController::class, 'create'])->name('courses.prompts.create');
+            Route::post('courses/{course}/prompts', [AdminCoursePromptController::class, 'store'])->name('courses.prompts.store');
+            Route::get('courses/{course}/prompts/{prompt}/edit', [AdminCoursePromptController::class, 'edit'])->name('courses.prompts.edit');
+            Route::put('courses/{course}/prompts/{prompt}', [AdminCoursePromptController::class, 'update'])->name('courses.prompts.update');
+            Route::delete('courses/{course}/prompts/{prompt}', [AdminCoursePromptController::class, 'destroy'])->name('courses.prompts.destroy');
+
+            // Blog Posts
+            Route::resource('blog-posts', AdminBlogPostController::class)->except(['show']);
+
+            // Blog Categories
+            Route::resource('blog-categories', AdminBlogCategoryController::class)->except(['show']);
+
+            // Users
+            Route::resource('users', AdminUserController::class)->except(['create', 'store']);
+
+            // Feedback
+            Route::get('feedback', [AdminFeedbackController::class, 'index'])->name('feedback.index');
+            Route::get('feedback/{feedback}', [AdminFeedbackController::class, 'show'])->name('feedback.show');
+            Route::put('feedback/{feedback}', [AdminFeedbackController::class, 'update'])->name('feedback.update');
+            Route::delete('feedback/{feedback}', [AdminFeedbackController::class, 'destroy'])->name('feedback.destroy');
+        });
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
         Route::get('/feedback/create', [FeedbackController::class, 'create'])->name('feedback.create');
         Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
@@ -79,13 +115,13 @@ Route::middleware('auth')->group(function () {
                 Route::get('/subject/{subject}', [\App\Http\Controllers\Student\CourseController::class, 'bySubject'])->name('by-subject');
                 Route::get('/{course}', [\App\Http\Controllers\Student\CourseController::class, 'show'])->name('show');
                 Route::post('/{course}/enroll', [\App\Http\Controllers\Student\CourseController::class, 'enroll'])->name('enroll');
-                
+
                 // Course learning routes
                 Route::get('/{course}/learn/{week?}', [\App\Http\Controllers\Student\CourseProgressController::class, 'learn'])->name('learn');
                 Route::post('/{course}/week/{week}/complete', [\App\Http\Controllers\Student\CourseProgressController::class, 'completeWeek'])->name('complete-week');
                 Route::get('/{course}/week/{week}/content', [\App\Http\Controllers\Student\CourseProgressController::class, 'getContent'])->name('content');
                 Route::post('/{course}/progress', [\App\Http\Controllers\Student\CourseProgressController::class, 'updateProgress'])->name('update-progress');
-                
+
                 // Course trivia routes
                 Route::get('/{course}/week/{week}/trivia', [\App\Http\Controllers\Student\CourseProgressController::class, 'getTrivia'])->name('trivia');
                 Route::post('/{course}/week/{week}/trivia', [\App\Http\Controllers\Student\CourseProgressController::class, 'submitTrivia'])->name('submit-trivia');

@@ -3,24 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\ImpersonationService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Nova\Contracts\ImpersonatesUsers;
 
 class ImpersonationController extends Controller
 {
-    public function start(Request $request, User $user, ImpersonatesUsers $impersonator)
+    public function __construct(
+        private ImpersonationService $impersonationService
+    ) {}
+
+    public function start(Request $request, User $user)
     {
         $this->authorize('view', $user);
 
-        $impersonator->impersonate($request, Auth::guard(), $user);
+        $this->impersonationService->impersonate($request, $user);
 
         return redirect(route('student.prompts.index'));
     }
 
-    public function stop(Request $request, ImpersonatesUsers $impersonator)
+    public function stop(Request $request)
     {
-        $impersonator->stopImpersonating($request, Auth::guard(), User::class);
+        $this->impersonationService->stopImpersonating($request);
 
         return redirect('/');
     }

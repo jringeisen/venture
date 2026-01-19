@@ -8,11 +8,10 @@
         "php": "^8.1",
         "aws/aws-sdk-php": "^3.295",
         "guzzlehttp/guzzle": "^7.2",
-        "inertiajs/inertia-laravel": "^0.6.11",
+        "inertiajs/inertia-laravel": "^2.0",
         "laravel/breeze": "^1.26",
-        "laravel/cashier": "^15.0",
+        "laravel/cashier": "^16.0",
         "laravel/framework": "^10.10",
-        "laravel/nova": "^4.0",
         "laravel/sanctum": "^3.2",
         "laravel/slack-notification-channel": "^3.1",
         "laravel/tinker": "^2.8",
@@ -77,12 +76,7 @@
             "php-http/discovery": true
         }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://nova.laravel.com"
-        }
-    ],
+    "repositories": [],
     "minimum-stability": "stable",
     "prefer-stable": true
 }
