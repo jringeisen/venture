@@ -16,11 +16,16 @@ class UserCourse extends Model
         'current_week',
         'started_at',
         'completed_at',
+        'last_accessed_at',
+        'time_spent_minutes',
+        'trivia_scores',
     ];
 
     protected $casts = [
         'started_at' => 'datetime',
         'completed_at' => 'datetime',
+        'last_accessed_at' => 'datetime',
+        'trivia_scores' => 'array',
     ];
 
     /**
@@ -111,5 +116,76 @@ class UserCourse extends Model
     public function scopeCompleted($query)
     {
         return $query->whereNotNull('completed_at');
+    }
+
+    /**
+     * Record trivia score for a specific week
+     */
+    public function recordTriviaScore(int $week, int $score): void
+    {
+        $scores = $this->trivia_scores ?? [];
+        $scores["week_{$week}"] = [
+            'score' => $score,
+            'recorded_at' => now()->toIso8601String(),
+        ];
+
+        $this->update(['trivia_scores' => $scores]);
+    }
+
+    /**
+     * Get trivia score for a specific week
+     */
+    public function getTriviaScore(int $week): ?int
+    {
+        $scores = $this->trivia_scores ?? [];
+
+        return $scores["week_{$week}"]['score'] ?? null;
+    }
+
+    /**
+     * Add time spent learning (in minutes)
+     */
+    public function addTimeSpent(int $minutes): void
+    {
+        $this->increment('time_spent_minutes', $minutes);
+    }
+
+    /**
+     * Update last accessed timestamp
+     */
+    public function updateLastAccessed(): void
+    {
+        $this->update(['last_accessed_at' => now()]);
+    }
+
+    /**
+     * Get formatted time spent
+     */
+    public function getFormattedTimeSpentAttribute(): string
+    {
+        $hours = floor($this->time_spent_minutes / 60);
+        $minutes = $this->time_spent_minutes % 60;
+
+        if ($hours > 0) {
+            return "{$hours}h {$minutes}m";
+        }
+
+        return "{$minutes}m";
+    }
+
+    /**
+     * Calculate progress percentage
+     */
+    public function getProgressAttribute(): int
+    {
+        $totalWeeks = $this->course->length_in_weeks ?? $this->course->coursePrompts()->count() ?? 1;
+
+        if ($this->is_completed) {
+            return 100;
+        }
+
+        // current_week represents the week user is ON, so completed weeks = current_week - 1
+        // But if they've started week 1, they're making progress, so we use current_week
+        return min(100, (int) round(($this->current_week / $totalWeeks) * 100));
     }
 }

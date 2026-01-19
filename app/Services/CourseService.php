@@ -26,15 +26,21 @@ class CourseService
     /**
      * Get paginated courses for catalog
      */
-    public function getPaginatedCourses(int $perPage = 12, ?string $subject = null): LengthAwarePaginator
+    public function getPaginatedCourses(int $perPage = 12, ?string $subject = null, ?string $search = null): LengthAwarePaginator
     {
-        $query = Course::with(['coursePrompts' => function ($query) {
-            $query->orderBy('week_number');
-        }]);
+        $query = Course::query()
+            ->withCount('coursePrompts as weeks_count')
+            ->withCount('userCourses as enrolled_count');
 
-        // Note: subject filtering not available with current schema
+        // Apply search filter if provided
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
 
-        return $query->orderBy('title')->paginate($perPage);
+        return $query->orderBy('title')->paginate($perPage)->withQueryString();
     }
 
     /**
@@ -146,12 +152,10 @@ class CourseService
      */
     public function getRecommendedCourses(User $user, int $limit = 6): Collection
     {
-        $query = Course::whereNotIn('courses.id', $user->enrolledCourses()->pluck('courses.id'))
-            ->with(['coursePrompts' => function ($query) {
-                $query->orderBy('week_number');
-            }]);
-
-        return $query->orderBy('title')
+        return Course::whereNotIn('courses.id', $user->enrolledCourses()->pluck('courses.id'))
+            ->withCount('coursePrompts as weeks_count')
+            ->withCount('userCourses as enrolled_count')
+            ->orderBy('title')
             ->limit($limit)
             ->get();
     }
@@ -178,9 +182,8 @@ class CourseService
             $q->where('title', 'like', "%{$query}%")
                 ->orWhere('description', 'like', "%{$query}%");
         })
-            ->with(['coursePrompts' => function ($query) {
-                $query->orderBy('week_number');
-            }])
+            ->withCount('coursePrompts as weeks_count')
+            ->withCount('userCourses as enrolled_count')
             ->limit($limit)
             ->get();
     }

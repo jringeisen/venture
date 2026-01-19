@@ -22,19 +22,18 @@ class CourseController extends Controller
     {
         $courses = $this->courseService->getPaginatedCourses(
             perPage: 12,
-            subject: $request->get('subject')
+            subject: $request->get('subject'),
+            search: $request->get('search')
         );
 
-        $subjects = $this->courseService->getCourseSubjectsWithCounts();
         $userEnrolledCourses = $this->courseService->getUserEnrolledCourses($request->user());
-        $recommendedCourses = $this->courseService->getRecommendedCourses($request->user());
 
         return Inertia::render('Student/Courses/Index', [
             'courses' => $courses,
-            'subjects' => $subjects,
             'enrolledCourses' => $userEnrolledCourses,
-            'recommendedCourses' => $recommendedCourses,
-            'selectedSubject' => $request->get('subject'),
+            'filters' => [
+                'search' => $request->get('search'),
+            ],
         ]);
     }
 
@@ -69,7 +68,7 @@ class CourseController extends Controller
 
             return redirect()
                 ->route('student.courses.learn', ['course' => $course->id, 'week' => 1])
-                ->with('success', 'Successfully enrolled in ' . $course->title);
+                ->with('success', 'Successfully enrolled in '.$course->title);
         } catch (\Exception $e) {
             return back()->withErrors(['enrollment' => $e->getMessage()]);
         }
@@ -81,13 +80,13 @@ class CourseController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'query' => 'required|string|min:2|max:100'
+            'query' => 'required|string|min:2|max:100',
         ]);
 
         $courses = $this->courseService->searchCourses($request->get('query'));
 
         return response()->json([
-            'courses' => $courses
+            'courses' => $courses,
         ]);
     }
 
@@ -100,7 +99,7 @@ class CourseController extends Controller
 
         return response()->json([
             'courses' => $courses,
-            'subject' => $subject
+            'subject' => $subject,
         ]);
     }
 
@@ -111,8 +110,8 @@ class CourseController extends Controller
     {
         $activeCourses = $this->courseService->getUserActiveCourses($request->user());
         $completedCourses = $request->user()->completedCourses()
-                                   ->with('course.coursePrompts')
-                                   ->get();
+            ->with('course.coursePrompts')
+            ->get();
 
         return Inertia::render('Student/Courses/Enrolled', [
             'activeCourses' => $activeCourses,
@@ -122,7 +121,7 @@ class CourseController extends Controller
                 'totalCompleted' => $completedCourses->count(),
                 'totalTimeSpent' => $request->user()->total_course_time,
                 'averageProgress' => $request->user()->average_course_progress,
-            ]
+            ],
         ]);
     }
 }

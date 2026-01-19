@@ -247,12 +247,20 @@ const props = defineProps({
 });
 
 const getProgressPercentage = (enrollment) => {
-    if (!enrollment.course || !enrollment.course.course_prompts) {
+    // If course is completed, return 100%
+    if (enrollment.completed_at) {
+        return 100;
+    }
+
+    if (!enrollment.course) {
         return 0;
     }
-    const totalWeeks = enrollment.course.course_prompts.length || enrollment.course.length_in_weeks || 1;
+
+    const totalWeeks = enrollment.course.course_prompts?.length || enrollment.course.length_in_weeks || 1;
     const currentWeek = enrollment.current_week || 1;
-    return Math.round(((currentWeek - 1) / totalWeeks) * 100);
+
+    // current_week represents the week user is ON, so use it directly for progress
+    return Math.min(100, Math.round((currentWeek / totalWeeks) * 100));
 };
 
 const formatDate = (dateString) => {

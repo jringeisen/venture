@@ -122,9 +122,9 @@
 
                                 <!-- Content Output -->
                                 <div
-                                    v-if="currentWeek?.content"
+                                    v-if="sanitizedContent"
                                     class="prose dark:prose-invert max-w-none bg-gray-50 dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
-                                    v-html="currentWeek.content"
+                                    v-html="sanitizedContent"
                                 ></div>
 
                                 <!-- No Content Message -->
@@ -138,7 +138,7 @@
 
 
                             <!-- Week Completion Section -->
-                            <div v-if="currentWeek?.content && !isWeekCompleted" class="space-y-4">
+                            <div v-if="sanitizedContent && !isWeekCompleted" class="space-y-4">
                                 <!-- Trivia Section -->
                                 <div v-if="currentWeek?.trivia_questions && currentWeek.trivia_questions.length > 0" class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
                                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Test Your Knowledge</h3>
@@ -220,7 +220,7 @@
                             </div>
 
                             <!-- Already Completed Message -->
-                            <div v-else-if="isWeekCompleted && currentWeek?.content" class="text-center py-8">
+                            <div v-else-if="isWeekCompleted && sanitizedContent" class="text-center py-8">
                                 <div class="text-4xl mb-4">✅</div>
                                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Week Completed!</h3>
                                 <p class="text-gray-600 dark:text-gray-400 mb-4">You've already completed this week's lesson.</p>
@@ -246,6 +246,7 @@
 <script setup>
 import { Head, router } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
+import DOMPurify from 'dompurify';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 defineOptions({
@@ -277,7 +278,19 @@ const totalWeeks = computed(() => props.course?.length_in_weeks || props.course?
 
 const progressPercent = computed(() => {
     const currentWeek = props.userProgress?.current_week || 1;
-    return Math.round(((currentWeek - 1) / totalWeeks.value) * 100);
+    // Use current_week / totalWeeks for accurate progress (week 1 of 5 = 20%, week 5 of 5 = 100%)
+    return Math.min(100, Math.round((currentWeek / totalWeeks.value) * 100));
+});
+
+// Sanitize HTML content to prevent XSS attacks
+const sanitizedContent = computed(() => {
+    if (!props.currentWeek?.content) {
+        return '';
+    }
+    return DOMPurify.sanitize(props.currentWeek.content, {
+        ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'br', 'ul', 'ol', 'li', 'strong', 'em', 'b', 'i', 'u', 's', 'strike', 'a', 'img', 'blockquote', 'pre', 'code', 'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td', 'span', 'div'],
+        ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'class', 'target', 'rel'],
+    });
 });
 
 const isWeekCompleted = computed(() => {

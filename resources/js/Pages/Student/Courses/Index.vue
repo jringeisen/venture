@@ -82,16 +82,16 @@
                     <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
                         All Courses
                         <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
-                            ({{ filteredCourses.length }} courses)
+                            ({{ courses.total }} courses)
                         </span>
                     </h2>
                 </div>
 
                 <!-- Course List -->
-                <div v-if="filteredCourses.length > 0">
+                <div v-if="courses.data.length > 0">
                     <div class="space-y-4">
                         <CourseListItem
-                            v-for="course in paginatedCourses"
+                            v-for="course in courses.data"
                             :key="course.id"
                             :course="course"
                             :isEnrolled="isUserEnrolled(course.id)"
@@ -100,27 +100,27 @@
                     </div>
 
                     <!-- Pagination -->
-                    <div v-if="totalPages > 1" class="mt-8">
+                    <div v-if="courses.last_page > 1" class="mt-8">
                         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
                             <nav class="flex items-center justify-between px-4 py-3 sm:px-6" aria-label="Pagination">
                                 <div class="hidden sm:block">
                                     <p class="text-sm text-gray-700 dark:text-gray-300">
-                                        Showing <span class="font-medium">{{ (currentPage - 1) * itemsPerPage + 1 }}</span> to 
-                                        <span class="font-medium">{{ Math.min(currentPage * itemsPerPage, filteredCourses.length) }}</span> of 
-                                        <span class="font-medium">{{ filteredCourses.length }}</span> courses
+                                        Showing <span class="font-medium">{{ courses.from }}</span> to
+                                        <span class="font-medium">{{ courses.to }}</span> of
+                                        <span class="font-medium">{{ courses.total }}</span> courses
                                     </p>
                                 </div>
                                 <div class="flex flex-1 justify-between sm:justify-end space-x-3">
                                     <button
-                                        @click="previousPage"
-                                        :disabled="currentPage === 1"
+                                        @click="goToPage(courses.prev_page_url)"
+                                        :disabled="!courses.prev_page_url"
                                         class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                     >
                                         Previous
                                     </button>
                                     <button
-                                        @click="nextPage"
-                                        :disabled="currentPage === totalPages"
+                                        @click="goToPage(courses.next_page_url)"
+                                        :disabled="!courses.next_page_url"
                                         class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                     >
                                         Next
@@ -132,7 +132,7 @@
                 </div>
 
                 <!-- Empty State -->
-                <div v-else class="text-center py-16">
+                <div v-if="courses.data.length === 0" class="text-center py-16">
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-8 sm:p-12">
                         <div class="max-w-md mx-auto">
                             <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,7 +159,7 @@
 
 <script setup>
 import { Head, router } from '@inertiajs/vue3';
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import CourseListItem from '@/Components/CourseListItem.vue';
 
@@ -170,74 +170,62 @@ defineOptions({
 const props = defineProps({
     courses: Object,
     enrolledCourses: Array,
+    filters: {
+        type: Object,
+        default: () => ({})
+    },
 });
 
-// Reactive state
-const searchQuery = ref('');
-const currentPage = ref(1);
-const itemsPerPage = 12;
-
-// Computed properties
-const filteredCourses = computed(() => {
-    let filtered = [...props.courses.data];
-
-    // Apply search filter
-    if (searchQuery.value.trim()) {
-        const query = searchQuery.value.toLowerCase();
-        filtered = filtered.filter(course =>
-            course.title.toLowerCase().includes(query) ||
-            course.description?.toLowerCase().includes(query)
-        );
-    }
-
-    return filtered;
-});
-
-const totalPages = computed(() => {
-    return Math.ceil(filteredCourses.value.length / itemsPerPage);
-});
-
-const paginatedCourses = computed(() => {
-    const start = (currentPage.value - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    return filteredCourses.value.slice(start, end);
-});
+// Reactive state - initialize from server-side filters
+const searchQuery = ref(props.filters?.search || '');
+let searchTimeout = null;
 
 // Helper functions
 const isUserEnrolled = (courseId) => {
     return props.enrolledCourses.some(enrollment => enrollment.course_id === courseId);
 };
 
+// Server-side search with debouncing
+const performSearch = () => {
+    const params = {};
+    if (searchQuery.value.trim()) {
+        params.search = searchQuery.value.trim();
+    }
+
+    router.get('/student/courses', params, {
+        preserveState: true,
+        preserveScroll: true,
+    });
+};
+
 // Event handlers
 const handleSearch = () => {
-    currentPage.value = 1;
+    // Debounce search to avoid too many requests
+    if (searchTimeout) {
+        clearTimeout(searchTimeout);
+    }
+    searchTimeout = setTimeout(() => {
+        performSearch();
+    }, 300);
 };
 
 const clearSearch = () => {
     searchQuery.value = '';
-    currentPage.value = 1;
+    performSearch();
 };
 
 const handleEnroll = (courseId) => {
     router.post(`/student/courses/${courseId}/enroll`);
 };
 
-const previousPage = () => {
-    if (currentPage.value > 1) {
-        currentPage.value--;
+const goToPage = (url) => {
+    if (url) {
+        router.get(url, {}, {
+            preserveState: true,
+            preserveScroll: true,
+        });
     }
 };
-
-const nextPage = () => {
-    if (currentPage.value < totalPages.value) {
-        currentPage.value++;
-    }
-};
-
-// Watch for search changes to reset page
-watch(searchQuery, () => {
-    currentPage.value = 1;
-});
 </script>
 
 <style scoped>
