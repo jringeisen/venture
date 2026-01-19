@@ -11,37 +11,37 @@
                 <div class="px-4 py-5 sm:p-6">
                     <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">Create New Course</h3>
 
-                    <form @submit.prevent="submit" class="space-y-6">
+                    <Form v-model="formData" :action="route('admin.courses.store')" method="post" class="space-y-6" #default="{ errors, processing }">
                         <div>
                             <InputLabel for="title" value="Title"/>
-                            <TextInput id="title" v-model="form.title" type="text" class="mt-1 block w-full" required/>
-                            <InputError :message="form.errors.title" class="mt-2"/>
+                            <TextInput id="title" v-model="formData.title" name="title" type="text" class="mt-1 block w-full" required/>
+                            <InputError :message="errors.title" class="mt-2"/>
                         </div>
 
                         <div>
                             <InputLabel for="description" value="Description"/>
-                            <TextareaInput id="description" v-model="form.description" class="mt-1 block w-full" rows="4" required/>
-                            <InputError :message="form.errors.description" class="mt-2"/>
+                            <TextareaInput id="description" v-model="formData.description" name="description" class="mt-1 block w-full" rows="4" required/>
+                            <InputError :message="errors.description" class="mt-2"/>
                         </div>
 
                         <div>
                             <InputLabel for="image_url" value="Image URL"/>
-                            <TextInput id="image_url" v-model="form.image_url" type="text" class="mt-1 block w-full"/>
-                            <InputError :message="form.errors.image_url" class="mt-2"/>
+                            <TextInput id="image_url" v-model="formData.image_url" name="image_url" type="text" class="mt-1 block w-full"/>
+                            <InputError :message="errors.image_url" class="mt-2"/>
                         </div>
 
                         <div>
                             <InputLabel for="length_in_weeks" value="Length (weeks)"/>
-                            <TextInput id="length_in_weeks" v-model="form.length_in_weeks" type="number" min="1" class="mt-1 block w-full" required/>
-                            <InputError :message="form.errors.length_in_weeks" class="mt-2"/>
+                            <TextInput id="length_in_weeks" v-model="formData.length_in_weeks" name="length_in_weeks" type="number" min="1" class="mt-1 block w-full" required/>
+                            <InputError :message="errors.length_in_weeks" class="mt-2"/>
                         </div>
 
                         <div class="flex justify-end">
-                            <PrimaryButton :disabled="form.processing">
+                            <PrimaryButton :disabled="processing">
                                 Create Course
                             </PrimaryButton>
                         </div>
-                    </form>
+                    </Form>
                 </div>
             </div>
         </div>
@@ -49,7 +49,8 @@
 </template>
 
 <script setup>
-import { Link, useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { Link, Form } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
@@ -57,14 +58,10 @@ import TextareaInput from '@/Components/TextareaInput.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
-const form = useForm({
+const formData = ref({
     title: '',
     description: '',
     image_url: '',
     length_in_weeks: 1,
 });
-
-const submit = () => {
-    form.post(route('admin.courses.store'));
-};
 </script>

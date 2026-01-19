@@ -22,8 +22,16 @@
                         </div>
                     </div>
 
-                    <!-- Right: Progress -->
+                    <!-- Right: Progress & Time -->
                     <div class="flex items-center space-x-4">
+                        <!-- Time tracking indicator -->
+                        <div class="hidden sm:flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                            <svg class="w-4 h-4" :class="{ 'text-green-500': isUserActive && isPageVisible, 'text-gray-400': !isUserActive || !isPageVisible }" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>{{ formattedElapsedTime }}</span>
+                        </div>
+                        <!-- Progress bar -->
                         <div class="hidden sm:flex items-center space-x-2">
                             <div class="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                 <div
@@ -245,7 +253,7 @@
 
 <script setup>
 import { Head, router } from '@inertiajs/vue3';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import DOMPurify from 'dompurify';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
@@ -273,6 +281,190 @@ const triviaScore = ref(0);
 // Completion state
 const completing = ref(false);
 
+// Time tracking state
+const sessionId = ref(null);
+const trackingStartTime = ref(null);
+const elapsedSeconds = ref(0);
+const displaySeconds = ref(0); // For real-time display updates
+const isPageVisible = ref(true);
+const isUserActive = ref(true);
+const lastActivityTime = ref(Date.now());
+
+// Time tracking constants
+const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 minutes for course pages (stricter than global 10 min)
+const TRACKING_INTERVAL = 30 * 1000; // Send updates every 30 seconds
+const ACTIVITY_CHECK_INTERVAL = 1000; // Check activity every second
+const DISPLAY_UPDATE_INTERVAL = 1000; // Update display every second
+
+let trackingTimer = null;
+let activityCheckTimer = null;
+let displayTimer = null;
+
+// Start a learning session
+const startLearningSession = async () => {
+    try {
+        const response = await window.axios.post(
+            `/student/courses/${props.course.id}/week/${props.weekNumber}/start-session`
+        );
+        if (response.data.success) {
+            sessionId.value = response.data.session_id;
+            trackingStartTime.value = Date.now();
+            elapsedSeconds.value = 0;
+            startTrackingTimers();
+        }
+    } catch (error) {
+        console.error('Failed to start learning session:', error);
+    }
+};
+
+// Send time update to server
+const sendTimeUpdate = async () => {
+    if (!sessionId.value || !isPageVisible.value || !isUserActive.value) {
+        return;
+    }
+
+    const now = Date.now();
+    const secondsSinceLastUpdate = Math.floor((now - trackingStartTime.value) / 1000);
+
+    if (secondsSinceLastUpdate > 0) {
+        try {
+            await window.axios.post(
+                `/student/courses/${props.course.id}/week/${props.weekNumber}/track-time`,
+                {
+                    seconds: secondsSinceLastUpdate,
+                    session_id: sessionId.value,
+                }
+            );
+            elapsedSeconds.value += secondsSinceLastUpdate;
+            trackingStartTime.value = now;
+        } catch (error) {
+            console.error('Failed to track time:', error);
+        }
+    }
+};
+
+// End the learning session
+const endLearningSession = async () => {
+    if (!sessionId.value) return;
+
+    const finalSeconds = Math.floor((Date.now() - trackingStartTime.value) / 1000);
+
+    try {
+        await window.axios.post(
+            `/student/courses/${props.course.id}/end-session`,
+            {
+                session_id: sessionId.value,
+                final_seconds: finalSeconds > 0 ? finalSeconds : 0,
+            }
+        );
+    } catch (error) {
+        console.error('Failed to end learning session:', error);
+    }
+
+    sessionId.value = null;
+};
+
+// Start tracking timers
+const startTrackingTimers = () => {
+    // Clear any existing timers
+    stopTrackingTimers();
+
+    // Send periodic updates
+    trackingTimer = setInterval(() => {
+        if (isPageVisible.value && isUserActive.value) {
+            sendTimeUpdate();
+        }
+    }, TRACKING_INTERVAL);
+
+    // Check for inactivity
+    activityCheckTimer = setInterval(() => {
+        const timeSinceActivity = Date.now() - lastActivityTime.value;
+        if (timeSinceActivity > INACTIVITY_TIMEOUT && isUserActive.value) {
+            isUserActive.value = false;
+            sendTimeUpdate(); // Send final update before pausing
+        }
+    }, ACTIVITY_CHECK_INTERVAL);
+
+    // Update display timer for real-time feedback
+    displayTimer = setInterval(() => {
+        if (isPageVisible.value && isUserActive.value && trackingStartTime.value) {
+            displaySeconds.value = elapsedSeconds.value + Math.floor((Date.now() - trackingStartTime.value) / 1000);
+        }
+    }, DISPLAY_UPDATE_INTERVAL);
+};
+
+// Stop tracking timers
+const stopTrackingTimers = () => {
+    if (trackingTimer) {
+        clearInterval(trackingTimer);
+        trackingTimer = null;
+    }
+    if (activityCheckTimer) {
+        clearInterval(activityCheckTimer);
+        activityCheckTimer = null;
+    }
+    if (displayTimer) {
+        clearInterval(displayTimer);
+        displayTimer = null;
+    }
+};
+
+// Handle user activity
+const handleUserActivity = () => {
+    lastActivityTime.value = Date.now();
+    if (!isUserActive.value) {
+        isUserActive.value = true;
+        trackingStartTime.value = Date.now(); // Reset tracking start time when resuming
+    }
+};
+
+// Handle page visibility change
+const handleVisibilityChange = () => {
+    isPageVisible.value = !document.hidden;
+
+    if (document.hidden) {
+        // Page is hidden - send update and pause
+        sendTimeUpdate();
+    } else {
+        // Page is visible - reset tracking start time
+        trackingStartTime.value = Date.now();
+        lastActivityTime.value = Date.now();
+    }
+};
+
+// Set up activity listeners
+const setupActivityListeners = () => {
+    const events = ['mousemove', 'keypress', 'scroll', 'mousedown', 'touchstart', 'click'];
+    events.forEach(event => {
+        document.addEventListener(event, handleUserActivity, { passive: true });
+    });
+
+    // Page visibility API
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+};
+
+// Remove activity listeners
+const removeActivityListeners = () => {
+    const events = ['mousemove', 'keypress', 'scroll', 'mousedown', 'touchstart', 'click'];
+    events.forEach(event => {
+        document.removeEventListener(event, handleUserActivity);
+    });
+
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+};
+
+// Lifecycle hooks
+onMounted(() => {
+    startLearningSession();
+    setupActivityListeners();
+});
+
+onUnmounted(() => {
+    stopTrackingTimers();
+    removeActivityListeners();
+    endLearningSession();
+});
+
 // Computed
 const totalWeeks = computed(() => props.course?.length_in_weeks || props.course?.course_prompts?.length || 1);
 
@@ -295,6 +487,20 @@ const sanitizedContent = computed(() => {
 
 const isWeekCompleted = computed(() => {
     return props.weekNumber < (props.userProgress?.current_week || 1);
+});
+
+const formattedElapsedTime = computed(() => {
+    const totalSeconds = displaySeconds.value;
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    if (minutes >= 60) {
+        const hours = Math.floor(minutes / 60);
+        const remainingMinutes = minutes % 60;
+        return `${hours}h ${remainingMinutes}m`;
+    }
+
+    return `${minutes}m ${seconds.toString().padStart(2, '0')}s`;
 });
 
 const isLastWeek = computed(() => {

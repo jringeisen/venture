@@ -18,6 +18,7 @@ class UserCourse extends Model
         'completed_at',
         'last_accessed_at',
         'time_spent_minutes',
+        'week_times',
         'trivia_scores',
     ];
 
@@ -26,6 +27,7 @@ class UserCourse extends Model
         'completed_at' => 'datetime',
         'last_accessed_at' => 'datetime',
         'trivia_scores' => 'array',
+        'week_times' => 'array',
     ];
 
     /**
@@ -148,6 +150,47 @@ class UserCourse extends Model
     public function addTimeSpent(int $minutes): void
     {
         $this->increment('time_spent_minutes', $minutes);
+    }
+
+    /**
+     * Add time spent on a specific week (in seconds)
+     */
+    public function addWeekTime(int $week, int $seconds): void
+    {
+        $weekTimes = $this->week_times ?? [];
+        $key = "week_{$week}";
+        $weekTimes[$key] = ($weekTimes[$key] ?? 0) + $seconds;
+
+        $this->update(['week_times' => $weekTimes]);
+
+        // Also update total time spent (convert seconds to minutes)
+        $this->increment('time_spent_minutes', (int) floor($seconds / 60));
+    }
+
+    /**
+     * Get time spent on a specific week (in seconds)
+     */
+    public function getWeekTime(int $week): int
+    {
+        $weekTimes = $this->week_times ?? [];
+        return $weekTimes["week_{$week}"] ?? 0;
+    }
+
+    /**
+     * Get formatted time for a specific week
+     */
+    public function getFormattedWeekTime(int $week): string
+    {
+        $seconds = $this->getWeekTime($week);
+        $minutes = floor($seconds / 60);
+        $hours = floor($minutes / 60);
+        $remainingMinutes = $minutes % 60;
+
+        if ($hours > 0) {
+            return "{$hours}h {$remainingMinutes}m";
+        }
+
+        return "{$minutes}m";
     }
 
     /**

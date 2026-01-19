@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CoursePrompt;
+use App\Models\LearningSession;
 use App\Services\CourseService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
@@ -238,6 +240,104 @@ class CourseProgressController extends Controller
     public function updateProgress(Request $request, Course $course)
     {
         // Simplified - just return success since time tracking columns don't exist
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * Start a learning session for tracking time
+     */
+    public function startSession(Request $request, Course $course, int $week): JsonResponse
+    {
+        $user = $request->user();
+
+        if (! $user->isEnrolledInCourse($course)) {
+            return response()->json(['error' => 'Not enrolled'], 403);
+        }
+
+        $session = LearningSession::startSession($user->id, $course->id, $week);
+
+        // Update last accessed
+        $userCourse = $this->courseService->getUserCourseProgress($user, $course);
+        $userCourse?->updateLastAccessed();
+
+        return response()->json([
+            'success' => true,
+            'session_id' => $session->id,
+        ]);
+    }
+
+    /**
+     * Track time spent on a course/week (called periodically)
+     */
+    public function trackTime(Request $request, Course $course, int $week): JsonResponse
+    {
+        $request->validate([
+            'seconds' => 'required|integer|min:1|max:3600',
+            'session_id' => 'nullable|integer',
+        ]);
+
+        $user = $request->user();
+
+        if (! $user->isEnrolledInCourse($course)) {
+            return response()->json(['error' => 'Not enrolled'], 403);
+        }
+
+        $seconds = $request->input('seconds');
+        $sessionId = $request->input('session_id');
+
+        // Update learning session if provided
+        if ($sessionId) {
+            $session = LearningSession::where('id', $sessionId)
+                ->where('user_id', $user->id)
+                ->where('is_active', true)
+                ->first();
+
+            if ($session) {
+                $session->increment('duration_seconds', $seconds);
+            }
+        }
+
+        // Update user course time
+        $userCourse = $this->courseService->getUserCourseProgress($user, $course);
+        if ($userCourse) {
+            $userCourse->addWeekTime($week, $seconds);
+            $userCourse->updateLastAccessed();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * End a learning session
+     */
+    public function endSession(Request $request, Course $course): JsonResponse
+    {
+        $request->validate([
+            'session_id' => 'required|integer',
+            'final_seconds' => 'nullable|integer|min:0',
+        ]);
+
+        $user = $request->user();
+        $sessionId = $request->input('session_id');
+        $finalSeconds = $request->input('final_seconds', 0);
+
+        $session = LearningSession::where('id', $sessionId)
+            ->where('user_id', $user->id)
+            ->where('is_active', true)
+            ->first();
+
+        if ($session) {
+            if ($finalSeconds > 0) {
+                $session->increment('duration_seconds', $finalSeconds);
+
+                // Also update user course time for the week
+                $userCourse = $this->courseService->getUserCourseProgress($user, $course);
+                $userCourse?->addWeekTime($session->week_number, $finalSeconds);
+            }
+
+            $session->endSession();
+        }
+
         return response()->json(['success' => true]);
     }
 

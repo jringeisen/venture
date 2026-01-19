@@ -39,8 +39,33 @@
                         </div>
 
                         <div>
-                            <InputLabel for="content" value="Content"/>
-                            <TiptapEditor v-model="form.content" class="mt-1" placeholder="Write your week content here..."/>
+                            <div class="flex items-center justify-between">
+                                <InputLabel for="content" value="Content"/>
+                                <button
+                                    type="button"
+                                    @click="generateContent"
+                                    :disabled="isGenerating || !form.title"
+                                    class="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <SparklesIcon class="h-4 w-4 mr-1.5" :class="{ 'animate-pulse': isGenerating }" />
+                                    <span v-if="isGenerating">Generating...</span>
+                                    <span v-else>Generate Content</span>
+                                </button>
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                Generate educational content and trivia questions using AI based on the title, description, and learning objectives.
+                            </p>
+
+                            <!-- Streaming preview -->
+                            <div v-if="isGenerating && streamingContent" class="mt-2 p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg border border-gray-200 dark:border-neutral-600">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="animate-spin h-4 w-4 border-2 border-indigo-500 border-t-transparent rounded-full"></div>
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Generating content...</span>
+                                </div>
+                                <pre class="text-xs text-gray-600 dark:text-gray-400 whitespace-pre-wrap max-h-48 overflow-y-auto font-mono">{{ streamingContent.slice(-1000) }}</pre>
+                            </div>
+
+                            <TiptapEditor v-if="!isGenerating" v-model="form.content" class="mt-2" placeholder="Write your week content here..."/>
                             <InputError :message="form.errors.content" class="mt-2"/>
                         </div>
 
@@ -109,6 +134,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { Link, useForm } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -117,7 +143,7 @@ import TextareaInput from '@/Components/TextareaInput.vue';
 import TiptapEditor from '@/Components/TiptapEditor.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import { XMarkIcon } from '@heroicons/vue/24/outline';
+import { XMarkIcon, SparklesIcon } from '@heroicons/vue/24/outline';
 
 const props = defineProps({
     course: Object,
@@ -150,6 +176,98 @@ const form = useForm({
     trivia_questions: sanitizedQuestions,
     estimated_duration_minutes: props.prompt.estimated_duration_minutes ?? null,
 });
+
+const isGenerating = ref(false);
+const streamingContent = ref('');
+
+// Get CSRF token from cookie (same approach as axios)
+const getCsrfToken = () => {
+    const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+    return match ? decodeURIComponent(match[1]) : '';
+};
+
+const generateContent = async () => {
+    if (!form.title) {
+        alert('Please enter a title before generating content.');
+        return;
+    }
+
+    isGenerating.value = true;
+    streamingContent.value = '';
+    form.content = '';
+
+    try {
+        const response = await fetch(
+            route('admin.courses.prompts.generate-content', [props.course.id, props.prompt.id]),
+            {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'text/event-stream',
+                    'X-XSRF-TOKEN': getCsrfToken(),
+                },
+                body: JSON.stringify({
+                    title: form.title,
+                    description: form.description,
+                    learning_objectives: form.learning_objectives.filter(obj => obj && obj.trim()),
+                    duration_minutes: form.estimated_duration_minutes || 30,
+                }),
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const text = decoder.decode(value);
+            const lines = text.split('\n');
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    try {
+                        const data = JSON.parse(line.slice(6));
+
+                        if (data.chunk) {
+                            streamingContent.value += data.chunk;
+                        }
+
+                        if (data.done) {
+                            if (data.error) {
+                                alert(data.error);
+                            } else {
+                                form.content = data.content || '';
+                                form.trivia_questions = (data.trivia_questions || []).map(q => ({
+                                    question: q.question || '',
+                                    option_a: q.option_a || '',
+                                    option_b: q.option_b || '',
+                                    option_c: q.option_c || '',
+                                    option_d: q.option_d || '',
+                                    correct_answer: q.correct_answer ?? 0,
+                                }));
+                            }
+                        }
+                    } catch (e) {
+                        // Skip invalid JSON lines
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Error generating content:', error);
+        alert('Failed to generate content. Please try again.');
+    } finally {
+        isGenerating.value = false;
+        streamingContent.value = '';
+    }
+};
 
 const addObjective = () => {
     form.learning_objectives.push('');

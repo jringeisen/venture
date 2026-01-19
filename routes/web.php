@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
             Route::get('courses/{course}/prompts/{prompt}/edit', [AdminCoursePromptController::class, 'edit'])->name('courses.prompts.edit');
             Route::put('courses/{course}/prompts/{prompt}', [AdminCoursePromptController::class, 'update'])->name('courses.prompts.update');
             Route::delete('courses/{course}/prompts/{prompt}', [AdminCoursePromptController::class, 'destroy'])->name('courses.prompts.destroy');
+            Route::post('courses/{course}/prompts/{prompt}/generate-content', [AdminCoursePromptController::class, 'generateContent'])->name('courses.prompts.generate-content');
 
             // Blog Posts
             Route::resource('blog-posts', AdminBlogPostController::class)->except(['show']);
@@ -121,6 +122,11 @@ Route::middleware('auth')->group(function () {
                 Route::post('/{course}/week/{week}/complete', [\App\Http\Controllers\Student\CourseProgressController::class, 'completeWeek'])->name('complete-week');
                 Route::get('/{course}/week/{week}/content', [\App\Http\Controllers\Student\CourseProgressController::class, 'getContent'])->name('content');
                 Route::post('/{course}/progress', [\App\Http\Controllers\Student\CourseProgressController::class, 'updateProgress'])->name('update-progress');
+
+                // Time tracking routes
+                Route::post('/{course}/week/{week}/start-session', [\App\Http\Controllers\Student\CourseProgressController::class, 'startSession'])->name('start-session');
+                Route::post('/{course}/week/{week}/track-time', [\App\Http\Controllers\Student\CourseProgressController::class, 'trackTime'])->name('track-time');
+                Route::post('/{course}/end-session', [\App\Http\Controllers\Student\CourseProgressController::class, 'endSession'])->name('end-session');
 
                 // Course trivia routes
                 Route::get('/{course}/week/{week}/trivia', [\App\Http\Controllers\Student\CourseProgressController::class, 'getTrivia'])->name('trivia');
