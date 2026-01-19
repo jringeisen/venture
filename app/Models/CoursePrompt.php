@@ -16,6 +16,7 @@ class CoursePrompt extends Model
         'title',
         'description',
         'prompt_text',
+        'content',
         'learning_objectives',
         'trivia_questions',
         'additional_resources',
@@ -29,6 +30,41 @@ class CoursePrompt extends Model
         'week_number' => 'integer',
         'estimated_duration_minutes' => 'integer',
     ];
+
+    /**
+     * Get trivia questions formatted for the frontend.
+     * Transforms Nova Repeater format to frontend format.
+     */
+    public function getTriviaQuestionsForFrontend(): ?array
+    {
+        $questions = $this->trivia_questions;
+
+        if (! is_array($questions)) {
+            return null;
+        }
+
+        return array_map(function ($question) {
+            // If already in the correct format (has 'options' array), return as-is
+            if (isset($question['options']) && is_array($question['options'])) {
+                return $question;
+            }
+
+            // Nova Repeater stores fields in a nested 'fields' key
+            $fields = $question['fields'] ?? $question;
+
+            // Transform from Nova Repeater format (option_a, option_b, etc.)
+            return [
+                'question' => $fields['question'] ?? '',
+                'options' => [
+                    $fields['option_a'] ?? '',
+                    $fields['option_b'] ?? '',
+                    $fields['option_c'] ?? '',
+                    $fields['option_d'] ?? '',
+                ],
+                'correct_answer' => (int) ($fields['correct_answer'] ?? 0),
+            ];
+        }, $questions);
+    }
 
     /**
      * Get the course that owns this prompt
@@ -60,9 +96,9 @@ class CoursePrompt extends Model
     public function getNextWeekAttribute()
     {
         return static::where('course_id', $this->course_id)
-                    ->where('week_number', '>', $this->week_number)
-                    ->orderBy('week_number')
-                    ->first();
+            ->where('week_number', '>', $this->week_number)
+            ->orderBy('week_number')
+            ->first();
     }
 
     /**
@@ -71,9 +107,9 @@ class CoursePrompt extends Model
     public function getPreviousWeekAttribute()
     {
         return static::where('course_id', $this->course_id)
-                    ->where('week_number', '<', $this->week_number)
-                    ->orderBy('week_number', 'desc')
-                    ->first();
+            ->where('week_number', '<', $this->week_number)
+            ->orderBy('week_number', 'desc')
+            ->first();
     }
 
     /**
@@ -89,7 +125,7 @@ class CoursePrompt extends Model
      */
     public function getIsLastWeekAttribute()
     {
-        return !$this->nextWeek;
+        return ! $this->nextWeek;
     }
 
     /**
@@ -105,12 +141,12 @@ class CoursePrompt extends Model
      */
     public function generateAIPrompt($userAge = null): string
     {
-        $ageContext = $userAge ? "for a {$userAge}-year-old student" : "";
-        
+        $ageContext = $userAge ? "for a {$userAge}-year-old student" : '';
+
         return "You are teaching {$this->formatted_title} as part of a {$this->course->title} course {$ageContext}. 
                 
                 Learning objectives for this week:
-                " . implode("\n", $this->learning_objectives ?? []) . "
+                ".implode("\n", $this->learning_objectives ?? [])."
                 
                 Base prompt: {$this->prompt_text}
                 

@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Course extends Model
 {
@@ -14,6 +14,7 @@ class Course extends Model
     protected $fillable = [
         'title',
         'description',
+        'image_url',
         'length_in_weeks',
     ];
 
@@ -35,8 +36,8 @@ class Course extends Model
     public function enrolledUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_courses')
-                    ->withPivot(['enrolled_at', 'completed_at', 'current_week', 'progress_percentage'])
-                    ->withTimestamps();
+            ->withPivot(['started_at', 'completed_at'])
+            ->withTimestamps();
     }
 
     /**
@@ -46,7 +47,6 @@ class Course extends Model
     {
         return $this->hasMany(UserCourse::class);
     }
-
 
     /**
      * Get the total number of weeks in this course
@@ -77,7 +77,14 @@ class Course extends Model
      */
     public function getAverageProgressAttribute()
     {
-        return $this->userCourses()->avg('progress_percentage') ?? 0;
+        $totalEnrolled = $this->userCourses()->count();
+        if ($totalEnrolled === 0) {
+            return 0;
+        }
+
+        $completed = $this->userCourses()->whereNotNull('completed_at')->count();
+
+        return round(($completed / $totalEnrolled) * 100, 1);
     }
 
     /**
@@ -86,9 +93,12 @@ class Course extends Model
     public function getCompletionRateAttribute()
     {
         $totalEnrolled = $this->enrolledUsers()->count();
-        if ($totalEnrolled === 0) return 0;
-        
+        if ($totalEnrolled === 0) {
+            return 0;
+        }
+
         $completed = $this->userCourses()->whereNotNull('completed_at')->count();
+
         return round(($completed / $totalEnrolled) * 100, 1);
     }
 }

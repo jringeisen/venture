@@ -3,12 +3,10 @@
 namespace App\Services;
 
 use App\Models\Course;
-use App\Models\CoursePrompt;
 use App\Models\User;
 use App\Models\UserCourse;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class CourseService
@@ -19,10 +17,10 @@ class CourseService
     public function getActiveCourses(): Collection
     {
         return Course::with(['coursePrompts' => function ($query) {
-                        $query->orderBy('week_number');
-                    }])
-                    ->orderBy('title')
-                    ->get();
+            $query->orderBy('week_number');
+        }])
+            ->orderBy('title')
+            ->get();
     }
 
     /**
@@ -31,8 +29,8 @@ class CourseService
     public function getPaginatedCourses(int $perPage = 12, ?string $subject = null): LengthAwarePaginator
     {
         $query = Course::with(['coursePrompts' => function ($query) {
-                          $query->orderBy('week_number');
-                      }]);
+            $query->orderBy('week_number');
+        }]);
 
         // Note: subject filtering not available with current schema
 
@@ -45,10 +43,10 @@ class CourseService
     public function getCoursesBySubject(string $subject): Collection
     {
         return Course::with(['coursePrompts' => function ($query) {
-                        $query->orderBy('week_number');
-                    }])
-                    ->orderBy('title')
-                    ->get();
+            $query->orderBy('week_number');
+        }])
+            ->orderBy('title')
+            ->get();
     }
 
     /**
@@ -57,13 +55,13 @@ class CourseService
     public function getUserEnrolledCourses(User $user): Collection
     {
         return $user->userCourses()
-                   ->with([
-                       'course.coursePrompts' => function ($query) {
-                           $query->orderBy('week_number');
-                       }
-                   ])
-                   ->orderBy('created_at', 'desc')
-                   ->get();
+            ->with([
+                'course.coursePrompts' => function ($query) {
+                    $query->orderBy('week_number');
+                },
+            ])
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 
     /**
@@ -72,14 +70,14 @@ class CourseService
     public function getUserActiveCourses(User $user): Collection
     {
         return $user->userCourses()
-                   ->whereNull('completed_at')
-                   ->with([
-                       'course.coursePrompts' => function ($query) {
-                           $query->orderBy('week_number');
-                       }
-                   ])
-                   ->orderBy('updated_at', 'desc')
-                   ->get();
+            ->whereNull('completed_at')
+            ->with([
+                'course.coursePrompts' => function ($query) {
+                    $query->orderBy('week_number');
+                },
+            ])
+            ->orderBy('updated_at', 'desc')
+            ->get();
     }
 
     /**
@@ -91,25 +89,18 @@ class CourseService
             throw new \Exception('User is already enrolled in this course');
         }
 
-        $enrollment = $user->enrollInCourse($course);
-
-        // Update parent's course tracking if user is a student
-        if ($user->isStudent() && $user->parent) {
-            $user->parent->increment('total_courses_enrolled');
-        }
-
-        return $enrollment;
+        return $user->enrollInCourse($course);
     }
 
     /**
      * Get course progress for a user
      */
-    public function getUserCourseProgress(User $user, Course $course): Model
+    public function getUserCourseProgress(User $user, Course $course): ?Model
     {
         return $user->userCourses()
-                   ->where('course_id', $course->id)
-                   ->with('course.coursePrompts')
-                   ->first();
+            ->where('course_id', $course->id)
+            ->with('course.coursePrompts')
+            ->first();
     }
 
     /**
@@ -119,7 +110,7 @@ class CourseService
     {
         $enrollment = $this->getUserCourseProgress($user, $course);
 
-        if (!$enrollment) {
+        if (! $enrollment) {
             throw new \Exception('User is not enrolled in this course');
         }
 
@@ -133,7 +124,7 @@ class CourseService
     {
         $enrollment = $this->getUserCourseProgress($user, $course);
 
-        if (!$enrollment) {
+        if (! $enrollment) {
             throw new \Exception('User is not enrolled in this course');
         }
 
@@ -155,14 +146,14 @@ class CourseService
      */
     public function getRecommendedCourses(User $user, int $limit = 6): Collection
     {
-        $query = Course::whereNotIn('id', $user->enrolledCourses()->pluck('id'))
-                      ->with(['coursePrompts' => function ($query) {
-                          $query->orderBy('week_number');
-                      }]);
+        $query = Course::whereNotIn('courses.id', $user->enrolledCourses()->pluck('courses.id'))
+            ->with(['coursePrompts' => function ($query) {
+                $query->orderBy('week_number');
+            }]);
 
         return $query->orderBy('title')
-                    ->limit($limit)
-                    ->get();
+            ->limit($limit)
+            ->get();
     }
 
     /**
@@ -184,14 +175,14 @@ class CourseService
     public function searchCourses(string $query, int $limit = 10): Collection
     {
         return Course::where(function ($q) use ($query) {
-                        $q->where('title', 'like', "%{$query}%")
-                          ->orWhere('description', 'like', "%{$query}%");
-                    })
-                    ->with(['coursePrompts' => function ($query) {
-                        $query->orderBy('week_number');
-                    }])
-                    ->limit($limit)
-                    ->get();
+            $q->where('title', 'like', "%{$query}%")
+                ->orWhere('description', 'like', "%{$query}%");
+        })
+            ->with(['coursePrompts' => function ($query) {
+                $query->orderBy('week_number');
+            }])
+            ->limit($limit)
+            ->get();
     }
 
     /**
@@ -225,5 +216,21 @@ class CourseService
         if ($enrollment) {
             $enrollment->addTimeSpent($minutes);
         }
+    }
+
+    /**
+     * Complete a course for a user
+     */
+    public function completeCourse(User $user, Course $course): void
+    {
+        $enrollment = $this->getUserCourseProgress($user, $course);
+
+        if (! $enrollment) {
+            throw new \Exception('User is not enrolled in this course');
+        }
+
+        $enrollment->update([
+            'completed_at' => now(),
+        ]);
     }
 }

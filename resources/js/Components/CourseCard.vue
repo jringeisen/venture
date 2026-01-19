@@ -28,7 +28,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {{ course.title }}
                 </h3>
-                <div class="ml-2 flex-shrink-0">
+                <div class="ml-2 shrink-0">
                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
                         Beginner
                     </span>
@@ -59,7 +59,7 @@
             <!-- Action Buttons -->
             <div class="flex items-center justify-between">
                 <button
-                    @click="$router.visit(`/student/courses/${course.id}`)"
+                    @click="viewDetails"
                     class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition-colors"
                 >
                     View Details
@@ -73,7 +73,7 @@
                         Enrolled
                     </span>
                     <button
-                        @click="$router.visit(`/student/courses/${course.id}/learn`)"
+                        @click="continueLearning"
                         class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors"
                     >
                         Continue
@@ -93,6 +93,8 @@
 </template>
 
 <script setup>
+import { router } from '@inertiajs/vue3';
+
 const props = defineProps({
     course: {
         type: Object,
@@ -131,6 +133,14 @@ const difficultyColorClasses = (difficulty) => {
 
 const handleEnroll = () => {
     emit('enroll', props.course.id);
+};
+
+const viewDetails = () => {
+    router.visit(`/student/courses/${props.course.id}`);
+};
+
+const continueLearning = () => {
+    router.visit(`/student/courses/${props.course.id}/learn`);
 };
 </script>
 

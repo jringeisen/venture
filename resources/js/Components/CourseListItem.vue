@@ -3,7 +3,7 @@
         <div class="p-6">
             <div class="flex items-start space-x-4">
                 <!-- Course Image -->
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                     <img 
                         :src="course.image_url || '/images/default-course.jpg'" 
                         :alt="course.title"
@@ -59,7 +59,7 @@
                     <!-- Action Buttons -->
                     <div class="flex items-center justify-between">
                         <button
-                            @click="$router.visit(`/student/courses/${course.id}`)"
+                            @click="viewDetails"
                             class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition-colors"
                         >
                             View Details →
@@ -73,7 +73,7 @@
                                 Enrolled
                             </span>
                             <button
-                                @click="$router.visit(`/student/courses/${course.id}/learn`)"
+                                @click="continueLearning"
                                 class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors"
                             >
                                 Continue Learning
@@ -95,6 +95,8 @@
 </template>
 
 <script setup>
+import { router } from '@inertiajs/vue3';
+
 const props = defineProps({
     course: {
         type: Object,
@@ -133,6 +135,14 @@ const difficultyColorClasses = (difficulty) => {
 
 const handleEnroll = () => {
     emit('enroll', props.course.id);
+};
+
+const viewDetails = () => {
+    router.visit(`/student/courses/${props.course.id}`);
+};
+
+const continueLearning = () => {
+    router.visit(`/student/courses/${props.course.id}/learn`);
 };
 </script>
 

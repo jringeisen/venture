@@ -6,7 +6,7 @@
             <!-- Back Button -->
             <div class="mb-6">
                 <button
-                    @click="$router.visit('/student/courses')"
+                    @click="router.visit('/student/courses')"
                     class="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,7 +27,7 @@
                                 :alt="course.title"
                                 class="w-full h-full object-cover"
                             />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
                             <div class="absolute bottom-6 left-6 right-6">
                                 <div class="flex items-center space-x-3 mb-3">
                                     <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-500 text-white">
@@ -125,7 +125,7 @@
                                     </div>
                                     
                                     <!-- Week Status -->
-                                    <div class="ml-4 flex-shrink-0">
+                                    <div class="ml-4 shrink-0">
                                         <span v-if="isEnrolled && userProgress && userProgress.current_week > prompt.week_number" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
                                             <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
@@ -186,7 +186,7 @@
                                 </button>
                                 
                                 <button
-                                    @click="$router.visit('/student/courses/enrolled')"
+                                    @click="router.visit('/student/courses/enrolled')"
                                     class="w-full inline-flex items-center justify-center px-4 py-3 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                                 >
                                     View All Courses
