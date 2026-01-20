@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CoursePrompt extends Model
 {
@@ -13,6 +14,7 @@ class CoursePrompt extends Model
     protected $fillable = [
         'course_id',
         'week_number',
+        'days_count',
         'title',
         'description',
         'prompt_text',
@@ -28,6 +30,7 @@ class CoursePrompt extends Model
         'trivia_questions' => 'array',
         'additional_resources' => 'array',
         'week_number' => 'integer',
+        'days_count' => 'integer',
         'estimated_duration_minutes' => 'integer',
     ];
 
@@ -72,6 +75,14 @@ class CoursePrompt extends Model
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
+    }
+
+    /**
+     * Get the days that belong to this week
+     */
+    public function days(): HasMany
+    {
+        return $this->hasMany(CourseDay::class)->orderBy('day_number');
     }
 
     /**

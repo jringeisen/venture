@@ -14,6 +14,7 @@ class LearningSession extends Model
         'user_id',
         'course_id',
         'week_number',
+        'day_number',
         'started_at',
         'ended_at',
         'duration_seconds',
@@ -45,7 +46,7 @@ class LearningSession extends Model
     /**
      * Start a new learning session
      */
-    public static function startSession(int $userId, int $courseId, int $weekNumber): self
+    public static function startSession(int $userId, int $courseId, int $weekNumber, int $dayNumber = 1): self
     {
         // End any active sessions for this user/course
         static::where('user_id', $userId)
@@ -60,6 +61,7 @@ class LearningSession extends Model
             'user_id' => $userId,
             'course_id' => $courseId,
             'week_number' => $weekNumber,
+            'day_number' => $dayNumber,
             'started_at' => now(),
             'is_active' => true,
         ]);
@@ -145,6 +147,18 @@ class LearningSession extends Model
         return static::where('user_id', $userId)
             ->where('course_id', $courseId)
             ->where('week_number', $weekNumber)
+            ->sum('duration_seconds');
+    }
+
+    /**
+     * Get total time spent by user on a specific day
+     */
+    public static function getTotalTimeForDay(int $userId, int $courseId, int $weekNumber, int $dayNumber): int
+    {
+        return static::where('user_id', $userId)
+            ->where('course_id', $courseId)
+            ->where('week_number', $weekNumber)
+            ->where('day_number', $dayNumber)
             ->sum('duration_seconds');
     }
 }

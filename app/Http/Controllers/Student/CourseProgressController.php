@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\CourseDay;
 use App\Models\CoursePrompt;
 use App\Models\LearningSession;
 use App\Services\CourseService;
@@ -20,9 +21,9 @@ class CourseProgressController extends Controller
     ) {}
 
     /**
-     * Display course learning interface for a specific week
+     * Display course learning interface for a specific week and day
      */
-    public function learn(Request $request, Course $course, int $week = 1): InertiaResponse
+    public function learn(Request $request, Course $course, ?int $week = null, ?int $day = null): InertiaResponse
     {
         // Ensure user is enrolled
         if (! $request->user()->isEnrolledInCourse($course)) {
@@ -33,15 +34,24 @@ class CourseProgressController extends Controller
 
         $userProgress = $this->courseService->getUserCourseProgress($request->user(), $course);
 
-        // Check if user can access this week (can't skip ahead)
-        if ($week > $userProgress->current_week && $week > 1) {
+        // Default to current week/day if not specified
+        $week = $week ?? $userProgress->current_week;
+        $day = $day ?? ($week === $userProgress->current_week ? $userProgress->current_day : 1);
+
+        // Check if user can access this week/day (can't skip ahead)
+        if (! $userProgress->canAccessDay($week, $day)) {
             return redirect()
-                ->route('student.courses.learn', ['course' => $course->id, 'week' => $userProgress->current_week])
-                ->withErrors(['access' => 'Complete previous weeks first.']);
+                ->route('student.courses.learn', [
+                    'course' => $course->id,
+                    'week' => $userProgress->current_week,
+                    'day' => $userProgress->current_day,
+                ])
+                ->withErrors(['access' => 'Complete previous lessons first.']);
         }
 
         $coursePrompt = CoursePrompt::where('course_id', $course->id)
             ->where('week_number', $week)
+            ->with('days')
             ->first();
 
         if (! $coursePrompt) {
@@ -50,28 +60,54 @@ class CourseProgressController extends Controller
                 ->withErrors(['week' => 'Week not found.']);
         }
 
-        // Note: Access tracking simplified due to schema limitations
+        // Get the specific day
+        $courseDay = $coursePrompt->days()->where('day_number', $day)->first();
 
+        // Load course with prompts and their days
         $course->load(['coursePrompts' => function ($query) {
-            $query->orderBy('week_number');
+            $query->orderBy('week_number')->with('days');
         }]);
 
-        // Prepare current week data with formatted trivia questions
+        // Prepare current week data
         $currentWeekData = $coursePrompt->toArray();
         $currentWeekData['trivia_questions'] = $coursePrompt->getTriviaQuestionsForFrontend();
+
+        // Prepare current day data if day exists
+        $currentDayData = null;
+        if ($courseDay) {
+            $currentDayData = $courseDay->toArray();
+            $currentDayData['trivia_questions'] = $courseDay->getTriviaQuestionsForFrontend();
+        }
+
+        // Calculate total days for the course
+        $totalDays = $course->coursePrompts->sum(function ($prompt) {
+            return $prompt->days_count ?? $prompt->days->count() ?: 1;
+        });
+
+        // Determine if this is the last day of the last week
+        $isLastWeek = $week === $course->total_weeks;
+        $isLastDayOfWeek = $courseDay
+            ? $day >= ($coursePrompt->days_count ?? $coursePrompt->days->count() ?: 1)
+            : true;
+        $isLastDay = $isLastWeek && $isLastDayOfWeek;
 
         return Inertia::render('Student/Courses/Learn', [
             'course' => $course,
             'currentWeek' => $currentWeekData,
+            'currentDay' => $currentDayData,
             'userProgress' => $userProgress,
             'weekNumber' => $week,
-            'canAdvance' => $week === $userProgress->current_week,
-            'isLastWeek' => $week === $course->total_weeks,
+            'dayNumber' => $day,
+            'canAdvance' => $week === $userProgress->current_week && $day === $userProgress->current_day,
+            'isLastWeek' => $isLastWeek,
+            'isLastDay' => $isLastDay,
+            'isLastDayOfWeek' => $isLastDayOfWeek,
+            'totalDays' => $totalDays,
         ]);
     }
 
     /**
-     * Complete current week and advance to next
+     * Complete current week and advance to next (legacy method, kept for backwards compatibility)
      */
     public function completeWeek(Request $request, Course $course, int $week)
     {
@@ -91,7 +127,13 @@ class CourseProgressController extends Controller
             return back()->withErrors(['error' => 'You can only complete your current week']);
         }
 
-        $totalWeeks = $course->length_in_weeks ?? $course->coursePrompts()->count();
+        // Record trivia score if provided
+        if ($request->has('trivia_score') && $request->trivia_score !== null) {
+            $userProgress->recordTriviaScore($week, (int) $request->trivia_score);
+        }
+
+        // Use total_weeks accessor which counts actual course prompts
+        $totalWeeks = $course->total_weeks;
 
         // Check if this is the last week
         if ($week >= $totalWeeks) {
@@ -109,6 +151,68 @@ class CourseProgressController extends Controller
         return redirect()
             ->route('student.courses.learn', ['course' => $course->id, 'week' => $week + 1])
             ->with('success', 'Week '.$week.' completed! Starting Week '.($week + 1).'.');
+    }
+
+    /**
+     * Complete current day and advance to next day or week
+     */
+    public function completeDay(Request $request, Course $course, int $week, int $day)
+    {
+        $request->validate([
+            'trivia_score' => 'nullable|numeric|min:0|max:100',
+        ]);
+
+        $user = $request->user();
+
+        $userProgress = $this->courseService->getUserCourseProgress($user, $course);
+        if (! $userProgress) {
+            return back()->withErrors(['error' => 'User not enrolled in course']);
+        }
+
+        // Only allow completing current day
+        if ($week !== $userProgress->current_week || $day !== $userProgress->current_day) {
+            return back()->withErrors(['error' => 'You can only complete your current day']);
+        }
+
+        // Record trivia score if provided
+        if ($request->has('trivia_score') && $request->trivia_score !== null) {
+            $userProgress->recordDayTriviaScore($week, $day, (int) $request->trivia_score);
+        }
+
+        // Get current week prompt to check days
+        $coursePrompt = CoursePrompt::where('course_id', $course->id)
+            ->where('week_number', $week)
+            ->first();
+
+        $totalDaysInWeek = $coursePrompt->days_count ?? $coursePrompt->days()->count() ?: 1;
+        $totalWeeks = $course->total_weeks;
+
+        // Check if this is the last day of the week
+        if ($day >= $totalDaysInWeek) {
+            // Check if this is the last week
+            if ($week >= $totalWeeks) {
+                // Complete the course
+                $this->courseService->completeCourse($user, $course);
+
+                return redirect()
+                    ->route('student.courses.show', $course)
+                    ->with('success', 'Congratulations! You have completed the course!');
+            }
+
+            // Advance to next week (resets day to 1)
+            $userProgress->advanceToNextWeek();
+
+            return redirect()
+                ->route('student.courses.learn', ['course' => $course->id, 'week' => $week + 1, 'day' => 1])
+                ->with('success', 'Week ' . $week . ' completed! Starting Week ' . ($week + 1) . '.');
+        }
+
+        // Advance to next day within the same week
+        $userProgress->advanceToNextDay();
+
+        return redirect()
+            ->route('student.courses.learn', ['course' => $course->id, 'week' => $week, 'day' => $day + 1])
+            ->with('success', 'Day ' . $day . ' completed! Starting Day ' . ($day + 1) . '.');
     }
 
     /**
@@ -246,7 +350,7 @@ class CourseProgressController extends Controller
     /**
      * Start a learning session for tracking time
      */
-    public function startSession(Request $request, Course $course, int $week): JsonResponse
+    public function startSession(Request $request, Course $course, int $week, int $day = 1): JsonResponse
     {
         $user = $request->user();
 
@@ -254,7 +358,7 @@ class CourseProgressController extends Controller
             return response()->json(['error' => 'Not enrolled'], 403);
         }
 
-        $session = LearningSession::startSession($user->id, $course->id, $week);
+        $session = LearningSession::startSession($user->id, $course->id, $week, $day);
 
         // Update last accessed
         $userCourse = $this->courseService->getUserCourseProgress($user, $course);
@@ -267,9 +371,9 @@ class CourseProgressController extends Controller
     }
 
     /**
-     * Track time spent on a course/week (called periodically)
+     * Track time spent on a course/week/day (called periodically)
      */
-    public function trackTime(Request $request, Course $course, int $week): JsonResponse
+    public function trackTime(Request $request, Course $course, int $week, int $day = 1): JsonResponse
     {
         $request->validate([
             'seconds' => 'required|integer|min:1|max:3600',
@@ -297,10 +401,10 @@ class CourseProgressController extends Controller
             }
         }
 
-        // Update user course time
+        // Update user course time at day level
         $userCourse = $this->courseService->getUserCourseProgress($user, $course);
         if ($userCourse) {
-            $userCourse->addWeekTime($week, $seconds);
+            $userCourse->addDayTime($week, $day, $seconds);
             $userCourse->updateLastAccessed();
         }
 
@@ -408,6 +512,79 @@ class CourseProgressController extends Controller
             'correct' => $correct,
             'total' => $total,
             'passed' => $score >= 70, // 70% passing grade
+        ]);
+    }
+
+    /**
+     * Display completion certificate for a course
+     */
+    public function certificate(Request $request, Course $course): InertiaResponse
+    {
+        $user = $request->user();
+
+        // Check if user is enrolled and has completed the course
+        $userProgress = $this->courseService->getUserCourseProgress($user, $course);
+
+        if (! $userProgress || ! $userProgress->completed_at) {
+            return redirect()
+                ->route('student.courses.show', $course)
+                ->withErrors(['error' => 'You must complete the course to view your certificate.']);
+        }
+
+        // Calculate average trivia score from week-keyed data
+        $triviaScores = $userProgress->trivia_scores ?? [];
+        $averageScore = 0;
+        if (count($triviaScores) > 0) {
+            $scores = [];
+            foreach ($triviaScores as $weekKey => $data) {
+                // Handle both formats: direct score or nested array with 'score' key
+                if (is_array($data) && isset($data['score'])) {
+                    $scores[] = $data['score'];
+                } elseif (is_numeric($data)) {
+                    $scores[] = $data;
+                }
+            }
+            if (count($scores) > 0) {
+                $averageScore = round(array_sum($scores) / count($scores));
+            }
+        }
+
+        // Calculate total time spent from week_times (more accurate than time_spent_minutes)
+        $weekTimes = $userProgress->week_times ?? [];
+        $totalSeconds = 0;
+        foreach ($weekTimes as $weekKey => $seconds) {
+            $totalSeconds += (int) $seconds;
+        }
+
+        // Fall back to time_spent_minutes if week_times is empty
+        if ($totalSeconds === 0) {
+            $totalSeconds = ($userProgress->time_spent_minutes ?? 0) * 60;
+        }
+
+        $totalMinutes = (int) floor($totalSeconds / 60);
+        $hours = floor($totalMinutes / 60);
+        $minutes = $totalMinutes % 60;
+
+        if ($hours > 0) {
+            $timeSpent = "{$hours}h {$minutes}m";
+        } elseif ($minutes > 0) {
+            $timeSpent = "{$minutes}m";
+        } else {
+            // Show seconds if less than a minute
+            $timeSpent = "{$totalSeconds}s";
+        }
+
+        return Inertia::render('Student/Courses/Certificate', [
+            'course' => $course,
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email,
+            ],
+            'completedAt' => $userProgress->completed_at->format('F j, Y'),
+            'startedAt' => $userProgress->started_at?->format('F j, Y') ?? $userProgress->created_at->format('F j, Y'),
+            'averageScore' => $averageScore,
+            'timeSpent' => $timeSpent,
+            'certificateId' => strtoupper(substr(md5($user->id . '-' . $course->id . '-' . $userProgress->completed_at->timestamp), 0, 12)),
         ]);
     }
 }

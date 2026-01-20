@@ -157,7 +157,13 @@
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6 sticky top-6">
                         <div v-if="isEnrolled" class="space-y-4">
                             <div class="text-center">
-                                <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 mb-4">
+                                <div v-if="userProgress?.completed_at" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 mb-4">
+                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762z"/>
+                                    </svg>
+                                    Completed
+                                </div>
+                                <div v-else class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 mb-4">
                                     <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
@@ -181,6 +187,18 @@
                             </div>
 
                             <div class="space-y-3">
+                                <!-- Certificate Button for Completed Courses -->
+                                <button
+                                    v-if="userProgress?.completed_at"
+                                    @click="router.visit(`/student/courses/${course.id}/certificate`)"
+                                    class="w-full inline-flex items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all"
+                                >
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                                    </svg>
+                                    View Certificate
+                                </button>
+
                                 <button
                                     @click="continueLearning"
                                     class="w-full inline-flex items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
@@ -189,9 +207,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    Continue Learning
+                                    {{ userProgress?.completed_at ? 'Review Course' : 'Continue Learning' }}
                                 </button>
-                                
+
                                 <button
                                     @click="router.visit('/student/courses/enrolled')"
                                     class="w-full inline-flex items-center justify-center px-4 py-3 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
@@ -204,7 +222,7 @@
                         <div v-else class="text-center space-y-4">
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Ready to Start Learning?</h3>
                             <p class="text-gray-600 dark:text-gray-400 text-sm">Join thousands of students mastering new skills.</p>
-                            
+
                             <button
                                 @click="enrollInCourse"
                                 :disabled="enrolling"
@@ -216,7 +234,20 @@
                                 </svg>
                                 {{ enrolling ? 'Enrolling...' : 'Enroll Now - Free' }}
                             </button>
-                            
+
+                            <!-- Preview Week 1 Button -->
+                            <button
+                                v-if="course.course_prompts && course.course_prompts.length > 0"
+                                @click="showPreview = true"
+                                class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                            >
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                                Preview Week 1
+                            </button>
+
                             <p class="text-xs text-gray-500 dark:text-gray-400">
                                 Free enrollment • Start immediately • Learn at your own pace
                             </p>
@@ -269,11 +300,102 @@
             </div>
         </div>
     </div>
+
+    <!-- Content Preview Modal -->
+    <Teleport to="body">
+        <Transition
+            enter-active-class="transition-opacity duration-300"
+            leave-active-class="transition-opacity duration-300"
+            enter-from-class="opacity-0"
+            leave-to-class="opacity-0"
+        >
+            <div v-if="showPreview" class="fixed inset-0 z-50 overflow-y-auto bg-black/50" @click="showPreview = false">
+                <div class="min-h-screen px-4 py-8 flex items-start justify-center">
+                    <Transition
+                        enter-active-class="transition-all duration-300"
+                        leave-active-class="transition-all duration-300"
+                        enter-from-class="scale-95 opacity-0"
+                        leave-to-class="scale-95 opacity-0"
+                    >
+                        <div v-if="showPreview" class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-3xl my-8" @click.stop>
+                            <!-- Modal Header -->
+                            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                                <div>
+                                    <p class="text-sm text-blue-600 dark:text-blue-400 font-medium mb-1">Preview</p>
+                                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ firstWeek?.formatted_title || firstWeek?.title }}</h3>
+                                </div>
+                                <button @click="showPreview = false" class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Modal Content -->
+                            <div class="p-6 max-h-[60vh] overflow-y-auto">
+                                <!-- Week Description -->
+                                <p v-if="firstWeek?.description" class="text-gray-600 dark:text-gray-400 mb-4">{{ firstWeek.description }}</p>
+
+                                <!-- Learning Objectives -->
+                                <div v-if="firstWeek?.learning_objectives && firstWeek.learning_objectives.length > 0" class="mb-6">
+                                    <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-2">What you'll learn:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            v-for="objective in firstWeek.learning_objectives"
+                                            :key="objective"
+                                            class="inline-flex items-center px-2 py-1 rounded-md text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
+                                        >
+                                            {{ objective }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Preview Content (truncated) -->
+                                <div v-if="previewContent" class="prose dark:prose-invert max-w-none">
+                                    <div v-html="previewContent"></div>
+                                </div>
+
+                                <!-- Fade out overlay -->
+                                <div class="relative mt-4">
+                                    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-gray-800 to-transparent pointer-events-none"></div>
+                                </div>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 rounded-b-xl">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                        Enroll to access the full content
+                                    </p>
+                                    <div class="flex space-x-3">
+                                        <button
+                                            @click="showPreview = false"
+                                            class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                                        >
+                                            Close
+                                        </button>
+                                        <button
+                                            @click="showPreview = false; enrollInCourse()"
+                                            :disabled="enrolling"
+                                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 transition-colors"
+                                        >
+                                            Enroll Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Transition>
+                </div>
+            </div>
+        </Transition>
+    </Teleport>
 </template>
 
 <script setup>
 import { Head, router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import DOMPurify from 'dompurify';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
 defineOptions({
@@ -288,6 +410,40 @@ const props = defineProps({
 });
 
 const enrolling = ref(false);
+const showPreview = ref(false);
+
+// Get the first week for preview
+const firstWeek = computed(() => {
+    if (!props.course?.course_prompts || props.course.course_prompts.length === 0) {
+        return null;
+    }
+    return props.course.course_prompts.find(p => p.week_number === 1) || props.course.course_prompts[0];
+});
+
+// Get truncated preview content (first ~500 characters of content)
+const previewContent = computed(() => {
+    if (!firstWeek.value?.content) {
+        return null;
+    }
+    const sanitized = DOMPurify.sanitize(firstWeek.value.content, {
+        ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'br', 'ul', 'ol', 'li', 'strong', 'em', 'b', 'i'],
+        ALLOWED_ATTR: [],
+    });
+    // Truncate to approximately 500 characters while preserving HTML structure
+    const div = document.createElement('div');
+    div.innerHTML = sanitized;
+    const text = div.textContent || '';
+    if (text.length <= 500) {
+        return sanitized;
+    }
+    // Find a good breakpoint
+    let truncated = text.substring(0, 500);
+    const lastSpace = truncated.lastIndexOf(' ');
+    if (lastSpace > 400) {
+        truncated = truncated.substring(0, lastSpace);
+    }
+    return `<p>${truncated}...</p>`;
+});
 
 const formatSubject = (subject) => {
     if (!subject) return 'General';

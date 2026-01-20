@@ -14,6 +14,7 @@ class UserCourse extends Model
         'user_id',
         'course_id',
         'current_week',
+        'current_day',
         'started_at',
         'completed_at',
         'last_accessed_at',
@@ -82,8 +83,51 @@ class UserCourse extends Model
         }
 
         $this->increment('current_week');
+        $this->update(['current_day' => 1]); // Reset day to 1 when advancing to next week
 
         return true;
+    }
+
+    /**
+     * Advance to the next day within the current week
+     */
+    public function advanceToNextDay(): bool
+    {
+        $currentWeekPrompt = $this->course->coursePrompts()
+            ->where('week_number', $this->current_week)
+            ->first();
+
+        if (! $currentWeekPrompt) {
+            return false;
+        }
+
+        $totalDays = $currentWeekPrompt->days_count ?? $currentWeekPrompt->days()->count();
+
+        if ($this->current_day >= $totalDays) {
+            return false; // At the last day, need to advance week instead
+        }
+
+        $this->increment('current_day');
+
+        return true;
+    }
+
+    /**
+     * Check if this is the last day of the current week
+     */
+    public function isLastDayOfWeek(): bool
+    {
+        $currentWeekPrompt = $this->course->coursePrompts()
+            ->where('week_number', $this->current_week)
+            ->first();
+
+        if (! $currentWeekPrompt) {
+            return true;
+        }
+
+        $totalDays = $currentWeekPrompt->days_count ?? $currentWeekPrompt->days()->count();
+
+        return $this->current_day >= $totalDays;
     }
 
     /**
@@ -92,6 +136,25 @@ class UserCourse extends Model
     public function canAccessWeek(int $week): bool
     {
         return $week <= $this->current_week;
+    }
+
+    /**
+     * Check if user can access a specific day within a week
+     */
+    public function canAccessDay(int $week, int $day): bool
+    {
+        // Can access any day in previous weeks
+        if ($week < $this->current_week) {
+            return true;
+        }
+
+        // Can only access up to current day in current week
+        if ($week === $this->current_week) {
+            return $day <= $this->current_day;
+        }
+
+        // Cannot access future weeks
+        return false;
     }
 
     /**
@@ -135,6 +198,20 @@ class UserCourse extends Model
     }
 
     /**
+     * Record trivia score for a specific day within a week
+     */
+    public function recordDayTriviaScore(int $week, int $day, int $score): void
+    {
+        $scores = $this->trivia_scores ?? [];
+        $scores["week_{$week}_day_{$day}"] = [
+            'score' => $score,
+            'recorded_at' => now()->toIso8601String(),
+        ];
+
+        $this->update(['trivia_scores' => $scores]);
+    }
+
+    /**
      * Get trivia score for a specific week
      */
     public function getTriviaScore(int $week): ?int
@@ -142,6 +219,16 @@ class UserCourse extends Model
         $scores = $this->trivia_scores ?? [];
 
         return $scores["week_{$week}"]['score'] ?? null;
+    }
+
+    /**
+     * Get trivia score for a specific day within a week
+     */
+    public function getDayTriviaScore(int $week, int $day): ?int
+    {
+        $scores = $this->trivia_scores ?? [];
+
+        return $scores["week_{$week}_day_{$day}"]['score'] ?? null;
     }
 
     /**
@@ -168,12 +255,41 @@ class UserCourse extends Model
     }
 
     /**
+     * Add time spent on a specific day within a week (in seconds)
+     */
+    public function addDayTime(int $week, int $day, int $seconds): void
+    {
+        $weekTimes = $this->week_times ?? [];
+        $dayKey = "week_{$week}_day_{$day}";
+        $weekKey = "week_{$week}";
+
+        // Track day-level time
+        $weekTimes[$dayKey] = ($weekTimes[$dayKey] ?? 0) + $seconds;
+        // Also aggregate to week-level time
+        $weekTimes[$weekKey] = ($weekTimes[$weekKey] ?? 0) + $seconds;
+
+        $this->update(['week_times' => $weekTimes]);
+
+        // Also update total time spent (convert seconds to minutes)
+        $this->increment('time_spent_minutes', (int) floor($seconds / 60));
+    }
+
+    /**
      * Get time spent on a specific week (in seconds)
      */
     public function getWeekTime(int $week): int
     {
         $weekTimes = $this->week_times ?? [];
         return $weekTimes["week_{$week}"] ?? 0;
+    }
+
+    /**
+     * Get time spent on a specific day within a week (in seconds)
+     */
+    public function getDayTime(int $week, int $day): int
+    {
+        $weekTimes = $this->week_times ?? [];
+        return $weekTimes["week_{$week}_day_{$day}"] ?? 0;
     }
 
     /**

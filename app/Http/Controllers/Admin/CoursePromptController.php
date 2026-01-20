@@ -29,15 +29,13 @@ class CoursePromptController extends Controller
     {
         $validated = $request->validate([
             'week_number' => 'required|integer|min:1',
+            'days_count' => 'nullable|integer|min:1|max:7',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'prompt_text' => 'nullable|string',
-            'content' => 'nullable|string',
-            'learning_objectives' => 'nullable|array',
-            'trivia_questions' => 'nullable|array',
-            'additional_resources' => 'nullable|array',
             'estimated_duration_minutes' => 'nullable|integer|min:1',
         ]);
+
+        $validated['days_count'] = $validated['days_count'] ?? 5;
 
         $course->coursePrompts()->create($validated);
 
@@ -48,6 +46,9 @@ class CoursePromptController extends Controller
 
     public function edit(Course $course, CoursePrompt $prompt): Response
     {
+        // Load days relationship
+        $prompt->load('days');
+
         // Transform trivia questions from Nova Repeater format to flat format
         $triviaQuestions = collect($prompt->trivia_questions ?? [])
             ->map(function ($question) {
@@ -77,13 +78,11 @@ class CoursePromptController extends Controller
     {
         $validated = $request->validate([
             'week_number' => 'required|integer|min:1',
+            'days_count' => 'nullable|integer|min:1|max:7',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'prompt_text' => 'nullable|string',
             'content' => 'nullable|string',
-            'learning_objectives' => 'nullable|array',
             'trivia_questions' => 'nullable|array',
-            'additional_resources' => 'nullable|array',
             'estimated_duration_minutes' => 'nullable|integer|min:1',
         ]);
 
@@ -108,34 +107,24 @@ class CoursePromptController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'learning_objectives' => 'nullable|array',
             'duration_minutes' => 'nullable|integer|min:1',
         ]);
 
         $title = $validated['title'];
         $description = $validated['description'] ?? '';
-        $learningObjectives = $validated['learning_objectives'] ?? [];
         $durationMinutes = $validated['duration_minutes'] ?? 30;
-
-        $objectivesList = collect($learningObjectives)
-            ->filter()
-            ->map(fn ($obj, $i) => ($i + 1) . '. ' . $obj)
-            ->implode("\n");
 
         // Calculate approximate word count based on duration (average reading speed ~200 words/min for students)
         $targetWordCount = $durationMinutes * 150; // Slightly slower for educational content with comprehension
         $minWords = max(500, (int) ($targetWordCount * 0.8));
         $maxWords = (int) ($targetWordCount * 1.2);
 
-        $prompt = <<<PROMPT
+        $promptText = <<<PROMPT
 Generate educational content for K-12 students based on the following information:
 
 **Title:** {$title}
 
 **Description:** {$description}
-
-**Learning Objectives:**
-{$objectivesList}
 
 **Target Duration:** {$durationMinutes} minutes of reading/learning time
 
@@ -175,7 +164,7 @@ PROMPT;
         // Increase execution time for AI generation
         set_time_limit(300);
 
-        return response()->stream(function () use ($prompt) {
+        return response()->stream(function () use ($promptText) {
             header('Content-Type: text/event-stream');
             header('Cache-Control: no-cache');
             header('Connection: keep-alive');
@@ -191,7 +180,7 @@ PROMPT;
                         ],
                         [
                             'role' => 'user',
-                            'content' => $prompt,
+                            'content' => $promptText,
                         ],
                     ],
                     'response_format' => ['type' => 'json_object'],
