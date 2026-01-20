@@ -1,5 +1,16 @@
 @import "tailwindcss";
-@config "../../tailwind.config.js";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --color-primary-yellow: #FFCC00;
+    --color-primary-gray: #2B2B2B;
+    --color-primary-dark-gray: #1E1E21;
+
+    --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+
+    --animate-fade-in-right: fadeInRight 1s ease-out;
+}
 
 @keyframes fadeInRight {
     from {

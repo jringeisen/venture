@@ -1,10 +1,11 @@
 <script setup>
+import { ref } from 'vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, Form } from '@inertiajs/vue3';
 
 defineProps({
     status: {
@@ -12,13 +13,9 @@ defineProps({
     },
 });
 
-const form = useForm({
+const formData = ref({
     email: '',
 });
-
-const submit = () => {
-    form.post(route('password.email'));
-};
 </script>
 
 <template>
@@ -34,7 +31,7 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <Form v-model="formData" :action="route('password.email')" method="post" #default="{ errors, processing }">
             <div>
                 <InputLabel for="email" value="Email" />
 
@@ -42,20 +39,21 @@ const submit = () => {
                     id="email"
                     type="email"
                     class="mt-1 block w-full"
-                    v-model="form.email"
+                    v-model="formData.email"
+                    name="email"
                     required
                     autofocus
                     autocomplete="username"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="mt-2" :message="errors.email" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton :class="{ 'opacity-25': processing }" :disabled="processing">
                     Email Password Reset Link
                 </PrimaryButton>
             </div>
-        </form>
+        </Form>
     </GuestLayout>
 </template>

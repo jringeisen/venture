@@ -6,17 +6,17 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
-use Laravel\Nova\Auth\Impersonatable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Billable, HasApiTokens, HasFactory, Impersonatable, Notifiable;
+    use Billable, HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
         'parent_id',
@@ -96,5 +96,93 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isStudent(): bool
     {
         return ! is_null($this->parent_id);
+    }
+
+    public function isAdmin(): bool
+    {
+        $adminEmails = config('app.admin_emails') ?? [];
+
+        return is_array($adminEmails) && in_array($this->email, $adminEmails);
+    }
+
+    /**
+     * Get the courses this user is enrolled in
+     */
+    public function enrolledCourses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class, 'user_courses')
+            ->withPivot(['started_at', 'completed_at'])
+            ->withTimestamps();
+    }
+
+    /**
+     * Get the user course enrollments
+     */
+    public function userCourses(): HasMany
+    {
+        return $this->hasMany(UserCourse::class);
+    }
+
+    /**
+     * Get active (non-completed) course enrollments
+     */
+    public function activeCourses(): HasMany
+    {
+        return $this->hasMany(UserCourse::class)->active();
+    }
+
+    /**
+     * Get completed course enrollments
+     */
+    public function completedCourses(): HasMany
+    {
+        return $this->hasMany(UserCourse::class)->completed();
+    }
+
+    /**
+     * Check if user is enrolled in a specific course
+     */
+    public function isEnrolledInCourse(Course $course): bool
+    {
+        return $this->enrolledCourses()->where('course_id', $course->id)->exists();
+    }
+
+    /**
+     * Enroll user in a course
+     */
+    public function enrollInCourse(Course $course): UserCourse
+    {
+        if ($this->isEnrolledInCourse($course)) {
+            throw new \Exception('User is already enrolled in this course');
+        }
+
+        return $this->userCourses()->create([
+            'course_id' => $course->id,
+            'started_at' => now(),
+        ]);
+    }
+
+    /**
+     * Get total courses completed
+     */
+    public function getTotalCoursesCompletedAttribute(): int
+    {
+        return $this->completedCourses()->count();
+    }
+
+    /**
+     * Get total time spent on courses
+     */
+    public function getTotalCourseTimeAttribute(): int
+    {
+        return 0; // Simplified since time tracking columns don't exist
+    }
+
+    /**
+     * Get average course progress
+     */
+    public function getAverageCourseProgressAttribute(): float
+    {
+        return 0; // Simplified since progress columns don't exist
     }
 }

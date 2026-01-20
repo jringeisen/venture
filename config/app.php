@@ -167,7 +167,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\StudentServiceProvider::class,
 
@@ -207,9 +206,9 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Nova Admin Emails
+    | Admin Emails
     |--------------------------------------------------------------------------
      */
 
-    'nova_admin_emails' => explode(',', env('NOVA_ADMIN_EMAILS', 'admin@learnwithventure.com')),
+    'admin_emails' => array_filter(explode(',', env('ADMIN_EMAILS', 'admin@learnwithventure.com'))),
 ];

@@ -10,18 +10,18 @@ class FeedbackPolicy
     public function view(User $user, Feedback $feedback): bool
     {
         return $user->id === $feedback->user_id
-            || in_array($user->email, config('app.nova_admin_emails'));
+            || $user->isAdmin();
     }
 
     public function update(User $user, Feedback $feedback): bool
     {
         return $user->id === $feedback->user_id
-            || in_array($user->email, config('app.nova_admin_emails'));
+            || $user->isAdmin();
     }
 
     public function delete(User $user, Feedback $feedback): bool
     {
         return $user->id === $feedback->user_id
-            || in_array($user->email, config('app.nova_admin_emails'));
+            || $user->isAdmin();
     }
 }

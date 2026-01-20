@@ -956,7 +956,7 @@
                 </div>
             </section>
 
-            <section id="subjects" class="w-full bg-gradient-to-t from-black to-transparent h-[400px] lg:h-[800px]">
+            <section id="subjects" class="w-full bg-linear-to-t from-black to-transparent h-[400px] lg:h-[800px]">
                 <div class="flex justify-center">
                     <div class="hidden relative w-full lg:block">
                         <div class="flex absolute text-sm text-neutral-500"

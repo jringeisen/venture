@@ -157,7 +157,7 @@
                                 :alt="post.alt_text"
                                 class="absolute inset-0 -z-10 h-full w-full object-cover"
                             />
-                            <div class="absolute inset-0 -z-10 bg-gradient-to-t from-neutral-900 via-neutral-900/40"></div>
+                            <div class="absolute inset-0 -z-10 bg-linear-to-t from-neutral-900 via-neutral-900/40"></div>
                             <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-neutral-900/10"></div>
 
                             <div

@@ -98,84 +98,62 @@
             <ApexChart v-if="isClient" width="100%" height="300px" type="line" :options="chartOptions" :series="series"></ApexChart>
         </div>
 
-        <div class="relative">
-            <div class="absolute inset-0 bg-black opacity-75 -left-5 -top-5 -right-5 -bottom-5"></div>
-            <div class="flex absolute z-20 w-full h-full justify-center items-center">
-                <p class="text-4xl text-white font-bold text-center">Courses Are Coming Soon!!!</p>
-            </div>
-            <div class="w-full md:w-1/2">
-                <h1 class="text-2xl font-bold dark:text-neutral-400">My courses</h1>
-                <p class="text-sm dark:text-neutral-400">Keep track of all the course you've added and set study schedules to develop your skills and career. Let's get started!</p>
+        <div>
+            <div class="w-full md:w-1/2 mb-4">
+                <h1 class="text-2xl font-bold dark:text-neutral-400">My Courses</h1>
+                <p class="text-sm dark:text-neutral-400">Keep track of all the courses you've enrolled in and continue your learning journey.</p>
             </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                <div class="bg-white border rounded-lg overflow-hidden dark:border-none dark:bg-neutral-800">
+            <div v-if="enrolledCourses && enrolledCourses.length > 0" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                <Link
+                    v-for="course in enrolledCourses"
+                    :key="course.id"
+                    :href="`/student/courses/${course.id}/learn/${course.current_week}`"
+                    class="bg-white border rounded-lg overflow-hidden dark:border-none dark:bg-neutral-800 hover:ring-2 hover:ring-primary-yellow transition-all"
+                >
                     <div class="h-40 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/3185480/pexels-photo-3185480.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="w-full h-40 object-cover" />
+                        <img
+                            v-if="course.image_url"
+                            :src="course.image_url"
+                            :alt="course.title"
+                            class="w-full h-40 object-cover"
+                        />
+                        <div
+                            v-else
+                            class="w-full h-40 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center"
+                        >
+                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="p-2 space-y-2">
-                        <h2 class="text-sm font-bold mt-3 dark:text-neutral-400">Ancient Egypt</h2>
-                        <p class="text-xs text-neutral-400">18-Weeks</p>
+                        <h2 class="text-sm font-bold mt-3 dark:text-neutral-400">{{ course.title }}</h2>
+                        <p class="text-xs text-neutral-400">{{ course.length_in_weeks }}-Weeks</p>
                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-neutral-700">
-                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 50%"></div>
+                            <div
+                                class="bg-primary-yellow h-2.5 rounded-full transition-all"
+                                :style="{ width: `${course.progress}%` }"
+                            ></div>
                         </div>
                         <div class="flex items-center justify-between">
-                            <p class="text-xs text-neutral-400">Course Progress</p>
-                            <p class="text-xs text-neutral-400">50%</p>
+                            <p class="text-xs text-neutral-400">
+                                {{ course.is_completed ? 'Completed' : `Week ${course.current_week} of ${course.length_in_weeks}` }}
+                            </p>
+                            <p class="text-xs text-neutral-400">{{ course.progress }}%</p>
                         </div>
                     </div>
-                </div>
+                </Link>
+            </div>
 
-                <div class="bg-white border rounded-lg overflow-hidden dark:border-none dark:bg-neutral-800">
-                    <div class="h-40 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/53389/iceberg-antarctica-polar-blue-53389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="w-full h-40 object-cover" />
-                    </div>
-                    <div class="p-2 space-y-2">
-                        <h2 class="text-sm font-bold mt-3 dark:text-neutral-400">The U.S. National Parks</h2>
-                        <p class="text-xs text-neutral-400">9-Weeks</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-neutral-700">
-                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 50%"></div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs text-neutral-400">Course Progress</p>
-                            <p class="text-xs text-neutral-400">50%</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white border rounded-lg overflow-hidden dark:border-none dark:bg-neutral-800">
-                    <div class="h-40 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/2150/sky-space-dark-galaxy.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="w-full h-40 object-cover" />
-                    </div>
-                    <div class="p-2 space-y-2">
-                        <h2 class="text-sm font-bold mt-3 dark:text-neutral-400">Astronomy</h2>
-                        <p class="text-xs text-neutral-400">36-Weeks</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-neutral-700">
-                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 50%"></div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs text-neutral-400">Course Progress</p>
-                            <p class="text-xs text-neutral-400">50%</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white border rounded-lg overflow-hidden dark:border-none dark:bg-neutral-800">
-                    <div class="h-40 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/16836350/pexels-photo-16836350/free-photo-of-purple-toned-landscape-with-volcanoes.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="w-full h-40 object-cover" />
-                    </div>
-                    <div class="p-2 space-y-2">
-                        <h2 class="text-sm font-bold mt-3 dark:text-neutral-400">Volcanoes</h2>
-                        <p class="text-xs text-neutral-400">9-Weeks</p>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-neutral-700">
-                            <div class="bg-primary-yellow h-2.5 rounded-full" style="width: 50%"></div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs text-neutral-400">Course Progress</p>
-                            <p class="text-xs text-neutral-400">50%</p>
-                        </div>
-                    </div>
-                </div>
+            <div v-else class="bg-white border rounded-lg p-8 text-center dark:border-none dark:bg-neutral-800">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 mx-auto text-neutral-400 mb-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                </svg>
+                <p class="text-neutral-500 dark:text-neutral-400 mb-4">You haven't enrolled in any courses yet.</p>
+                <Link href="/student/courses" class="inline-flex items-center px-4 py-2 bg-primary-yellow text-black font-semibold rounded-lg hover:bg-yellow-400 transition-colors">
+                    Browse Courses
+                </Link>
             </div>
         </div>
     </div>
@@ -183,7 +161,7 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, Link } from '@inertiajs/vue3';
 import { defineAsyncComponent, onMounted, ref } from 'vue';
 
 defineOptions({
@@ -201,6 +179,7 @@ const props = defineProps({
     lineChartData: Object,
     activeTime: String,
     timeframe: String,
+    enrolledCourses: Array,
 });
 
 const form = useForm({

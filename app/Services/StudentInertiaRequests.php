@@ -4,13 +4,12 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Laravel\Nova\Contracts\ImpersonatesUsers;
 
 class StudentInertiaRequests
 {
     public function __invoke(Request $request): array
     {
-        $impersonator = app(ImpersonatesUsers::class);
+        $impersonationService = app(ImpersonationService::class);
 
         return [
             'auth' => [
@@ -18,7 +17,7 @@ class StudentInertiaRequests
                 'user' => $request->user(),
                 'navigation' => $this->navigation(),
                 'subjects' => $this->subjects(),
-                'isImpersonated' => $impersonator->impersonating($request),
+                'isImpersonated' => $impersonationService->isImpersonating($request),
             ],
         ];
     }
@@ -28,6 +27,7 @@ class StudentInertiaRequests
         return [
             ['name' => 'Dashboard', 'href' => '/student/dashboard', 'icon' => 'home-icon', 'current' => request()->routeIs('student.dashboard')],
             ['name' => 'Learn', 'href' => '/student/prompts', 'icon' => 'book-open', 'current' => request()->routeIs('student.prompts.*')],
+            ['name' => 'Courses', 'href' => '/student/courses', 'icon' => 'academic-cap', 'current' => request()->routeIs('student.courses.*')],
             ['name' => 'Feedback', 'href' => route('feedback.index'), 'icon' => 'chat-bubble-left-ellipsis', 'current' => request()->routeIs('feedback.*')],
         ];
     }
