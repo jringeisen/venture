@@ -30,10 +30,28 @@
                             <InputError :message="errors.image_url" class="mt-2"/>
                         </div>
 
-                        <div>
-                            <InputLabel for="length_in_weeks" value="Length (weeks)"/>
-                            <TextInput id="length_in_weeks" v-model="formData.length_in_weeks" name="length_in_weeks" type="number" min="1" class="mt-1 block w-full" required/>
-                            <InputError :message="errors.length_in_weeks" class="mt-2"/>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <InputLabel for="length_in_weeks" value="Length (weeks)"/>
+                                <TextInput id="length_in_weeks" v-model="formData.length_in_weeks" name="length_in_weeks" type="number" min="1" class="mt-1 block w-full" required/>
+                                <InputError :message="errors.length_in_weeks" class="mt-2"/>
+                            </div>
+
+                            <div>
+                                <InputLabel for="age_group" value="Target Age Group"/>
+                                <select
+                                    id="age_group"
+                                    v-model="formData.age_group"
+                                    name="age_group"
+                                    class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                                >
+                                    <option value="">All Ages</option>
+                                    <option v-for="group in ageGroups" :key="group.value" :value="group.value">
+                                        {{ group.label }}
+                                    </option>
+                                </select>
+                                <InputError :message="errors.age_group" class="mt-2"/>
+                            </div>
                         </div>
 
                         <div class="flex justify-end">
@@ -58,10 +76,18 @@ import TextareaInput from '@/Components/TextareaInput.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
+defineProps({
+    ageGroups: {
+        type: Array,
+        default: () => [],
+    },
+});
+
 const formData = ref({
     title: '',
     description: '',
     image_url: '',
     length_in_weeks: 1,
+    age_group: '',
 });
 </script>

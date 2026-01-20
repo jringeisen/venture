@@ -27,12 +27,15 @@
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                 {{ course.title }}
                             </h3>
-                            <div v-if="course.subject_category || course.difficulty_level" class="flex items-center space-x-3 mt-1">
+                            <div v-if="course.subject_category || course.difficulty_level || hasAgeGroup" class="flex items-center flex-wrap gap-2 mt-1">
                                 <span v-if="course.subject_category" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
                                     {{ formatSubject(course.subject_category) }}
                                 </span>
                                 <span v-if="course.difficulty_level" :class="difficultyColorClasses(course.difficulty_level)" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium">
                                     {{ formatDifficulty(course.difficulty_level) }}
+                                </span>
+                                <span v-if="hasAgeGroup" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">
+                                    {{ ageGroupLabel }}
                                 </span>
                             </div>
                         </div>
@@ -99,6 +102,7 @@
 
 <script setup>
 import { router } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
 const props = defineProps({
     course: {
@@ -116,6 +120,15 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['enroll']);
+
+const hasAgeGroup = computed(() => {
+    return props.course.min_age !== null && props.course.max_age !== null;
+});
+
+const ageGroupLabel = computed(() => {
+    if (!hasAgeGroup.value) return '';
+    return `Ages ${props.course.min_age}-${props.course.max_age}`;
+});
 
 const formatSubject = (subject) => {
     if (!subject) return 'General';

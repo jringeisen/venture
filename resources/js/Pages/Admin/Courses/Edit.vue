@@ -39,6 +39,21 @@
                             </div>
                         </div>
 
+                        <div>
+                            <InputLabel for="age_group" value="Target Age Group"/>
+                            <select
+                                id="age_group"
+                                v-model="courseForm.age_group"
+                                class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                            >
+                                <option value="">All Ages</option>
+                                <option v-for="group in ageGroups" :key="group.value" :value="group.value">
+                                    {{ group.label }}
+                                </option>
+                            </select>
+                            <InputError :message="courseForm.errors.age_group" class="mt-2"/>
+                        </div>
+
                         <div class="flex justify-end">
                             <PrimaryButton :disabled="courseForm.processing">
                                 Update Course
@@ -127,6 +142,10 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
     course: Object,
+    ageGroups: {
+        type: Array,
+        default: () => [],
+    },
 });
 
 const courseForm = useForm({
@@ -134,6 +153,7 @@ const courseForm = useForm({
     description: props.course.description,
     image_url: props.course.image_url || '',
     length_in_weeks: props.course.length_in_weeks,
+    age_group: props.course.age_group || '',
 });
 
 const isGenerating = ref(false);

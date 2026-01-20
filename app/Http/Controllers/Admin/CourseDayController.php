@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\AgeGroup;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseDay;
@@ -127,6 +128,29 @@ class CourseDayController extends Controller
         $minWords = max(500, (int) ($targetWordCount * 0.85));
         $maxWords = (int) ($targetWordCount * 1.3);
 
+        // Get age group context and guidelines
+        $ageGroupContext = '';
+        $ageGroupGuidelines = '';
+        $ageGroup = $course->age_group;
+        if ($ageGroup) {
+            $ageGroupLabel = $ageGroup->label();
+            $ageGroupGuidelines = $ageGroup->contentGuidelines();
+            $ageGroupContext = "- **Target Age Group:** {$ageGroupLabel}";
+        } else {
+            $ageGroupContext = "- **Target Age Group:** All Ages (General K-12)";
+        }
+
+        $ageGuidanceSection = '';
+        if ($ageGroupGuidelines) {
+            $ageGuidanceSection = <<<AGEGUIDANCE
+
+## Age-Appropriate Content Guidelines
+Follow these guidelines carefully to ensure content matches the target age group:
+
+{$ageGroupGuidelines}
+AGEGUIDANCE;
+        }
+
         $aiPrompt = <<<PROMPT
 You are an expert K-12 curriculum designer creating a comprehensive, engaging lesson. Generate thorough educational content that will genuinely teach students about this topic.
 
@@ -136,6 +160,8 @@ You are an expert K-12 curriculum designer creating a comprehensive, engaging le
 - **Day:** {$title} (Day {$day->day_number})
 - **Topic Description:** {$description}
 - **Target Reading Time:** {$durationMinutes} minutes ({$minWords}-{$maxWords} words)
+{$ageGroupContext}
+{$ageGuidanceSection}
 
 ## Learning Objectives
 Students should be able to:

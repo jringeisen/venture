@@ -13,6 +13,36 @@
                 </p>
             </div>
 
+            <!-- Age Warning Banner -->
+            <div v-if="showAgeWarning" class="mb-8 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+                <div class="flex items-start">
+                    <div class="shrink-0">
+                        <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3 flex-1">
+                        <h3 class="text-sm font-medium text-amber-800 dark:text-amber-200">
+                            Set your age for personalized courses
+                        </h3>
+                        <p class="mt-1 text-sm text-amber-700 dark:text-amber-300">
+                            We're showing you all available courses. To see courses designed for your age level, please update your profile.
+                        </p>
+                        <div class="mt-3">
+                            <a
+                                :href="route('profile.edit')"
+                                class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-amber-800 dark:text-amber-200 bg-amber-100 dark:bg-amber-800/50 rounded-md hover:bg-amber-200 dark:hover:bg-amber-800/70 transition-colors"
+                            >
+                                Update Profile
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Quick Stats -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
@@ -173,6 +203,10 @@ const props = defineProps({
     filters: {
         type: Object,
         default: () => ({})
+    },
+    showAgeWarning: {
+        type: Boolean,
+        default: false,
     },
 });
 

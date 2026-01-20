@@ -20,13 +20,17 @@ class CourseController extends Controller
      */
     public function index(Request $request): Response
     {
+        $user = $request->user();
+        $studentAge = $user->age;
+
         $courses = $this->courseService->getPaginatedCourses(
             perPage: 12,
             subject: $request->get('subject'),
-            search: $request->get('search')
+            search: $request->get('search'),
+            studentAge: $studentAge
         );
 
-        $userEnrolledCourses = $this->courseService->getUserEnrolledCourses($request->user());
+        $userEnrolledCourses = $this->courseService->getUserEnrolledCourses($user);
 
         return Inertia::render('Student/Courses/Index', [
             'courses' => $courses,
@@ -34,6 +38,7 @@ class CourseController extends Controller
             'filters' => [
                 'search' => $request->get('search'),
             ],
+            'showAgeWarning' => $studentAge === null,
         ]);
     }
 
@@ -83,7 +88,11 @@ class CourseController extends Controller
             'query' => 'required|string|min:2|max:100',
         ]);
 
-        $courses = $this->courseService->searchCourses($request->get('query'));
+        $courses = $this->courseService->searchCourses(
+            $request->get('query'),
+            10,
+            $request->user()->age
+        );
 
         return response()->json([
             'courses' => $courses,

@@ -26,11 +26,12 @@ class CourseService
     /**
      * Get paginated courses for catalog
      */
-    public function getPaginatedCourses(int $perPage = 12, ?string $subject = null, ?string $search = null): LengthAwarePaginator
+    public function getPaginatedCourses(int $perPage = 12, ?string $subject = null, ?string $search = null, ?int $studentAge = null): LengthAwarePaginator
     {
         $query = Course::query()
             ->withCount('coursePrompts as weeks_count')
-            ->withCount('userCourses as enrolled_count');
+            ->withCount('userCourses as enrolled_count')
+            ->forAge($studentAge);
 
         // Apply search filter if provided
         if ($search) {
@@ -155,6 +156,7 @@ class CourseService
         return Course::whereNotIn('courses.id', $user->enrolledCourses()->pluck('courses.id'))
             ->withCount('coursePrompts as weeks_count')
             ->withCount('userCourses as enrolled_count')
+            ->forAge($user->age)
             ->orderBy('title')
             ->limit($limit)
             ->get();
@@ -176,7 +178,7 @@ class CourseService
     /**
      * Search courses
      */
-    public function searchCourses(string $query, int $limit = 10): Collection
+    public function searchCourses(string $query, int $limit = 10, ?int $studentAge = null): Collection
     {
         return Course::where(function ($q) use ($query) {
             $q->where('title', 'like', "%{$query}%")
@@ -184,6 +186,7 @@ class CourseService
         })
             ->withCount('coursePrompts as weeks_count')
             ->withCount('userCourses as enrolled_count')
+            ->forAge($studentAge)
             ->limit($limit)
             ->get();
     }
