@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\Guest\DownloadPlannerController;
@@ -105,6 +106,15 @@ Route::middleware('auth')->group(function () {
                 Route::get('/{user}/edit', [StudentController::class, 'edit'])->name('edit');
                 Route::patch('/{user}', [StudentController::class, 'update'])->name('update');
                 Route::delete('/{user}', [StudentController::class, 'destroy'])->name('destroy');
+            });
+
+            Route::prefix('compliance')->name('compliance.')->group(static function () {
+                Route::get('/', [ComplianceController::class, 'index'])->name('index');
+                Route::get('/reports/create', [ComplianceController::class, 'create'])->name('reports.create');
+                Route::post('/reports', [ComplianceController::class, 'store'])->name('reports.store');
+                Route::get('/reports/{complianceReport}', [ComplianceController::class, 'show'])->name('reports.show');
+                Route::get('/reports/{complianceReport}/pdf', [ComplianceController::class, 'downloadPdf'])->name('reports.pdf');
+                Route::delete('/reports/{complianceReport}', [ComplianceController::class, 'destroy'])->name('reports.destroy');
             });
         });
 

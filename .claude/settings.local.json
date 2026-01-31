@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:www.pexels.com)",
-      "WebSearch"
+      "WebSearch",
+      "mcp__laravel-boost__list-routes",
+      "Bash(composer require:*)",
+      "Bash(php artisan:*)",
+      "mcp__laravel-boost__database-query"
     ]
   },
   "enableAllProjectMcpServers": true,

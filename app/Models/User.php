@@ -88,6 +88,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(ActiveTime::class);
     }
 
+    public function learningSessions(): HasMany
+    {
+        return $this->hasMany(LearningSession::class);
+    }
+
+    public function complianceReports(): HasMany
+    {
+        return $this->hasMany(ComplianceReport::class, 'parent_id');
+    }
+
     public function isParent(): bool
     {
         return is_null($this->parent_id);
