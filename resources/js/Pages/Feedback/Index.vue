@@ -3,11 +3,11 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow p-8 rounded-lg dark:bg-primary-gray">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Feedback</h1>
-                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">
+                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">Feedback</h1>
+                        <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">
                             A list of all the feedback you've created.
                         </p>
                     </div>
@@ -24,19 +24,19 @@
                                         <tr>
                                             <th
                                                 scope="col"
-                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-neutral-300"
+                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-beach-text sm:pl-6 dark:text-neutral-300"
                                             >
                                                 Title
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300"
                                             >
                                                 Status
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300"
                                             >
                                                 Created On
                                             </th>
@@ -48,14 +48,14 @@
                                     <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
                                         <tr v-for="(item, index) in feedback.data" :key="index">
                                             <td
-                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-primary-gray"
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-beach-text sm:pl-6 dark:text-primary-gray"
                                             >
                                                 {{ item.title }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
                                                 {{ item.status }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
                                                 {{ item.created_at }}
                                             </td>
                                             <td

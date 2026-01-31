@@ -3,11 +3,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow p-8 rounded-lg dark:bg-primary-gray">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Students</h1>
-                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">
+                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">Students</h1>
+                        <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">
                             A list of all the students in your account including their name, title, email and role.
                         </p>
                     </div>
@@ -63,27 +63,27 @@
                                     <tr v-for="(student, index) in students.data" :key="index">
                                         <td>
                                             <button @click.prevent="handleStudentLogin(student)" type="button"
-                                                    class="ml-3 inline-flex items-center px-4 py-2 bg-primary-yellow border border-transparent rounded-md font-semibold text-xs text-primary-dark-gray dark:text-gray-800 uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-500 focus:bg-yellow-500 dark:focus:bg-yellow-500 active:bg-yellow-500 dark:active:bg-bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-primary-yellow focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition ease-in-out duration-150">
+                                                    class="ml-3 inline-flex items-center px-4 py-2 bg-beach-teal border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-beach-teal-dark dark:hover:bg-beach-teal-dark focus:bg-beach-teal-dark dark:focus:bg-beach-teal-dark active:bg-beach-teal-dark dark:active:bg-beach-teal-dark focus:outline-none focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition ease-in-out duration-150">
                                                 Start Learning
                                             </button>
                                         </td>
                                         <td
-                                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-primary-gray"
+                                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-beach-text sm:pl-6 dark:text-primary-gray"
                                         >
                                             {{ student.name }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
                                             {{ student.username }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
                                             {{ student.prompt_questions_count }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
                                             {{
                                                 student.active_time.length > 0 ? student.active_time[0].total_minutes : 0
                                             }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-primary-gray">
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
                                             {{ student.age }}
                                         </td>
                                         <td

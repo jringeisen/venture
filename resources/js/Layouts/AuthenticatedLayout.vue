@@ -129,8 +129,8 @@
                             <ul role="list" class="mt-2 space-y-1">
                                 <Link href="/student/topic/all">
                                     <button
-                                        class="text-gray-300 hover:text-primary-yellow group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
-                                        :class="{'text-primary-yellow': route().current('student.topic.show', { topic: 'all' })}"
+                                        class="text-gray-300 hover:text-beach-teal-light group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
+                                        :class="{'text-beach-teal-light': route().current('student.topic.show', { topic: 'all' })}"
                                     >
                                         <span class="truncate">All</span>
                                         <span class="truncate">{{ totalSubjectsCount }}</span>
@@ -139,8 +139,8 @@
                                 <Link v-for="(subject, index) in $page.props.auth.subjects" :key="index"
                                       :href="subject.href">
                                     <button
-                                        class="text-gray-300 hover:text-primary-yellow group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
-                                        :class="{'text-primary-yellow': subject.current}"
+                                        class="text-gray-300 hover:text-beach-teal-light group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
+                                        :class="{'text-beach-teal-light': subject.current}"
                                     >
                                         <span class="truncate">{{ subject.name }}</span>
                                         <span class="truncate">{{ subject.count }}</span>
@@ -161,7 +161,7 @@
                                 href="#"
                                 class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-300 hover:text-primary-gray hover:bg-gray-50 dark:hover:bg-neutral-700 dark:hover:text-neutral-400"
                             >
-                                <div class="flex justify-center items-center rounded-full bg-primary-yellow w-7 h-7">
+                                <div class="flex justify-center items-center rounded-full bg-beach-teal w-7 h-7">
                                     <p class="text-xl text-primary-gray">{{ $page.props.auth.user.name[0] }}</p>
                                 </div>
                                 <span class="sr-only">Your profile</span>
@@ -209,7 +209,7 @@
                     class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-gray-900"
                 >
                     <div
-                        class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-300 w-7 h-7 dark:bg-primary-yellow dark:border-none">
+                        class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-300 w-7 h-7 dark:bg-beach-teal dark:border-none">
                         <p class="text-xl text-gray-300 dark:text-primary-gray">{{ $page.props.auth.user.name[0] }}</p>
                     </div>
                     <span class="sr-only">Your profile</span>
@@ -233,7 +233,7 @@
             </div>
         </div>
 
-        <main class="relative py-10 lg:pl-72">
+        <main class="relative py-10 lg:pl-72 bg-slate-50 dark:bg-neutral-900">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="max-w-7xl mx-auto sm:px-8">
                     <div v-if="isBeingImpersonated()" class="pb-6">

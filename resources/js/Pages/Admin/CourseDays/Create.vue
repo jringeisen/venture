@@ -2,14 +2,14 @@
     <AdminLayout title="Add Day">
         <div class="max-w-3xl">
             <div class="mb-6">
-                <Link :href="route('admin.courses.weeks.edit', [course.id, prompt.id])" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.courses.weeks.edit', [course.id, prompt.id])" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
                     &larr; Back to Week {{ prompt.week_number }}
                 </Link>
             </div>
 
-            <div class="bg-white dark:bg-neutral-800 shadow rounded-lg">
+            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">
+                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">
                         Add Day to Week {{ prompt.week_number }}: {{ prompt.title }}
                     </h3>
 

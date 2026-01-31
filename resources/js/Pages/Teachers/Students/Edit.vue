@@ -3,11 +3,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow p-8 rounded-lg dark:bg-primary-gray">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Edit {{ student.name }}</h1>
-                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">Update this students details.</p>
+                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">Edit {{ student.name }}</h1>
+                        <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">Update this students details.</p>
                     </div>
                 </div>
                 <div class="mt-8 flow-root">
@@ -64,7 +64,7 @@
 
                                 <div>
                                     <InputLabel for="timezone" value="Timezone" />
-                                    <select id="timezone" v-model="form.timezone" class="w-full border-gray-300 focus:border-primary-gray focus:ring-primary-gray rounded-md shadow-sm dark:focus:border-neutral-900 dark:focus:ring-neutral-900 dark:border-neutral-900 dark:bg-primary-gray dark:text-neutral-400 dark:placeholder:text-neutral-400">
+                                    <select id="timezone" v-model="form.timezone" class="w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm dark:focus:border-neutral-900 dark:focus:ring-neutral-900 dark:border-neutral-900 dark:bg-primary-gray dark:text-neutral-400 dark:placeholder:text-neutral-400">
                                         <option disabled>Choose a timezone:</option>
                                         <option v-for="(timezone, index) in timezones" selected :value="timezone.value">{{ timezone.label }}</option>
                                     </select>

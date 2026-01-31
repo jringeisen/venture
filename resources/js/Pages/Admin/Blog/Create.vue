@@ -2,14 +2,14 @@
     <AdminLayout title="Create Blog Post">
         <div class="max-w-3xl">
             <div class="mb-6">
-                <Link :href="route('admin.blog-posts.index')" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.blog-posts.index')" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
                     &larr; Back to Blog Posts
                 </Link>
             </div>
 
-            <div class="bg-white dark:bg-neutral-800 shadow rounded-lg">
+            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">Create New Blog Post</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Create New Blog Post</h3>
 
                     <Form v-model="formData" :action="route('admin.blog-posts.store')" method="post" class="space-y-6" #default="{ errors, processing }">
                         <div>

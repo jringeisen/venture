@@ -12,7 +12,7 @@
                     />
                     <div
                         v-else
-                        class="w-20 h-20 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-300"
+                        class="w-20 h-20 rounded-lg bg-gradient-to-br from-beach-teal to-beach-teal-dark flex items-center justify-center group-hover:scale-105 transition-transform duration-300"
                     >
                         <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"/>
@@ -24,11 +24,11 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-start justify-between mb-2">
                         <div class="flex-1">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white line-clamp-1 group-hover:text-beach-teal dark:group-hover:text-beach-teal-light transition-colors">
                                 {{ course.title }}
                             </h3>
                             <div v-if="course.subject_category || course.difficulty_level || hasAgeGroup" class="flex items-center flex-wrap gap-2 mt-1">
-                                <span v-if="course.subject_category" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                                <span v-if="course.subject_category" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200">
                                     {{ formatSubject(course.subject_category) }}
                                 </span>
                                 <span v-if="course.difficulty_level" :class="difficultyColorClasses(course.difficulty_level)" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium">
@@ -66,7 +66,7 @@
                     <div class="flex items-center justify-between">
                         <button
                             @click="viewDetails"
-                            class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition-colors"
+                            class="text-beach-teal dark:text-beach-teal-light hover:text-beach-teal-dark dark:hover:text-teal-300 text-sm font-medium transition-colors"
                         >
                             View Details →
                         </button>
@@ -80,7 +80,7 @@
                             </span>
                             <button
                                 @click="continueLearning"
-                                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+                                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-beach-teal hover:bg-beach-teal-dark transition-colors"
                             >
                                 Continue Learning
                             </button>
@@ -89,7 +89,7 @@
                         <button
                             v-else
                             @click="handleEnroll"
-                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-beach-teal hover:bg-beach-teal-dark focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 transition-colors"
                         >
                             Enroll Now
                         </button>

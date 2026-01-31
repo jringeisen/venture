@@ -3,16 +3,16 @@
 
     <div class="pt-0">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div v-if="isOnboarding()" class="bg-primary-yellow rounded-lg p-4 mb-10 text-center">
-                <h1 class="text-yellow-900 text-xl font-bold">Welcome to Venture!</h1>
-                <p class="text-yellow-900">To get started you will need to add a student which you can do with the form below.</p>
+            <div v-if="isOnboarding()" class="bg-beach-teal rounded-lg p-4 mb-10 text-center">
+                <h1 class="text-white text-xl font-bold">Welcome to Venture!</h1>
+                <p class="text-white">To get started you will need to add a student which you can do with the form below.</p>
             </div>
 
-            <div class="bg-white shadow p-8 rounded-lg dark:bg-neutral-800">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-neutral-800 dark:border-neutral-700">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">Create Student</h1>
-                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">
+                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">Create Student</h1>
+                        <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">
                             Create a new student.
                         </p>
                     </div>
@@ -71,7 +71,7 @@
 
                                 <div>
                                     <InputLabel for="timezone" value="Timezone" />
-                                    <select id="timezone" v-model="form.timezone" class="w-full border-gray-300 focus:border-primary-gray focus:ring-primary-gray rounded-md shadow-sm dark:focus:border-neutral-900 dark:focus:ring-neutral-900 dark:border-neutral-900 dark:bg-primary-gray dark:text-neutral-400 dark:placeholder:text-neutral-400">
+                                    <select id="timezone" v-model="form.timezone" class="w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm dark:focus:border-neutral-900 dark:focus:ring-neutral-900 dark:border-neutral-900 dark:bg-primary-gray dark:text-neutral-400 dark:placeholder:text-neutral-400">
                                         <option disabled>Choose a timezone:</option>
                                         <option v-for="(timezone, index) in timezones" selected :value="timezone.value">{{ timezone.label }}</option>
                                     </select>

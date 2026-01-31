@@ -3,13 +3,13 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow p-8 rounded-lg dark:bg-neutral-800">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-neutral-800 dark:border-neutral-700">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-neutral-400">
+                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">
                             Edit Feedback
                         </h1>
-                        <p class="mt-2 text-sm text-gray-700 dark:text-neutral-400">
+                        <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">
                             Providing feedback allows us to continue to improve our services.
                         </p>
                     </div>

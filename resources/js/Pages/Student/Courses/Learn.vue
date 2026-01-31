@@ -18,14 +18,14 @@
                         </button>
                         <div>
                             <!-- Breadcrumbs -->
-                            <nav class="flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400 mb-0.5">
+                            <nav class="flex items-center space-x-1 text-sm text-beach-text-light dark:text-gray-400 mb-0.5">
                                 <button @click="router.visit('/student/courses')" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors">Courses</button>
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
                                 <button @click="router.visit(`/student/courses/${course.id}`)" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors truncate max-w-[150px]">{{ course.title }}</button>
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
-                                <span class="text-gray-700 dark:text-gray-200">Week {{ weekNumber }}, Day {{ dayNumber }}</span>
+                                <span class="text-beach-text-light dark:text-gray-200">Week {{ weekNumber }}, Day {{ dayNumber }}</span>
                             </nav>
-                            <h1 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            <h1 class="text-lg font-semibold text-beach-text dark:text-white">
                                 {{ currentDay?.title || currentWeek?.formatted_title || currentWeek?.title }}
                             </h1>
                         </div>
@@ -34,7 +34,7 @@
                     <!-- Right: Progress & Time -->
                     <div class="flex items-center space-x-4">
                         <!-- Estimated reading time -->
-                        <div v-if="estimatedReadingTime" class="hidden md:flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+                        <div v-if="estimatedReadingTime" class="hidden md:flex items-center space-x-2 text-sm text-beach-text-light dark:text-gray-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                             </svg>
@@ -51,7 +51,7 @@
                         <div class="hidden sm:flex items-center space-x-2">
                             <div class="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                                 <div
-                                    class="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                                    class="bg-beach-teal h-2 rounded-full transition-all duration-300"
                                     :style="{ width: `${progressPercent}%` }"
                                 ></div>
                             </div>
@@ -67,7 +67,7 @@
                 <!-- Sidebar: Course Navigation -->
                 <div class="lg:col-span-1">
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-4 sticky top-24">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Course Content</h3>
+                        <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-4">Course Content</h3>
                         <div class="space-y-2">
                             <div v-for="prompt in course.course_prompts" :key="prompt.id">
                                 <!-- Week Header (collapsible) -->
@@ -76,9 +76,9 @@
                                     :class="[
                                         'w-full text-left p-3 rounded-lg transition-colors flex items-center justify-between',
                                         prompt.week_number === weekNumber
-                                            ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100'
+                                            ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-900 dark:text-teal-100'
                                             : canAccessWeek(prompt.week_number)
-                                                ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
+                                                ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-beach-text dark:text-white'
                                                 : 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
                                     ]"
                                 >
@@ -86,7 +86,7 @@
                                         <span :class="[
                                             'inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-medium mr-3 shrink-0',
                                             prompt.week_number === weekNumber
-                                                ? 'bg-blue-600 text-white'
+                                                ? 'bg-beach-teal text-white'
                                                 : isWeekFullyCompleted(prompt.week_number)
                                                     ? 'bg-green-500 text-white'
                                                     : canAccessWeek(prompt.week_number)
@@ -100,7 +100,7 @@
                                         </span>
                                         <div class="min-w-0 flex-1">
                                             <p class="text-sm font-medium truncate">Week {{ prompt.week_number }}</p>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ prompt.title }}</p>
+                                            <p class="text-xs text-beach-text-light dark:text-gray-400 truncate">{{ prompt.title }}</p>
                                         </div>
                                     </div>
                                     <svg v-if="canAccessWeek(prompt.week_number)" :class="['w-4 h-4 transition-transform', expandedWeeks.includes(prompt.week_number) ? 'rotate-180' : '']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -121,9 +121,9 @@
                                         :class="[
                                             'w-full text-left py-2 px-3 rounded-md text-sm transition-colors',
                                             prompt.week_number === weekNumber && day.day_number === dayNumber
-                                                ? 'bg-blue-100 dark:bg-blue-800 text-blue-900 dark:text-blue-100'
+                                                ? 'bg-teal-100 dark:bg-teal-800 text-teal-900 dark:text-teal-100'
                                                 : canAccessDay(prompt.week_number, day.day_number)
-                                                    ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                                                    ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-beach-text-light dark:text-gray-300'
                                                     : 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
                                         ]"
                                     >
@@ -133,8 +133,8 @@
                                                 isDayCompleted(prompt.week_number, day.day_number)
                                                     ? 'bg-green-500 text-white'
                                                     : prompt.week_number === weekNumber && day.day_number === dayNumber
-                                                        ? 'bg-blue-500 text-white'
-                                                        : 'bg-gray-200 dark:bg-gray-600 text-gray-500 dark:text-gray-400'
+                                                        ? 'bg-beach-teal text-white'
+                                                        : 'bg-gray-200 dark:bg-gray-600 text-beach-text-light dark:text-gray-400'
                                             ]">
                                                 <svg v-if="isDayCompleted(prompt.week_number, day.day_number)" class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
@@ -154,9 +154,9 @@
                                         :class="[
                                             'w-full text-left py-2 px-3 rounded-md text-sm transition-colors',
                                             prompt.week_number === weekNumber
-                                                ? 'bg-blue-100 dark:bg-blue-800 text-blue-900 dark:text-blue-100'
+                                                ? 'bg-teal-100 dark:bg-teal-800 text-teal-900 dark:text-teal-100'
                                                 : canAccessWeek(prompt.week_number)
-                                                    ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                                                    ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-beach-text-light dark:text-gray-300'
                                                     : 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
                                         ]"
                                     >
@@ -175,7 +175,7 @@
                         <div class="p-6 border-b border-gray-200 dark:border-gray-700">
                             <div class="flex items-start justify-between">
                                 <div>
-                                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                                    <h2 class="text-2xl font-bold text-beach-text dark:text-white mb-2">
                                         {{ currentDay?.title || currentWeek?.formatted_title || currentWeek?.title }}
                                     </h2>
                                     <p class="text-gray-600 dark:text-gray-400 mb-4">
@@ -184,12 +184,12 @@
 
                                     <!-- Learning Objectives -->
                                     <div v-if="activeObjectives && activeObjectives.length > 0">
-                                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-2">Today's Objectives:</h3>
+                                        <h3 class="text-sm font-semibold text-beach-text dark:text-white mb-2">Today's Objectives:</h3>
                                         <div class="flex flex-wrap gap-2">
                                             <span
                                                 v-for="objective in activeObjectives"
                                                 :key="objective"
-                                                class="inline-flex items-center px-2 py-1 rounded-md text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
+                                                class="inline-flex items-center px-2 py-1 rounded-md text-xs bg-teal-50 dark:bg-teal-900/30 text-beach-teal-dark dark:text-teal-300"
                                             >
                                                 {{ objective }}
                                             </span>
@@ -203,7 +203,7 @@
                         <div class="p-6">
                             <!-- Content Display -->
                             <div class="mb-6">
-                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Lesson Content</h3>
+                                <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-4">Lesson Content</h3>
 
                                 <!-- Content Output -->
                                 <div
@@ -217,7 +217,7 @@
                                     v-else
                                     class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700 text-center"
                                 >
-                                    <p class="text-gray-500 dark:text-gray-400">Content for this lesson is coming soon.</p>
+                                    <p class="text-beach-text-light dark:text-gray-400">Content for this lesson is coming soon.</p>
                                 </div>
                             </div>
 
@@ -226,7 +226,7 @@
                             <div v-if="sanitizedContent && !isDayCompleted(weekNumber, dayNumber)" class="space-y-4">
                                 <!-- Trivia Section -->
                                 <div v-if="activeTrivia && activeTrivia.length > 0" class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Test Your Knowledge</h3>
+                                    <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-4">Test Your Knowledge</h3>
 
                                     <div v-if="!triviaStarted" class="text-center">
                                         <p class="text-gray-600 dark:text-gray-400 mb-4">Ready to test what you've learned today?</p>
@@ -240,7 +240,7 @@
 
                                     <div v-else-if="!triviaCompleted" class="space-y-4">
                                         <div class="flex items-center justify-between mb-4">
-                                            <h4 class="font-medium text-gray-900 dark:text-white">Question {{ currentTriviaIndex + 1 }} of {{ activeTrivia.length }}</h4>
+                                            <h4 class="font-medium text-beach-text dark:text-white">Question {{ currentTriviaIndex + 1 }} of {{ activeTrivia.length }}</h4>
                                             <div class="flex items-center space-x-3">
                                                 <div class="flex space-x-1">
                                                     <span
@@ -251,7 +251,7 @@
                                                             idx < currentTriviaIndex
                                                                 ? (triviaAnswers[idx] === activeTrivia[idx].correct_answer ? 'bg-green-500' : 'bg-red-500')
                                                                 : idx === currentTriviaIndex
-                                                                    ? 'bg-blue-500'
+                                                                    ? 'bg-beach-teal'
                                                                     : 'bg-gray-300 dark:bg-gray-600'
                                                         ]"
                                                     ></span>
@@ -260,7 +260,7 @@
                                         </div>
 
                                         <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
-                                            <h5 class="font-medium text-gray-900 dark:text-white mb-3">{{ currentTriviaQuestion?.question }}</h5>
+                                            <h5 class="font-medium text-beach-text dark:text-white mb-3">{{ currentTriviaQuestion?.question }}</h5>
                                             <div class="space-y-2">
                                                 <button
                                                     v-for="(option, index) in currentTriviaQuestion?.options"
@@ -274,8 +274,8 @@
                                                             : answerRevealed && selectedAnswer === index && index !== currentTriviaQuestion?.correct_answer
                                                                 ? 'border-red-500 bg-red-50 dark:bg-red-900/20 text-red-900 dark:text-red-100'
                                                                 : selectedAnswer === index && !answerRevealed
-                                                                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-100'
-                                                                    : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-white',
+                                                                    ? 'border-beach-teal bg-teal-50 dark:bg-teal-900/20 text-teal-900 dark:text-teal-100'
+                                                                    : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-beach-text dark:text-white',
                                                         answerRevealed ? 'cursor-default' : ''
                                                     ]"
                                                 >
@@ -302,21 +302,21 @@
                                             </div>
 
                                             <div class="mt-4 flex justify-between items-center">
-                                                <div class="text-sm text-gray-500 dark:text-gray-400">
+                                                <div class="text-sm text-beach-text-light dark:text-gray-400">
                                                     {{ triviaScore }} correct so far
                                                 </div>
                                                 <button
                                                     v-if="!answerRevealed"
                                                     @click="revealAnswer"
                                                     :disabled="selectedAnswer === null"
-                                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-beach-teal hover:bg-beach-teal-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                                 >
                                                     Check Answer
                                                 </button>
                                                 <button
                                                     v-else
                                                     @click="nextTriviaQuestion"
-                                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+                                                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-beach-teal hover:bg-beach-teal-dark transition-colors"
                                                 >
                                                     {{ currentTriviaIndex === activeTrivia.length - 1 ? 'See Results' : 'Next Question' }}
                                                     <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -330,7 +330,7 @@
                                     <div v-else class="text-center space-y-4">
                                         <div class="text-5xl mb-2">{{ triviaScore >= activeTrivia.length * 0.7 ? '🎉' : triviaScore >= activeTrivia.length * 0.5 ? '👍' : '📚' }}</div>
                                         <div>
-                                            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">Quiz Complete!</h4>
+                                            <h4 class="text-xl font-semibold text-beach-text dark:text-white">Quiz Complete!</h4>
                                             <p class="text-gray-600 dark:text-gray-400 mt-1">You scored {{ triviaScore }} out of {{ activeTrivia.length }}</p>
 
                                             <!-- Score visual -->
@@ -346,7 +346,7 @@
                                                         />
                                                     </svg>
                                                     <div class="absolute inset-0 flex items-center justify-center">
-                                                        <span class="text-2xl font-bold text-gray-900 dark:text-white">{{ Math.round((triviaScore / activeTrivia.length) * 100) }}%</span>
+                                                        <span class="text-2xl font-bold text-beach-text dark:text-white">{{ Math.round((triviaScore / activeTrivia.length) * 100) }}%</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -363,7 +363,7 @@
                                         <button
                                             v-if="triviaScore < activeTrivia.length * 0.7"
                                             @click="retryTrivia"
-                                            class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                                            class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                                         >
                                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
@@ -386,7 +386,7 @@
                                         </svg>
                                         {{ completing ? 'Completing...' : isLastDay ? 'Complete Course' : isLastDayOfWeek ? 'Complete Week' : 'Complete Day & Continue' }}
                                     </button>
-                                    <p v-if="activeTrivia?.length > 0 && !triviaCompleted" class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                    <p v-if="activeTrivia?.length > 0 && !triviaCompleted" class="text-sm text-beach-text-light dark:text-gray-400 mt-2">
                                         Complete the quiz to continue
                                     </p>
                                 </div>
@@ -395,7 +395,7 @@
                             <!-- Already Completed Message -->
                             <div v-else-if="isDayCompleted(weekNumber, dayNumber) && sanitizedContent" class="text-center py-8">
                                 <div class="text-4xl mb-4">✅</div>
-                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Lesson Completed!</h3>
+                                <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-2">Lesson Completed!</h3>
                                 <p class="text-gray-600 dark:text-gray-400 mb-4">You've already completed this lesson.</p>
                             </div>
 
@@ -405,7 +405,7 @@
                                     <button
                                         v-if="hasPreviousDay"
                                         @click="navigateToPreviousDay"
-                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                                     >
                                         <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -417,7 +417,7 @@
                                     <button
                                         v-if="hasNextDay && canAccessNextDay"
                                         @click="navigateToNextDay"
-                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 transition-colors"
+                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-beach-teal border border-transparent rounded-lg hover:bg-beach-teal-dark transition-colors"
                                     >
                                         Next Lesson
                                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -461,14 +461,14 @@
                 >
                     <div v-if="showMilestoneModal" class="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl" @click.stop>
                         <div class="text-6xl mb-4 animate-bounce">{{ milestoneEmoji }}</div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ milestoneTitle }}</h3>
+                        <h3 class="text-2xl font-bold text-beach-text dark:text-white mb-2">{{ milestoneTitle }}</h3>
                         <p class="text-gray-600 dark:text-gray-400 mb-6">{{ milestoneMessage }}</p>
                         <div class="flex justify-center space-x-2 mb-6">
                             <span v-for="i in 5" :key="i" class="w-3 h-3 rounded-full animate-pulse" :class="['bg-yellow-400', 'bg-pink-400', 'bg-blue-400', 'bg-green-400', 'bg-purple-400'][i-1]" :style="{ animationDelay: `${i * 100}ms` }"></span>
                         </div>
                         <button
                             @click="closeMilestoneModal"
-                            class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                            class="px-6 py-2 bg-beach-teal text-white font-medium rounded-lg hover:bg-beach-teal-dark transition-colors"
                         >
                             Keep Learning!
                         </button>

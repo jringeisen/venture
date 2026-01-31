@@ -2,15 +2,15 @@
     <AdminLayout title="Edit Week">
         <div class="max-w-3xl">
             <div class="mb-6">
-                <Link :href="route('admin.courses.edit', course.id)" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.courses.edit', course.id)" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
                     &larr; Back to Course
                 </Link>
             </div>
 
             <!-- Week Details -->
-            <div class="bg-white dark:bg-neutral-800 shadow rounded-lg mb-6">
+            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg mb-6">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">Edit Week {{ prompt.week_number }}</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Edit Week {{ prompt.week_number }}</h3>
 
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid grid-cols-3 gap-4">
@@ -63,10 +63,10 @@
             </div>
 
             <!-- Days Section -->
-            <div class="bg-white dark:bg-neutral-800 shadow rounded-lg">
+            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 dark:text-white">Days in Week {{ prompt.week_number }}</h3>
+                        <h3 class="text-lg font-medium text-beach-text dark:text-white">Days in Week {{ prompt.week_number }}</h3>
                         <Link :href="route('admin.courses.weeks.days.create', [course.id, prompt.id])" class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
                             Add Day
                         </Link>
@@ -75,8 +75,8 @@
                     <div v-if="prompt.days?.length" class="space-y-3">
                         <div v-for="day in prompt.days" :key="day.id" class="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg">
                             <div>
-                                <p class="font-medium text-gray-900 dark:text-white">Day {{ day.day_number }}: {{ day.title }}</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">{{ day.description?.substring(0, 80) }}{{ day.description?.length > 80 ? '...' : '' }}</p>
+                                <p class="font-medium text-beach-text dark:text-white">Day {{ day.day_number }}: {{ day.title }}</p>
+                                <p class="text-sm text-beach-text-light dark:text-gray-400">{{ day.description?.substring(0, 80) }}{{ day.description?.length > 80 ? '...' : '' }}</p>
                                 <div class="flex items-center gap-4 mt-1 text-xs text-gray-400 dark:text-gray-500">
                                     <span v-if="day.estimated_duration_minutes">{{ day.estimated_duration_minutes }} min</span>
                                     <span v-if="day.content" class="text-green-500">Has content</span>
@@ -94,14 +94,14 @@
                             </div>
                         </div>
                     </div>
-                    <p v-else class="text-sm text-gray-500 dark:text-gray-400">No days added yet. Days will be created when you generate weeks with the AI.</p>
+                    <p v-else class="text-sm text-beach-text-light dark:text-gray-400">No days added yet. Days will be created when you generate weeks with the AI.</p>
                 </div>
             </div>
 
             <!-- Legacy Content Section (for backward compatibility) -->
-            <div v-if="prompt.content" class="bg-white dark:bg-neutral-800 shadow rounded-lg mt-6">
+            <div v-if="prompt.content" class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg mt-6">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Week-Level Content (Legacy)</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-4">Week-Level Content (Legacy)</h3>
                     <p class="text-sm text-amber-600 dark:text-amber-400 mb-4">
                         This content exists at the week level. For the new structure, content should be added at the day level.
                     </p>
@@ -125,7 +125,7 @@
                         <div v-if="isGenerating && streamingContent" class="mt-2 p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg border border-gray-200 dark:border-neutral-600">
                             <div class="flex items-center gap-2 mb-2">
                                 <div class="animate-spin h-4 w-4 border-2 border-indigo-500 border-t-transparent rounded-full"></div>
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Generating content...</span>
+                                <span class="text-sm font-medium text-beach-text-light dark:text-gray-300">Generating content...</span>
                             </div>
                             <pre class="text-xs text-gray-600 dark:text-gray-400 whitespace-pre-wrap max-h-48 overflow-y-auto font-mono">{{ streamingContent.slice(-1000) }}</pre>
                         </div>
@@ -140,7 +140,7 @@
                         <div class="mt-2 space-y-4">
                             <div v-for="(question, qIndex) in form.trivia_questions" :key="qIndex" class="p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg">
                                 <div class="flex justify-between items-start mb-3">
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Question {{ qIndex + 1 }}</span>
+                                    <span class="text-sm font-medium text-beach-text-light dark:text-gray-300">Question {{ qIndex + 1 }}</span>
                                     <button type="button" @click="removeQuestion(qIndex)" class="text-red-600 hover:text-red-900">
                                         <XMarkIcon class="h-5 w-5"/>
                                     </button>

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
-use App\Models\CourseDay;
 use App\Models\CoursePrompt;
 use App\Models\LearningSession;
 use App\Services\CourseService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
@@ -23,7 +23,7 @@ class CourseProgressController extends Controller
     /**
      * Display course learning interface for a specific week and day
      */
-    public function learn(Request $request, Course $course, ?int $week = null, ?int $day = null): InertiaResponse
+    public function learn(Request $request, Course $course, ?int $week = null, ?int $day = null): InertiaResponse|RedirectResponse
     {
         // Ensure user is enrolled
         if (! $request->user()->isEnrolledInCourse($course)) {
@@ -204,7 +204,7 @@ class CourseProgressController extends Controller
 
             return redirect()
                 ->route('student.courses.learn', ['course' => $course->id, 'week' => $week + 1, 'day' => 1])
-                ->with('success', 'Week ' . $week . ' completed! Starting Week ' . ($week + 1) . '.');
+                ->with('success', 'Week '.$week.' completed! Starting Week '.($week + 1).'.');
         }
 
         // Advance to next day within the same week
@@ -212,7 +212,7 @@ class CourseProgressController extends Controller
 
         return redirect()
             ->route('student.courses.learn', ['course' => $course->id, 'week' => $week, 'day' => $day + 1])
-            ->with('success', 'Day ' . $day . ' completed! Starting Day ' . ($day + 1) . '.');
+            ->with('success', 'Day '.$day.' completed! Starting Day '.($day + 1).'.');
     }
 
     /**
@@ -518,7 +518,7 @@ class CourseProgressController extends Controller
     /**
      * Display completion certificate for a course
      */
-    public function certificate(Request $request, Course $course): InertiaResponse
+    public function certificate(Request $request, Course $course): InertiaResponse|RedirectResponse
     {
         $user = $request->user();
 
@@ -584,7 +584,7 @@ class CourseProgressController extends Controller
             'startedAt' => $userProgress->started_at?->format('F j, Y') ?? $userProgress->created_at->format('F j, Y'),
             'averageScore' => $averageScore,
             'timeSpent' => $timeSpent,
-            'certificateId' => strtoupper(substr(md5($user->id . '-' . $course->id . '-' . $userProgress->completed_at->timestamp), 0, 12)),
+            'certificateId' => strtoupper(substr(md5($user->id.'-'.$course->id.'-'.$userProgress->completed_at->timestamp), 0, 12)),
         ]);
     }
 }

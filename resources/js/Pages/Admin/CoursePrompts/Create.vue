@@ -2,14 +2,14 @@
     <AdminLayout title="Add Week">
         <div class="max-w-3xl">
             <div class="mb-6">
-                <Link :href="route('admin.courses.edit', course.id)" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.courses.edit', course.id)" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
                     &larr; Back to Course
                 </Link>
             </div>
 
-            <div class="bg-white dark:bg-neutral-800 shadow rounded-lg">
+            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">Add Week to {{ course.title }}</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Add Week to {{ course.title }}</h3>
 
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid grid-cols-3 gap-4">
@@ -52,7 +52,7 @@
                             <InputError :message="form.errors.description" class="mt-2"/>
                         </div>
 
-                        <p class="text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-neutral-700 p-3 rounded-lg">
+                        <p class="text-sm text-beach-text-light dark:text-gray-400 bg-gray-50 dark:bg-neutral-700 p-3 rounded-lg">
                             Content, learning objectives, and trivia questions are managed at the day level. After creating this week, you can add days and their content.
                         </p>
 

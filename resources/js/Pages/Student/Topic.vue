@@ -27,16 +27,16 @@
                                         </div>
                                         <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                                             <div>
-                                                <p @click.prevent="handleToggleContent(question.id)" class="text-sm text-gray-700 cursor-pointer dark:text-neutral-400">{{ question.question }}</p>
+                                                <p @click.prevent="handleToggleContent(question.id)" class="text-sm text-beach-text-light cursor-pointer dark:text-neutral-400">{{ question.question }}</p>
                                                 <div v-if="toggleContent === question.id" class="bg-gray-100 p-2 rounded-lg mt-2 dark:bg-neutral-700">
                                                     <div class="flex justify-between items-center">
-                                                        <p class="font-semibold text-sm text-gray-500 dark:text-neutral-400">{{ capitalize(question.prompt_answer.subject_category) }}</p>
-                                                        <p class="font-semibold text-sm text-gray-500 dark:text-neutral-400">{{ question.prompt_answer.word_count }} words</p>
+                                                        <p class="font-semibold text-sm text-beach-text-light dark:text-neutral-400">{{ capitalize(question.prompt_answer.subject_category) }}</p>
+                                                        <p class="font-semibold text-sm text-beach-text-light dark:text-neutral-400">{{ question.prompt_answer.word_count }} words</p>
                                                     </div>
-                                                    <p class="mt-2 whitespace-pre-wrap text-sm text-gray-500 dark:text-neutral-400">{{ question.prompt_answer.content }}</p>
+                                                    <p class="mt-2 whitespace-pre-wrap text-sm text-beach-text-light dark:text-neutral-400">{{ question.prompt_answer.content }}</p>
                                                 </div>
                                             </div>
-                                            <div class="whitespace-nowrap text-right text-sm text-gray-500 dark:text-neutral-400">
+                                            <div class="whitespace-nowrap text-right text-sm text-beach-text-light dark:text-neutral-400">
                                                 <time :datetime="question.created_at">{{ question.created_at }}</time>
                                             </div>
                                         </div>
@@ -45,7 +45,7 @@
                             </li>
                         </ul>
                         <div v-else>
-                            <p class="text-sm text-gray-500 bg-gray-100 rounded-full p-4 text-center dark:bg-neutral-700 dark:text-neutral-400">No questions</p>
+                            <p class="text-sm text-beach-text-light bg-gray-100 rounded-full p-4 text-center dark:bg-neutral-700 dark:text-neutral-400">No questions</p>
                         </div>
                     </div>
                 </div>

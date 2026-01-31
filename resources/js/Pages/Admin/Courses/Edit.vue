@@ -2,15 +2,15 @@
     <AdminLayout title="Edit Course">
         <div class="space-y-6">
             <div class="mb-6">
-                <Link :href="route('admin.courses.index')" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.courses.index')" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
                     &larr; Back to Courses
                 </Link>
             </div>
 
             <!-- Course Details -->
-            <div class="bg-white dark:bg-neutral-800 shadow rounded-lg">
+            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">Course Details</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Course Details</h3>
 
                     <form @submit.prevent="submitCourse" class="space-y-6">
                         <div>
@@ -64,10 +64,10 @@
             </div>
 
             <!-- Course Weeks -->
-            <div class="bg-white dark:bg-neutral-800 shadow rounded-lg">
+            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 dark:text-white">Course Weeks</h3>
+                        <h3 class="text-lg font-medium text-beach-text dark:text-white">Course Weeks</h3>
                         <div class="flex items-center space-x-3">
                             <button
                                 @click="generateWeeks"
@@ -106,8 +106,8 @@
                     <div v-if="course.course_prompts?.length" class="space-y-3">
                         <div v-for="prompt in course.course_prompts" :key="prompt.id" class="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg">
                             <div>
-                                <p class="font-medium text-gray-900 dark:text-white">Week {{ prompt.week_number }}: {{ prompt.title }}</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">{{ prompt.description?.substring(0, 80) }}{{ prompt.description?.length > 80 ? '...' : '' }}</p>
+                                <p class="font-medium text-beach-text dark:text-white">Week {{ prompt.week_number }}: {{ prompt.title }}</p>
+                                <p class="text-sm text-beach-text-light dark:text-gray-400">{{ prompt.description?.substring(0, 80) }}{{ prompt.description?.length > 80 ? '...' : '' }}</p>
                                 <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
                                     {{ prompt.days_count || prompt.days?.length || 5 }} days
                                     <span v-if="prompt.days?.length"> ({{ prompt.days.length }} created)</span>
@@ -123,7 +123,7 @@
                             </div>
                         </div>
                     </div>
-                    <p v-else class="text-sm text-gray-500 dark:text-gray-400">No weeks added yet. Click "Generate Weeks & Days" to create the course structure.</p>
+                    <p v-else class="text-sm text-beach-text-light dark:text-gray-400">No weeks added yet. Click "Generate Weeks & Days" to create the course structure.</p>
                 </div>
             </div>
         </div>

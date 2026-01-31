@@ -5,7 +5,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
             <div class="mb-8">
-                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-beach-text dark:text-white mb-4">
                     Discover Courses
                 </h1>
                 <p class="text-gray-600 dark:text-gray-400 max-w-2xl">
@@ -48,13 +48,13 @@
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
                     <div class="flex items-center">
                         <div class="shrink-0">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-8 h-8 text-beach-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                             </svg>
                         </div>
                         <div class="ml-4">
                             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Available Courses</p>
-                            <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ courses.total }}</p>
+                            <p class="text-2xl font-bold text-beach-text dark:text-white">{{ courses.total }}</p>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="ml-4">
                             <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Enrolled</p>
-                            <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ enrolledCourses.length }}</p>
+                            <p class="text-2xl font-bold text-beach-text dark:text-white">{{ enrolledCourses.length }}</p>
                         </div>
                     </div>
                 </div>
@@ -85,19 +85,19 @@
                         type="text"
                         v-model="searchQuery"
                         @input="handleSearch"
-                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-beach-teal focus:border-transparent dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                         placeholder="Search courses..."
                     />
                 </div>
 
                 <!-- Active Search Filter -->
                 <div v-if="searchQuery" class="mt-4 flex flex-wrap gap-2">
-                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200">
                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                         Search: "{{ searchQuery }}"
-                        <button @click="clearSearch" class="ml-2 hover:text-blue-600 dark:hover:text-blue-300">
+                        <button @click="clearSearch" class="ml-2 hover:text-beach-teal dark:hover:text-teal-300">
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
@@ -109,9 +109,9 @@
             <!-- Course Catalog -->
             <div>
                 <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    <h2 class="text-xl font-semibold text-beach-text dark:text-white">
                         All Courses
-                        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-2">
+                        <span class="text-sm font-normal text-beach-text-light dark:text-gray-400 ml-2">
                             ({{ courses.total }} courses)
                         </span>
                     </h2>
@@ -134,7 +134,7 @@
                         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
                             <nav class="flex items-center justify-between px-4 py-3 sm:px-6" aria-label="Pagination">
                                 <div class="hidden sm:block">
-                                    <p class="text-sm text-gray-700 dark:text-gray-300">
+                                    <p class="text-sm text-beach-text-light dark:text-gray-300">
                                         Showing <span class="font-medium">{{ courses.from }}</span> to
                                         <span class="font-medium">{{ courses.to }}</span> of
                                         <span class="font-medium">{{ courses.total }}</span> courses
@@ -144,14 +144,14 @@
                                     <button
                                         @click="goToPage(courses.prev_page_url)"
                                         :disabled="!courses.prev_page_url"
-                                        class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                        class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-beach-text-light dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                     >
                                         Previous
                                     </button>
                                     <button
                                         @click="goToPage(courses.next_page_url)"
                                         :disabled="!courses.next_page_url"
-                                        class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                        class="relative inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-beach-text-light dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                                     >
                                         Next
                                     </button>
@@ -168,14 +168,14 @@
                             <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                             </svg>
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                            <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-3">
                                 {{ searchQuery ? 'No matching courses found' : 'No courses available yet' }}
                             </h3>
                             <p class="text-gray-600 dark:text-gray-400 mb-6">
                                 {{ searchQuery ? 'Try adjusting your search criteria.' : 'New courses are being added regularly. Check back soon!' }}
                             </p>
                             <div class="space-y-3">
-                                <button v-if="searchQuery" @click="clearSearch" class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
+                                <button v-if="searchQuery" @click="clearSearch" class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
                                     Clear All Filters
                                 </button>
                             </div>

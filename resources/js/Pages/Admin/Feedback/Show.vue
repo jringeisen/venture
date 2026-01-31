@@ -2,17 +2,17 @@
     <AdminLayout title="Feedback Details">
         <div class="max-w-3xl">
             <div class="mb-6">
-                <Link :href="route('admin.feedback.index')" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.feedback.index')" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
                     &larr; Back to Feedback
                 </Link>
             </div>
 
-            <div class="bg-white dark:bg-neutral-800 shadow rounded-lg">
+            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-start justify-between mb-6">
                         <div>
-                            <h3 class="text-lg font-medium text-gray-900 dark:text-white">{{ feedback.title }}</h3>
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                            <h3 class="text-lg font-medium text-beach-text dark:text-white">{{ feedback.title }}</h3>
+                            <p class="mt-1 text-sm text-beach-text-light dark:text-gray-400">
                                 Submitted by {{ feedback.user?.name || 'Unknown' }}
                             </p>
                         </div>
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="prose dark:prose-invert max-w-none mb-6">
-                        <p class="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{{ feedback.description }}</p>
+                        <p class="text-beach-text-light dark:text-gray-300 whitespace-pre-wrap">{{ feedback.description }}</p>
                     </div>
 
                     <div class="border-t border-gray-200 dark:border-neutral-700 pt-6">
