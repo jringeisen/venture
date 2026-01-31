@@ -6,6 +6,7 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
+        <link rel="icon" href="{{ asset('assets/favicon.svg') }}" type="image/svg+xml"/>
         <link rel="icon" href="{{ asset('assets/favicon.ico') }}" type="image/x-icon"/>
 
         <!-- Fathom - beautiful, simple website analytics -->
@@ -19,7 +20,7 @@
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
-    <body class="antialiased h-full relative">
+    <body class="antialiased min-h-full">
         @inertia
     </body>
 </html>

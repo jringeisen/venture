@@ -94,7 +94,7 @@
                                 <span class="text-sm text-beach-text-light dark:text-neutral-400">{{ course.progress }}%</span>
                             </div>
                             <div class="mt-2 h-2 w-full rounded-full bg-gray-200 dark:bg-neutral-600">
-                                <div class="h-2 rounded-full bg-indigo-600" :style="{ width: course.progress + '%' }"></div>
+                                <div class="h-2 rounded-full bg-beach-teal" :style="{ width: course.progress + '%' }"></div>
                             </div>
                             <div class="mt-2 flex gap-4 text-xs text-beach-text-light dark:text-neutral-400">
                                 <span v-if="course.started_at">Started: {{ course.started_at }}</span>

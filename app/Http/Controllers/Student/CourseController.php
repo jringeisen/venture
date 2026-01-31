@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Services\CourseService;
+use App\Services\SubscriptionService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -12,7 +13,8 @@ use Inertia\Response;
 class CourseController extends Controller
 {
     public function __construct(
-        private CourseService $courseService
+        private CourseService $courseService,
+        private SubscriptionService $subscriptionService,
     ) {}
 
     /**
@@ -68,6 +70,10 @@ class CourseController extends Controller
      */
     public function enroll(Request $request, Course $course)
     {
+        if (! $this->subscriptionService->canEnrollInCourse($request->user())) {
+            return back()->withErrors(['enrollment' => 'You have reached your active course limit. Upgrade your plan to enroll in more courses.']);
+        }
+
         try {
             $enrollment = $this->courseService->enrollUser($request->user(), $course);
 

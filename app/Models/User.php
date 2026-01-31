@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\SubscriptionPlan;
+use App\Services\SubscriptionService;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'total_questions_asked',
         'email_verified_at',
         'referred_by',
+        'grandfathered',
     ];
 
     protected $hidden = [
@@ -49,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'total_questions_asked' => 'integer',
         'referred_by' => 'string',
+        'grandfathered' => 'boolean',
     ];
 
     public function parent(): BelongsTo
@@ -194,5 +198,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAverageCourseProgressAttribute(): float
     {
         return 0; // Simplified since progress columns don't exist
+    }
+
+    /**
+     * Get the current subscription plan for this user.
+     */
+    public function subscriptionPlan(): SubscriptionPlan
+    {
+        return app(SubscriptionService::class)->getCurrentPlan($this);
+    }
+
+    /**
+     * Resolve the billing user (parent) for this user.
+     */
+    public function billingUser(): self
+    {
+        return app(SubscriptionService::class)->getBillingUser($this);
     }
 }

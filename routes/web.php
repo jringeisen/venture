@@ -25,6 +25,7 @@ use App\Http\Controllers\Student\Prompts\GetSubjectController;
 use App\Http\Controllers\Student\StudentActivityController;
 use App\Http\Controllers\Student\TopicController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes...
@@ -44,6 +45,9 @@ Route::middleware('guest')->group(static function () {
     Route::get('/blog-posts', [BlogController::class, 'index'])->name('blog-posts.index');
     Route::get('/blog-posts/{blogPost:slug}', [BlogController::class, 'show'])->name('blog-posts.show');
 });
+
+// Public Routes (accessible to guests and authenticated users)...
+Route::get('/pricing', fn () => redirect('/#pricing'))->name('pricing');
 
 // Authenticated Routes...
 Route::middleware('auth')->group(function () {
@@ -108,6 +112,14 @@ Route::middleware('auth')->group(function () {
                 Route::delete('/{user}', [StudentController::class, 'destroy'])->name('destroy');
             });
 
+            Route::prefix('subscription')->name('subscription.')->group(static function () {
+                Route::get('/', [SubscriptionController::class, 'index'])->name('index');
+                Route::post('/checkout', [SubscriptionController::class, 'checkout'])->name('checkout');
+                Route::get('/success', [SubscriptionController::class, 'success'])->name('success');
+                Route::get('/billing-portal', [SubscriptionController::class, 'billingPortal'])->name('billing-portal');
+                Route::post('/swap', [SubscriptionController::class, 'swap'])->name('swap');
+            });
+
             Route::prefix('compliance')->name('compliance.')->group(static function () {
                 Route::get('/', [ComplianceController::class, 'index'])->name('index');
                 Route::get('/reports/create', [ComplianceController::class, 'create'])->name('reports.create');
@@ -121,7 +133,7 @@ Route::middleware('auth')->group(function () {
         Route::middleware('student')->prefix('student')->name('student.')->group(function () {
             Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
             Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
-            Route::post('/prompts', [PromptController::class, 'store'])->name('prompts.store');
+            Route::post('/prompts', [PromptController::class, 'store'])->middleware('check.question.limit')->name('prompts.store');
             Route::post('/prompts/subject', GetSubjectController::class)->name('prompts.subject');
             Route::get('/prompts/content', GetContentController::class)->name('prompts.content');
             Route::post('/prompts/questions', GetQuestionsController::class)->name('prompts.questions');

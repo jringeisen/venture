@@ -8,6 +8,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Timezone;
 use App\Models\User;
 use App\Services\StudentService;
+use App\Services\SubscriptionService;
 use App\Services\WordCountService;
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -22,7 +23,8 @@ class StudentController extends Controller
     private StudentService $studentService;
 
     public function __construct(
-        private readonly WordCountService $wordCountService
+        private readonly WordCountService $wordCountService,
+        private readonly SubscriptionService $subscriptionService,
     ) {
         $this->studentService = app(StudentService::class);
     }
@@ -50,6 +52,10 @@ class StudentController extends Controller
 
     public function store(StudentStoreRequest $request): RedirectResponse
     {
+        if (! $this->subscriptionService->canAddStudent($request->user())) {
+            return back()->withErrors(['limit' => 'You have reached your student limit. Upgrade your plan to add more students.']);
+        }
+
         $data = $request->validated();
 
         $request->user()->students()->create([

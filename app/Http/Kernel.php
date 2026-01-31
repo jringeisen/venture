@@ -50,5 +50,6 @@ class Kernel extends HttpKernel
         'parent' => \App\Http\Middleware\IsParent::class,
         'student' => \App\Http\Middleware\IsStudent::class,
         'admin' => \App\Http\Middleware\IsAdmin::class,
+        'check.question.limit' => \App\Http\Middleware\CheckQuestionLimit::class,
     ];
 }

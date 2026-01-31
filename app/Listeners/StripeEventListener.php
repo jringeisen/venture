@@ -13,7 +13,12 @@ class StripeEventListener
 
             \Illuminate\Support\Facades\Log::info($object);
 
-            if (isset($object['payment_status']) && $object['payment_status'] === 'paid') {
+            // Only create donation records for one-time payment sessions with a payment link.
+            // Subscription checkout sessions (mode === 'subscription') are handled by Cashier automatically.
+            $mode = $object['mode'] ?? 'payment';
+            $isPaymentLink = isset($object['payment_link']) && $object['payment_link'];
+
+            if ($mode === 'payment' && $isPaymentLink && isset($object['payment_status']) && $object['payment_status'] === 'paid') {
                 Donation::create([
                     'name' => $object['customer_details']['name'],
                     'email' => $object['customer_details']['email'],

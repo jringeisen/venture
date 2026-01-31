@@ -16,6 +16,7 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'timezone' => 'America/New_York',
+            'grandfathered' => false,
         ];
     }
 
@@ -42,5 +43,34 @@ class UserFactory extends Factory
             'grade' => fake()->numberBetween(1, 12),
             'age' => fake()->numberBetween(6, 18),
         ]);
+    }
+
+    public function grandfathered(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'grandfathered' => true,
+        ]);
+    }
+
+    /**
+     * Create a user with an active Cashier subscription.
+     */
+    public function subscribed(string $plan = 'family'): static
+    {
+        return $this->afterCreating(function (User $user) use ($plan) {
+            $priceId = match ($plan) {
+                'explorer' => config('subscription.plans.explorer.stripe_monthly_price') ?? 'price_explorer_monthly_test',
+                'family' => config('subscription.plans.family.stripe_monthly_price') ?? 'price_family_monthly_test',
+                default => 'price_free_test',
+            };
+
+            $user->subscriptions()->create([
+                'type' => 'default',
+                'stripe_id' => 'sub_test_'.Str::random(10),
+                'stripe_status' => 'active',
+                'stripe_price' => $priceId,
+                'quantity' => 1,
+            ]);
+        });
     }
 }

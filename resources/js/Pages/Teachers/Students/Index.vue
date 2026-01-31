@@ -63,7 +63,7 @@
                                     <tr v-for="(student, index) in students.data" :key="index">
                                         <td>
                                             <button @click.prevent="handleStudentLogin(student)" type="button"
-                                                    class="ml-3 inline-flex items-center px-4 py-2 bg-beach-teal border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-beach-teal-dark dark:hover:bg-beach-teal-dark focus:bg-beach-teal-dark dark:focus:bg-beach-teal-dark active:bg-beach-teal-dark dark:active:bg-beach-teal-dark focus:outline-none focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition ease-in-out duration-150">
+                                                    class="ml-3 inline-flex items-center px-4 py-2 bg-beach-teal border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-beach-teal-dark dark:hover:bg-beach-teal-dark focus:bg-beach-teal-dark dark:focus:bg-beach-teal-dark active:bg-beach-teal-dark dark:active:bg-beach-teal-dark focus:outline-none focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition-colors ease-in-out duration-150">
                                                 Start Learning
                                             </button>
                                         </td>

@@ -11,7 +11,7 @@
                     leave-from="opacity-100"
                     leave-to="opacity-0"
                 >
-                    <div class="fixed inset-0 bg-neutral-900/80"/>
+                    <div class="fixed inset-0 bg-black/20"/>
                 </TransitionChild>
 
                 <div class="fixed inset-0 flex">
@@ -37,15 +37,14 @@
                                 <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
                                     <button type="button" class="-m-2.5 p-2.5" @click="sidebarOpen = false">
                                         <span class="sr-only">Close sidebar</span>
-                                        <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true"/>
+                                        <XMarkIcon class="h-6 w-6 text-beach-text" aria-hidden="true"/>
                                     </button>
                                 </div>
                             </TransitionChild>
-                            <!-- Sidebar component, swap this element with another sidebar if you like -->
-                            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-primary-gray pb-2">
-                                <div class="flex h-16 justify-center items-center bg-primary-gray">
+                            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white pb-2">
+                                <div class="flex h-16 justify-center items-center">
                                     <ApplicationLogo class="w-9 h-9"/>
-                                    <p class="text-neutral-100 text-2xl text-center font-bold">VENTURE</p>
+                                    <p class="text-beach-ocean-deep text-2xl text-center font-bold">VENTURE</p>
                                 </div>
                                 <nav class="flex flex-1 flex-col px-6">
                                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -56,8 +55,8 @@
                                                         :href="item.href"
                                                         :class="[
                                                             item.current
-                                                            ? 'bg-gray-100 text-primary-gray dark:bg-neutral-700 dark:text-neutral-400'
-                                                : 'text-gray-300 hover:text-primary-gray hover:bg-gray-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-400',
+                                                                ? 'bg-beach-teal/10 text-beach-teal'
+                                                                : 'text-beach-text hover:text-beach-teal hover:bg-slate-50',
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                         ]"
                                                     >
@@ -65,8 +64,8 @@
                                                             :is="getIconComponent(item.icon)"
                                                             :class="[
                                                                 item.current
-                                                                    ? 'text-primary-gray dark:text-neutral-400'
-                                                                    : 'text-gray-300 group-hover:text-primary-gray dark:text-neutral-400 dark:group-hover:text-neutral-400',
+                                                                    ? 'text-beach-teal'
+                                                                    : 'text-beach-text-light group-hover:text-beach-teal',
                                                                 'h-6 w-6 shrink-0',
                                                             ]"
                                                             aria-hidden="true"
@@ -87,10 +86,9 @@
 
         <!-- Static sidebar for desktop -->
         <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-            <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-primary-gray">
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white border-r border-slate-200">
                 <div class="flex h-16 shrink-0 items-center">
-                    <p class="flex justify-center items-center text-white text-2xl font-bold w-full dark:text-neutral-400">
+                    <p class="flex justify-center items-center text-beach-ocean-deep text-2xl font-bold w-full">
                         <ApplicationLogo class="w-9 h-9"/>
                         VENTURE
                     </p>
@@ -104,8 +102,8 @@
                                     <span
                                         :class="[
                                             item.current
-                                                ? 'bg-gray-100 text-primary-gray dark:bg-neutral-700 dark:text-neutral-400'
-                                                : 'text-gray-300 hover:text-primary-gray hover:bg-gray-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-400',
+                                                ? 'bg-beach-teal/10 text-beach-teal'
+                                                : 'text-beach-text hover:text-beach-teal hover:bg-slate-50',
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                         ]"
                                     >
@@ -113,8 +111,8 @@
                                             :is="getIconComponent(item.icon)"
                                             :class="[
                                                 item.current
-                                                    ? 'text-primary-gray dark:text-neutral-400'
-                                                    : 'text-gray-300 group-hover:text-primary-gray dark:text-neutral-400 dark:group-hover:text-neutral-400',
+                                                    ? 'text-beach-teal'
+                                                    : 'text-beach-text-light group-hover:text-beach-teal',
                                                 'h-6 w-6 shrink-0',
                                             ]"
                                             aria-hidden="true"
@@ -125,12 +123,12 @@
                             </ul>
                         </li>
                         <li v-if="$page.props.auth.subjects && Object.keys($page.props.auth.subjects).length > 0">
-                            <div class="text-xs font-semibold leading-6 text-gray-300 uppercase">Subjects</div>
+                            <div class="text-xs font-semibold leading-6 text-beach-text-light uppercase">Subjects</div>
                             <ul role="list" class="mt-2 space-y-1">
                                 <Link href="/student/topic/all">
                                     <button
-                                        class="text-gray-300 hover:text-beach-teal-light group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
-                                        :class="{'text-beach-teal-light': route().current('student.topic.show', { topic: 'all' })}"
+                                        class="text-beach-text-light hover:text-beach-teal group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
+                                        :class="{'text-beach-teal font-semibold': route().current('student.topic.show', { topic: 'all' })}"
                                     >
                                         <span class="truncate">All</span>
                                         <span class="truncate">{{ totalSubjectsCount }}</span>
@@ -139,8 +137,8 @@
                                 <Link v-for="(subject, index) in $page.props.auth.subjects" :key="index"
                                       :href="subject.href">
                                     <button
-                                        class="text-gray-300 hover:text-beach-teal-light group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
-                                        :class="{'text-beach-teal-light': subject.current}"
+                                        class="text-beach-text-light hover:text-beach-teal group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
+                                        :class="{'text-beach-teal font-semibold': subject.current}"
                                     >
                                         <span class="truncate">{{ subject.name }}</span>
                                         <span class="truncate">{{ subject.count }}</span>
@@ -159,10 +157,10 @@
                             <a
                                 @click.prevent="toggleSettingsMenu = !toggleSettingsMenu"
                                 href="#"
-                                class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-300 hover:text-primary-gray hover:bg-gray-50 dark:hover:bg-neutral-700 dark:hover:text-neutral-400"
+                                class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-beach-text hover:text-beach-teal hover:bg-slate-50"
                             >
                                 <div class="flex justify-center items-center rounded-full bg-beach-teal w-7 h-7">
-                                    <p class="text-xl text-primary-gray">{{ $page.props.auth.user.name[0] }}</p>
+                                    <p class="text-xl text-white">{{ $page.props.auth.user.name[0] }}</p>
                                 </div>
                                 <span class="sr-only">Your profile</span>
                                 <span aria-hidden="true">{{ $page.props.auth.user.name }}</span>
@@ -170,16 +168,16 @@
 
                             <ul
                                 v-if="toggleSettingsMenu"
-                                class="absolute bottom-14 border bg-white ml-3 w-11/12 shadow-lg py-2 rounded-lg dark:bg-neutral-700 dark:text-neutral-400 dark:border-none"
+                                class="absolute bottom-14 border border-slate-200 bg-white ml-3 w-11/12 shadow-lg py-2 rounded-lg"
                             >
                                 <li
                                     @click.prevent="router.post(route('logout'))"
-                                    class="cursor-pointer px-4 py-1 hover:bg-gray-100 dark:hover:bg-neutral-600"
+                                    class="cursor-pointer px-4 py-1 text-beach-text hover:bg-slate-50 hover:text-beach-teal"
                                 >
                                     Logout
                                 </li>
                                 <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')"
-                                      class="cursor-pointer px-4 py-1 block hover:bg-gray-100 dark:hover:bg-neutral-600">
+                                      class="cursor-pointer px-4 py-1 block text-beach-text hover:bg-slate-50 hover:text-beach-teal">
                                     Profile
                                 </Link>
                             </ul>
@@ -190,10 +188,10 @@
         </div>
 
         <div
-            class="sticky top-0 z-40 flex justify-between items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden dark:bg-primary-gray">
-            <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = true">
+            class="sticky top-0 z-40 flex justify-between items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+            <button type="button" class="-m-2.5 p-2.5 text-beach-text lg:hidden" @click="sidebarOpen = true">
                 <span class="sr-only">Open sidebar</span>
-                <Bars3Icon class="h-6 w-6 dark:text-neutral-400" aria-hidden="true"/>
+                <Bars3Icon class="h-6 w-6" aria-hidden="true"/>
             </button>
             <div
                 v-if="toggleSettingsMenu"
@@ -206,44 +204,42 @@
                 <a
                     @click.prevent="toggleSettingsMenu = !toggleSettingsMenu"
                     href="#"
-                    class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-gray-900"
+                    class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-beach-text"
                 >
                     <div
-                        class="flex justify-center items-center rounded-full bg-gray-200 border border-gray-300 w-7 h-7 dark:bg-beach-teal dark:border-none">
-                        <p class="text-xl text-gray-300 dark:text-primary-gray">{{ $page.props.auth.user.name[0] }}</p>
+                        class="flex justify-center items-center rounded-full bg-beach-teal w-7 h-7">
+                        <p class="text-xl text-white">{{ $page.props.auth.user.name[0] }}</p>
                     </div>
                     <span class="sr-only">Your profile</span>
-                    <span aria-hidden="true" class="dark:text-neutral-400">{{ $page.props.auth.user.name }}</span>
+                    <span aria-hidden="true">{{ $page.props.auth.user.name }}</span>
                 </a>
 
                 <ul
                     v-if="toggleSettingsMenu"
-                    class="absolute top-10 border bg-white ml-3 w-40 shadow-lg py-2 rounded-lg"
+                    class="absolute top-10 border border-slate-200 bg-white ml-3 w-40 shadow-lg py-2 rounded-lg"
                 >
                     <li
                         @click.prevent="router.post(route('logout'))"
-                        class="cursor-pointer px-4 py-1 hover:bg-gray-100"
+                        class="cursor-pointer px-4 py-1 text-beach-text hover:bg-slate-50 hover:text-beach-teal"
                     >
                         Logout
                     </li>
                     <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')"
-                          class="cursor-pointer px-4 py-1 block hover:bg-gray-100">Profile
+                          class="cursor-pointer px-4 py-1 block text-beach-text hover:bg-slate-50 hover:text-beach-teal">Profile
                     </Link>
                 </ul>
             </div>
         </div>
 
-        <main class="relative py-10 lg:pl-72 bg-slate-50 dark:bg-neutral-900">
+        <main class="relative py-10 lg:pl-72 bg-slate-50">
             <div class="px-4 sm:px-6 lg:px-8">
-                <div class="max-w-7xl mx-auto sm:px-8">
-                    <div v-if="isBeingImpersonated()" class="pb-6">
-                        <PrimaryButton @click.prevent="router.get(route('users.stop.impersonating'))" class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-                            </svg>
-                            Back to Parent Portal
-                        </PrimaryButton>
-                    </div>
+                <div v-if="isBeingImpersonated()" class="max-w-7xl mx-auto sm:px-8 pb-6">
+                    <PrimaryButton @click.prevent="router.get(route('users.stop.impersonating'))" class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                        </svg>
+                        Back to Parent Portal
+                    </PrimaryButton>
                 </div>
                 <slot></slot>
             </div>
@@ -260,6 +256,7 @@ import {
     Bars3Icon,
     BookOpenIcon,
     ChatBubbleLeftEllipsisIcon,
+    CreditCardIcon,
     DocumentIcon,
     HomeIcon,
     UsersIcon,
@@ -286,6 +283,7 @@ const iconMap = {
     'book-open': BookOpenIcon,
     'chat-bubble-left-ellipsis': ChatBubbleLeftEllipsisIcon,
     'academic-cap': AcademicCapIcon,
+    'credit-card': CreditCardIcon,
 };
 
 const getIconComponent = (iconName) => {

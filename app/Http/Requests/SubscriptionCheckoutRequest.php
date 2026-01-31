@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class SubscriptionCheckoutRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return $this->user()->isParent();
+    }
+
+    public function rules(): array
+    {
+        return [
+            'plan' => 'required|string|in:explorer,family',
+            'billing_cycle' => 'required|string|in:monthly,yearly',
+        ];
+    }
+}

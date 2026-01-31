@@ -11,8 +11,8 @@ class LandingController extends Controller
     {
         return Inertia::render('Landing/Index', [
             'blogCount' => BlogPost::count(),
-            'paymentLinks' => config('services.stripe.payment_links'),
-            'causes' => collect(config('causes')),
+            'plans' => config('subscription.plans'),
+            'pricing' => config('subscription.pricing'),
         ]);
     }
 }

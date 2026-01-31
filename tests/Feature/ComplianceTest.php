@@ -3,6 +3,15 @@
 use App\Models\ComplianceReport;
 use App\Models\User;
 
+beforeEach(function () {
+    config([
+        'subscription.plans.explorer.stripe_monthly_price' => 'price_explorer_monthly_test',
+        'subscription.plans.explorer.stripe_yearly_price' => 'price_explorer_yearly_test',
+        'subscription.plans.family.stripe_monthly_price' => 'price_family_monthly_test',
+        'subscription.plans.family.stripe_yearly_price' => 'price_family_yearly_test',
+    ]);
+});
+
 it('allows a parent to view the compliance index page', function () {
     $parent = User::factory()->parent()->create();
     $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
@@ -26,7 +35,7 @@ it('allows a parent to view the compliance report create page', function () {
 });
 
 it('allows a parent to generate a compliance report', function () {
-    $parent = User::factory()->parent()->create();
+    $parent = User::factory()->parent()->subscribed('family')->create();
     $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
     $response = $this
@@ -53,7 +62,7 @@ it('allows a parent to generate a compliance report', function () {
 });
 
 it('auto-generates a title when none is provided', function () {
-    $parent = User::factory()->parent()->create();
+    $parent = User::factory()->parent()->subscribed('family')->create();
     $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
     $response = $this
@@ -127,7 +136,7 @@ it('prevents a parent from viewing another parents report', function () {
 });
 
 it('allows a parent to download a compliance report as pdf', function () {
-    $parent = User::factory()->parent()->create();
+    $parent = User::factory()->parent()->subscribed('explorer')->create();
     $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
     $report = ComplianceReport::factory()->forParentAndStudent($parent, $student)->create();

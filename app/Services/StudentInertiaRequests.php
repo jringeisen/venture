@@ -18,6 +18,7 @@ class StudentInertiaRequests
                 'navigation' => $this->navigation(),
                 'subjects' => $this->subjects(),
                 'isImpersonated' => $impersonationService->isImpersonating($request),
+                'subscription' => fn () => app(SubscriptionService::class)->getSubscriptionSummary($request->user()),
             ],
         ];
     }

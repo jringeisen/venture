@@ -8,6 +8,7 @@ use App\Models\ActiveTime;
 use App\Models\ComplianceReport;
 use App\Services\CompliancePdfService;
 use App\Services\ComplianceReportService;
+use App\Services\SubscriptionService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,6 +19,7 @@ class ComplianceController extends Controller
     public function __construct(
         private readonly ComplianceReportService $reportService,
         private readonly CompliancePdfService $pdfService,
+        private readonly SubscriptionService $subscriptionService,
     ) {}
 
     public function index(Request $request): Response
@@ -87,6 +89,10 @@ class ComplianceController extends Controller
 
     public function store(GenerateComplianceReportRequest $request): RedirectResponse
     {
+        if (! $this->subscriptionService->canGenerateReport($request->user())) {
+            return back()->withErrors(['limit' => 'You have reached your compliance report limit. Upgrade your plan to generate more reports.']);
+        }
+
         $student = $request->user()->students()->findOrFail($request->validated('student_id'));
         $start = now()->subYears(2)->startOfDay();
         $end = now()->endOfDay();
@@ -131,6 +137,10 @@ class ComplianceController extends Controller
     public function downloadPdf(ComplianceReport $complianceReport): \Symfony\Component\HttpFoundation\Response
     {
         $this->authorize('view', $complianceReport);
+
+        if (! $this->subscriptionService->canDownloadCompliancePdf(request()->user())) {
+            abort(403, 'PDF downloads require a paid plan. Please upgrade to access this feature.');
+        }
 
         return $this->pdfService->download($complianceReport);
     }

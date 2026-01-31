@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\CoursePrompt;
 use App\Models\LearningSession;
 use App\Services\CourseService;
+use App\Services\SubscriptionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class CourseProgressController extends Controller
 {
     public function __construct(
-        private CourseService $courseService
+        private CourseService $courseService,
+        private SubscriptionService $subscriptionService,
     ) {}
 
     /**
@@ -521,6 +523,12 @@ class CourseProgressController extends Controller
     public function certificate(Request $request, Course $course): InertiaResponse|RedirectResponse
     {
         $user = $request->user();
+
+        if (! $this->subscriptionService->canAccessCertificates($user)) {
+            return redirect()
+                ->route('student.courses.show', $course)
+                ->withErrors(['error' => 'Certificates require the Family plan. Please upgrade to access this feature.']);
+        }
 
         // Check if user is enrolled and has completed the course
         $userProgress = $this->courseService->getUserCourseProgress($user, $course);
