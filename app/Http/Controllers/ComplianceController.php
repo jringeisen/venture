@@ -8,7 +8,6 @@ use App\Models\ActiveTime;
 use App\Models\ComplianceReport;
 use App\Services\CompliancePdfService;
 use App\Services\ComplianceReportService;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -89,8 +88,8 @@ class ComplianceController extends Controller
     public function store(GenerateComplianceReportRequest $request): RedirectResponse
     {
         $student = $request->user()->students()->findOrFail($request->validated('student_id'));
-        $start = Carbon::parse($request->validated('period_start'));
-        $end = Carbon::parse($request->validated('period_end'));
+        $start = now()->subYears(2)->startOfDay();
+        $end = now()->endOfDay();
         $state = ComplianceState::from($request->validated('state'));
         $title = $request->validated('title');
 

@@ -34,8 +34,6 @@ it('allows a parent to generate a compliance report', function () {
         ->post('/parent/compliance/reports', [
             'student_id' => $student->id,
             'state' => 'FL',
-            'period_start' => now()->subMonths(3)->toDateString(),
-            'period_end' => now()->toDateString(),
             'title' => 'Test Compliance Report',
         ]);
 
@@ -50,6 +48,8 @@ it('allows a parent to generate a compliance report', function () {
     expect($report->state->value)->toBe('FL');
     expect($report->status->value)->toBe('generated');
     expect($report->summary_statistics)->toBeArray();
+    expect($report->period_start->toDateString())->toBe(now()->subYears(2)->toDateString());
+    expect($report->period_end->toDateString())->toBe(now()->toDateString());
 });
 
 it('auto-generates a title when none is provided', function () {
@@ -61,8 +61,6 @@ it('auto-generates a title when none is provided', function () {
         ->post('/parent/compliance/reports', [
             'student_id' => $student->id,
             'state' => 'FL',
-            'period_start' => now()->subMonths(3)->toDateString(),
-            'period_end' => now()->toDateString(),
         ]);
 
     $response->assertSessionHasNoErrors();
@@ -81,7 +79,7 @@ it('validates required fields when generating a report', function () {
         ->actingAs($parent)
         ->post('/parent/compliance/reports', []);
 
-    $response->assertSessionHasErrors(['student_id', 'state', 'period_start', 'period_end']);
+    $response->assertSessionHasErrors(['student_id', 'state']);
 });
 
 it('prevents a parent from generating a report for another parents student', function () {
@@ -95,8 +93,6 @@ it('prevents a parent from generating a report for another parents student', fun
         ->post('/parent/compliance/reports', [
             'student_id' => $otherStudent->id,
             'state' => 'FL',
-            'period_start' => now()->subMonths(3)->toDateString(),
-            'period_end' => now()->toDateString(),
         ]);
 
     $response->assertForbidden();
@@ -176,22 +172,6 @@ it('prevents a parent from deleting another parents report', function () {
     $response->assertForbidden();
 });
 
-it('validates period_end must be after period_start', function () {
-    $parent = User::factory()->parent()->create();
-    $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
-
-    $response = $this
-        ->actingAs($parent)
-        ->post('/parent/compliance/reports', [
-            'student_id' => $student->id,
-            'state' => 'FL',
-            'period_start' => now()->toDateString(),
-            'period_end' => now()->subMonth()->toDateString(),
-        ]);
-
-    $response->assertSessionHasErrors(['period_end']);
-});
-
 it('validates state must be a valid compliance state', function () {
     $parent = User::factory()->parent()->create();
     $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
@@ -201,8 +181,6 @@ it('validates state must be a valid compliance state', function () {
         ->post('/parent/compliance/reports', [
             'student_id' => $student->id,
             'state' => 'XX',
-            'period_start' => now()->subMonths(3)->toDateString(),
-            'period_end' => now()->toDateString(),
         ]);
 
     $response->assertSessionHasErrors(['state']);

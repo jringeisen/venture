@@ -112,7 +112,7 @@
                     <th>Date</th>
                     <th>Duration</th>
                     <th>Sessions</th>
-                    <th>Courses Studied</th>
+                    <th>Reading Materials</th>
                 </tr>
             </thead>
             <tbody>

@@ -35,24 +35,6 @@
                                     <InputError :message="form.errors.state"/>
                                 </div>
 
-                                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                    <div>
-                                        <InputLabel for="period_start" value="Period Start"/>
-                                        <div class="mt-2">
-                                            <TextInput v-model="form.period_start" id="period_start" type="date" class="w-full" required/>
-                                            <InputError :message="form.errors.period_start"/>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <InputLabel for="period_end" value="Period End"/>
-                                        <div class="mt-2">
-                                            <TextInput v-model="form.period_end" id="period_end" type="date" class="w-full" required/>
-                                            <InputError :message="form.errors.period_end"/>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div>
                                     <InputLabel for="title" value="Report Title (optional)"/>
                                     <div class="mt-2">
@@ -99,8 +81,6 @@ const preselectedStudentId = typeof window !== 'undefined'
 const form = useForm({
     student_id: preselectedStudentId ? parseInt(preselectedStudentId) : '',
     state: 'FL',
-    period_start: '',
-    period_end: '',
     title: '',
 });
 

@@ -63,7 +63,7 @@
                                     <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300">Date</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300">Duration</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300">Sessions</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300">Courses Studied</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300">Reading Materials</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
@@ -83,7 +83,7 @@
             <!-- Course Progress -->
             <div class="bg-white shadow rounded-lg dark:bg-primary-gray">
                 <button @click.prevent="toggleSection('courses')" class="flex w-full items-center justify-between p-6">
-                    <h2 class="text-base font-semibold text-gray-900 dark:text-neutral-300">Course Progress</h2>
+                    <h2 class="text-base font-semibold text-gray-900 dark:text-neutral-300">Course Progress & Reading Materials</h2>
                     <ChevronDownIcon :class="['h-5 w-5 text-gray-500 transition-transform', openSections.courses ? 'rotate-180' : '']"/>
                 </button>
                 <div v-if="openSections.courses" class="border-t border-gray-200 dark:border-neutral-600">
