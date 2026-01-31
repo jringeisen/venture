@@ -7,6 +7,14 @@
     --color-primary-gray: #2B2B2B;
     --color-primary-dark-gray: #1E1E21;
 
+    --color-beach-ocean-deep: #0C4A6E;
+    --color-beach-ocean: #0369A1;
+    --color-beach-teal: #0D9488;
+    --color-beach-teal-dark: #0F766E;
+    --color-beach-teal-light: #5EEAD4;
+    --color-beach-text: #1E3A5F;
+    --color-beach-text-light: #64748B;
+
     --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
 
     --animate-fade-in-right: fadeInRight 1s ease-out;

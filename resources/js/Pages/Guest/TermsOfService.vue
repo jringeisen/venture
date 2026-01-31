@@ -14,17 +14,17 @@
         <meta property="og:url" content="https://learnwithventure.com">
     </Head>
 
-    <div class="bg-primary-dark-gray">
-        <div class="max-w-4xl mx-auto prose prose-neutral py-20 text-neutral-400">
+    <div class="bg-white">
+        <div class="max-w-4xl mx-auto prose py-20 text-beach-text-light">
             <p>Privacy Policy and Terms of Service</p>
 
             <p>Effective Date: January 1, 2024</p>
 
-            <h1 class="text-neutral-300">Welcome to Venture, an online learning platform powered by Artificial Intelligence (AI).</h1>
+            <h1 class="text-beach-text">Welcome to Venture, an online learning platform powered by Artificial Intelligence (AI).</h1>
 
-            <h2 class="text-neutral-400">1. Introduction</h2>
+            <h2 class="text-beach-ocean-deep">1. Introduction</h2>
             <p>
-                <span class="text-primary-yellow">Venture</span> is a groundbreaking platform dedicated to revolutionizing homeschooling through the use of
+                <span class="text-beach-teal font-semibold">Venture</span> is a groundbreaking platform dedicated to revolutionizing homeschooling through the use of
                 Artificial Intelligence (AI). Venture offers a personalized learning experience tailored to each
                 student's unique needs. This Privacy Policy and Terms of Service (the "Agreement") outlines the terms
                 and conditions under which you may access our platform (the "Service"). By using the Service, you
@@ -41,7 +41,7 @@
             <p>
                 We understand that unforeseen circumstances may arise, and we encourage you to carefully review the
                 products or services you are purchasing before completing your transaction. If you have any questions or
-                concerns, please do not hesitate to contact our <a href="mailto:support@learnwithventure.com" class="text-primary-yellow">customer support team</a>, who will be more than happy to
+                concerns, please do not hesitate to contact our <a href="mailto:support@learnwithventure.com" class="text-beach-teal">customer support team</a>, who will be more than happy to
                 assist you.
             </p>
 
@@ -50,7 +50,7 @@
                 final and no refunds will be issued policy.
             </p>
 
-            <h2 class="text-neutral-400">2. Personal Information</h2>
+            <h2 class="text-beach-ocean-deep">2. Personal Information</h2>
             <p>
                 We collect personal information from users when they sign up for an account or interact with the
                 Service. This information may include your name, email address, and other information. We use this
@@ -58,7 +58,7 @@
                 to the collection, storage, and processing of your personal data in accordance with this Agreement.
             </p>
 
-            <h2 class="text-neutral-400">3. Moderation of Responses</h2>
+            <h2 class="text-beach-ocean-deep">3. Moderation of Responses</h2>
             <p>
                 While we have implemented measures to help moderate responses on the platform, we cannot be held liable
                 for any information provided by users or AI-generated content. The information available on Venture is
@@ -67,7 +67,7 @@
                 decisions based on the information obtained from Venture.
             </p>
 
-            <h2 class="text-neutral-400">4. Release from Legal Liability</h2>
+            <h2 class="text-beach-ocean-deep">4. Release from Legal Liability</h2>
             <p>
                 By signing up for our website, you agree to resolve any disputes arising from your use of the Service
                 through binding arbitration, not litigation. You waive the right to a jury trial and class action
@@ -83,7 +83,7 @@
                 both parties.
             </p>
 
-            <h2 class="text-neutral-400">5. Limitation of Liability</h2>
+            <h2 class="text-beach-ocean-deep">5. Limitation of Liability</h2>
             <p>
                 In no event will Venture be liable for any incidental, special, indirect, consequential, punitive, or
                 exemplary damages (including but not limited to damages for loss of profits, loss of revenue, lost
@@ -92,7 +92,7 @@
                 consequences resulting from your actions based on the information obtained from Venture.
             </p>
 
-            <h2 class="text-neutral-400">6. Termination and Modification</h2>
+            <h2 class="text-beach-ocean-deep">6. Termination and Modification</h2>
             <p>
                 Venture reserves the right to terminate your account at any time without notice if we determine that you
                 have violated this Agreement or engaged in activities that threaten the integrity of the platform.
@@ -102,7 +102,7 @@
                 discontinue using Venture.
             </p>
 
-            <h2 class="text-neutral-400">7. Governing Law</h2>
+            <h2 class="text-beach-ocean-deep">7. Governing Law</h2>
             <p>
                 This Agreement shall be governed by and construed in accordance with the laws of the jurisdiction where
                 Venture is headquartered (Connecticut). Any disputes arising from this Agreement shall be resolved
@@ -111,7 +111,7 @@
                 related to your use of Venture.
             </p>
 
-            <h2 class="text-neutral-400">8. Entire Agreement</h2>
+            <h2 class="text-beach-ocean-deep">8. Entire Agreement</h2>
             <p>
                 This Agreement represents the entire understanding between you and Venture regarding your use of the
                 Service, and supersedes all prior agreements, whether written or oral, relating to the subject matter
@@ -120,7 +120,7 @@
                 Agreement.
             </p>
 
-            <h2 class="text-neutral-400">
+            <h2 class="text-beach-ocean-deep">
                 By signing up for Venture, you acknowledge that you have read and agreed to the terms outlined in this
                 Privacy Policy and Terms of Service.
             </h2>

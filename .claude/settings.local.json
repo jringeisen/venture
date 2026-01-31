@@ -1,6 +1,12 @@
 {
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.pexels.com)",
+      "WebSearch"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "laravel-boost"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

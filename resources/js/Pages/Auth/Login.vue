@@ -51,7 +51,7 @@
                 <Link
                     v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="underline text-sm text-neutral-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    class="underline text-sm text-beach-text-light hover:text-beach-text rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-beach-teal"
                 >
                     Forgot your password?
                 </Link>

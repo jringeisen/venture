@@ -67,7 +67,7 @@
             <div class="mt-4">
                 <InputLabel for="referred_by" value="Referred By" />
 
-                <select v-model="form.referred_by" class="w-full border-gray-300 focus:border-primary-gray focus:ring-primary-gray rounded-md shadow-sm dark:focus:border-neutral-900 dark:focus:ring-neutral-900 dark:border-neutral-900 dark:bg-primary-gray dark:text-neutral-400 dark:placeholder:text-neutral-400">
+                <select v-model="form.referred_by" class="w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm">
                     <option value="" disabled>Choose an option:</option>
                     <option value="facebook">Facebook</option>
                     <option value="google">Google</option>
@@ -113,7 +113,7 @@
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('parent.login')"
-                    class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    class="underline text-sm text-beach-text-light hover:text-beach-text rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-beach-teal"
                 >
                     Already registered?
                 </Link>
