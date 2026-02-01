@@ -86,7 +86,7 @@
 
         <!-- Hero -->
         <section class="relative min-h-screen flex items-center justify-center">
-            <img src="https://images.pexels.com/photos/1021068/pexels-photo-1021068.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Aerial view of turquoise ocean water" class="absolute inset-0 w-full h-full object-cover" />
+            <img src="/images/landing/hero-ocean.jpg" alt="Aerial view of turquoise ocean water" class="absolute inset-0 w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-b from-beach-ocean-deep/30 via-beach-ocean-deep/50 to-beach-ocean-deep/80"></div>
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight tracking-wide">
@@ -225,6 +225,7 @@
                         @click="billingCycle = billingCycle === 'monthly' ? 'yearly' : 'monthly'"
                         class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors"
                         :class="billingCycle === 'yearly' ? 'bg-beach-teal' : 'bg-gray-200'"
+                        aria-label="Toggle billing cycle"
                     >
                         <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform" :class="billingCycle === 'yearly' ? 'translate-x-6' : 'translate-x-1'" />
                     </button>
@@ -413,7 +414,7 @@
 
         <!-- Final CTA -->
         <section class="relative py-32">
-            <img src="https://images.pexels.com/photos/1032650/pexels-photo-1032650.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Aerial view of turquoise beach and white sand" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+            <img src="/images/landing/cta-beach.jpg" alt="Aerial view of turquoise beach and white sand" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
             <div class="absolute inset-0 bg-beach-ocean-deep/70"></div>
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
                 <h2 class="text-3xl md:text-5xl lg:text-6xl font-light text-white tracking-wide leading-tight">
@@ -443,7 +444,7 @@
                     </div>
                     <div class="flex gap-16">
                         <div>
-                            <h4 class="font-semibold text-beach-teal-light mb-4 text-sm uppercase tracking-wider">Platform</h4>
+                            <h3 class="font-semibold text-beach-teal-light mb-4 text-sm uppercase tracking-wider">Platform</h3>
                             <ul class="space-y-3 text-white/60">
                                 <li><Link :href="route('register')" class="hover:text-white transition-colors">Get Started</Link></li>
                                 <li><a href="#subjects" class="hover:text-white transition-colors">Subjects</a></li>
@@ -451,7 +452,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-beach-teal-light mb-4 text-sm uppercase tracking-wider">Support</h4>
+                            <h3 class="font-semibold text-beach-teal-light mb-4 text-sm uppercase tracking-wider">Support</h3>
                             <ul class="space-y-3 text-white/60">
                                 <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
                                 <li><a href="#mission" class="hover:text-white transition-colors">Our Mission</a></li>
@@ -460,7 +461,7 @@
                         </div>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-beach-teal-light mb-4 text-sm uppercase tracking-wider">Connect</h4>
+                        <h3 class="font-semibold text-beach-teal-light mb-4 text-sm uppercase tracking-wider">Connect</h3>
                         <div class="flex gap-4">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="h-5 w-5 text-white/60 hover:text-white transition-colors cursor-pointer">
                                 <path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64h-64z"></path>
@@ -478,7 +479,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-12 pt-8 border-t border-white/10 text-center text-white/40 text-sm">
+                <div class="mt-12 pt-8 border-t border-white/10 text-center text-white/60 text-sm">
                     <p>&copy; {{ new Date().getFullYear() }} Venture. All rights reserved.</p>
                 </div>
             </div>
