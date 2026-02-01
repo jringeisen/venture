@@ -2,15 +2,15 @@
     <AdminLayout title="Edit Course">
         <div class="space-y-6">
             <div class="mb-6">
-                <Link :href="route('admin.courses.index')" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.courses.index')" class="text-sm text-beach-text-light hover:text-beach-text">
                     &larr; Back to Courses
                 </Link>
             </div>
 
             <!-- Course Details -->
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Course Details</h3>
+                    <h3 class="text-lg font-medium text-beach-text mb-6">Course Details</h3>
 
                     <form @submit.prevent="submitCourse" class="space-y-6">
                         <div>
@@ -44,7 +44,7 @@
                             <select
                                 id="age_group"
                                 v-model="courseForm.age_group"
-                                class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                                class="mt-1 block w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm"
                             >
                                 <option value="">All Ages</option>
                                 <option v-for="group in ageGroups" :key="group.value" :value="group.value">
@@ -64,10 +64,10 @@
             </div>
 
             <!-- Course Weeks -->
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-medium text-beach-text dark:text-white">Course Weeks</h3>
+                        <h3 class="text-lg font-medium text-beach-text">Course Weeks</h3>
                         <div class="flex items-center space-x-3">
                             <button
                                 @click="generateWeeks"
@@ -83,47 +83,47 @@
                                 </svg>
                                 {{ isGenerating ? 'Generating...' : 'Generate Weeks & Days' }}
                             </button>
-                            <Link :href="route('admin.courses.weeks.create', course.id)" class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                            <Link :href="route('admin.courses.weeks.create', course.id)" class="inline-flex items-center justify-center rounded-md bg-beach-teal px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-beach-teal-dark">
                                 Add Week
                             </Link>
                         </div>
                     </div>
 
                     <!-- Generation Status -->
-                    <div v-if="generationStatus" class="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                    <div v-if="generationStatus" class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                         <div class="flex items-center">
-                            <svg v-if="isGenerating" class="animate-spin h-4 w-4 text-blue-600 dark:text-blue-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg v-if="isGenerating" class="animate-spin h-4 w-4 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
-                            <svg v-else class="h-4 w-4 text-green-600 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg v-else class="h-4 w-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                             </svg>
-                            <span class="text-sm text-blue-700 dark:text-blue-300">{{ generationStatus }}</span>
+                            <span class="text-sm text-blue-700">{{ generationStatus }}</span>
                         </div>
                     </div>
 
                     <div v-if="course.course_prompts?.length" class="space-y-3">
-                        <div v-for="prompt in course.course_prompts" :key="prompt.id" class="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg">
+                        <div v-for="prompt in course.course_prompts" :key="prompt.id" class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                             <div>
-                                <p class="font-medium text-beach-text dark:text-white">Week {{ prompt.week_number }}: {{ prompt.title }}</p>
-                                <p class="text-sm text-beach-text-light dark:text-gray-400">{{ prompt.description?.substring(0, 80) }}{{ prompt.description?.length > 80 ? '...' : '' }}</p>
-                                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                                <p class="font-medium text-beach-text">Week {{ prompt.week_number }}: {{ prompt.title }}</p>
+                                <p class="text-sm text-beach-text-light">{{ prompt.description?.substring(0, 80) }}{{ prompt.description?.length > 80 ? '...' : '' }}</p>
+                                <p class="text-xs text-gray-400 mt-1">
                                     {{ prompt.days_count || prompt.days?.length || 5 }} days
                                     <span v-if="prompt.days?.length"> ({{ prompt.days.length }} created)</span>
                                 </p>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <Link :href="route('admin.courses.weeks.edit', [course.id, prompt.id])" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 text-sm">
+                                <Link :href="route('admin.courses.weeks.edit', [course.id, prompt.id])" class="text-beach-teal hover:text-beach-teal-dark text-sm">
                                     Edit
                                 </Link>
-                                <button @click="deletePrompt(prompt)" class="text-red-600 hover:text-red-900 dark:text-red-400 text-sm">
+                                <button @click="deletePrompt(prompt)" class="text-red-600 hover:text-red-900 text-sm">
                                     Delete
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <p v-else class="text-sm text-beach-text-light dark:text-gray-400">No weeks added yet. Click "Generate Weeks & Days" to create the course structure.</p>
+                    <p v-else class="text-sm text-beach-text-light">No weeks added yet. Click "Generate Weeks & Days" to create the course structure.</p>
                 </div>
             </div>
         </div>

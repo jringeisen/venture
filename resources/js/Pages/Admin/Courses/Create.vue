@@ -2,14 +2,14 @@
     <AdminLayout title="Create Course">
         <div class="max-w-2xl">
             <div class="mb-6">
-                <Link :href="route('admin.courses.index')" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.courses.index')" class="text-sm text-beach-text-light hover:text-beach-text">
                     &larr; Back to Courses
                 </Link>
             </div>
 
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Create New Course</h3>
+                    <h3 class="text-lg font-medium text-beach-text mb-6">Create New Course</h3>
 
                     <Form v-model="formData" :action="route('admin.courses.store')" method="post" class="space-y-6" #default="{ errors, processing }">
                         <div>
@@ -43,7 +43,7 @@
                                     id="age_group"
                                     v-model="formData.age_group"
                                     name="age_group"
-                                    class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                                    class="mt-1 block w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm"
                                 >
                                     <option value="">All Ages</option>
                                     <option v-for="group in ageGroups" :key="group.value" :value="group.value">

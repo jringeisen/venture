@@ -3,13 +3,13 @@
         <div class="space-y-6">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <div>
-                    <h2 class="text-xl font-semibold text-beach-text dark:text-white">Users</h2>
-                    <p class="mt-1 text-sm text-beach-text-light dark:text-gray-400">Manage all registered users.</p>
+                    <h2 class="text-xl font-semibold text-beach-text">Users</h2>
+                    <p class="mt-1 text-sm text-beach-text-light">Manage all registered users.</p>
                 </div>
             </div>
 
             <!-- Filters -->
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg p-4">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg p-4">
                 <div class="flex flex-col sm:flex-row gap-4">
                     <div class="flex-1">
                         <TextInput
@@ -21,7 +21,7 @@
                         />
                     </div>
                     <div>
-                        <select v-model="type" @change="applyFilters" class="block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white shadow-sm">
+                        <select v-model="type" @change="applyFilters" class="block w-full rounded-md border-gray-300 shadow-sm">
                             <option value="">All Users</option>
                             <option value="parents">Parents Only</option>
                             <option value="students">Students Only</option>
@@ -30,41 +30,41 @@
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg overflow-hidden">
-                <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
-                    <thead class="bg-gray-50 dark:bg-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light dark:text-gray-300 uppercase tracking-wider">User</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light dark:text-gray-300 uppercase tracking-wider">Type</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light dark:text-gray-300 uppercase tracking-wider">Students</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light dark:text-gray-300 uppercase tracking-wider">Courses</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light uppercase tracking-wider">User</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light uppercase tracking-wider">Type</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light uppercase tracking-wider">Students</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light uppercase tracking-wider">Courses</th>
                             <th scope="col" class="relative px-6 py-3"><span class="sr-only">Actions</span></th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white dark:bg-neutral-800 divide-y divide-gray-200 dark:divide-neutral-700">
+                    <tbody class="bg-white divide-y divide-gray-200">
                         <tr v-for="user in users.data" :key="user.id">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-beach-text dark:text-white">{{ user.name }}</div>
-                                <div class="text-sm text-beach-text-light dark:text-gray-400">{{ user.email }}</div>
+                                <div class="text-sm font-medium text-beach-text">{{ user.name }}</div>
+                                <div class="text-sm text-beach-text-light">{{ user.email }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span :class="user.parent_id ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
                                     {{ user.parent_id ? 'Student' : 'Parent' }}
                                 </span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-beach-text-light dark:text-gray-400">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-beach-text-light">
                                 {{ user.students_count || 0 }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-beach-text-light dark:text-gray-400">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-beach-text-light">
                                 {{ user.enrolled_courses_count || 0 }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
-                                <Link :href="route('admin.users.show', user.id)" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">View</Link>
-                                <Link :href="route('admin.users.edit', user.id)" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400">Edit</Link>
+                                <Link :href="route('admin.users.show', user.id)" class="text-beach-teal hover:text-beach-teal-dark">View</Link>
+                                <Link :href="route('admin.users.edit', user.id)" class="text-beach-teal hover:text-beach-teal-dark">Edit</Link>
                             </td>
                         </tr>
                         <tr v-if="users.data.length === 0">
-                            <td colspan="5" class="px-6 py-4 text-center text-sm text-beach-text-light dark:text-gray-400">
+                            <td colspan="5" class="px-6 py-4 text-center text-sm text-beach-text-light">
                                 No users found.
                             </td>
                         </tr>

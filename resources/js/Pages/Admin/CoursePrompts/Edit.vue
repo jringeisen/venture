@@ -2,15 +2,15 @@
     <AdminLayout title="Edit Week">
         <div class="max-w-3xl">
             <div class="mb-6">
-                <Link :href="route('admin.courses.edit', course.id)" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.courses.edit', course.id)" class="text-sm text-beach-text-light hover:text-beach-text">
                     &larr; Back to Course
                 </Link>
             </div>
 
             <!-- Week Details -->
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg mb-6">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg mb-6">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Edit Week {{ prompt.week_number }}</h3>
+                    <h3 class="text-lg font-medium text-beach-text mb-6">Edit Week {{ prompt.week_number }}</h3>
 
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid grid-cols-3 gap-4">
@@ -22,7 +22,7 @@
 
                             <div>
                                 <InputLabel for="days_count" value="Days per Week"/>
-                                <select id="days_count" v-model="form.days_count" class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white shadow-sm">
+                                <select id="days_count" v-model="form.days_count" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                                     <option :value="1">1 day</option>
                                     <option :value="2">2 days</option>
                                     <option :value="3">3 days</option>
@@ -63,21 +63,21 @@
             </div>
 
             <!-- Days Section -->
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-medium text-beach-text dark:text-white">Days in Week {{ prompt.week_number }}</h3>
-                        <Link :href="route('admin.courses.weeks.days.create', [course.id, prompt.id])" class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                        <h3 class="text-lg font-medium text-beach-text">Days in Week {{ prompt.week_number }}</h3>
+                        <Link :href="route('admin.courses.weeks.days.create', [course.id, prompt.id])" class="inline-flex items-center justify-center rounded-md bg-beach-teal px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-beach-teal-dark">
                             Add Day
                         </Link>
                     </div>
 
                     <div v-if="prompt.days?.length" class="space-y-3">
-                        <div v-for="day in prompt.days" :key="day.id" class="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg">
+                        <div v-for="day in prompt.days" :key="day.id" class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                             <div>
-                                <p class="font-medium text-beach-text dark:text-white">Day {{ day.day_number }}: {{ day.title }}</p>
-                                <p class="text-sm text-beach-text-light dark:text-gray-400">{{ day.description?.substring(0, 80) }}{{ day.description?.length > 80 ? '...' : '' }}</p>
-                                <div class="flex items-center gap-4 mt-1 text-xs text-gray-400 dark:text-gray-500">
+                                <p class="font-medium text-beach-text">Day {{ day.day_number }}: {{ day.title }}</p>
+                                <p class="text-sm text-beach-text-light">{{ day.description?.substring(0, 80) }}{{ day.description?.length > 80 ? '...' : '' }}</p>
+                                <div class="flex items-center gap-4 mt-1 text-xs text-gray-400">
                                     <span v-if="day.estimated_duration_minutes">{{ day.estimated_duration_minutes }} min</span>
                                     <span v-if="day.content" class="text-green-500">Has content</span>
                                     <span v-else class="text-amber-500">No content</span>
@@ -85,24 +85,24 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <Link :href="route('admin.courses.weeks.days.edit', [course.id, prompt.id, day.id])" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 text-sm">
+                                <Link :href="route('admin.courses.weeks.days.edit', [course.id, prompt.id, day.id])" class="text-beach-teal hover:text-beach-teal-dark text-sm">
                                     Edit
                                 </Link>
-                                <button @click="deleteDay(day)" class="text-red-600 hover:text-red-900 dark:text-red-400 text-sm">
+                                <button @click="deleteDay(day)" class="text-red-600 hover:text-red-900 text-sm">
                                     Delete
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <p v-else class="text-sm text-beach-text-light dark:text-gray-400">No days added yet. Days will be created when you generate weeks with the AI.</p>
+                    <p v-else class="text-sm text-beach-text-light">No days added yet. Days will be created when you generate weeks with the AI.</p>
                 </div>
             </div>
 
             <!-- Legacy Content Section (for backward compatibility) -->
-            <div v-if="prompt.content" class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg mt-6">
+            <div v-if="prompt.content" class="bg-white shadow-sm border border-slate-100 rounded-lg mt-6">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-4">Week-Level Content (Legacy)</h3>
-                    <p class="text-sm text-amber-600 dark:text-amber-400 mb-4">
+                    <h3 class="text-lg font-medium text-beach-text mb-4">Week-Level Content (Legacy)</h3>
+                    <p class="text-sm text-amber-600 mb-4">
                         This content exists at the week level. For the new structure, content should be added at the day level.
                     </p>
 
@@ -113,7 +113,7 @@
                                 type="button"
                                 @click="generateContent"
                                 :disabled="isGenerating || !form.title"
-                                class="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                class="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md text-white bg-beach-teal hover:bg-beach-teal-dark disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <SparklesIcon class="h-4 w-4 mr-1.5" :class="{ 'animate-pulse': isGenerating }" />
                                 <span v-if="isGenerating">Generating...</span>
@@ -122,12 +122,12 @@
                         </div>
 
                         <!-- Streaming preview -->
-                        <div v-if="isGenerating && streamingContent" class="mt-2 p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg border border-gray-200 dark:border-neutral-600">
+                        <div v-if="isGenerating && streamingContent" class="mt-2 p-4 bg-gray-50 rounded-lg border border-gray-200">
                             <div class="flex items-center gap-2 mb-2">
-                                <div class="animate-spin h-4 w-4 border-2 border-indigo-500 border-t-transparent rounded-full"></div>
-                                <span class="text-sm font-medium text-beach-text-light dark:text-gray-300">Generating content...</span>
+                                <div class="animate-spin h-4 w-4 border-2 border-beach-teal border-t-transparent rounded-full"></div>
+                                <span class="text-sm font-medium text-beach-text-light">Generating content...</span>
                             </div>
-                            <pre class="text-xs text-gray-600 dark:text-gray-400 whitespace-pre-wrap max-h-48 overflow-y-auto font-mono">{{ streamingContent.slice(-1000) }}</pre>
+                            <pre class="text-xs text-gray-600 whitespace-pre-wrap max-h-48 overflow-y-auto font-mono">{{ streamingContent.slice(-1000) }}</pre>
                         </div>
 
                         <TiptapEditor v-if="!isGenerating" v-model="form.content" class="mt-2" placeholder="Write your week content here..."/>
@@ -138,9 +138,9 @@
                     <div class="mt-6">
                         <InputLabel value="Trivia Questions (Legacy)"/>
                         <div class="mt-2 space-y-4">
-                            <div v-for="(question, qIndex) in form.trivia_questions" :key="qIndex" class="p-4 bg-gray-50 dark:bg-neutral-700 rounded-lg">
+                            <div v-for="(question, qIndex) in form.trivia_questions" :key="qIndex" class="p-4 bg-gray-50 rounded-lg">
                                 <div class="flex justify-between items-start mb-3">
-                                    <span class="text-sm font-medium text-beach-text-light dark:text-gray-300">Question {{ qIndex + 1 }}</span>
+                                    <span class="text-sm font-medium text-beach-text-light">Question {{ qIndex + 1 }}</span>
                                     <button type="button" @click="removeQuestion(qIndex)" class="text-red-600 hover:text-red-900">
                                         <XMarkIcon class="h-5 w-5"/>
                                     </button>
@@ -154,8 +154,8 @@
                                         <TextInput v-model="question.option_d" type="text" placeholder="Option D" class="block w-full"/>
                                     </div>
                                     <div>
-                                        <label class="text-sm text-gray-600 dark:text-gray-400">Correct Answer</label>
-                                        <select v-model="question.correct_answer" class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white shadow-sm">
+                                        <label class="text-sm text-gray-600">Correct Answer</label>
+                                        <select v-model="question.correct_answer" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                                             <option :value="0">A</option>
                                             <option :value="1">B</option>
                                             <option :value="2">C</option>
@@ -164,7 +164,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" @click="addQuestion" class="text-sm text-indigo-600 hover:text-indigo-500">
+                            <button type="button" @click="addQuestion" class="text-sm text-beach-teal hover:text-beach-teal-dark">
                                 + Add Question
                             </button>
                         </div>

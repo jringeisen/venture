@@ -2,32 +2,32 @@
     <AdminLayout title="User Details">
         <div class="space-y-6">
             <div class="mb-6">
-                <Link :href="route('admin.users.index')" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.users.index')" class="text-sm text-beach-text-light hover:text-beach-text">
                     &larr; Back to Users
                 </Link>
             </div>
 
             <!-- User Info -->
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-medium text-beach-text dark:text-white">User Information</h3>
-                        <Link :href="route('admin.users.edit', user.id)" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 text-sm">
+                        <h3 class="text-lg font-medium text-beach-text">User Information</h3>
+                        <Link :href="route('admin.users.edit', user.id)" class="text-beach-teal hover:text-beach-teal-dark text-sm">
                             Edit
                         </Link>
                     </div>
 
                     <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                         <div>
-                            <dt class="text-sm font-medium text-beach-text-light dark:text-gray-400">Name</dt>
-                            <dd class="mt-1 text-sm text-beach-text dark:text-white">{{ user.name }}</dd>
+                            <dt class="text-sm font-medium text-beach-text-light">Name</dt>
+                            <dd class="mt-1 text-sm text-beach-text">{{ user.name }}</dd>
                         </div>
                         <div>
-                            <dt class="text-sm font-medium text-beach-text-light dark:text-gray-400">Email</dt>
-                            <dd class="mt-1 text-sm text-beach-text dark:text-white">{{ user.email }}</dd>
+                            <dt class="text-sm font-medium text-beach-text-light">Email</dt>
+                            <dd class="mt-1 text-sm text-beach-text">{{ user.email }}</dd>
                         </div>
                         <div>
-                            <dt class="text-sm font-medium text-beach-text-light dark:text-gray-400">Type</dt>
+                            <dt class="text-sm font-medium text-beach-text-light">Type</dt>
                             <dd class="mt-1">
                                 <span :class="user.parent_id ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium">
                                     {{ user.parent_id ? 'Student' : 'Parent' }}
@@ -35,9 +35,9 @@
                             </dd>
                         </div>
                         <div v-if="user.parent">
-                            <dt class="text-sm font-medium text-beach-text-light dark:text-gray-400">Parent</dt>
-                            <dd class="mt-1 text-sm text-beach-text dark:text-white">
-                                <Link :href="route('admin.users.show', user.parent.id)" class="text-indigo-600 hover:text-indigo-900">
+                            <dt class="text-sm font-medium text-beach-text-light">Parent</dt>
+                            <dd class="mt-1 text-sm text-beach-text">
+                                <Link :href="route('admin.users.show', user.parent.id)" class="text-beach-teal hover:text-beach-teal-dark">
                                     {{ user.parent.name }}
                                 </Link>
                             </dd>
@@ -47,15 +47,15 @@
             </div>
 
             <!-- Students (if parent) -->
-            <div v-if="user.students?.length" class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div v-if="user.students?.length" class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-4">Students</h3>
-                    <ul class="divide-y divide-gray-200 dark:divide-neutral-700">
+                    <h3 class="text-lg font-medium text-beach-text mb-4">Students</h3>
+                    <ul class="divide-y divide-gray-200">
                         <li v-for="student in user.students" :key="student.id" class="py-3">
-                            <Link :href="route('admin.users.show', student.id)" class="flex items-center justify-between hover:bg-gray-50 dark:hover:bg-neutral-700 -mx-4 px-4 py-2 rounded">
+                            <Link :href="route('admin.users.show', student.id)" class="flex items-center justify-between hover:bg-gray-50 -mx-4 px-4 py-2 rounded">
                                 <div>
-                                    <p class="text-sm font-medium text-beach-text dark:text-white">{{ student.name }}</p>
-                                    <p class="text-sm text-beach-text-light dark:text-gray-400">{{ student.email }}</p>
+                                    <p class="text-sm font-medium text-beach-text">{{ student.name }}</p>
+                                    <p class="text-sm text-beach-text-light">{{ student.email }}</p>
                                 </div>
                                 <ChevronRightIcon class="h-5 w-5 text-gray-400"/>
                             </Link>
@@ -65,14 +65,14 @@
             </div>
 
             <!-- Enrolled Courses -->
-            <div v-if="user.enrolled_courses?.length" class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div v-if="user.enrolled_courses?.length" class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-4">Enrolled Courses</h3>
-                    <ul class="divide-y divide-gray-200 dark:divide-neutral-700">
+                    <h3 class="text-lg font-medium text-beach-text mb-4">Enrolled Courses</h3>
+                    <ul class="divide-y divide-gray-200">
                         <li v-for="course in user.enrolled_courses" :key="course.id" class="py-3">
-                            <Link :href="route('admin.courses.edit', course.id)" class="flex items-center justify-between hover:bg-gray-50 dark:hover:bg-neutral-700 -mx-4 px-4 py-2 rounded">
+                            <Link :href="route('admin.courses.edit', course.id)" class="flex items-center justify-between hover:bg-gray-50 -mx-4 px-4 py-2 rounded">
                                 <div>
-                                    <p class="text-sm font-medium text-beach-text dark:text-white">{{ course.title }}</p>
+                                    <p class="text-sm font-medium text-beach-text">{{ course.title }}</p>
                                 </div>
                                 <ChevronRightIcon class="h-5 w-5 text-gray-400"/>
                             </Link>

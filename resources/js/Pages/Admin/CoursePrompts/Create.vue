@@ -2,14 +2,14 @@
     <AdminLayout title="Add Week">
         <div class="max-w-3xl">
             <div class="mb-6">
-                <Link :href="route('admin.courses.edit', course.id)" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.courses.edit', course.id)" class="text-sm text-beach-text-light hover:text-beach-text">
                     &larr; Back to Course
                 </Link>
             </div>
 
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Add Week to {{ course.title }}</h3>
+                    <h3 class="text-lg font-medium text-beach-text mb-6">Add Week to {{ course.title }}</h3>
 
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid grid-cols-3 gap-4">
@@ -21,7 +21,7 @@
 
                             <div>
                                 <InputLabel for="days_count" value="Days per Week"/>
-                                <select id="days_count" v-model="form.days_count" class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white shadow-sm">
+                                <select id="days_count" v-model="form.days_count" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                                     <option :value="1">1 day</option>
                                     <option :value="2">2 days</option>
                                     <option :value="3">3 days</option>
@@ -52,7 +52,7 @@
                             <InputError :message="form.errors.description" class="mt-2"/>
                         </div>
 
-                        <p class="text-sm text-beach-text-light dark:text-gray-400 bg-gray-50 dark:bg-neutral-700 p-3 rounded-lg">
+                        <p class="text-sm text-beach-text-light bg-gray-50 p-3 rounded-lg">
                             Content, learning objectives, and trivia questions are managed at the day level. After creating this week, you can add days and their content.
                         </p>
 

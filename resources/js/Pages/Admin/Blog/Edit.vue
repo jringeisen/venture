@@ -2,14 +2,14 @@
     <AdminLayout title="Edit Blog Post">
         <div class="max-w-3xl">
             <div class="mb-6">
-                <Link :href="route('admin.blog-posts.index')" class="text-sm text-beach-text-light hover:text-beach-text dark:text-gray-400 dark:hover:text-gray-200">
+                <Link :href="route('admin.blog-posts.index')" class="text-sm text-beach-text-light hover:text-beach-text">
                     &larr; Back to Blog Posts
                 </Link>
             </div>
 
-            <div class="bg-white dark:bg-neutral-800 shadow-sm border border-slate-100 dark:border-neutral-700 rounded-lg">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text dark:text-white mb-6">Edit Blog Post</h3>
+                    <h3 class="text-lg font-medium text-beach-text mb-6">Edit Blog Post</h3>
 
                     <form @submit.prevent="submit" class="space-y-6">
                         <div>
@@ -20,7 +20,7 @@
 
                         <div>
                             <InputLabel for="blog_category_id" value="Category"/>
-                            <select id="blog_category_id" v-model="form.blog_category_id" class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white shadow-sm">
+                            <select id="blog_category_id" v-model="form.blog_category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                                 <option :value="null">No Category</option>
                                 <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
                             </select>
