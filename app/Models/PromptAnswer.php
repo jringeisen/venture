@@ -20,6 +20,13 @@ class PromptAnswer extends Model
         'outline',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'questions' => 'array',
+        ];
+    }
+
     public function promptQuestion(): BelongsTo
     {
         return $this->belongsTo(PromptQuestion::class);

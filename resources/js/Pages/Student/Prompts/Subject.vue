@@ -51,8 +51,6 @@ const props = defineProps({
     }
 })
 
-const emit = defineEmits(['loading', 'error']);
-
 const loading = ref(false);
 const error = ref(false);
 const subject = ref('');
@@ -65,21 +63,17 @@ onMounted(() => {
 const fetchSubject = () => {
     loading.value = true;
     error.value = false;
-    emit('loading', true);
 
     axios.post('/student/prompts/subject', {question: props.question})
         .then(response => {
             subject.value = response.data.subject;
             subCategory.value = response.data.subCategory;
             loading.value = false;
-            emit('loading', false);
         })
         .catch(err => {
             console.error('Failed to fetch subject:', err);
             error.value = true;
             loading.value = false;
-            emit('error');
-            emit('loading', false);
         });
 };
 

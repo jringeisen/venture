@@ -60,7 +60,7 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['questionClicked', 'loading', 'error']);
+const emit = defineEmits(['questionClicked']);
 
 const questions = ref(JSON.parse(localStorage.getItem('questions')) || []);
 const loading = ref(false);
@@ -69,29 +69,22 @@ const error = ref(false);
 onMounted(() => {
     if (questions.value.length === 0) {
         fetchQuestions();
-    } else {
-        // If we have cached questions, still emit that we're done loading
-        emit('loading', false);
     }
 });
 
 const fetchQuestions = () => {
     loading.value = true;
     error.value = false;
-    emit('loading', true);
 
     axios.post('/student/prompts/questions', {question: props.question})
         .then(response => {
             questions.value = response.data.questions;
             loading.value = false;
-            emit('loading', false);
         })
         .catch(err => {
             console.error('Failed to fetch questions:', err);
             error.value = true;
             loading.value = false;
-            emit('error');
-            emit('loading', false);
         });
 };
 
