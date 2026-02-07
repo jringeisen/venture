@@ -1,7 +1,7 @@
 <template>
     <Head title="Blog Posts">
         <meta name="title" content="Venture Blog | K-12 Curiosity-led Homeschool Curriculum" />
-        <meta name="description" content="Personalized learning platform for homeschooling. Get started for FREE!. Explore our blog for insightful articles, success stories, and expert tips on homeschooling."
+        <meta name="description" content="Personalized K-12 learning platform for homeschooling. Explore our blog for insightful articles, success stories, and expert tips on homeschooling."
         />
         <meta name="image" content="assets/images/preview-image.png" />
         <meta name="type" content="website" />
@@ -10,7 +10,7 @@
         <meta property="og:title" content="Venture Blog | K-12 Curiosity-led Homeschool Curriculum" />
         <meta
             property="og:description"
-            content="Personalized learning platform for homeschooling. Get started for FREE!. Explore our blog for insightful articles, success stories, and expert tips on homeschooling."
+            content="Personalized K-12 learning platform for homeschooling. Explore our blog for insightful articles, success stories, and expert tips on homeschooling."
         />
         <meta property="og:image" content="assets/images/preview-image.png" />
         <meta property="og:type" content="website" />

@@ -1,12 +1,12 @@
 <template>
     <Head title="Welcome">
         <meta name="title" content="Venture | K-12 Curiosity-led Homeschool Curriculum">
-        <meta name="description" content="Personalized learning platform for homeschooling. Get started for FREE!">
+        <meta name="description" content="Personalized K-12 learning platform for homeschooling. Start your child's curiosity-led journey today!">
         <meta name="image" content="assets/images/preview-image.png">
         <meta name="type" content="website">
         <meta name="url" content="https://learnwithventure.com">
         <meta property="og:title" content="Venture | K-12 Curiosity-led Homeschool Curriculum">
-        <meta property="og:description" content="Personalized learning platform for homeschooling. Get started for FREE!">
+        <meta property="og:description" content="Personalized K-12 learning platform for homeschooling. Start your child's curiosity-led journey today!">
         <meta property="og:image" content="assets/images/preview-image.png">
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://learnwithventure.com">
@@ -76,7 +76,7 @@
                             </div>
                             <div class="py-6 space-y-1">
                                 <Link :href="route('auth.options')" class="-mx-3 block rounded-lg px-3 py-3 text-base font-semibold text-white hover:bg-beach-ocean transition-colors">Log in</Link>
-                                <Link :href="route('register')" class="-mx-3 block rounded-lg px-3 py-3 text-base font-semibold text-beach-teal-light hover:bg-beach-ocean transition-colors">Get Started Free</Link>
+                                <Link :href="route('register')" class="-mx-3 block rounded-lg px-3 py-3 text-base font-semibold text-beach-teal-light hover:bg-beach-ocean transition-colors">Get Started</Link>
                             </div>
                         </div>
                     </div>
@@ -95,10 +95,10 @@
                     Where Curiosity Leads,<br>Discovery Follows
                 </h1>
                 <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-                    A free, personalized K&#8211;12 learning platform that puts your child's natural curiosity at the center of every lesson.
+                    A personalized K&#8211;12 learning platform that puts your child's natural curiosity at the center of every lesson.
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link :href="route('register')" class="px-8 py-4 bg-beach-teal text-white rounded-lg font-semibold uppercase tracking-widest hover:bg-beach-teal-dark focus:outline-none focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 transition-colors ease-in-out duration-150">Get Started Free</Link>
+                    <Link :href="route('register')" class="px-8 py-4 bg-beach-teal text-white rounded-lg font-semibold uppercase tracking-widest hover:bg-beach-teal-dark focus:outline-none focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 transition-colors ease-in-out duration-150">Get Started Today</Link>
                     <a href="#mission" class="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold uppercase tracking-widest hover:bg-white/10 transition-colors ease-in-out duration-150">Our Mission</a>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                 </div>
                 <div data-aos="fade-up" data-aos-delay="100">
                     <p class="text-4xl font-bold">100%</p>
-                    <p class="mt-1 text-white/80 text-sm tracking-wider uppercase">Free to Get Started</p>
+                    <p class="mt-1 text-white/80 text-sm tracking-wider uppercase">AI-Powered Learning</p>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="200">
                     <p class="text-4xl font-bold">K&#8211;12</p>
@@ -162,8 +162,8 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-beach-text">Free for Everyone</h3>
-                        <p class="mt-3 text-beach-text-light leading-relaxed">Quality education with no barriers. Venture is completely free, funded by donations from people who believe in accessible education.</p>
+                        <h3 class="text-xl font-semibold text-beach-text">Affordable for Everyone</h3>
+                        <p class="mt-3 text-beach-text-light leading-relaxed">Quality education that fits every budget. Venture offers flexible plans so every family can access curiosity-led learning.</p>
                     </div>
                 </div>
             </div>
@@ -216,7 +216,7 @@
                     <p class="text-beach-teal font-semibold tracking-wider uppercase text-sm">Pricing</p>
                     <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-text tracking-wide">Plans for Every Family</h2>
                     <p class="mt-6 text-lg text-beach-text-light leading-relaxed">
-                        Start free and upgrade when you're ready. Every plan includes access to our AI-powered, curiosity-led curriculum.
+                        Choose the plan that fits your family. Every plan includes access to our AI-powered, curiosity-led curriculum.
                     </p>
                 </div>
 
@@ -238,7 +238,7 @@
 
                 <!-- Plan Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Free Plan -->
+                    <!-- Starter Plan -->
                     <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm" data-aos="fade-up">
                         <h3 class="text-lg font-semibold text-beach-text">Starter</h3>
                         <p class="mt-1 text-sm text-beach-text-light">Perfect for getting started</p>
@@ -425,7 +425,7 @@
                 <p class="mt-6 text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
                     Join curious minds around the world who are discovering, exploring, and growing with Venture every day.
                 </p>
-                <Link :href="route('register')" class="mt-10 inline-flex items-center px-10 py-4 bg-beach-teal text-white rounded-lg font-semibold uppercase tracking-widest hover:bg-beach-teal-dark focus:outline-none focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 transition-colors ease-in-out duration-150">Join Venture &mdash; It's Free</Link>
+                <Link :href="route('register')" class="mt-10 inline-flex items-center px-10 py-4 bg-beach-teal text-white rounded-lg font-semibold uppercase tracking-widest hover:bg-beach-teal-dark focus:outline-none focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 transition-colors ease-in-out duration-150">Join Venture Today</Link>
             </div>
         </section>
 
