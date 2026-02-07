@@ -28,7 +28,7 @@
             </div>
 
             <!-- Content Display -->
-            <p class="whitespace-pre-line dark:text-neutral-400">{{ message }}</p>
+            <div class="prose dark:prose-invert max-w-none" v-html="renderedContent"></div>
 
             <!-- Typing Cursor -->
             <span v-if="isStreaming" class="inline-block w-0.5 h-5 bg-neutral-400 animate-pulse ml-0.5"></span>
@@ -37,6 +37,7 @@
 
 <script setup>
 import { onMounted, ref, onUnmounted, computed, watch } from 'vue';
+import { marked } from 'marked';
 
 const props = defineProps({
     question: {
@@ -55,6 +56,10 @@ let eventSource = null;
 // Compute word count for progress indicator
 const wordCount = computed(() => {
     return message.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+});
+
+const renderedContent = computed(() => {
+    return marked.parse(message.value);
 });
 
 onMounted(() => {
@@ -79,9 +84,8 @@ const startStream = () => {
   };
 
   eventSource.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-
-    if (data.finish_reason === 'stop') {
+    // Handle the [DONE] signal from the SDK
+    if (event.data === '[DONE]') {
         eventSource.close();
         connectionStatus.value = 'disconnected';
         isStreaming.value = false;
@@ -89,7 +93,24 @@ const startStream = () => {
         return;
     }
 
-    message.value += data.delta.content;
+    try {
+        const data = JSON.parse(event.data);
+
+        // Handle text_delta events from the Laravel AI SDK
+        if (data.type === 'text_delta' && data.delta) {
+            message.value += data.delta;
+        }
+
+        // Handle stream_end event
+        if (data.type === 'stream_end') {
+            eventSource.close();
+            connectionStatus.value = 'disconnected';
+            isStreaming.value = false;
+            emit('loading', false);
+        }
+    } catch (e) {
+        // Skip unparseable events
+    }
   };
 
   eventSource.onerror = (error) => {

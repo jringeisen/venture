@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Student\Prompts;
 
+use App\Ai\Agents\ContentStreamingAgent;
 use App\Http\Controllers\Controller;
 use App\Models\Prompt;
-use App\Services\OpenAI\OpenAIChatService;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Laravel\Ai\Responses\StreamedAgentResponse;
 use Throwable;
 
 class GetContentController extends Controller
@@ -14,7 +14,7 @@ class GetContentController extends Controller
     /**
      * @throws Throwable
      */
-    public function __invoke(Request $request, OpenAIChatService $chatService): StreamedResponse
+    public function __invoke(Request $request)
     {
         $usersAge = $request->user()->age;
 
@@ -24,12 +24,14 @@ class GetContentController extends Controller
 
         throw_unless($question, "No prompt question exists for the given user: {$request->user()->id}");
 
-        $chatService
-            ->setUser($request->user())
-            ->addMessage('system', $prompt)
-            ->addMessage('user', $question->question)
-            ->updateQuestionTokens($question);
-
-        return $chatService->createStream()->stream;
+        return (new ContentStreamingAgent($prompt, $question))
+            ->stream($question->question)
+            ->then(function (StreamedAgentResponse $response) use ($question) {
+                $question->promptAnswer()
+                    ->updateOrCreate(
+                        ['prompt_question_id' => $question->id],
+                        ['content' => $response->text, 'word_count' => str_word_count($response->text)]
+                    );
+            });
     }
 }

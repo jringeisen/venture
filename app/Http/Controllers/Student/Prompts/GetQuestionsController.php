@@ -2,32 +2,34 @@
 
 namespace App\Http\Controllers\Student\Prompts;
 
+use App\Ai\Agents\QuestionGenerationAgent;
 use App\Http\Controllers\Controller;
-use App\Models\Prompt;
-use App\Services\OpenAI\OpenAIChatService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class GetQuestionsController extends Controller
 {
-    public function __invoke(Request $request, OpenAIChatService $chatService)
+    public function __invoke(Request $request): JsonResponse
     {
         $question = $request->user()->promptQuestions()->latest()->first();
 
         if ($question) {
-            $response = $chatService
-                ->setUser($request->user())
-                ->addMessage('system', Prompt::where('category', 'questions')->first()->prompt)
-                ->addMessage('user', $request->question)
-                ->updateQuestionTokens($question)
-                ->createChat();
+            $response = QuestionGenerationAgent::make()->prompt($request->question);
 
             $question->promptAnswer()
                 ->updateOrCreate(
                     ['prompt_question_id' => $question->id],
-                    ['questions' => $response->questions ?? null]
+                    ['questions' => $response['questions'] ?? null]
                 );
 
-            return response()->json($response);
+            $questions = collect($response['questions'] ?? [])
+                ->map(fn (string $q) => ['question' => $q, 'selected' => false])
+                ->values()
+                ->all();
+
+            return response()->json([
+                'questions' => $questions,
+            ]);
         }
 
         return response()->json(['questions' => []]);

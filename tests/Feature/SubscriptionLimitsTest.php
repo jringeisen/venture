@@ -1,14 +1,11 @@
 <?php
 
+use App\Ai\Agents\ModerationAgent;
 use App\Models\ComplianceReport;
 use App\Models\Course;
 use App\Models\DailyQuestionCount;
 use App\Models\Prompt;
 use App\Models\User;
-use App\Services\OpenAI\OpenAIChatService;
-use App\Services\OpenAI\OpenAIModerationService;
-use App\Services\OpenAI\Responses\ChatResponse;
-use App\Services\OpenAI\Responses\ModerationResponse;
 
 beforeEach(function () {
     config([
@@ -50,15 +47,7 @@ it('allows AI question when under free tier limit', function () {
 
     Prompt::unguarded(fn () => Prompt::updateOrCreate(['category' => 'moderation'], ['prompt' => 'Test moderation prompt']));
 
-    $this->mock(OpenAIModerationService::class, function ($mock) {
-        $mock->shouldReceive('moderate')->andReturn(new ModerationResponse(flagged: false));
-    });
-
-    $chatService = $this->mock(OpenAIChatService::class);
-    $chatService->shouldReceive('addMessage')->andReturnSelf();
-    $chatService->shouldReceive('createChat')->andReturn(
-        new ChatResponse(moderation: new ModerationResponse(flagged: false))
-    );
+    ModerationAgent::fake(fn () => ['flagged' => false, 'message' => null]);
 
     $response = $this
         ->actingAs($student)
@@ -219,15 +208,7 @@ it('allows all features on family plan', function () {
 
     Prompt::unguarded(fn () => Prompt::updateOrCreate(['category' => 'moderation'], ['prompt' => 'Test moderation prompt']));
 
-    $this->mock(OpenAIModerationService::class, function ($mock) {
-        $mock->shouldReceive('moderate')->andReturn(new ModerationResponse(flagged: false));
-    });
-
-    $chatService = $this->mock(OpenAIChatService::class);
-    $chatService->shouldReceive('addMessage')->andReturnSelf();
-    $chatService->shouldReceive('createChat')->andReturn(
-        new ChatResponse(moderation: new ModerationResponse(flagged: false))
-    );
+    ModerationAgent::fake(fn () => ['flagged' => false, 'message' => null]);
 
     // Can ask questions with high usage
     DailyQuestionCount::create([

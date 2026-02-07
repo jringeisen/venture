@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ContentStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,7 @@ class CourseDay extends Model
         'title',
         'description',
         'content',
+        'content_status',
         'learning_objectives',
         'trivia_questions',
         'estimated_duration_minutes',
@@ -27,6 +29,7 @@ class CourseDay extends Model
         'trivia_questions' => 'array',
         'day_number' => 'integer',
         'estimated_duration_minutes' => 'integer',
+        'content_status' => ContentStatus::class,
     ];
 
     /**

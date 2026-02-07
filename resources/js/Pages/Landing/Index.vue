@@ -86,7 +86,9 @@
 
         <!-- Hero -->
         <section class="relative min-h-screen flex items-center justify-center">
-            <img src="/images/landing/hero-ocean.jpg" alt="Aerial view of turquoise ocean water" class="absolute inset-0 w-full h-full object-cover" />
+            <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+                <source src="/images/landing/hero-video.mp4" type="video/mp4" />
+            </video>
             <div class="absolute inset-0 bg-gradient-to-b from-beach-ocean-deep/30 via-beach-ocean-deep/50 to-beach-ocean-deep/80"></div>
             <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight tracking-wide">

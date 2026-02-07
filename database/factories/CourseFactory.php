@@ -44,4 +44,28 @@ class CourseFactory extends Factory
             'length_in_weeks' => $weeks,
         ]);
     }
+
+    public function elementary(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'min_age' => 5,
+            'max_age' => 10,
+        ]);
+    }
+
+    public function middle(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'min_age' => 11,
+            'max_age' => 13,
+        ]);
+    }
+
+    public function high(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'min_age' => 14,
+            'max_age' => 18,
+        ]);
+    }
 }

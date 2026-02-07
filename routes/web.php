@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
             // Courses
             Route::resource('courses', AdminCourseController::class)->except(['show']);
             Route::post('courses/{course}/generate-weeks', [AdminCourseController::class, 'generateWeeks'])->name('courses.generate-weeks');
+            Route::post('courses/{course}/generate-all-content', [AdminCourseController::class, 'generateAllContent'])->name('courses.generate-all-content');
+            Route::get('courses/{course}/content-progress', [AdminCourseController::class, 'contentGenerationProgress'])->name('courses.content-progress');
 
             // Course Weeks (nested under courses)
             Route::get('courses/{course}/weeks/create', [AdminCoursePromptController::class, 'create'])->name('courses.weeks.create');

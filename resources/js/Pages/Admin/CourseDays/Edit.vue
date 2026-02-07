@@ -196,7 +196,7 @@ const generateContent = async () => {
     }
 
     isGenerating.value = true;
-    streamingContent.value = '';
+    streamingContent.value = 'Generating content with AI...';
     form.content = '';
 
     try {
@@ -207,7 +207,7 @@ const generateContent = async () => {
                 credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'text/event-stream',
+                    'Accept': 'application/json',
                     'X-XSRF-TOKEN': getCsrfToken(),
                 },
                 body: JSON.stringify({
@@ -219,49 +219,20 @@ const generateContent = async () => {
             }
         );
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        const data = await response.json();
 
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-
-            const text = decoder.decode(value);
-            const lines = text.split('\n');
-
-            for (const line of lines) {
-                if (line.startsWith('data: ')) {
-                    try {
-                        const data = JSON.parse(line.slice(6));
-
-                        if (data.chunk) {
-                            streamingContent.value += data.chunk;
-                        }
-
-                        if (data.done) {
-                            if (data.error) {
-                                alert(data.error);
-                            } else {
-                                form.content = data.content || '';
-                                form.trivia_questions = (data.trivia_questions || []).map(q => ({
-                                    question: q.question || '',
-                                    option_a: q.option_a || '',
-                                    option_b: q.option_b || '',
-                                    option_c: q.option_c || '',
-                                    option_d: q.option_d || '',
-                                    correct_answer: q.correct_answer ?? 0,
-                                }));
-                            }
-                        }
-                    } catch (e) {
-                        // Skip invalid JSON lines
-                    }
-                }
-            }
+        if (!response.ok || !data.success) {
+            alert(data.error || 'Failed to generate content. Please try again.');
+        } else {
+            form.content = data.content || '';
+            form.trivia_questions = (data.trivia_questions || []).map(q => ({
+                question: q.question || '',
+                option_a: q.option_a || '',
+                option_b: q.option_b || '',
+                option_c: q.option_c || '',
+                option_d: q.option_d || '',
+                correct_answer: q.correct_answer ?? 0,
+            }));
         }
     } catch (error) {
         console.error('Error generating content:', error);

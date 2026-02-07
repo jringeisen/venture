@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\AgeGroup;
+use App\Ai\Agents\LessonContentGenerationAgent;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseDay;
 use App\Models\CoursePrompt;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
-use OpenAI\Laravel\Facades\OpenAI;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class CourseDayController extends Controller
 {
@@ -103,7 +102,7 @@ class CourseDayController extends Controller
             ->with('success', 'Day deleted successfully.');
     }
 
-    public function generateContent(Request $request, Course $course, CoursePrompt $prompt, CourseDay $day): StreamedResponse
+    public function generateContent(Request $request, Course $course, CoursePrompt $prompt, CourseDay $day): JsonResponse
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -119,11 +118,10 @@ class CourseDayController extends Controller
 
         $objectivesList = collect($learningObjectives)
             ->filter()
-            ->map(fn ($obj, $i) => ($i + 1) . '. ' . $obj)
+            ->map(fn ($obj, $i) => ($i + 1).'. '.$obj)
             ->implode("\n");
 
         // Calculate approximate word count based on duration
-        // Using 200 words/min for comprehensive educational content with activities
         $targetWordCount = $durationMinutes * 200;
         $minWords = max(500, (int) ($targetWordCount * 0.85));
         $maxWords = (int) ($targetWordCount * 1.3);
@@ -137,7 +135,7 @@ class CourseDayController extends Controller
             $ageGroupGuidelines = $ageGroup->contentGuidelines();
             $ageGroupContext = "- **Target Age Group:** {$ageGroupLabel}";
         } else {
-            $ageGroupContext = "- **Target Age Group:** All Ages (General K-12)";
+            $ageGroupContext = '- **Target Age Group:** All Ages (General K-12)';
         }
 
         $ageGuidanceSection = '';
@@ -233,92 +231,26 @@ Each question must:
 - Include plausible distractors (wrong answers should be reasonable, not obviously wrong)
 - Cover different parts of the lesson content
 
-## JSON Response Format
-{
-    "content": "<h2>Hook Title</h2><p>Opening hook...</p>...(full HTML content with all sections)...",
-    "trivia_questions": [
-        {
-            "question": "Question text?",
-            "option_a": "First option",
-            "option_b": "Second option",
-            "option_c": "Third option",
-            "option_d": "Fourth option",
-            "correct_answer": 0,
-            "difficulty": "easy"
-        }
-    ]
-}
-
 Note: correct_answer is 0 for A, 1 for B, 2 for C, or 3 for D.
-
-CRITICAL: Return ONLY valid JSON. No markdown code blocks, no extra text. The content field should contain well-structured HTML that covers ALL required sections thoroughly.
 PROMPT;
 
         set_time_limit(300);
 
-        return response()->stream(function () use ($aiPrompt) {
-            header('Content-Type: text/event-stream');
-            header('Cache-Control: no-cache');
-            header('Connection: keep-alive');
-            header('X-Accel-Buffering: no');
+        try {
+            $response = LessonContentGenerationAgent::make()->prompt($aiPrompt);
 
-            try {
-                $stream = OpenAI::chat()->createStreamed([
-                    'model' => 'gpt-4o',
-                    'messages' => [
-                        [
-                            'role' => 'system',
-                            'content' => 'You are an expert K-12 curriculum designer and educator with deep knowledge of pedagogy, child development, and engaging content creation. You create comprehensive, well-structured lessons that genuinely teach students. Your content is thorough, uses multiple teaching strategies (examples, analogies, visuals, activities), and makes learning memorable and enjoyable. Always respond with valid JSON only.',
-                        ],
-                        [
-                            'role' => 'user',
-                            'content' => $aiPrompt,
-                        ],
-                    ],
-                    'response_format' => ['type' => 'json_object'],
-                    'max_tokens' => 12000,
-                ]);
+            return response()->json([
+                'success' => true,
+                'content' => $response['content'] ?? '',
+                'trivia_questions' => $response['trivia_questions'] ?? [],
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Failed to generate day content', ['error' => $e->getMessage()]);
 
-                $fullContent = '';
-
-                foreach ($stream as $response) {
-                    $chunk = $response->choices[0]->delta->content ?? '';
-                    if ($chunk !== '') {
-                        $fullContent .= $chunk;
-                        echo "data: " . json_encode(['chunk' => $chunk]) . "\n\n";
-                        ob_flush();
-                        flush();
-                    }
-                }
-
-                // Send the complete parsed response at the end
-                $data = json_decode($fullContent, true);
-                if (json_last_error() === JSON_ERROR_NONE) {
-                    echo "data: " . json_encode([
-                        'done' => true,
-                        'content' => $data['content'] ?? '',
-                        'trivia_questions' => $data['trivia_questions'] ?? [],
-                    ]) . "\n\n";
-                } else {
-                    echo "data: " . json_encode([
-                        'done' => true,
-                        'error' => 'Failed to parse response',
-                    ]) . "\n\n";
-                }
-                ob_flush();
-                flush();
-
-            } catch (\Exception $e) {
-                Log::error('Failed to generate day content', ['error' => $e->getMessage()]);
-                echo "data: " . json_encode(['done' => true, 'error' => $e->getMessage()]) . "\n\n";
-                ob_flush();
-                flush();
-            }
-        }, 200, [
-            'Content-Type' => 'text/event-stream',
-            'Cache-Control' => 'no-cache',
-            'Connection' => 'keep-alive',
-            'X-Accel-Buffering' => 'no',
-        ]);
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

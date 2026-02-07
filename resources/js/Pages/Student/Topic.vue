@@ -33,7 +33,7 @@
                                                         <p class="font-semibold text-sm text-beach-text-light dark:text-neutral-400">{{ capitalize(question.prompt_answer.subject_category) }}</p>
                                                         <p class="font-semibold text-sm text-beach-text-light dark:text-neutral-400">{{ question.prompt_answer.word_count }} words</p>
                                                     </div>
-                                                    <p class="mt-2 whitespace-pre-wrap text-sm text-beach-text-light dark:text-neutral-400">{{ question.prompt_answer.content }}</p>
+                                                    <div class="mt-2 prose prose-sm dark:prose-invert max-w-none" v-html="renderMarkdown(question.prompt_answer.content)"></div>
                                                 </div>
                                             </div>
                                             <div class="whitespace-nowrap text-right text-sm text-beach-text-light dark:text-neutral-400">
@@ -58,6 +58,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { marked } from 'marked';
 import pkg from 'lodash';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
@@ -74,6 +75,10 @@ const props = defineProps({
 const { capitalize, startCase } = pkg;
 
 const toggleContent = ref('');
+
+const renderMarkdown = (content) => {
+    return marked.parse(content ?? '');
+};
 
 const handleToggleContent = (id) => {
     if (toggleContent.value === id) {

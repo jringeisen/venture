@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('courses.{courseId}', function ($user, $courseId) {
+    return app()->environment('local')
+        || $user->isAdmin()
+        || $user->enrolledCourses()->where('courses.id', $courseId)->exists();
+});

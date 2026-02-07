@@ -8,13 +8,13 @@ The Laravel Boost guidelines are specifically curated by Laravel maintainers for
 ## Foundational Context
 This application is a Laravel application and its main Laravel ecosystems package & versions are below. You are an expert with them all. Ensure you abide by these specific packages & versions.
 
-- php - 8.4.16
-- inertiajs/inertia-laravel (INERTIA) - v1
+- php - 8.4.17
+- inertiajs/inertia-laravel (INERTIA) - v2
 - laravel/breeze (BREEZE) - v2
 - laravel/cashier (CASHIER) - v16
 - laravel/framework (LARAVEL) - v12
-- laravel/nova (NOVA) - v4
 - laravel/prompts (PROMPTS) - v0
+- laravel/reverb (REVERB) - v1
 - laravel/sanctum (SANCTUM) - v4
 - tightenco/ziggy (ZIGGY) - v1
 - laravel/mcp (MCP) - v0
@@ -22,6 +22,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/sail (SAIL) - v1
 - pestphp/pest (PEST) - v4
 - phpunit/phpunit (PHPUNIT) - v12
+- laravel-echo (ECHO) - v2
 - @inertiajs/vue3 (INERTIA) - v2
 - tailwindcss (TAILWINDCSS) - v4
 - vue (VUE) - v3
@@ -145,16 +146,26 @@ Route::get('/users', function () {
 });
 </code-snippet>
 
-=== inertia-laravel/v1 rules ===
+=== inertia-laravel/v2 rules ===
 
-## Inertia v1
+## Inertia v2
 
-- Inertia v1 does not come with these features. Do not recommend using these Inertia v2 features directly:
-    - Deferred props.
-    - Infinite scrolling using merging props and `WhenVisible`.
-    - Lazy loading data on scroll.
-    - Polling.
-    - Prefetching.
+- Make use of all Inertia features from v1 and v2. Check the documentation before making any changes to ensure we are taking the correct approach.
+
+### Inertia v2 New Features
+- Deferred props.
+- Infinite scrolling using merging props and `WhenVisible`.
+- Lazy loading data on scroll.
+- Polling.
+- Prefetching.
+
+### Deferred Props & Empty States
+- When using deferred props on the frontend, you should add a nice empty state with pulsing/animated skeleton.
+
+### Inertia Form General Guidance
+- The recommended way to build forms when using Inertia is with the `<Form>` component - a useful example is below. Use the `search-docs` tool with a query of `form component` for guidance.
+- Forms can also be built using the `useForm` helper for more programmatic control, or to follow existing conventions. Use the `search-docs` tool with a query of `useForm helper` for guidance.
+- `resetOnError`, `resetOnSuccess`, and `setDefaultsOnSuccess` are available on the `<Form>` component. Use the `search-docs` tool with a query of `form component resetting` for guidance.
 
 === laravel/core rules ===
 
@@ -444,4 +455,11 @@ $pages->assertNoJavascriptErrors()->assertNoConsoleLogs();
 | overflow-ellipsis | text-ellipsis |
 | decoration-slice | box-decoration-slice |
 | decoration-clone | box-decoration-clone |
+
+=== laravel/ai rules ===
+
+## Laravel AI SDK
+
+- This application uses the Laravel AI SDK (`laravel/ai`) for all AI functionality.
+- Activate the `developing-with-ai-sdk` skill when building, editing, updating, debugging, or testing AI agents, text generation, chat, streaming, structured output, tools, image generation, audio, transcription, embeddings, reranking, vector stores, files, conversation memory, or any AI provider integration (OpenAI, Anthropic, Gemini, Cohere, Groq, xAI, ElevenLabs, Jina, OpenRouter).
 </laravel-boost-guidelines>
