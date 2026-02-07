@@ -14,8 +14,7 @@ class FeedbackCreated extends Notification
 
     public function __construct(
         public Feedback $feedback
-    ) {
-    }
+    ) {}
 
     public function via(): array
     {

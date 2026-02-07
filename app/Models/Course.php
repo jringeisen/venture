@@ -168,10 +168,10 @@ class Course extends Model
                 $subQ->whereNull('min_age')->whereNull('max_age');
             })
             // Or courses where the age falls within the range
-            ->orWhere(function (Builder $subQ) use ($age) {
-                $subQ->where('min_age', '<=', $age)
-                    ->where('max_age', '>=', $age);
-            });
+                ->orWhere(function (Builder $subQ) use ($age) {
+                    $subQ->where('min_age', '<=', $age)
+                        ->where('max_age', '>=', $age);
+                });
         });
     }
 }

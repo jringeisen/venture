@@ -17,8 +17,7 @@ class OptInMail extends Mailable implements ShouldQueue
     public function __construct(
         public NewsletterList $newsletterList,
         public string $temporaryUrl
-    ) {
-    }
+    ) {}
 
     public function envelope(): Envelope
     {

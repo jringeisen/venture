@@ -10,7 +10,7 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new CleanUpActiveTime())->everyMinute();
+        $schedule->job(new CleanUpActiveTime)->everyMinute();
         $schedule->command('venture:reset-questions')->dailyAt('00:05');
     }
 

@@ -99,6 +99,7 @@ class LearningSession extends Model
         if ($minutes > 60) {
             $hours = floor($minutes / 60);
             $minutes = $minutes % 60;
+
             return "{$hours}h {$minutes}m";
         }
 

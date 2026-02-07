@@ -9,9 +9,7 @@ use JsonException;
 
 class StudentActivityController extends Controller
 {
-    public function __construct(private readonly StudentAttendanceService $attendanceService)
-    {
-    }
+    public function __construct(private readonly StudentAttendanceService $attendanceService) {}
 
     /**
      * @throws JsonException

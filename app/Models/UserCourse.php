@@ -280,6 +280,7 @@ class UserCourse extends Model
     public function getWeekTime(int $week): int
     {
         $weekTimes = $this->week_times ?? [];
+
         return $weekTimes["week_{$week}"] ?? 0;
     }
 
@@ -289,6 +290,7 @@ class UserCourse extends Model
     public function getDayTime(int $week, int $day): int
     {
         $weekTimes = $this->week_times ?? [];
+
         return $weekTimes["week_{$week}_day_{$day}"] ?? 0;
     }
 

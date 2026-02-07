@@ -13,8 +13,7 @@ class NewUserRegistered extends Notification
 
     public function __construct(
         public User $user
-    ) {
-    }
+    ) {}
 
     public function via(object $notifiable): array
     {
