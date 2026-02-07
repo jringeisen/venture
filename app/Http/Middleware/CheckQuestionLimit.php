@@ -23,7 +23,7 @@ class CheckQuestionLimit
             return Inertia::render('Student/Prompts/Index', [
                 'result' => [
                     'flagged' => true,
-                    'message' => 'You have reached your daily question limit. Upgrade your plan for more questions.',
+                    'message' => 'You have reached your hourly question limit. Please wait or upgrade your plan for more questions.',
                     'upgrade_feature' => 'ai_questions',
                 ],
             ])->toResponse($request);

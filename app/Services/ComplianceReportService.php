@@ -14,6 +14,10 @@ use Carbon\Carbon;
 
 class ComplianceReportService
 {
+    public function __construct(
+        private readonly AttendanceService $attendanceService,
+    ) {}
+
     /**
      * Generate a full compliance report for a student
      */
@@ -29,6 +33,8 @@ class ComplianceReportService
             'course_progress' => $this->getCourseProgress($student, $start, $end),
             'assessment_results' => $this->getAssessmentResults($student, $start, $end),
             'interaction_log' => $this->getInteractionLog($student, $start, $end),
+            'attendance_summary' => $this->attendanceService->getAttendanceSummary($student, $start, $end),
+            'attendance_log' => $this->attendanceService->getAttendanceLog($student, $start, $end),
         ];
 
         return ComplianceReport::create([
@@ -231,6 +237,8 @@ class ComplianceReportService
             ->whereBetween('created_at', [$start, $end->copy()->endOfDay()])
             ->count();
 
+        $attendanceSummary = $this->attendanceService->getAttendanceSummary($student, $start, $end);
+
         return [
             'total_instruction_days' => $totalDays,
             'total_instruction_hours' => round($totalSeconds / 3600, 1),
@@ -238,6 +246,7 @@ class ComplianceReportService
             'courses_completed' => $completedCourses,
             'average_trivia_score' => $averageScore,
             'total_interactions' => $totalInteractions,
+            'total_attendance_days' => $attendanceSummary['total_attendance_days'],
         ];
     }
 }

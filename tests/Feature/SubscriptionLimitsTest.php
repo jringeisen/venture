@@ -9,22 +9,23 @@ use App\Models\User;
 
 beforeEach(function () {
     config([
-        'subscription.plans.explorer.stripe_monthly_price' => 'price_explorer_monthly_test',
-        'subscription.plans.explorer.stripe_yearly_price' => 'price_explorer_yearly_test',
         'subscription.plans.family.stripe_monthly_price' => 'price_family_monthly_test',
         'subscription.plans.family.stripe_yearly_price' => 'price_family_yearly_test',
+        'subscription.plans.classroom.stripe_monthly_price' => 'price_classroom_monthly_test',
+        'subscription.plans.classroom.stripe_yearly_price' => 'price_classroom_yearly_test',
     ]);
 });
 
-it('blocks AI question at free tier limit', function () {
+it('blocks AI question at hourly limit', function () {
     $parent = User::factory()->parent()->create();
     $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
     DailyQuestionCount::create([
         'user_id' => $student->id,
         'parent_id' => $parent->id,
-        'date' => now()->toDateString(),
-        'count' => 5,
+        'date' => now($parent->timezone)->toDateString(),
+        'hour' => now($parent->timezone)->hour,
+        'count' => 10,
     ]);
 
     $response = $this
@@ -41,7 +42,7 @@ it('blocks AI question at free tier limit', function () {
     );
 });
 
-it('allows AI question when under free tier limit', function () {
+it('allows AI question when under hourly limit', function () {
     $parent = User::factory()->parent()->create();
     $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
@@ -142,9 +143,8 @@ it('blocks PDF download on free tier', function () {
 it('blocks student creation when at free tier limit', function () {
     $parent = User::factory()->parent()->create();
 
-    for ($i = 0; $i < 3; $i++) {
-        User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->unique()->userName(), 'grade' => 5, 'age' => 10]);
-    }
+    // Free tier allows 1 student
+    User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
     $response = $this
         ->actingAs($parent)
@@ -164,9 +164,7 @@ it('blocks student creation when at free tier limit', function () {
 it('allows student creation on family plan', function () {
     $parent = User::factory()->parent()->subscribed('family')->create();
 
-    for ($i = 0; $i < 3; $i++) {
-        User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->unique()->userName(), 'grade' => 5, 'age' => 10]);
-    }
+    User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
     $username = 'newstudent_'.fake()->randomNumber(5);
 
@@ -210,12 +208,13 @@ it('allows all features on family plan', function () {
 
     ModerationAgent::fake(fn () => ['flagged' => false, 'message' => null]);
 
-    // Can ask questions with high usage
+    // Can ask unlimited questions on family plan
     DailyQuestionCount::create([
         'user_id' => $student->id,
         'parent_id' => $parent->id,
-        'date' => now()->toDateString(),
-        'count' => 50,
+        'date' => now($parent->timezone)->toDateString(),
+        'hour' => now($parent->timezone)->hour,
+        'count' => 100,
     ]);
 
     $response = $this
@@ -228,4 +227,29 @@ it('allows all features on family plan', function () {
     $response->assertInertia(fn ($page) => $page
         ->where('result.flagged', false)
     );
+});
+
+it('allows student creation on classroom plan', function () {
+    $parent = User::factory()->parent()->subscribed('classroom')->create();
+
+    for ($i = 0; $i < 5; $i++) {
+        User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->unique()->userName(), 'grade' => 5, 'age' => 10]);
+    }
+
+    $username = 'newstudent_'.fake()->randomNumber(5);
+
+    $response = $this
+        ->actingAs($parent)
+        ->post('/parent/users', [
+            'name' => 'New Student',
+            'username' => $username,
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'grade' => 5,
+            'age' => 10,
+            'timezone' => 'America/New_York',
+        ]);
+
+    $response->assertSessionHasNoErrors();
+    $response->assertRedirect('/parent/users');
 });

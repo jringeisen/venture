@@ -49,6 +49,58 @@
                 </div>
             </div>
 
+            <!-- Attendance Summary -->
+            <div v-if="attendanceSummary" class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                <button @click.prevent="toggleSection('attendance')" class="flex w-full items-center justify-between p-6">
+                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-300">Attendance</h2>
+                    <ChevronDownIcon :class="['h-5 w-5 text-beach-text-light transition-transform', openSections.attendance ? 'rotate-180' : '']"/>
+                </button>
+                <div v-if="openSections.attendance" class="border-t border-gray-200 dark:border-neutral-600 p-6">
+                    <div class="grid grid-cols-2 gap-3 sm:grid-cols-5 mb-4">
+                        <div class="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                            <dd class="text-xl font-semibold text-green-600 dark:text-green-400">{{ attendanceSummary.present }}</dd>
+                            <dt class="text-xs text-green-700 dark:text-green-400">Present</dt>
+                        </div>
+                        <div class="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                            <dd class="text-xl font-semibold text-blue-600 dark:text-blue-400">{{ attendanceSummary.field_trip }}</dd>
+                            <dt class="text-xs text-blue-700 dark:text-blue-400">Field Trips</dt>
+                        </div>
+                        <div class="text-center p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                            <dd class="text-xl font-semibold text-purple-600 dark:text-purple-400">{{ attendanceSummary.offline_day }}</dd>
+                            <dt class="text-xs text-purple-700 dark:text-purple-400">Offline Days</dt>
+                        </div>
+                        <div class="text-center p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                            <dd class="text-xl font-semibold text-orange-600 dark:text-orange-400">{{ attendanceSummary.excused_absence }}</dd>
+                            <dt class="text-xs text-orange-700 dark:text-orange-400">Excused</dt>
+                        </div>
+                        <div class="text-center p-3 bg-gray-50 dark:bg-neutral-700 rounded-lg col-span-2 sm:col-span-1">
+                            <dd class="text-xl font-semibold text-beach-text dark:text-neutral-300">{{ attendanceSummary.total_attendance_days }}</dd>
+                            <dt class="text-xs text-beach-text-light dark:text-neutral-400">Total</dt>
+                        </div>
+                    </div>
+
+                    <div v-if="attendanceLog.length > 0" class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-300 dark:divide-neutral-700">
+                            <thead class="bg-gray-50 dark:bg-neutral-600">
+                                <tr>
+                                    <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Date</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Type</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
+                                <tr v-for="entry in attendanceLog" :key="entry.date">
+                                    <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm text-beach-text dark:text-primary-gray">{{ entry.date }}</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">{{ entry.label }}</td>
+                                    <td class="px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">{{ entry.notes || 'N/A' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p v-else class="text-sm text-beach-text-light dark:text-neutral-400">No attendance records for this period.</p>
+                </div>
+            </div>
+
             <!-- Daily Activity Log -->
             <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
                 <button @click.prevent="toggleSection('activity')" class="flex w-full items-center justify-between p-6">
@@ -187,6 +239,7 @@ const props = defineProps({
 });
 
 const openSections = reactive({
+    attendance: true,
     activity: true,
     courses: true,
     assessments: false,
@@ -197,6 +250,8 @@ const toggleSection = (section) => {
     openSections[section] = !openSections[section];
 };
 
+const attendanceSummary = computed(() => props.report.metadata?.attendance_summary ?? null);
+const attendanceLog = computed(() => props.report.metadata?.attendance_log ?? []);
 const activityLog = computed(() => props.report.metadata?.daily_activity_log ?? []);
 const courseProgress = computed(() => props.report.metadata?.course_progress ?? []);
 const assessmentResults = computed(() => props.report.metadata?.assessment_results ?? []);

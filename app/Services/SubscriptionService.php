@@ -38,36 +38,38 @@ class SubscriptionService
     }
 
     /**
-     * Check if the family can ask another AI question today.
+     * Check if the student can ask another AI question this hour.
      */
     public function canAskQuestion(User $user): bool
     {
         $plan = $this->getCurrentPlan($user);
 
-        if ($plan->isUnlimited('ai_questions_per_day')) {
+        if ($plan->isUnlimited('ai_questions_per_hour')) {
             return true;
         }
 
-        $billingUser = $this->getBillingUser($user);
-        $todayCount = $this->getDailyQuestionCount($billingUser);
+        $student = $user->isStudent() ? $user : $user;
+        $hourlyCount = $this->getHourlyQuestionCount($student);
 
-        return $todayCount < $plan->limit('ai_questions_per_day');
+        return $hourlyCount < $plan->limit('ai_questions_per_hour');
     }
 
     /**
-     * Record that a question was asked (family aggregate).
+     * Record that a question was asked (per-student, per-hour).
      */
     public function recordQuestion(User $user): void
     {
+        $student = $user->isStudent() ? $user : $user;
         $billingUser = $this->getBillingUser($user);
 
         DailyQuestionCount::updateOrCreate(
             [
-                'parent_id' => $billingUser->id,
-                'date' => now()->toDateString(),
+                'user_id' => $student->id,
+                'date' => now($billingUser->timezone)->toDateString(),
+                'hour' => now($billingUser->timezone)->hour,
             ],
             [
-                'user_id' => $user->isStudent() ? $user->id : $billingUser->id,
+                'parent_id' => $billingUser->id,
             ]
         )->increment('count');
     }
@@ -154,6 +156,8 @@ class SubscriptionService
         $isActive = $subscription && $subscription->active();
         $onGracePeriod = $subscription && $subscription->onGracePeriod();
 
+        $student = $user->isStudent() ? $user : $user;
+
         return [
             'plan' => $plan->value,
             'plan_label' => $plan->label(),
@@ -162,7 +166,7 @@ class SubscriptionService
             'on_grace_period' => $onGracePeriod,
             'limits' => config("subscription.plans.{$plan->value}.limits"),
             'usage' => [
-                'ai_questions_today' => $this->getDailyQuestionCount($billingUser),
+                'ai_questions_this_hour' => $this->getHourlyQuestionCount($student),
                 'students' => $billingUser->students()->count(),
                 'compliance_reports_this_month' => ComplianceReport::where('parent_id', $billingUser->id)
                     ->where('created_at', '>=', now()->startOfMonth())
@@ -180,12 +184,15 @@ class SubscriptionService
     }
 
     /**
-     * Get today's family-aggregate question count.
+     * Get this hour's question count for a specific student.
      */
-    private function getDailyQuestionCount(User $billingUser): int
+    private function getHourlyQuestionCount(User $student): int
     {
-        return (int) DailyQuestionCount::where('parent_id', $billingUser->id)
-            ->where('date', now()->toDateString())
+        $billingUser = $student->isStudent() ? $student->parent : $student;
+
+        return (int) DailyQuestionCount::where('user_id', $student->id)
+            ->where('date', now($billingUser->timezone)->toDateString())
+            ->where('hour', now($billingUser->timezone)->hour)
             ->value('count');
     }
 }

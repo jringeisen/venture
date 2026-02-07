@@ -255,6 +255,7 @@ import {
     AcademicCapIcon,
     Bars3Icon,
     BookOpenIcon,
+    CalendarDaysIcon,
     ChatBubbleLeftEllipsisIcon,
     CreditCardIcon,
     DocumentIcon,
@@ -284,6 +285,7 @@ const iconMap = {
     'chat-bubble-left-ellipsis': ChatBubbleLeftEllipsisIcon,
     'academic-cap': AcademicCapIcon,
     'credit-card': CreditCardIcon,
+    'calendar-days': CalendarDaysIcon,
 };
 
 const getIconComponent = (iconName) => {

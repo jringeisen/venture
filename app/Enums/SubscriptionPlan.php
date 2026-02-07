@@ -5,15 +5,15 @@ namespace App\Enums;
 enum SubscriptionPlan: string
 {
     case Free = 'free';
-    case Explorer = 'explorer';
     case Family = 'family';
+    case Classroom = 'classroom';
 
     public function label(): string
     {
         return match ($this) {
-            self::Free => 'Starter',
-            self::Explorer => 'Explorer',
+            self::Free => 'Free',
             self::Family => 'Family',
+            self::Classroom => 'Classroom',
         };
     }
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CoursePromptController as AdminCoursePromptContro
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\DashboardController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Guest\TermsOfServiceController;
 use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Student\AttendanceController as StudentAttendanceController;
 use App\Http\Controllers\Student\PromptController;
 use App\Http\Controllers\Student\Prompts\GetContentController;
 use App\Http\Controllers\Student\Prompts\GetQuestionsController;
@@ -122,6 +124,14 @@ Route::middleware('auth')->group(function () {
                 Route::post('/swap', [SubscriptionController::class, 'swap'])->name('swap');
             });
 
+            Route::prefix('attendance')->name('attendance.')->group(static function () {
+                Route::get('/', [AttendanceController::class, 'index'])->name('index');
+                Route::post('/', [AttendanceController::class, 'store'])->name('store');
+                Route::put('/{attendance}', [AttendanceController::class, 'update'])->name('update');
+                Route::delete('/{attendance}', [AttendanceController::class, 'destroy'])->name('destroy');
+                Route::get('/daily-summary', [AttendanceController::class, 'dailySummary'])->name('daily-summary');
+            });
+
             Route::prefix('compliance')->name('compliance.')->group(static function () {
                 Route::get('/', [ComplianceController::class, 'index'])->name('index');
                 Route::get('/reports/create', [ComplianceController::class, 'create'])->name('reports.create');
@@ -170,6 +180,8 @@ Route::middleware('auth')->group(function () {
                 // Certificate route
                 Route::get('/{course}/certificate', [\App\Http\Controllers\Student\CourseProgressController::class, 'certificate'])->name('certificate');
             });
+
+            Route::patch('/attendance/today', [StudentAttendanceController::class, 'update'])->name('attendance.update');
 
             Route::patch('/users/{user}', [StudentController::class, 'update'])->name('users.update');
 

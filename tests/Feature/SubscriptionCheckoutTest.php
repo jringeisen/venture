@@ -4,10 +4,10 @@ use App\Models\User;
 
 beforeEach(function () {
     config([
-        'subscription.plans.explorer.stripe_monthly_price' => 'price_explorer_monthly_test',
-        'subscription.plans.explorer.stripe_yearly_price' => 'price_explorer_yearly_test',
         'subscription.plans.family.stripe_monthly_price' => 'price_family_monthly_test',
         'subscription.plans.family.stripe_yearly_price' => 'price_family_yearly_test',
+        'subscription.plans.classroom.stripe_monthly_price' => 'price_classroom_monthly_test',
+        'subscription.plans.classroom.stripe_yearly_price' => 'price_classroom_yearly_test',
     ]);
 });
 
@@ -22,7 +22,7 @@ it('validates plan is required for checkout', function () {
     $response->assertSessionHasErrors(['plan', 'billing_cycle']);
 });
 
-it('validates plan must be explorer or family', function () {
+it('validates plan must be family or classroom', function () {
     $parent = User::factory()->parent()->create();
     User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
@@ -43,7 +43,7 @@ it('validates billing cycle must be monthly or yearly', function () {
     $response = $this
         ->actingAs($parent)
         ->post('/parent/subscription/checkout', [
-            'plan' => 'explorer',
+            'plan' => 'family',
             'billing_cycle' => 'weekly',
         ]);
 
@@ -57,7 +57,7 @@ it('prevents students from checking out', function () {
     $response = $this
         ->actingAs($student)
         ->post('/parent/subscription/checkout', [
-            'plan' => 'explorer',
+            'plan' => 'family',
             'billing_cycle' => 'monthly',
         ]);
 

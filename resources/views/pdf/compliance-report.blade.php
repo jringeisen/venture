@@ -102,6 +102,64 @@
         </table>
     </div>
 
+    {{-- Attendance Summary --}}
+    @if(!empty($metadata['attendance_summary']))
+    <div class="section">
+        <div class="section-title">Attendance Summary</div>
+        <table class="stats-grid">
+            <tr>
+                <td>
+                    <div class="stat-value">{{ $metadata['attendance_summary']['present'] ?? 0 }}</div>
+                    <div class="stat-label">Present</div>
+                </td>
+                <td>
+                    <div class="stat-value">{{ $metadata['attendance_summary']['field_trip'] ?? 0 }}</div>
+                    <div class="stat-label">Field Trips</div>
+                </td>
+                <td>
+                    <div class="stat-value">{{ $metadata['attendance_summary']['offline_day'] ?? 0 }}</div>
+                    <div class="stat-label">Offline Days</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="stat-value">{{ $metadata['attendance_summary']['excused_absence'] ?? 0 }}</div>
+                    <div class="stat-label">Excused Absences</div>
+                </td>
+                <td colspan="2">
+                    <div class="stat-value">{{ $metadata['attendance_summary']['total_attendance_days'] ?? 0 }}</div>
+                    <div class="stat-label">Total Attendance Days</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    @endif
+
+    {{-- Attendance Log --}}
+    @if(!empty($metadata['attendance_log']))
+    <div class="section">
+        <div class="section-title">Attendance Log</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($metadata['attendance_log'] as $entry)
+                <tr>
+                    <td>{{ $entry['date'] }}</td>
+                    <td>{{ $entry['label'] }}</td>
+                    <td>{{ $entry['notes'] ?? 'N/A' }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endif
+
     {{-- Daily Activity Log --}}
     @if(!empty($metadata['daily_activity_log']))
     <div class="section">

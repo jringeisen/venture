@@ -238,9 +238,9 @@
 
                 <!-- Plan Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Starter Plan -->
+                    <!-- Free Plan -->
                     <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm" data-aos="fade-up">
-                        <h3 class="text-lg font-semibold text-beach-text">Starter</h3>
+                        <h3 class="text-lg font-semibold text-beach-text">Free</h3>
                         <p class="mt-1 text-sm text-beach-text-light">Perfect for getting started</p>
                         <div class="mt-6">
                             <span class="text-4xl font-bold text-beach-text">$0</span>
@@ -252,7 +252,7 @@
                         <ul class="mt-8 space-y-3 text-sm text-beach-text-light">
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
-                                <span>5 AI questions per day</span>
+                                <span>10 AI questions per hour</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
@@ -260,7 +260,7 @@
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
-                                <span>Up to 3 students</span>
+                                <span>1 student</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <XIcon class="shrink-0" />
@@ -277,56 +277,13 @@
                         </ul>
                     </div>
 
-                    <!-- Explorer Plan -->
+                    <!-- Family Plan -->
                     <div class="rounded-2xl border-2 border-beach-teal bg-white p-8 shadow-lg relative" data-aos="fade-up" data-aos-delay="100">
                         <div class="absolute -top-4 left-1/2 -translate-x-1/2">
                             <span class="inline-flex items-center rounded-full bg-beach-teal px-4 py-1 text-xs font-semibold text-white uppercase tracking-wider">Most Popular</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-beach-text">Explorer</h3>
-                        <p class="mt-1 text-sm text-beach-text-light">For active learners</p>
-                        <div class="mt-6">
-                            <span class="text-4xl font-bold text-beach-text">${{ billingCycle === 'monthly' ? pricing.explorer.monthly : pricing.explorer.yearly }}</span>
-                            <span class="text-beach-text-light">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
-                        </div>
-                        <button
-                            @click="subscribe('explorer')"
-                            :disabled="checkoutForm.processing"
-                            class="mt-8 block w-full rounded-lg bg-beach-teal px-4 py-3 text-center text-sm font-semibold text-white hover:bg-beach-teal-dark transition-colors disabled:opacity-50"
-                        >
-                            {{ checkoutForm.processing ? 'Redirecting...' : 'Subscribe' }}
-                        </button>
-                        <ul class="mt-8 space-y-3 text-sm text-beach-text-light">
-                            <li class="flex items-start gap-3">
-                                <CheckIcon class="shrink-0" />
-                                <span><strong class="text-beach-text">30</strong> AI questions per day</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <CheckIcon class="shrink-0" />
-                                <span><strong class="text-beach-text">5</strong> active courses per student</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <CheckIcon class="shrink-0" />
-                                <span>Up to <strong class="text-beach-text">5</strong> students</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <CheckIcon class="shrink-0" />
-                                <span><strong class="text-beach-text">2</strong> compliance reports/month</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <CheckIcon class="shrink-0" />
-                                <span>PDF downloads</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <XIcon class="shrink-0" />
-                                <span class="line-through">Certificates</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Family Plan -->
-                    <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm" data-aos="fade-up" data-aos-delay="200">
                         <h3 class="text-lg font-semibold text-beach-text">Family</h3>
-                        <p class="mt-1 text-sm text-beach-text-light">Unlimited learning for the whole family</p>
+                        <p class="mt-1 text-sm text-beach-text-light">For the whole family</p>
                         <div class="mt-6">
                             <span class="text-4xl font-bold text-beach-text">${{ billingCycle === 'monthly' ? pricing.family.monthly : pricing.family.yearly }}</span>
                             <span class="text-beach-text-light">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
@@ -334,7 +291,7 @@
                         <button
                             @click="subscribe('family')"
                             :disabled="checkoutForm.processing"
-                            class="mt-8 block w-full rounded-lg bg-beach-ocean-deep px-4 py-3 text-center text-sm font-semibold text-white hover:bg-beach-ocean transition-colors disabled:opacity-50"
+                            class="mt-8 block w-full rounded-lg bg-beach-teal px-4 py-3 text-center text-sm font-semibold text-white hover:bg-beach-teal-dark transition-colors disabled:opacity-50"
                         >
                             {{ checkoutForm.processing ? 'Redirecting...' : 'Subscribe' }}
                         </button>
@@ -349,7 +306,7 @@
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
-                                <span>Up to <strong class="text-beach-text">10</strong> students</span>
+                                <span>Up to <strong class="text-beach-text">5</strong> students</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
@@ -362,6 +319,46 @@
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
                                 <span>Course certificates</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Classroom Plan -->
+                    <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-lg font-semibold text-beach-text">Classroom</h3>
+                        <p class="mt-1 text-sm text-beach-text-light">For microschools &amp; co-ops</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-bold text-beach-text">${{ billingCycle === 'monthly' ? pricing.classroom.monthly : pricing.classroom.yearly }}</span>
+                            <span class="text-beach-text-light">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
+                        </div>
+                        <p class="mt-1 text-xs text-beach-text-light">As low as $2.36/student/mo</p>
+                        <button
+                            @click="subscribe('classroom')"
+                            :disabled="checkoutForm.processing"
+                            class="mt-8 block w-full rounded-lg bg-beach-ocean-deep px-4 py-3 text-center text-sm font-semibold text-white hover:bg-beach-ocean transition-colors disabled:opacity-50"
+                        >
+                            {{ checkoutForm.processing ? 'Redirecting...' : 'Subscribe' }}
+                        </button>
+                        <ul class="mt-8 space-y-3 text-sm text-beach-text-light">
+                            <li class="flex items-start gap-3">
+                                <CheckIcon class="shrink-0" />
+                                <span>Everything in Family, plus:</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <CheckIcon class="shrink-0" />
+                                <span>Up to <strong class="text-beach-text">25</strong> students</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <CheckIcon class="shrink-0" />
+                                <span>Multiple student management</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <CheckIcon class="shrink-0" />
+                                <span>Individual student records</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <CheckIcon class="shrink-0" />
+                                <span>Attendance &amp; activity tracking</span>
                             </li>
                         </ul>
                     </div>

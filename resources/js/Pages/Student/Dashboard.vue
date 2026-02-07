@@ -93,6 +93,31 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Attendance Status -->
+            <div v-if="todayAttendance" class="bg-white border border-slate-100 p-4 shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-beach-teal">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                        </svg>
+                        <span class="text-sm font-medium dark:text-neutral-400">Today's Attendance:</span>
+                        <span class="text-sm font-semibold text-beach-teal">{{ todayAttendance.label }}</span>
+                    </div>
+                    <button
+                        v-if="todayAttendance.type === 'present'"
+                        @click="fieldTripForm.patch(route('student.attendance.update'))"
+                        :disabled="fieldTripForm.processing"
+                        class="inline-flex items-center gap-1.5 rounded-lg bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50 transition-colors"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                        </svg>
+                        Mark as Field Trip
+                    </button>
+                </div>
+            </div>
         </div>
         <div>
             <ApexChart v-if="isClient" width="100%" height="300px" type="line" :options="chartOptions" :series="series"></ApexChart>
@@ -180,7 +205,10 @@ const props = defineProps({
     activeTime: String,
     timeframe: String,
     enrolledCourses: Array,
+    todayAttendance: Object,
 });
+
+const fieldTripForm = useForm({});
 
 const form = useForm({
     timeframe: props.timeframe

@@ -14,7 +14,7 @@ class SubscriptionCheckoutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'plan' => 'required|string|in:explorer,family',
+            'plan' => 'required|string|in:family,classroom',
             'billing_cycle' => 'required|string|in:monthly,yearly',
         ];
     }

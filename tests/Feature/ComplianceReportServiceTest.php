@@ -9,7 +9,7 @@ use App\Models\UserCourse;
 use App\Services\ComplianceReportService;
 
 beforeEach(function () {
-    $this->service = new ComplianceReportService;
+    $this->service = app(ComplianceReportService::class);
     $this->parent = User::factory()->parent()->create();
     $this->student = User::factory()->create([
         'parent_id' => $this->parent->id,
@@ -34,6 +34,8 @@ it('generates a compliance report with all sections', function () {
         'course_progress',
         'assessment_results',
         'interaction_log',
+        'attendance_summary',
+        'attendance_log',
     ]);
 });
 

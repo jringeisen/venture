@@ -17,24 +17,11 @@ return [
             'stripe_monthly_price' => null,
             'stripe_yearly_price' => null,
             'limits' => [
-                'ai_questions_per_day' => 5,
+                'ai_questions_per_hour' => 10,
                 'active_courses_per_student' => 1,
-                'max_students' => 3,
+                'max_students' => 1,
                 'compliance_reports_per_month' => 0,
                 'pdf_download' => false,
-                'certificates' => false,
-            ],
-        ],
-
-        'explorer' => [
-            'stripe_monthly_price' => env('STRIPE_EXPLORER_MONTHLY_PRICE'),
-            'stripe_yearly_price' => env('STRIPE_EXPLORER_YEARLY_PRICE'),
-            'limits' => [
-                'ai_questions_per_day' => 30,
-                'active_courses_per_student' => 5,
-                'max_students' => 5,
-                'compliance_reports_per_month' => 2,
-                'pdf_download' => true,
                 'certificates' => false,
             ],
         ],
@@ -43,9 +30,22 @@ return [
             'stripe_monthly_price' => env('STRIPE_FAMILY_MONTHLY_PRICE'),
             'stripe_yearly_price' => env('STRIPE_FAMILY_YEARLY_PRICE'),
             'limits' => [
-                'ai_questions_per_day' => -1,
+                'ai_questions_per_hour' => -1,
                 'active_courses_per_student' => -1,
-                'max_students' => 10,
+                'max_students' => 5,
+                'compliance_reports_per_month' => -1,
+                'pdf_download' => true,
+                'certificates' => true,
+            ],
+        ],
+
+        'classroom' => [
+            'stripe_monthly_price' => env('STRIPE_CLASSROOM_MONTHLY_PRICE'),
+            'stripe_yearly_price' => env('STRIPE_CLASSROOM_YEARLY_PRICE'),
+            'limits' => [
+                'ai_questions_per_hour' => -1,
+                'active_courses_per_student' => -1,
+                'max_students' => 25,
                 'compliance_reports_per_month' => -1,
                 'pdf_download' => true,
                 'certificates' => true,
@@ -60,13 +60,13 @@ return [
     */
 
     'pricing' => [
-        'explorer' => [
-            'monthly' => 9.99,
-            'yearly' => 99.00,
-        ],
         'family' => [
             'monthly' => 19.99,
             'yearly' => 199.00,
+        ],
+        'classroom' => [
+            'monthly' => 59.00,
+            'yearly' => 588.00,
         ],
     ],
 

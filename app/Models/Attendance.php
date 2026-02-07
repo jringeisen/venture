@@ -2,23 +2,26 @@
 
 namespace App\Models;
 
+use App\Enums\AttendanceType;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class DailyQuestionCount extends Model
+class Attendance extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
-        'parent_id',
         'date',
-        'hour',
-        'count',
+        'type',
+        'notes',
+        'created_by',
     ];
 
     protected $casts = [
         'date' => 'date',
-        'hour' => 'integer',
-        'count' => 'integer',
+        'type' => AttendanceType::class,
     ];
 
     public function user(): BelongsTo
@@ -26,8 +29,8 @@ class DailyQuestionCount extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function parent(): BelongsTo
+    public function creator(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'parent_id');
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

@@ -5,8 +5,8 @@ use App\Models\User;
 
 beforeEach(function () {
     config([
-        'subscription.plans.explorer.stripe_monthly_price' => 'price_explorer_monthly_test',
-        'subscription.plans.explorer.stripe_yearly_price' => 'price_explorer_yearly_test',
+        'subscription.plans.classroom.stripe_monthly_price' => 'price_classroom_monthly_test',
+        'subscription.plans.classroom.stripe_yearly_price' => 'price_classroom_yearly_test',
         'subscription.plans.family.stripe_monthly_price' => 'price_family_monthly_test',
         'subscription.plans.family.stripe_yearly_price' => 'price_family_yearly_test',
     ]);
@@ -136,7 +136,7 @@ it('prevents a parent from viewing another parents report', function () {
 });
 
 it('allows a parent to download a compliance report as pdf', function () {
-    $parent = User::factory()->parent()->subscribed('explorer')->create();
+    $parent = User::factory()->parent()->subscribed('family')->create();
     $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
 
     $report = ComplianceReport::factory()->forParentAndStudent($parent, $student)->create();

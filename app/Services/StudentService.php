@@ -13,8 +13,7 @@ class StudentService
     public function __construct(
         private readonly ActiveTimeService $activeTimeService,
         private readonly LineChartService $lineChartService,
-    ) {
-    }
+    ) {}
 
     public function student(User $student): self
     {
@@ -37,7 +36,7 @@ class StudentService
         return $this->student
             ->promptQuestions()
             ->whereHas('promptAnswer')
-            ->filterByDate(now()->toDateString())
+            ->filterByDate(now($this->student->timezone)->toDateString())
             ->count();
     }
 

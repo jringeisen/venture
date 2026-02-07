@@ -97,6 +97,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(LearningSession::class);
     }
 
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
     public function complianceReports(): HasMany
     {
         return $this->hasMany(ComplianceReport::class, 'parent_id');

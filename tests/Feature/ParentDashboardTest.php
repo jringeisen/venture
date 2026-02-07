@@ -7,8 +7,8 @@ use App\Models\User;
 
 beforeEach(function () {
     config([
-        'subscription.plans.explorer.stripe_monthly_price' => 'price_explorer_monthly_test',
-        'subscription.plans.explorer.stripe_yearly_price' => 'price_explorer_yearly_test',
+        'subscription.plans.classroom.stripe_monthly_price' => 'price_classroom_monthly_test',
+        'subscription.plans.classroom.stripe_yearly_price' => 'price_classroom_yearly_test',
         'subscription.plans.family.stripe_monthly_price' => 'price_family_monthly_test',
         'subscription.plans.family.stripe_yearly_price' => 'price_family_yearly_test',
     ]);

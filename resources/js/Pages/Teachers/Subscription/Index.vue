@@ -32,15 +32,15 @@
                 <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
                     <!-- AI Questions -->
                     <div class="rounded-lg border border-gray-200 p-5 dark:border-neutral-600">
-                        <dt class="text-xs text-beach-text-light dark:text-neutral-500">AI Questions Today</dt>
+                        <dt class="text-xs text-beach-text-light dark:text-neutral-500">AI Questions This Hour</dt>
                         <dd class="mt-1 text-lg font-semibold text-beach-text dark:text-neutral-300">
-                            {{ subscription.usage.ai_questions_today }}
+                            {{ subscription.usage.ai_questions_this_hour }}
                             <span class="text-sm font-normal text-beach-text-light">
-                                / {{ isUnlimited(subscription.limits.ai_questions_per_day) ? 'Unlimited' : subscription.limits.ai_questions_per_day }}
+                                / {{ isUnlimited(subscription.limits.ai_questions_per_hour) ? 'Unlimited' : subscription.limits.ai_questions_per_hour }}
                             </span>
                         </dd>
-                        <div v-if="!isUnlimited(subscription.limits.ai_questions_per_day)" class="mt-2 w-full bg-gray-200 rounded-full h-2 dark:bg-neutral-600">
-                            <div class="bg-beach-teal h-2 rounded-full transition-all" :style="{ width: Math.min(100, (subscription.usage.ai_questions_today / subscription.limits.ai_questions_per_day) * 100) + '%' }"></div>
+                        <div v-if="!isUnlimited(subscription.limits.ai_questions_per_hour)" class="mt-2 w-full bg-gray-200 rounded-full h-2 dark:bg-neutral-600">
+                            <div class="bg-beach-teal h-2 rounded-full transition-all" :style="{ width: Math.min(100, (subscription.usage.ai_questions_this_hour / subscription.limits.ai_questions_per_hour) * 100) + '%' }"></div>
                         </div>
                     </div>
 
@@ -75,22 +75,22 @@
             </div>
 
             <!-- Upgrade Cards -->
-            <div v-if="subscription.plan !== 'family'" class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div v-if="subscription.plan !== 'classroom'" class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
                 <h2 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">Upgrade Your Plan</h2>
                 <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">
                     Unlock more features for your family's learning journey.
                 </p>
                 <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <!-- Explorer Card -->
+                    <!-- Family Card -->
                     <div v-if="subscription.plan === 'free'" class="rounded-lg border-2 border-beach-teal p-6">
-                        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">Explorer</h3>
-                        <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">30 AI questions/day, 5 courses, compliance reports</p>
+                        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">Family</h3>
+                        <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">Unlimited AI questions, courses, certificates, up to 5 students</p>
                         <p class="mt-3 text-2xl font-bold text-beach-text dark:text-neutral-200">
-                            ${{ billingCycle === 'monthly' ? pricing.explorer.monthly : pricing.explorer.yearly }}
+                            ${{ billingCycle === 'monthly' ? pricing.family.monthly : pricing.family.yearly }}
                             <span class="text-sm font-normal text-beach-text-light">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
                         </p>
                         <div class="mt-4 flex items-center gap-4">
-                            <PrimaryButton @click.prevent="handleUpgrade('explorer')">
+                            <PrimaryButton @click.prevent="handleUpgrade('family')">
                                 Upgrade
                             </PrimaryButton>
                             <button @click="billingCycle = billingCycle === 'monthly' ? 'yearly' : 'monthly'" class="text-xs text-beach-teal hover:underline">
@@ -99,16 +99,16 @@
                         </div>
                     </div>
 
-                    <!-- Family Card -->
+                    <!-- Classroom Card -->
                     <div class="rounded-lg border border-gray-200 p-6 dark:border-neutral-600">
-                        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">Family</h3>
-                        <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">Unlimited everything, certificates, 10 students</p>
+                        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">Classroom</h3>
+                        <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">Up to 25 students, perfect for microschools &amp; co-ops</p>
                         <p class="mt-3 text-2xl font-bold text-beach-text dark:text-neutral-200">
-                            ${{ billingCycle === 'monthly' ? pricing.family.monthly : pricing.family.yearly }}
+                            ${{ billingCycle === 'monthly' ? pricing.classroom.monthly : pricing.classroom.yearly }}
                             <span class="text-sm font-normal text-beach-text-light">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
                         </p>
                         <div class="mt-4 flex items-center gap-4">
-                            <PrimaryButton @click.prevent="handleUpgrade('family')">
+                            <PrimaryButton @click.prevent="handleUpgrade('classroom')">
                                 {{ subscription.is_active ? 'Upgrade' : 'Subscribe' }}
                             </PrimaryButton>
                             <button @click="billingCycle = billingCycle === 'monthly' ? 'yearly' : 'monthly'" class="text-xs text-beach-teal hover:underline">

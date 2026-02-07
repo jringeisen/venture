@@ -42,18 +42,18 @@ const props = defineProps({
     },
     currentPlan: {
         type: String,
-        default: 'Starter',
+        default: 'Free',
     },
 });
 
 defineEmits(['close']);
 
 const featureMessages = {
-    ai_questions: 'You\'ve reached your daily AI question limit. Upgrade for more questions per day.',
+    ai_questions: 'You\'ve reached your hourly AI question limit. Please wait or upgrade your plan.',
     courses: 'You\'ve reached your active course limit. Upgrade to enroll in more courses.',
     compliance_reports: 'Compliance reports require a paid plan. Upgrade to generate reports.',
     pdf_download: 'PDF downloads require a paid plan. Upgrade to download compliance reports as PDFs.',
-    certificates: 'Course certificates require the Family plan. Upgrade to access certificates.',
+    certificates: 'Course certificates require the Family or Classroom plan. Upgrade to access certificates.',
     students: 'You\'ve reached your student limit. Upgrade to add more students.',
 };
 

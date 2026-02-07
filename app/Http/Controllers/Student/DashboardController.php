@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Services\StudentService;
 use App\Services\WordCountService;
 use Illuminate\Http\Request;
@@ -45,6 +46,11 @@ class DashboardController extends Controller
                 ];
             });
 
+        $today = now()->timezone($user->timezone)->toDateString();
+        $todayAttendance = Attendance::where('user_id', $user->id)
+            ->where('date', $today)
+            ->first();
+
         return Inertia::render('Student/Dashboard', [
             'totalQuestions' => $studentService->student($user)->totalQuestionsAsked($timeframe),
             'dailyQuestions' => $studentService->student($user)->totalQuestionsAskedToday(),
@@ -53,6 +59,10 @@ class DashboardController extends Controller
             'activeTime' => $studentService->student($user)->activeTime($timeframe),
             'timeframe' => $timeframe,
             'enrolledCourses' => $enrolledCourses,
+            'todayAttendance' => $todayAttendance ? [
+                'type' => $todayAttendance->type->value,
+                'label' => $todayAttendance->type->label(),
+            ] : null,
         ]);
     }
 }

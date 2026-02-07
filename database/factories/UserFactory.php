@@ -59,8 +59,8 @@ class UserFactory extends Factory
     {
         return $this->afterCreating(function (User $user) use ($plan) {
             $priceId = match ($plan) {
-                'explorer' => config('subscription.plans.explorer.stripe_monthly_price') ?? 'price_explorer_monthly_test',
                 'family' => config('subscription.plans.family.stripe_monthly_price') ?? 'price_family_monthly_test',
+                'classroom' => config('subscription.plans.classroom.stripe_monthly_price') ?? 'price_classroom_monthly_test',
                 default => 'price_free_test',
             };
 
