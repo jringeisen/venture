@@ -35,7 +35,7 @@ jobs:
 
       - name: Install front-end dependencies
         run: |
-          npm install
+          npm ci
           npm run build
 
       - name: Prepare Venture
