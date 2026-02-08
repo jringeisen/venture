@@ -105,6 +105,9 @@ it('dispatches jobs for all days via generate all content endpoint', function ()
     ]);
 
     Bus::assertDispatched(GenerateDayContent::class, 3);
+
+    $course->refresh();
+    expect($course->content_generation_status)->toBe(ContentStatus::Generating);
 });
 
 it('returns error when no days exist for generate all content', function () {
@@ -197,4 +200,107 @@ it('broadcasts correct payload', function () {
         'day_number' => 3,
         'week_number' => 2,
     ]);
+});
+
+it('rejects generate all content if already in progress', function () {
+    Bus::fake([GenerateDayContent::class]);
+
+    $admin = User::factory()->parent()->create(['email' => 'admin@learnwithventure.com']);
+    config(['app.admin_emails' => [$admin->email]]);
+
+    $course = Course::factory()->generatingContent()->create();
+    $week = CoursePrompt::factory()->create(['course_id' => $course->id, 'week_number' => 1]);
+    CourseDay::factory()->create(['course_prompt_id' => $week->id, 'day_number' => 1]);
+
+    $response = $this
+        ->actingAs($admin)
+        ->postJson("/admin/courses/{$course->id}/generate-all-content");
+
+    $response->assertStatus(409);
+    $response->assertJson([
+        'success' => false,
+        'error' => 'Content generation is already in progress.',
+    ]);
+
+    Bus::assertNotDispatched(GenerateDayContent::class);
+});
+
+it('sets content_generation_status to completed when all days finish', function () {
+    Event::fake([DayContentGenerated::class]);
+
+    LessonContentGenerationAgent::fake(fn () => [
+        'content' => '<h2>Lesson</h2><p>Content.</p>',
+        'trivia_questions' => [],
+    ]);
+
+    $course = Course::factory()->create(['content_generation_status' => ContentStatus::Generating]);
+    $week = CoursePrompt::factory()->create(['course_id' => $course->id, 'week_number' => 1]);
+    $day1 = CourseDay::factory()->create([
+        'course_prompt_id' => $week->id,
+        'day_number' => 1,
+        'content_status' => ContentStatus::Completed,
+    ]);
+    $day2 = CourseDay::factory()->create([
+        'course_prompt_id' => $week->id,
+        'day_number' => 2,
+        'content_status' => ContentStatus::Pending,
+    ]);
+
+    (new GenerateDayContent($day2))->handle();
+
+    $course->refresh();
+    expect($course->content_generation_status)->toBe(ContentStatus::Completed);
+});
+
+it('sets content_generation_status to failed when any day fails', function () {
+    Event::fake([DayContentGenerated::class]);
+
+    LessonContentGenerationAgent::fake(function () {
+        throw new \Exception('AI service unavailable');
+    });
+
+    $course = Course::factory()->create(['content_generation_status' => ContentStatus::Generating]);
+    $week = CoursePrompt::factory()->create(['course_id' => $course->id, 'week_number' => 1]);
+    $day1 = CourseDay::factory()->create([
+        'course_prompt_id' => $week->id,
+        'day_number' => 1,
+        'content_status' => ContentStatus::Completed,
+    ]);
+    $day2 = CourseDay::factory()->create([
+        'course_prompt_id' => $week->id,
+        'day_number' => 2,
+        'content_status' => ContentStatus::Pending,
+    ]);
+
+    (new GenerateDayContent($day2))->handle();
+
+    $course->refresh();
+    expect($course->content_generation_status)->toBe(ContentStatus::Failed);
+});
+
+it('does not update course status when other days still pending', function () {
+    Event::fake([DayContentGenerated::class]);
+
+    LessonContentGenerationAgent::fake(fn () => [
+        'content' => '<h2>Lesson</h2><p>Content.</p>',
+        'trivia_questions' => [],
+    ]);
+
+    $course = Course::factory()->create(['content_generation_status' => ContentStatus::Generating]);
+    $week = CoursePrompt::factory()->create(['course_id' => $course->id, 'week_number' => 1]);
+    $day1 = CourseDay::factory()->create([
+        'course_prompt_id' => $week->id,
+        'day_number' => 1,
+        'content_status' => ContentStatus::Pending,
+    ]);
+    $day2 = CourseDay::factory()->create([
+        'course_prompt_id' => $week->id,
+        'day_number' => 2,
+        'content_status' => ContentStatus::Pending,
+    ]);
+
+    (new GenerateDayContent($day1))->handle();
+
+    $course->refresh();
+    expect($course->content_generation_status)->toBe(ContentStatus::Generating);
 });

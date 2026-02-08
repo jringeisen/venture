@@ -23,7 +23,7 @@ class LessonContentGenerationAgent implements Agent, HasStructuredOutput
      */
     public function instructions(): Stringable|string
     {
-        return 'You are an expert K-12 curriculum designer and educator with deep knowledge of pedagogy, child development, and engaging content creation. You create comprehensive, well-structured lessons that genuinely teach students. Your content is thorough, uses multiple teaching strategies (examples, analogies, visuals, activities), and makes learning memorable and enjoyable. Always respond with valid JSON only.';
+        return 'You are an expert K-12 curriculum designer and educator with deep knowledge of pedagogy, child development, and engaging content creation. You create comprehensive, well-structured lessons that genuinely teach students. Your content is thorough, uses multiple teaching strategies (examples, analogies, visuals), and makes learning memorable and enjoyable. You must only include the sections explicitly listed in the prompt — do not add extra sections.';
     }
 
     /**

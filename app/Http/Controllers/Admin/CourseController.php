@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\AgeGroup;
 use App\Enums\ContentStatus;
-use App\Events\CourseWeeksGenerated;
 use App\Http\Controllers\Controller;
 use App\Jobs\GenerateCourseWeek;
 use App\Jobs\GenerateDayContent;
@@ -12,7 +11,6 @@ use App\Models\Course;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Bus;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -72,6 +70,8 @@ class CourseController extends Controller
         $courseData = $course->load('coursePrompts.days')->toArray();
         $courseData['age_group'] = $course->age_group?->value;
         $courseData['age_group_label'] = $course->age_group_label;
+        $courseData['generation_status'] = $course->generation_status?->value;
+        $courseData['content_generation_status'] = $course->content_generation_status?->value;
 
         return Inertia::render('Admin/Courses/Edit', [
             'course' => $courseData,
@@ -128,8 +128,17 @@ class CourseController extends Controller
      */
     public function generateWeeks(Request $request, Course $course): JsonResponse
     {
-        $daysPerWeek = $request->input('days_per_week', 5);
+        if ($course->generation_status === ContentStatus::Generating) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Week generation is already in progress.',
+            ], 409);
+        }
+
+        $daysPerWeek = $request->input('days_per_week', 3);
         $totalWeeks = $course->length_in_weeks ?? 4;
+
+        $course->update(['generation_status' => ContentStatus::Generating]);
 
         // Delete existing course prompts and their days before queuing
         $course->coursePrompts()->each(function ($prompt) {
@@ -137,27 +146,7 @@ class CourseController extends Controller
         });
         $course->coursePrompts()->delete();
 
-        $jobs = [];
-        for ($week = 1; $week <= $totalWeeks; $week++) {
-            $jobs[] = new GenerateCourseWeek($course, $week, $daysPerWeek, $totalWeeks);
-        }
-
-        Bus::batch($jobs)
-            ->then(function () use ($course, $totalWeeks) {
-                broadcast(new CourseWeeksGenerated(
-                    courseId: $course->id,
-                    status: 'completed',
-                    message: "Successfully generated {$totalWeeks} weeks",
-                ));
-            })
-            ->catch(function () use ($course) {
-                broadcast(new CourseWeeksGenerated(
-                    courseId: $course->id,
-                    status: 'failed',
-                    message: 'Failed to generate one or more weeks',
-                ));
-            })
-            ->dispatch();
+        GenerateCourseWeek::dispatch($course, 1, $daysPerWeek, $totalWeeks);
 
         return response()->json([
             'success' => true,
@@ -170,6 +159,13 @@ class CourseController extends Controller
      */
     public function generateAllContent(Course $course): JsonResponse
     {
+        if ($course->content_generation_status === ContentStatus::Generating) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Content generation is already in progress.',
+            ], 409);
+        }
+
         $days = $course->coursePrompts()
             ->with('days')
             ->get()
@@ -182,6 +178,8 @@ class CourseController extends Controller
                 'error' => 'No days found. Generate weeks first.',
             ], 422);
         }
+
+        $course->update(['content_generation_status' => ContentStatus::Generating]);
 
         foreach ($days as $day) {
             $day->update(['content_status' => ContentStatus::Pending]);

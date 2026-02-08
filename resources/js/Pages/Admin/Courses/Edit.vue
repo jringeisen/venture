@@ -157,8 +157,8 @@
                         <p class="text-xs text-gray-500 mt-1">Queues AI content generation for all days across all weeks.</p>
                     </div>
 
-                    <div v-if="course.course_prompts?.length" class="space-y-3">
-                        <div v-for="prompt in course.course_prompts" :key="prompt.id" class="border border-gray-200 rounded-lg overflow-hidden">
+                    <div v-if="weeks.length" class="space-y-3">
+                        <div v-for="prompt in weeks" :key="prompt.id" class="border border-gray-200 rounded-lg overflow-hidden">
                             <div class="flex items-center justify-between p-4 bg-gray-50">
                                 <div>
                                     <p class="font-medium text-beach-text">Week {{ prompt.week_number }}: {{ prompt.title }}</p>
@@ -234,12 +234,13 @@ const courseForm = useForm({
     age_group: props.course.age_group || '',
 });
 
-const isGenerating = ref(false);
-const generationStatus = ref('');
-const isGeneratingContent = ref(false);
+const weeks = ref(props.course.course_prompts || []);
+const isGenerating = ref(props.course.generation_status === 'generating');
+const generationStatus = ref(props.course.generation_status === 'generating' ? 'Generating weeks & days... This runs in the background.' : '');
+const isGeneratingContent = ref(props.course.content_generation_status === 'generating');
 const dayStatuses = ref({});
 
-const hasWeeks = computed(() => props.course.course_prompts?.length > 0);
+const hasWeeks = computed(() => weeks.value.length > 0);
 const isBusy = computed(() => isGenerating.value || isGeneratingContent.value);
 
 const contentProgress = computed(() => {
@@ -283,21 +284,15 @@ const dayStatusClass = (day) => {
     }
 };
 
-// Initialize day statuses from props
+// Initialize day statuses from weeks
 const initDayStatuses = () => {
     const statuses = {};
-    props.course.course_prompts?.forEach(week => {
+    weeks.value.forEach(week => {
         week.days?.forEach(day => {
             statuses[day.id] = day.content_status || 'pending';
         });
     });
     dayStatuses.value = statuses;
-
-    // Check if generation is in progress
-    const values = Object.values(statuses);
-    if (values.some(s => s === 'generating' || s === 'pending') && values.some(s => s === 'completed' || s === 'generating')) {
-        isGeneratingContent.value = true;
-    }
 };
 
 const submitCourse = () => {
@@ -329,7 +324,7 @@ const generateWeeks = async () => {
         return;
     }
 
-    if (props.course.course_prompts?.length > 0) {
+    if (weeks.value.length > 0) {
         if (!confirm('This will replace all existing weeks. Are you sure you want to continue?')) {
             return;
         }
@@ -337,6 +332,7 @@ const generateWeeks = async () => {
 
     isGenerating.value = true;
     generationStatus.value = 'Generating weeks & days... This runs in the background.';
+    weeks.value = [];
 
     try {
         const response = await fetch(route('admin.courses.generate-weeks', props.course.id), {
@@ -360,8 +356,7 @@ const generateWeeks = async () => {
             return;
         }
 
-        generationStatus.value = 'Week generation queued. Waiting for completion...';
-        // The Echo listener will handle the reload when the job finishes
+        generationStatus.value = 'Week generation queued. Waiting for first week...';
     } catch (error) {
         generationStatus.value = `Error: ${error.message}`;
         setTimeout(() => {
@@ -380,7 +375,7 @@ const generateAllContent = async () => {
 
     // Mark all days as pending in the UI
     const statuses = {};
-    props.course.course_prompts?.forEach(week => {
+    weeks.value.forEach(week => {
         week.days?.forEach(day => {
             statuses[day.id] = 'pending';
         });
@@ -399,6 +394,11 @@ const generateAllContent = async () => {
         });
 
         const data = await response.json();
+
+        if (response.status === 409) {
+            isGeneratingContent.value = true;
+            return;
+        }
 
         if (!response.ok || !data.success) {
             isGeneratingContent.value = false;
@@ -420,14 +420,20 @@ const setupEchoListener = () => {
 
     echoChannel = window.Echo.private(`courses.${props.course.id}`);
 
+    echoChannel.listen('CourseWeekCreated', (event) => {
+        weeks.value.push(event.week);
+        const totalWeeks = props.course.length_in_weeks || weeks.value.length;
+        generationStatus.value = `Generated week ${event.week.week_number} of ${totalWeeks}...`;
+    });
+
     echoChannel.listen('CourseWeeksGenerated', (event) => {
         isGenerating.value = false;
 
         if (event.status === 'completed') {
             generationStatus.value = event.message;
             setTimeout(() => {
-                router.reload();
-            }, 500);
+                generationStatus.value = '';
+            }, 5000);
         } else {
             generationStatus.value = `Error: ${event.message}`;
             setTimeout(() => {
@@ -450,6 +456,7 @@ const setupEchoListener = () => {
 
 const teardownEchoListener = () => {
     if (echoChannel) {
+        echoChannel.stopListening('CourseWeekCreated');
         echoChannel.stopListening('CourseWeeksGenerated');
         echoChannel.stopListening('DayContentGenerated');
         window.Echo?.leave(`courses.${props.course.id}`);

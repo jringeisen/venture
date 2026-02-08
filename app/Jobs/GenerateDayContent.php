@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Ai\Agents\LessonContentGenerationAgent;
 use App\Enums\ContentStatus;
 use App\Events\DayContentGenerated;
+use App\Models\Course;
 use App\Models\CourseDay;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -48,6 +49,7 @@ class GenerateDayContent implements ShouldQueue
             ]);
 
             $this->broadcastStatus('completed');
+            $this->updateCourseContentStatus($course);
         } catch (\Exception $e) {
             Log::error('Failed to generate day content', [
                 'day_id' => $this->day->id,
@@ -57,6 +59,7 @@ class GenerateDayContent implements ShouldQueue
             $this->day->update(['content_status' => ContentStatus::Failed]);
 
             $this->broadcastStatus('failed');
+            $this->updateCourseContentStatus($course);
         }
     }
 
@@ -75,7 +78,7 @@ class GenerateDayContent implements ShouldQueue
             ->map(fn ($obj, $i) => ($i + 1).'. '.$obj)
             ->implode("\n");
 
-        $targetWordCount = $durationMinutes * 200;
+        $targetWordCount = $durationMinutes * 75;
         $minWords = max(500, (int) ($targetWordCount * 0.85));
         $maxWords = (int) ($targetWordCount * 1.3);
 
@@ -141,6 +144,8 @@ Structure the main content with:
 - **Historical Context or Background**: Where did this knowledge come from? Who discovered it?
 - **Step-by-Step Breakdowns**: For any processes or procedures, provide clear numbered steps
 
+**IMPORTANT: Do NOT include any hands-on activities, classroom experiments, physical projects, or thought experiments. This is a reading-only lesson — focus entirely on explaining concepts.**
+
 ### 4. Fun Facts & Did You Know?
 - Include 2-3 interesting, memorable facts related to the topic
 - These should be genuinely surprising or fascinating
@@ -150,16 +155,11 @@ Structure the main content with:
 - Current events or modern applications
 - How might students encounter this outside of school?
 
-### 6. Hands-On Activity or Thought Experiment
-- Suggest a simple activity students can do to reinforce learning
-- Or provide a thought experiment / mental exercise
-- Should be doable without special materials
-
-### 7. Check Your Understanding
+### 6. Check Your Understanding
 - 2-3 reflection questions (not trivia) that encourage deeper thinking
 - These should be open-ended, not multiple choice
 
-### 8. Summary & Key Takeaways
+### 7. Summary & Key Takeaways
 - Bullet-point summary of the most important concepts
 - Reinforce the learning objectives
 - Preview how this connects to future lessons (if applicable)
@@ -185,6 +185,30 @@ Each question must:
 
 Note: correct_answer is 0 for A, 1 for B, 2 for C, or 3 for D.
 PROMPT;
+    }
+
+    /**
+     * Check if all sibling days are terminal and update the course content_generation_status.
+     */
+    protected function updateCourseContentStatus(Course $course): void
+    {
+        $allDays = CourseDay::query()
+            ->whereHas('week', fn ($q) => $q->where('course_id', $course->id))
+            ->get();
+
+        $allTerminal = $allDays->every(
+            fn ($day) => in_array($day->content_status, [ContentStatus::Completed, ContentStatus::Failed])
+        );
+
+        if (! $allTerminal) {
+            return;
+        }
+
+        $anyFailed = $allDays->contains(fn ($day) => $day->content_status === ContentStatus::Failed);
+
+        $course->update([
+            'content_generation_status' => $anyFailed ? ContentStatus::Failed : ContentStatus::Completed,
+        ]);
     }
 
     /**

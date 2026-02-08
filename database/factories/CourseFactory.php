@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\ContentStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -66,6 +67,20 @@ class CourseFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'min_age' => 14,
             'max_age' => 18,
+        ]);
+    }
+
+    public function generating(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'generation_status' => ContentStatus::Generating,
+        ]);
+    }
+
+    public function generatingContent(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'content_generation_status' => ContentStatus::Generating,
         ]);
     }
 }

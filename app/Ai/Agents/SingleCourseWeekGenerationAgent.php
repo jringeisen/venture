@@ -23,7 +23,7 @@ class SingleCourseWeekGenerationAgent implements Agent, HasStructuredOutput
      */
     public function instructions(): Stringable|string
     {
-        return 'You are an expert K-12 curriculum designer. Always respond with valid JSON only.';
+        return 'You are an expert K-12 curriculum designer.';
     }
 
     /**

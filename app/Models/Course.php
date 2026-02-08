@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\AgeGroup;
+use App\Enums\ContentStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,12 +21,16 @@ class Course extends Model
         'length_in_weeks',
         'min_age',
         'max_age',
+        'generation_status',
+        'content_generation_status',
     ];
 
     protected $casts = [
         'length_in_weeks' => 'integer',
         'min_age' => 'integer',
         'max_age' => 'integer',
+        'generation_status' => ContentStatus::class,
+        'content_generation_status' => ContentStatus::class,
     ];
 
     /**
