@@ -42,18 +42,24 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
-    protected $casts = [
-        'name' => 'string',
-        'username' => 'string',
-        'grade' => 'integer',
-        'age' => 'integer',
-        'motivational_message' => 'datetime',
-        'current_streak' => 'integer',
-        'email_verified_at' => 'datetime',
-        'total_questions_asked' => 'integer',
-        'referred_by' => 'string',
-        'grandfathered' => 'boolean',
-    ];
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'name' => 'string',
+            'username' => 'string',
+            'grade' => 'integer',
+            'age' => 'integer',
+            'motivational_message' => 'datetime',
+            'current_streak' => 'integer',
+            'email_verified_at' => 'datetime',
+            'total_questions_asked' => 'integer',
+            'referred_by' => 'string',
+            'grandfathered' => 'boolean',
+        ];
+    }
 
     public function parent(): BelongsTo
     {

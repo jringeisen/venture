@@ -162,23 +162,25 @@ Route::middleware('auth')->group(function () {
                 Route::post('/{course}/enroll', [\App\Http\Controllers\Student\CourseController::class, 'enroll'])->name('enroll');
 
                 // Course learning routes
-                Route::get('/{course}/learn/{week?}/{day?}', [\App\Http\Controllers\Student\CourseProgressController::class, 'learn'])->name('learn');
-                Route::post('/{course}/week/{week}/complete', [\App\Http\Controllers\Student\CourseProgressController::class, 'completeWeek'])->name('complete-week');
-                Route::post('/{course}/week/{week}/day/{day}/complete', [\App\Http\Controllers\Student\CourseProgressController::class, 'completeDay'])->name('complete-day');
-                Route::get('/{course}/week/{week}/content', [\App\Http\Controllers\Student\CourseProgressController::class, 'getContent'])->name('content');
-                Route::post('/{course}/progress', [\App\Http\Controllers\Student\CourseProgressController::class, 'updateProgress'])->name('update-progress');
+                Route::get('/{course}/learn/{week?}/{day?}', [\App\Http\Controllers\Student\CourseLearningController::class, 'learn'])->name('learn');
+                Route::get('/{course}/week/{week}/content', [\App\Http\Controllers\Student\CourseLearningController::class, 'getContent'])->name('content');
+                Route::post('/{course}/progress', [\App\Http\Controllers\Student\CourseLearningController::class, 'updateProgress'])->name('update-progress');
 
                 // Time tracking routes
-                Route::post('/{course}/week/{week}/day/{day}/start-session', [\App\Http\Controllers\Student\CourseProgressController::class, 'startSession'])->name('start-session');
-                Route::post('/{course}/week/{week}/day/{day}/track-time', [\App\Http\Controllers\Student\CourseProgressController::class, 'trackTime'])->name('track-time');
-                Route::post('/{course}/end-session', [\App\Http\Controllers\Student\CourseProgressController::class, 'endSession'])->name('end-session');
+                Route::post('/{course}/week/{week}/day/{day}/start-session', [\App\Http\Controllers\Student\CourseLearningController::class, 'startSession'])->name('start-session');
+                Route::post('/{course}/week/{week}/day/{day}/track-time', [\App\Http\Controllers\Student\CourseLearningController::class, 'trackTime'])->name('track-time');
+                Route::post('/{course}/end-session', [\App\Http\Controllers\Student\CourseLearningController::class, 'endSession'])->name('end-session');
+
+                // Course progress routes
+                Route::post('/{course}/week/{week}/complete', [\App\Http\Controllers\Student\CourseProgressController::class, 'completeWeek'])->name('complete-week');
+                Route::post('/{course}/week/{week}/day/{day}/complete', [\App\Http\Controllers\Student\CourseProgressController::class, 'completeDay'])->name('complete-day');
 
                 // Course trivia routes
                 Route::get('/{course}/week/{week}/trivia', [\App\Http\Controllers\Student\CourseProgressController::class, 'getTrivia'])->name('trivia');
                 Route::post('/{course}/week/{week}/trivia', [\App\Http\Controllers\Student\CourseProgressController::class, 'submitTrivia'])->name('submit-trivia');
 
                 // Certificate route
-                Route::get('/{course}/certificate', [\App\Http\Controllers\Student\CourseProgressController::class, 'certificate'])->name('certificate');
+                Route::get('/{course}/certificate', [\App\Http\Controllers\Student\CourseCertificateController::class, 'certificate'])->name('certificate');
             });
 
             Route::patch('/attendance/today', [StudentAttendanceController::class, 'update'])->name('attendance.update');

@@ -48,8 +48,7 @@ class SubscriptionService
             return true;
         }
 
-        $student = $user->isStudent() ? $user : $user;
-        $hourlyCount = $this->getHourlyQuestionCount($student);
+        $hourlyCount = $this->getHourlyQuestionCount($user);
 
         return $hourlyCount < $plan->limit('ai_questions_per_hour');
     }
@@ -59,12 +58,11 @@ class SubscriptionService
      */
     public function recordQuestion(User $user): void
     {
-        $student = $user->isStudent() ? $user : $user;
         $billingUser = $this->getBillingUser($user);
 
         DailyQuestionCount::updateOrCreate(
             [
-                'user_id' => $student->id,
+                'user_id' => $user->id,
                 'date' => now($billingUser->timezone)->toDateString(),
                 'hour' => now($billingUser->timezone)->hour,
             ],
@@ -156,8 +154,6 @@ class SubscriptionService
         $isActive = $subscription && $subscription->active();
         $onGracePeriod = $subscription && $subscription->onGracePeriod();
 
-        $student = $user->isStudent() ? $user : $user;
-
         return [
             'plan' => $plan->value,
             'plan_label' => $plan->label(),
@@ -166,7 +162,7 @@ class SubscriptionService
             'on_grace_period' => $onGracePeriod,
             'limits' => config("subscription.plans.{$plan->value}.limits"),
             'usage' => [
-                'ai_questions_this_hour' => $this->getHourlyQuestionCount($student),
+                'ai_questions_this_hour' => $this->getHourlyQuestionCount($user),
                 'students' => $billingUser->students()->count(),
                 'compliance_reports_this_month' => ComplianceReport::where('parent_id', $billingUser->id)
                     ->where('created_at', '>=', now()->startOfMonth())

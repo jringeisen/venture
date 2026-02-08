@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\FeedbackStatuses;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateFeedbackStatusRequest;
 use App\Models\Feedback;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,13 +36,9 @@ class FeedbackController extends Controller
         ]);
     }
 
-    public function update(Request $request, Feedback $feedback): RedirectResponse
+    public function update(UpdateFeedbackStatusRequest $request, Feedback $feedback): RedirectResponse
     {
-        $validated = $request->validate([
-            'status' => 'required|string|in:'.implode(',', array_column(FeedbackStatuses::cases(), 'value')),
-        ]);
-
-        $feedback->update($validated);
+        $feedback->update($request->validated());
 
         return redirect()
             ->back()

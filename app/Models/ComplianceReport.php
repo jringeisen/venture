@@ -25,15 +25,21 @@ class ComplianceReport extends Model
         'generated_at',
     ];
 
-    protected $casts = [
-        'period_start' => 'date',
-        'period_end' => 'date',
-        'summary_statistics' => 'array',
-        'report_metadata' => 'array',
-        'state' => ComplianceState::class,
-        'status' => ComplianceReportStatus::class,
-        'generated_at' => 'datetime',
-    ];
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'period_start' => 'date',
+            'period_end' => 'date',
+            'summary_statistics' => 'array',
+            'report_metadata' => 'array',
+            'state' => ComplianceState::class,
+            'status' => ComplianceReportStatus::class,
+            'generated_at' => 'datetime',
+        ];
+    }
 
     /**
      * Get the parent who generated this report

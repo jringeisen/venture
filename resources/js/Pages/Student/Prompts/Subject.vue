@@ -71,7 +71,6 @@ const fetchSubject = () => {
             loading.value = false;
         })
         .catch(err => {
-            console.error('Failed to fetch subject:', err);
             error.value = true;
             loading.value = false;
         });

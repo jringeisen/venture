@@ -235,7 +235,6 @@ const generateContent = async () => {
             }));
         }
     } catch (error) {
-        console.error('Error generating content:', error);
         alert('Failed to generate content. Please try again.');
     } finally {
         isGenerating.value = false;

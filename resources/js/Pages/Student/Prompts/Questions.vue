@@ -82,7 +82,6 @@ const fetchQuestions = () => {
             loading.value = false;
         })
         .catch(err => {
-            console.error('Failed to fetch questions:', err);
             error.value = true;
             loading.value = false;
         });

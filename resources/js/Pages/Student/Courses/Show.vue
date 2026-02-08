@@ -397,6 +397,7 @@ import { Head, router } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import DOMPurify from 'dompurify';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { useCourseFormatting } from '@/Composables/useCourseFormatting';
 
 defineOptions({
     layout: AuthenticatedLayout
@@ -408,6 +409,8 @@ const props = defineProps({
     statistics: Object,
     isEnrolled: Boolean,
 });
+
+const { formatSubject, formatDifficulty, difficultyColorClasses } = useCourseFormatting();
 
 const enrolling = ref(false);
 const showPreview = ref(false);
@@ -445,25 +448,6 @@ const previewContent = computed(() => {
     return `<p>${truncated}...</p>`;
 });
 
-const formatSubject = (subject) => {
-    if (!subject) return 'General';
-    return subject.charAt(0).toUpperCase() + subject.slice(1).toLowerCase();
-};
-
-const formatDifficulty = (difficulty) => {
-    if (!difficulty) return 'Beginner';
-    return difficulty.charAt(0).toUpperCase() + difficulty.slice(1).toLowerCase();
-};
-
-const difficultyColorClasses = (difficulty) => {
-    const colors = {
-        beginner: 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200',
-        intermediate: 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200',
-        advanced: 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
-    };
-    return colors[difficulty?.toLowerCase()] || colors.beginner;
-};
-
 const formatTime = (minutes) => {
     if (!minutes) return '0 min';
     if (minutes < 60) return `${minutes} min`;
@@ -477,7 +461,6 @@ const enrollInCourse = async () => {
     try {
         router.post(`/student/courses/${props.course.id}/enroll`);
     } catch (error) {
-        console.error('Enrollment failed:', error);
     } finally {
         enrolling.value = false;
     }

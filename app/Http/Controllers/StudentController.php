@@ -20,14 +20,11 @@ use Inertia\Response;
 
 class StudentController extends Controller
 {
-    private StudentService $studentService;
-
     public function __construct(
         private readonly WordCountService $wordCountService,
         private readonly SubscriptionService $subscriptionService,
-    ) {
-        $this->studentService = app(StudentService::class);
-    }
+        private readonly StudentService $studentService,
+    ) {}
 
     public function index(Request $request): Response
     {

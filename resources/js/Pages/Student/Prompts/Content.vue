@@ -122,7 +122,6 @@ const startStream = () => {
   };
 
   eventSource.onerror = (error) => {
-    console.error('EventSource failed:', error);
     connectionStatus.value = 'error';
     isStreaming.value = false;
     eventSource.close();
