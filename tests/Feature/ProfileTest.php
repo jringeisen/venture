@@ -83,3 +83,53 @@ test('correct password must be provided to delete account', function () {
 
     $this->assertNotNull($user->fresh());
 });
+
+// --- School year dates ---
+
+test('can update school year dates', function () {
+    $user = User::factory()->parent()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->patch('/profile', [
+            'school_year_start' => '2025-08-01',
+            'school_year_end' => '2026-05-31',
+        ]);
+
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect('/profile');
+
+    $user->refresh();
+
+    expect($user->school_year_start->toDateString())->toBe('2025-08-01');
+    expect($user->school_year_end->toDateString())->toBe('2026-05-31');
+});
+
+test('validates school year end must be after start', function () {
+    $user = User::factory()->parent()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->from('/profile')
+        ->patch('/profile', [
+            'school_year_start' => '2026-05-31',
+            'school_year_end' => '2025-08-01',
+        ]);
+
+    $response->assertSessionHasErrors('school_year_end');
+});
+
+test('requires both dates or neither', function () {
+    $user = User::factory()->parent()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->from('/profile')
+        ->patch('/profile', [
+            'school_year_start' => '2025-08-01',
+            'school_year_end' => null,
+        ]);
+
+    $response->assertSessionHasErrors('school_year_end');
+});

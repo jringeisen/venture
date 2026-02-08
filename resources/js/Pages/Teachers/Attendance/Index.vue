@@ -79,27 +79,60 @@
             </div>
         </div>
 
+        <!-- Year-to-Date Summary -->
+        <div v-if="yearSummary">
+            <div class="flex items-center gap-2 mb-3">
+                <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-300">Year-to-Date</h3>
+                <span class="text-xs text-beach-text-light dark:text-neutral-500">{{ schoolYearLabel }}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Present</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-green-600 dark:text-green-400">{{ yearSummary.present }}</dd>
+                </div>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Field Trips</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-blue-600 dark:text-blue-400">{{ yearSummary.field_trip }}</dd>
+                </div>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Offline Days</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-purple-600 dark:text-purple-400">{{ yearSummary.offline_day }}</dd>
+                </div>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Excused</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-orange-600 dark:text-orange-400">{{ yearSummary.excused_absence }}</dd>
+                </div>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 col-span-2 sm:col-span-1">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Total Attendance</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ yearSummary.total_attendance_days }}</dd>
+                </div>
+            </div>
+        </div>
+
         <!-- Monthly Summary -->
-        <div v-if="summary" class="grid grid-cols-2 gap-3 sm:grid-cols-5">
-            <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                <dt class="text-xs text-beach-text-light dark:text-neutral-500">Present</dt>
-                <dd class="mt-1 text-2xl font-semibold text-green-600 dark:text-green-400">{{ summary.present }}</dd>
-            </div>
-            <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                <dt class="text-xs text-beach-text-light dark:text-neutral-500">Field Trips</dt>
-                <dd class="mt-1 text-2xl font-semibold text-blue-600 dark:text-blue-400">{{ summary.field_trip }}</dd>
-            </div>
-            <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                <dt class="text-xs text-beach-text-light dark:text-neutral-500">Offline Days</dt>
-                <dd class="mt-1 text-2xl font-semibold text-purple-600 dark:text-purple-400">{{ summary.offline_day }}</dd>
-            </div>
-            <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                <dt class="text-xs text-beach-text-light dark:text-neutral-500">Excused</dt>
-                <dd class="mt-1 text-2xl font-semibold text-orange-600 dark:text-orange-400">{{ summary.excused_absence }}</dd>
-            </div>
-            <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 col-span-2 sm:col-span-1">
-                <dt class="text-xs text-beach-text-light dark:text-neutral-500">Total Attendance</dt>
-                <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ summary.total_attendance_days }}</dd>
+        <div v-if="summary">
+            <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-300 mb-3">Monthly</h3>
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Present</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-green-600 dark:text-green-400">{{ summary.present }}</dd>
+                </div>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Field Trips</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-blue-600 dark:text-blue-400">{{ summary.field_trip }}</dd>
+                </div>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Offline Days</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-purple-600 dark:text-purple-400">{{ summary.offline_day }}</dd>
+                </div>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Excused</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-orange-600 dark:text-orange-400">{{ summary.excused_absence }}</dd>
+                </div>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 col-span-2 sm:col-span-1">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Total Attendance</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ summary.total_attendance_days }}</dd>
+                </div>
             </div>
         </div>
     </div>
@@ -254,6 +287,8 @@ const props = defineProps({
     month: Number,
     attendance: Object,
     summary: Object,
+    yearSummary: Object,
+    schoolYearLabel: String,
     attendanceTypes: Array,
 });
 

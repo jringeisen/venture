@@ -339,3 +339,47 @@ it('returns correct attendance summary counts', function () {
     expect($summary['excused_absence'])->toBe(1);
     expect($summary['total_attendance_days'])->toBe(4);
 });
+
+// --- Year-to-date summary ---
+
+it('includes year summary in attendance index', function () {
+    $parent = User::factory()->parent()->create([
+        'school_year_start' => '2025-08-01',
+        'school_year_end' => '2026-05-31',
+    ]);
+    $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
+
+    Attendance::factory()->forStudent($student)->create(['date' => '2025-09-15', 'type' => AttendanceType::Present]);
+    Attendance::factory()->forStudent($student)->create(['date' => '2025-10-20', 'type' => AttendanceType::FieldTrip]);
+    Attendance::factory()->forStudent($student)->create(['date' => '2026-01-10', 'type' => AttendanceType::Present]);
+    Attendance::factory()->forStudent($student)->create(['date' => '2026-02-05', 'type' => AttendanceType::OfflineDay]);
+
+    $response = $this
+        ->actingAs($parent)
+        ->get('/parent/attendance?student_id='.$student->id.'&year=2026&month=2');
+
+    $response->assertOk();
+
+    $yearSummary = $response->original->getData()['page']['props']['yearSummary'];
+
+    expect($yearSummary['present'])->toBe(2);
+    expect($yearSummary['field_trip'])->toBe(1);
+    expect($yearSummary['offline_day'])->toBe(1);
+    expect($yearSummary['total_attendance_days'])->toBe(4);
+});
+
+it('uses default school year range when dates not configured', function () {
+    $parent = User::factory()->parent()->create();
+    $student = User::factory()->create(['parent_id' => $parent->id, 'username' => fake()->userName(), 'grade' => 5, 'age' => 10]);
+
+    $response = $this
+        ->actingAs($parent)
+        ->get('/parent/attendance?student_id='.$student->id);
+
+    $response->assertOk();
+
+    $yearSummary = $response->original->getData()['page']['props']['yearSummary'];
+
+    expect($yearSummary)->not->toBeNull();
+    expect($yearSummary)->toHaveKeys(['present', 'field_trip', 'offline_day', 'excused_absence', 'total_attendance_days']);
+});

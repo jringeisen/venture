@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\SubscriptionPlan;
 use App\Services\SubscriptionService;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,6 +36,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
         'referred_by',
         'grandfathered',
+        'school_year_start',
+        'school_year_end',
     ];
 
     protected $hidden = [
@@ -58,6 +61,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'total_questions_asked' => 'integer',
             'referred_by' => 'string',
             'grandfathered' => 'boolean',
+            'school_year_start' => 'date',
+            'school_year_end' => 'date',
         ];
     }
 
@@ -128,6 +133,29 @@ class User extends Authenticatable implements MustVerifyEmail
         $adminEmails = config('app.admin_emails') ?? [];
 
         return is_array($adminEmails) && in_array($this->email, $adminEmails);
+    }
+
+    /**
+     * Get the school year date range.
+     *
+     * @return array{start: Carbon, end: Carbon}
+     */
+    public function getSchoolYearRange(): array
+    {
+        if ($this->school_year_start && $this->school_year_end) {
+            return [
+                'start' => $this->school_year_start,
+                'end' => $this->school_year_end,
+            ];
+        }
+
+        $now = now();
+        $year = $now->month >= 8 ? $now->year : $now->year - 1;
+
+        return [
+            'start' => Carbon::create($year, 8, 1)->startOfDay(),
+            'end' => Carbon::create($year + 1, 5, 31)->startOfDay(),
+        ];
     }
 
     /**

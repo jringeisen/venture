@@ -29,6 +29,9 @@ class AttendanceController extends Controller
 
         $attendance = [];
         $summary = null;
+        $yearSummary = null;
+        $schoolYearRange = $parent->getSchoolYearRange();
+        $schoolYearLabel = $schoolYearRange['start']->format('M j, Y').' - '.$schoolYearRange['end']->format('M j, Y');
 
         if ($selectedStudentId) {
             $student = $parent->students()->findOrFail($selectedStudentId);
@@ -37,6 +40,7 @@ class AttendanceController extends Controller
             $monthStart = \Carbon\Carbon::create($year, $month, 1)->startOfMonth();
             $monthEnd = $monthStart->copy()->endOfMonth();
             $summary = $this->attendanceService->getAttendanceSummary($student, $monthStart, $monthEnd);
+            $yearSummary = $this->attendanceService->getAttendanceSummary($student, $schoolYearRange['start'], $schoolYearRange['end']);
         }
 
         return Inertia::render('Teachers/Attendance/Index', [
@@ -46,6 +50,8 @@ class AttendanceController extends Controller
             'month' => $month,
             'attendance' => $attendance,
             'summary' => $summary,
+            'yearSummary' => $yearSummary,
+            'schoolYearLabel' => $schoolYearLabel,
             'attendanceTypes' => AttendanceType::toSelectArray(),
         ]);
     }

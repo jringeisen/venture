@@ -16,6 +16,10 @@
             </div>
 
             <div class="p-4 sm:p-8 bg-white dark:bg-primary-gray dark:border-neutral-700 shadow-sm border border-slate-100 sm:rounded-lg">
+                <SchoolYearForm class="max-w-xl" />
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white dark:bg-primary-gray dark:border-neutral-700 shadow-sm border border-slate-100 sm:rounded-lg">
                 <UpdatePasswordForm class="max-w-xl" />
             </div>
 
@@ -32,6 +36,7 @@ import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
 import TimezoneForm from './Partials/TimezoneForm.vue';
+import SchoolYearForm from './Partials/SchoolYearForm.vue';
 import { Head } from '@inertiajs/vue3';
 
 defineOptions({layout: AuthenticatedLayout});

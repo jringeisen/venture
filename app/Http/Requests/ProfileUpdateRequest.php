@@ -15,6 +15,8 @@ class ProfileUpdateRequest extends FormRequest
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'timezone' => ['string', 'max:255'],
             'viewed_starter_guide' => ['boolean'],
+            'school_year_start' => ['nullable', 'date', 'required_with:school_year_end'],
+            'school_year_end' => ['nullable', 'date', 'required_with:school_year_start', 'after:school_year_start'],
         ];
     }
 }
