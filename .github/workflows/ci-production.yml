@@ -48,6 +48,7 @@ jobs:
       - name: Prepare Venture
         run: |
           cp .env.ci .env.testing
+          php artisan key:generate --env=testing
 
       - name: Run Testsuite
         run: vendor/bin/pest
