@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\AgeGroup;
 use App\Enums\ContentStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ImportCoursesRequest;
 use App\Jobs\GenerateCourseWeek;
 use App\Jobs\GenerateDayContent;
 use App\Models\Course;
+use App\Services\CourseImportService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
+use League\Csv\Writer;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class CourseController extends Controller
 {
@@ -190,6 +194,68 @@ class CourseController extends Controller
             'success' => true,
             'total' => $days->count(),
             'message' => "Queued content generation for {$days->count()} days.",
+        ]);
+    }
+
+    public function import(ImportCoursesRequest $request, CourseImportService $service): RedirectResponse
+    {
+        $result = $service->import($request->file('file'));
+
+        if ($result->hasErrors()) {
+            return redirect()
+                ->route('admin.courses.index')
+                ->with('error', 'Import failed: '.implode(' ', $result->validationErrors));
+        }
+
+        return redirect()
+            ->route('admin.courses.index')
+            ->with('success', $result->toFlashMessage());
+    }
+
+    public function downloadTemplate(): StreamedResponse
+    {
+        $writer = Writer::createFromString();
+        $writer->insertOne([
+            'course_title',
+            'course_description',
+            'course_min_age',
+            'course_max_age',
+            'week_number',
+            'week_title',
+            'week_description',
+            'day_number',
+            'day_title',
+            'day_description',
+        ]);
+        $writer->insertOne([
+            'Intro to Science',
+            'A beginner course on scientific concepts.',
+            '5',
+            '10',
+            '1',
+            'The Scientific Method',
+            'Learn the steps of the scientific method.',
+            '1',
+            'What is Science?',
+            'An introduction to science and discovery.',
+        ]);
+        $writer->insertOne([
+            'Intro to Science',
+            'A beginner course on scientific concepts.',
+            '5',
+            '10',
+            '1',
+            'The Scientific Method',
+            'Learn the steps of the scientific method.',
+            '2',
+            'Asking Questions',
+            'How to formulate scientific questions.',
+        ]);
+
+        return response()->streamDownload(function () use ($writer) {
+            echo $writer->toString();
+        }, 'course-import-template.csv', [
+            'Content-Type' => 'text/csv',
         ]);
     }
 

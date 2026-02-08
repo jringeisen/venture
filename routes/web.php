@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
             // Courses
+            Route::post('courses/import', [AdminCourseController::class, 'import'])->name('courses.import');
+            Route::get('courses/import-template', [AdminCourseController::class, 'downloadTemplate'])->name('courses.import-template');
             Route::resource('courses', AdminCourseController::class)->except(['show']);
             Route::post('courses/{course}/generate-weeks', [AdminCourseController::class, 'generateWeeks'])->name('courses.generate-weeks');
             Route::post('courses/{course}/generate-all-content', [AdminCourseController::class, 'generateAllContent'])->name('courses.generate-all-content');
