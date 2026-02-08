@@ -323,7 +323,7 @@ const updateElapsedTime = function () {
     axios.post(
         route('student.activity.update'),
         {totalSeconds: elapsedTime.value / 1000}
-    );
+    ).catch(() => {});
 };
 
 const persistElapsedTime = function () {
@@ -336,7 +336,7 @@ const persistElapsedTime = function () {
         axios.post(
             route('student.activity.store'),
             {totalSeconds: elapsedTime.value / 1000}
-        );
+        ).catch(() => {});
     }
 
     resetTimeoutAndCheckPoll();
@@ -406,9 +406,10 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-    persistElapsedTime();
-
-    removeStudentActiveListeners();
+    if (page.props.auth?.type === 'student') {
+        persistElapsedTime();
+        removeStudentActiveListeners();
+    }
 });
 
 const throttle = (fn, wait) => {
