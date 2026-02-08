@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\AgeGroup;
 use App\Enums\ContentStatus;
+use App\Events\CourseWeeksGenerated;
 use App\Http\Controllers\Controller;
-use App\Jobs\GenerateCourseWeeks;
+use App\Jobs\GenerateCourseWeek;
 use App\Jobs\GenerateDayContent;
 use App\Models\Course;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -127,6 +129,7 @@ class CourseController extends Controller
     public function generateWeeks(Request $request, Course $course): JsonResponse
     {
         $daysPerWeek = $request->input('days_per_week', 5);
+        $totalWeeks = $course->length_in_weeks ?? 4;
 
         // Delete existing course prompts and their days before queuing
         $course->coursePrompts()->each(function ($prompt) {
@@ -134,7 +137,27 @@ class CourseController extends Controller
         });
         $course->coursePrompts()->delete();
 
-        GenerateCourseWeeks::dispatch($course, $daysPerWeek);
+        $jobs = [];
+        for ($week = 1; $week <= $totalWeeks; $week++) {
+            $jobs[] = new GenerateCourseWeek($course, $week, $daysPerWeek, $totalWeeks);
+        }
+
+        Bus::batch($jobs)
+            ->then(function () use ($course, $totalWeeks) {
+                broadcast(new CourseWeeksGenerated(
+                    courseId: $course->id,
+                    status: 'completed',
+                    message: "Successfully generated {$totalWeeks} weeks",
+                ));
+            })
+            ->catch(function () use ($course) {
+                broadcast(new CourseWeeksGenerated(
+                    courseId: $course->id,
+                    status: 'failed',
+                    message: 'Failed to generate one or more weeks',
+                ));
+            })
+            ->dispatch();
 
         return response()->json([
             'success' => true,

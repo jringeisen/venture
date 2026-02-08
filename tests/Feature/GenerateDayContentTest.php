@@ -164,6 +164,19 @@ it('broadcasts on the correct private channel', function () {
     expect($channels[0]->name)->toBe('private-courses.1');
 });
 
+it('dispatches on the content-generation queue', function () {
+    $course = Course::factory()->create();
+    $week = CoursePrompt::factory()->create(['course_id' => $course->id, 'week_number' => 1]);
+    $day = CourseDay::factory()->create([
+        'course_prompt_id' => $week->id,
+        'day_number' => 1,
+    ]);
+
+    $job = new GenerateDayContent($day);
+
+    expect($job->queue)->toBe('content-generation');
+});
+
 it('broadcasts correct payload', function () {
     $event = new DayContentGenerated(
         courseId: 10,

@@ -14,7 +14,7 @@ use Stringable;
 #[Model('gpt-5-mini')]
 #[MaxTokens(16000)]
 #[Timeout(300)]
-class CourseWeekGenerationAgent implements Agent, HasStructuredOutput
+class SingleCourseWeekGenerationAgent implements Agent, HasStructuredOutput
 {
     use Promptable;
 
@@ -32,18 +32,16 @@ class CourseWeekGenerationAgent implements Agent, HasStructuredOutput
     public function schema(JsonSchema $schema): array
     {
         return [
-            'weeks' => $schema->array()->items($schema->object([
-                'week_number' => $schema->integer()->required(),
+            'week_number' => $schema->integer()->required(),
+            'title' => $schema->string()->required(),
+            'description' => $schema->string()->required(),
+            'learning_objectives' => $schema->array()->items($schema->string())->required(),
+            'days' => $schema->array()->items($schema->object([
+                'day_number' => $schema->integer()->required(),
                 'title' => $schema->string()->required(),
                 'description' => $schema->string()->required(),
                 'learning_objectives' => $schema->array()->items($schema->string())->required(),
-                'days' => $schema->array()->items($schema->object([
-                    'day_number' => $schema->integer()->required(),
-                    'title' => $schema->string()->required(),
-                    'description' => $schema->string()->required(),
-                    'learning_objectives' => $schema->array()->items($schema->string())->required(),
-                    'estimated_duration_minutes' => $schema->integer()->required(),
-                ])->withoutAdditionalProperties())->required(),
+                'estimated_duration_minutes' => $schema->integer()->required(),
             ])->withoutAdditionalProperties())->required(),
         ];
     }

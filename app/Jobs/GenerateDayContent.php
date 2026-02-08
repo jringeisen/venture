@@ -21,7 +21,10 @@ class GenerateDayContent implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public CourseDay $day) {}
+    public function __construct(public CourseDay $day)
+    {
+        $this->onQueue('content-generation');
+    }
 
     /**
      * Execute the job.
