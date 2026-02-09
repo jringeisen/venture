@@ -149,7 +149,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/prompts', [PromptController::class, 'index'])->name('prompts.index');
             Route::post('/prompts', [PromptController::class, 'store'])->middleware('check.question.limit')->name('prompts.store');
             Route::post('/prompts/subject', GetSubjectController::class)->name('prompts.subject');
-            Route::get('/prompts/content', GetContentController::class)->name('prompts.content');
+            Route::post('/prompts/content', GetContentController::class)->name('prompts.content');
             Route::post('/prompts/questions', GetQuestionsController::class)->name('prompts.questions');
 
             Route::get('/topic/{topic}', [TopicController::class, 'show'])->name('topic.show');

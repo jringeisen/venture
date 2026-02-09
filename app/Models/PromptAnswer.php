@@ -18,6 +18,7 @@ class PromptAnswer extends Model
         'word_count',
         'questions',
         'outline',
+        'prompt_question_id',
     ];
 
     protected function casts(): array

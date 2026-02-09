@@ -22,3 +22,7 @@ Broadcast::channel('courses.{courseId}', function ($user, $courseId) {
         || $user->isAdmin()
         || $user->enrolledCourses()->where('courses.id', $courseId)->exists();
 });
+
+Broadcast::channel('prompts.{userId}', function ($user, $userId) {
+    return (int) $user->id === (int) $userId;
+});
