@@ -3,38 +3,38 @@
         <div class="space-y-6">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <div>
-                    <h2 class="text-xl font-semibold text-beach-text">Feedback</h2>
-                    <p class="mt-1 text-sm text-beach-text-light">View and manage user feedback.</p>
+                    <h2 class="text-xl font-semibold text-beach-text dark:text-neutral-200">Feedback</h2>
+                    <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">View and manage user feedback.</p>
                 </div>
             </div>
 
             <!-- Filters -->
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg p-4">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg p-4">
                 <div class="flex gap-4">
-                    <select v-model="status" @change="applyFilters" class="block w-48 rounded-md border-gray-300 shadow-sm">
+                    <select v-model="status" @change="applyFilters" class="block w-48 rounded-md border-gray-300 dark:border-neutral-700 dark:bg-primary-dark-gray dark:text-neutral-200 shadow-sm">
                         <option value="">All Statuses</option>
                         <option v-for="(label, value) in statuses" :key="value" :value="value">{{ label }}</option>
                     </select>
                 </div>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg overflow-hidden">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+                    <thead class="bg-gray-50 dark:bg-primary-dark-gray">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light uppercase tracking-wider">Feedback</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light uppercase tracking-wider">User</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light dark:text-neutral-400 uppercase tracking-wider">Feedback</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light dark:text-neutral-400 uppercase tracking-wider">User</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-beach-text-light dark:text-neutral-400 uppercase tracking-wider">Status</th>
                             <th scope="col" class="relative px-6 py-3"><span class="sr-only">Actions</span></th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody class="bg-white dark:bg-primary-gray divide-y divide-gray-200 dark:divide-neutral-700">
                         <tr v-for="item in feedback.data" :key="item.id">
                             <td class="px-6 py-4">
-                                <div class="text-sm font-medium text-beach-text">{{ item.title }}</div>
-                                <div class="text-sm text-beach-text-light line-clamp-2">{{ item.description }}</div>
+                                <div class="text-sm font-medium text-beach-text dark:text-neutral-200">{{ item.title }}</div>
+                                <div class="text-sm text-beach-text-light dark:text-neutral-400 line-clamp-2">{{ item.description }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-beach-text-light">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-beach-text-light dark:text-neutral-400">
                                 {{ item.user?.name || 'Unknown' }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -48,7 +48,7 @@
                             </td>
                         </tr>
                         <tr v-if="feedback.data.length === 0">
-                            <td colspan="4" class="px-6 py-4 text-center text-sm text-beach-text-light">
+                            <td colspan="4" class="px-6 py-4 text-center text-sm text-beach-text-light dark:text-neutral-400">
                                 No feedback yet.
                             </td>
                         </tr>

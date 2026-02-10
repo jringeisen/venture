@@ -13,10 +13,10 @@
                     enter-from-class="scale-75 opacity-0"
                     leave-to-class="scale-75 opacity-0"
                 >
-                    <div v-if="show" class="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl" @click.stop>
+                    <div v-if="show" class="bg-white dark:bg-primary-gray rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl" @click.stop>
                         <div class="text-6xl mb-4 animate-bounce">{{ emoji }}</div>
-                        <h3 class="text-2xl font-bold text-beach-text dark:text-white mb-2">{{ title }}</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">{{ message }}</p>
+                        <h3 class="text-2xl font-bold text-beach-text dark:text-neutral-200 mb-2">{{ title }}</h3>
+                        <p class="text-gray-600 dark:text-neutral-400 mb-6">{{ message }}</p>
                         <div class="flex justify-center space-x-2 mb-6">
                             <span v-for="i in 5" :key="i" class="w-3 h-3 rounded-full animate-pulse" :class="['bg-yellow-400', 'bg-pink-400', 'bg-blue-400', 'bg-green-400', 'bg-purple-400'][i-1]" :style="{ animationDelay: `${i * 100}ms` }"></span>
                         </div>

@@ -4,17 +4,17 @@
     <div class="max-w-7xl mx-auto space-y-8 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:items-center sm:justify-between sm:flex-row">
             <div>
-                <h1 class="text-2xl font-bold dark:text-neutral-400">Welcome back, {{ $page.props.auth.user.name }}!</h1>
+                <h1 class="text-2xl font-bold dark:text-neutral-200">Welcome back, {{ $page.props.auth.user.name }}!</h1>
                 <p class="text-sm dark:text-neutral-400">Here's an overview of your study progress this week.</p>
             </div>
             <div>
-                <label for="timeframe" class="block text-sm font-medium leading-6 text-gray-900 sr-only">Location</label>
+                <label for="timeframe" class="block text-sm font-medium leading-6 text-gray-900 dark:text-neutral-200 sr-only">Location</label>
                 <div class="relative">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="absolute top-2.5 left-8 w-5 h-5 dark:text-beach-teal-light">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
                     </svg>
 
-                    <select id="timeframe" v-model="form.timeframe" @change="handleTimeframeChange()" class="mt-2 block w-full rounded-full border-0 py-2 px-14 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-beach-teal dark:bg-neutral-800 dark:text-neutral-400 dark:ring-0 sm:text-sm sm:leading-6">
+                    <select id="timeframe" v-model="form.timeframe" @change="handleTimeframeChange()" class="mt-2 block w-full rounded-full border-0 py-2 px-14 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-beach-teal dark:bg-primary-gray dark:text-neutral-400 dark:ring-0 sm:text-sm sm:leading-6">
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
                         <option value="yearly">Yearly</option>
@@ -24,7 +24,7 @@
         </div>
         <div>
             <div class="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                     <div class="flex items-center space-x-4">
                         <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -32,13 +32,13 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold dark:text-neutral-400">{{ totalQuestions }}</p>
+                            <p class="text-2xl font-bold dark:text-neutral-200">{{ totalQuestions }}</p>
                             <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Total Questions</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                     <div class="flex items-center space-x-4">
                         <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -46,13 +46,13 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold dark:text-neutral-400">{{ dailyQuestions }}</p>
+                            <p class="text-2xl font-bold dark:text-neutral-200">{{ dailyQuestions }}</p>
                             <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Today's Questions</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                     <div class="flex items-center space-x-4">
                         <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -60,13 +60,13 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold dark:text-neutral-400">{{ totalWordsRead }}</p>
+                            <p class="text-2xl font-bold dark:text-neutral-200">{{ totalWordsRead }}</p>
                             <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Total Words Read</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                     <div class="flex items-center space-x-4">
                         <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -74,12 +74,12 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold dark:text-neutral-400">{{ $page.props.auth.user.current_streak }}</p>
+                            <p class="text-2xl font-bold dark:text-neutral-200">{{ $page.props.auth.user.current_streak }}</p>
                             <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Current Streak</div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden col-span-2 shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 xl:col-span-1">
+                <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden col-span-2 shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50 xl:col-span-1">
                     <div class="flex items-center space-x-4">
                         <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -87,7 +87,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold dark:text-neutral-400">{{ activeTime }}</p>
+                            <p class="text-2xl font-bold dark:text-neutral-200">{{ activeTime }}</p>
                             <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Active Time</div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
             </div>
 
             <!-- Attendance Status -->
-            <div v-if="todayAttendance" class="bg-white border border-slate-100 p-4 shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div v-if="todayAttendance" class="bg-white border border-slate-100 p-4 shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-beach-teal">
@@ -125,7 +125,7 @@
 
         <div>
             <div class="w-full md:w-1/2 mb-4">
-                <h1 class="text-2xl font-bold dark:text-neutral-400">My Courses</h1>
+                <h1 class="text-2xl font-bold dark:text-neutral-200">My Courses</h1>
                 <p class="text-sm dark:text-neutral-400">Keep track of all the courses you've enrolled in and continue your learning journey.</p>
             </div>
 
@@ -134,7 +134,7 @@
                     v-for="course in enrolledCourses"
                     :key="course.id"
                     :href="`/student/courses/${course.id}/learn/${course.current_week}`"
-                    class="bg-white border rounded-lg overflow-hidden dark:border-none dark:bg-neutral-800 hover:ring-2 hover:ring-beach-teal transition-all"
+                    class="bg-white border rounded-lg overflow-hidden dark:border-neutral-700 dark:bg-primary-gray hover:ring-2 hover:ring-beach-teal transition-all"
                 >
                     <div class="h-40 overflow-hidden">
                         <img
@@ -153,7 +153,7 @@
                         </div>
                     </div>
                     <div class="p-2 space-y-2">
-                        <h2 class="text-sm font-bold mt-3 dark:text-neutral-400">{{ course.title }}</h2>
+                        <h2 class="text-sm font-bold mt-3 dark:text-neutral-200">{{ course.title }}</h2>
                         <p class="text-xs text-neutral-400">{{ course.length_in_weeks }}-Weeks</p>
                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-neutral-700">
                             <div
@@ -171,7 +171,7 @@
                 </Link>
             </div>
 
-            <div v-else class="bg-white border rounded-lg p-8 text-center dark:border-none dark:bg-neutral-800">
+            <div v-else class="bg-white border rounded-lg p-8 text-center dark:border-neutral-700 dark:bg-primary-gray">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 mx-auto text-neutral-400 mb-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
                 </svg>

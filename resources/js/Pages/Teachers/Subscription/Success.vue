@@ -3,7 +3,7 @@
 
     <div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg text-center dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg text-center dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <div class="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center dark:bg-green-900/30">
                     <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />

@@ -1,13 +1,13 @@
 <template>
     <Head :title="course.title" />
 
-    <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-6 sm:py-8">
+    <div class="min-h-screen bg-gray-50 dark:bg-primary-dark-gray py-6 sm:py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back Button -->
             <div class="mb-6">
                 <button
                     @click="router.visit('/student/courses')"
-                    class="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    class="inline-flex items-center text-gray-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-neutral-200 transition-colors"
                 >
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -20,7 +20,7 @@
                 <!-- Main Content -->
                 <div class="lg:col-span-2">
                     <!-- Course Header -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden mb-6">
+                    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 overflow-hidden mb-6">
                         <div class="relative h-64 overflow-hidden">
                             <!-- Course Image or Gradient Fallback -->
                             <img
@@ -50,41 +50,41 @@
                     </div>
 
                     <!-- Course Overview -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
-                        <h2 class="text-xl font-semibold text-beach-text dark:text-white mb-4">Course Overview</h2>
+                    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 p-6 mb-6">
+                        <h2 class="text-xl font-semibold text-beach-text dark:text-neutral-200 mb-4">Course Overview</h2>
                         
                         <!-- Quick Stats -->
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                            <div class="bg-gray-50 dark:bg-neutral-800 rounded-lg p-4">
                                 <div class="flex items-center">
                                     <svg class="w-8 h-8 text-beach-teal mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                     <div>
-                                        <p class="text-2xl font-bold text-beach-text dark:text-white">{{ course.length_in_weeks }}</p>
-                                        <p class="text-sm text-beach-text-light dark:text-gray-400">Weeks</p>
+                                        <p class="text-2xl font-bold text-beach-text dark:text-neutral-200">{{ course.length_in_weeks }}</p>
+                                        <p class="text-sm text-beach-text-light dark:text-neutral-400">Weeks</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                            <div class="bg-gray-50 dark:bg-neutral-800 rounded-lg p-4">
                                 <div class="flex items-center">
                                     <svg class="w-8 h-8 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                                     </svg>
                                     <div>
-                                        <p class="text-2xl font-bold text-beach-text dark:text-white">{{ statistics.enrolled_count || 0 }}</p>
-                                        <p class="text-sm text-beach-text-light dark:text-gray-400">Students</p>
+                                        <p class="text-2xl font-bold text-beach-text dark:text-neutral-200">{{ statistics.enrolled_count || 0 }}</p>
+                                        <p class="text-sm text-beach-text-light dark:text-neutral-400">Students</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                            <div class="bg-gray-50 dark:bg-neutral-800 rounded-lg p-4">
                                 <div class="flex items-center">
                                     <svg class="w-8 h-8 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                     <div>
-                                        <p class="text-2xl font-bold text-beach-text dark:text-white">{{ statistics.completion_rate || 0 }}%</p>
-                                        <p class="text-sm text-beach-text-light dark:text-gray-400">Completion</p>
+                                        <p class="text-2xl font-bold text-beach-text dark:text-neutral-200">{{ statistics.completion_rate || 0 }}%</p>
+                                        <p class="text-sm text-beach-text-light dark:text-neutral-400">Completion</p>
                                     </div>
                                 </div>
                             </div>
@@ -93,14 +93,14 @@
                     </div>
 
                     <!-- Course Curriculum -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                        <h2 class="text-xl font-semibold text-beach-text dark:text-white mb-4">Course Curriculum</h2>
+                    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 p-6">
+                        <h2 class="text-xl font-semibold text-beach-text dark:text-neutral-200 mb-4">Course Curriculum</h2>
                         
                         <div class="space-y-4">
                             <div 
                                 v-for="prompt in course.course_prompts" 
                                 :key="prompt.id"
-                                class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                class="border border-gray-200 dark:border-neutral-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                             >
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
@@ -108,13 +108,13 @@
                                             <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-teal-100 dark:bg-teal-900 text-beach-teal dark:text-teal-300 text-sm font-medium mr-3">
                                                 {{ prompt.week_number }}
                                             </span>
-                                            <h3 class="text-lg font-medium text-beach-text dark:text-white">{{ prompt.formatted_title }}</h3>
+                                            <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200">{{ prompt.formatted_title }}</h3>
                                         </div>
-                                        <p class="text-beach-text-light dark:text-gray-400 mb-3">{{ prompt.description }}</p>
+                                        <p class="text-beach-text-light dark:text-neutral-400 mb-3">{{ prompt.description }}</p>
                                         
                                         <!-- Week Learning Objectives -->
                                         <div v-if="prompt.learning_objectives && prompt.learning_objectives.length > 0" class="mb-3">
-                                            <h4 class="text-sm font-medium text-beach-text dark:text-white mb-2">This week covers:</h4>
+                                            <h4 class="text-sm font-medium text-beach-text dark:text-neutral-200 mb-2">This week covers:</h4>
                                             <div class="flex flex-wrap gap-2">
                                                 <span 
                                                     v-for="objective in prompt.learning_objectives.slice(0, 3)" 
@@ -123,7 +123,7 @@
                                                 >
                                                     {{ objective }}
                                                 </span>
-                                                <span v-if="prompt.learning_objectives.length > 3" class="inline-flex items-center px-2 py-1 rounded-md text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                                                <span v-if="prompt.learning_objectives.length > 3" class="inline-flex items-center px-2 py-1 rounded-md text-xs bg-gray-100 dark:bg-neutral-800 text-gray-600 dark:text-neutral-400">
                                                     +{{ prompt.learning_objectives.length - 3 }} more
                                                 </span>
                                             </div>
@@ -141,7 +141,7 @@
                                         <span v-else-if="isEnrolled && userProgress && userProgress.current_week === prompt.week_number" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200">
                                             Current
                                         </span>
-                                        <span v-else-if="!isEnrolled || !userProgress || userProgress.current_week < prompt.week_number" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                                        <span v-else-if="!isEnrolled || !userProgress || userProgress.current_week < prompt.week_number" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-neutral-800 text-gray-600 dark:text-neutral-400">
                                             Locked
                                         </span>
                                     </div>
@@ -154,7 +154,7 @@
                 <!-- Sidebar -->
                 <div class="lg:col-span-1">
                     <!-- Enrollment Card -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6 sticky top-6">
+                    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 p-6 mb-6 sticky top-6">
                         <div v-if="isEnrolled" class="space-y-4">
                             <div class="text-center">
                                 <div v-if="userProgress?.completed_at" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 mb-4">
@@ -173,9 +173,9 @@
 
                             <!-- Progress -->
                             <div v-if="userProgress">
-                                <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-3">Enrollment Status</h3>
+                                <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200 mb-3">Enrollment Status</h3>
                                 <div class="space-y-3">
-                                    <div class="text-sm text-gray-600 dark:text-gray-400">
+                                    <div class="text-sm text-gray-600 dark:text-neutral-400">
                                         <p v-if="userProgress.completed_at">
                                             Completed on {{ new Date(userProgress.completed_at).toLocaleDateString() }}
                                         </p>
@@ -212,7 +212,7 @@
 
                                 <button
                                     @click="router.visit('/student/courses/enrolled')"
-                                    class="w-full inline-flex items-center justify-center px-4 py-3 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                                    class="w-full inline-flex items-center justify-center px-4 py-3 border border-gray-300 dark:border-neutral-700 text-sm font-medium rounded-lg text-beach-text-light dark:text-neutral-400 bg-white dark:bg-primary-gray hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                                 >
                                     View All Courses
                                 </button>
@@ -220,8 +220,8 @@
                         </div>
 
                         <div v-else class="text-center space-y-4">
-                            <h3 class="text-lg font-semibold text-beach-text dark:text-white">Ready to Start Learning?</h3>
-                            <p class="text-gray-600 dark:text-gray-400 text-sm">Join thousands of students mastering new skills.</p>
+                            <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">Ready to Start Learning?</h3>
+                            <p class="text-gray-600 dark:text-neutral-400 text-sm">Join thousands of students mastering new skills.</p>
 
                             <button
                                 @click="enrollInCourse"
@@ -239,7 +239,7 @@
                             <button
                                 v-if="course.course_prompts && course.course_prompts.length > 0"
                                 @click="showPreview = true"
-                                class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                                class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-neutral-700 text-sm font-medium rounded-lg text-beach-text-light dark:text-neutral-400 bg-white dark:bg-primary-gray hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                             >
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -248,23 +248,23 @@
                                 Preview Week 1
                             </button>
 
-                            <p class="text-xs text-beach-text-light dark:text-gray-400">
+                            <p class="text-xs text-beach-text-light dark:text-neutral-400">
                                 Start immediately • Learn at your own pace
                             </p>
                         </div>
                     </div>
 
                     <!-- Course Features -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                        <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-4">Course Features</h3>
+                    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 p-6">
+                        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200 mb-4">Course Features</h3>
                         <div class="space-y-3">
                             <div class="flex items-start">
                                 <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
                                 <div>
-                                    <p class="font-medium text-beach-text dark:text-white">AI-Powered Learning</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Personalized content adapted to your learning style</p>
+                                    <p class="font-medium text-beach-text dark:text-neutral-200">AI-Powered Learning</p>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-400">Personalized content adapted to your learning style</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -272,8 +272,8 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
                                 <div>
-                                    <p class="font-medium text-beach-text dark:text-white">Weekly Trivia</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Test your knowledge with interactive quizzes</p>
+                                    <p class="font-medium text-beach-text dark:text-neutral-200">Weekly Trivia</p>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-400">Test your knowledge with interactive quizzes</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -281,8 +281,8 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
                                 <div>
-                                    <p class="font-medium text-beach-text dark:text-white">Progress Tracking</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Monitor your learning journey and achievements</p>
+                                    <p class="font-medium text-beach-text dark:text-neutral-200">Progress Tracking</p>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-400">Monitor your learning journey and achievements</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
@@ -290,8 +290,8 @@
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                 </svg>
                                 <div>
-                                    <p class="font-medium text-beach-text dark:text-white">Self-Paced</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Learn at your own speed, whenever you want</p>
+                                    <p class="font-medium text-beach-text dark:text-neutral-200">Self-Paced</p>
+                                    <p class="text-sm text-gray-600 dark:text-neutral-400">Learn at your own speed, whenever you want</p>
                                 </div>
                             </div>
                         </div>
@@ -317,14 +317,14 @@
                         enter-from-class="scale-95 opacity-0"
                         leave-to-class="scale-95 opacity-0"
                     >
-                        <div v-if="showPreview" class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-3xl my-8" @click.stop>
+                        <div v-if="showPreview" class="bg-white dark:bg-primary-gray rounded-xl shadow-2xl dark:shadow-neutral-900/50 w-full max-w-3xl my-8" @click.stop>
                             <!-- Modal Header -->
-                            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-neutral-700">
                                 <div>
                                     <p class="text-sm text-beach-teal dark:text-beach-teal-light font-medium mb-1">Preview</p>
-                                    <h3 class="text-xl font-bold text-beach-text dark:text-white">{{ firstWeek?.formatted_title || firstWeek?.title }}</h3>
+                                    <h3 class="text-xl font-bold text-beach-text dark:text-neutral-200">{{ firstWeek?.formatted_title || firstWeek?.title }}</h3>
                                 </div>
-                                <button @click="showPreview = false" class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                                <button @click="showPreview = false" class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-neutral-200 transition-colors">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                     </svg>
@@ -334,11 +334,11 @@
                             <!-- Modal Content -->
                             <div class="p-6 max-h-[60vh] overflow-y-auto">
                                 <!-- Week Description -->
-                                <p v-if="firstWeek?.description" class="text-gray-600 dark:text-gray-400 mb-4">{{ firstWeek.description }}</p>
+                                <p v-if="firstWeek?.description" class="text-gray-600 dark:text-neutral-400 mb-4">{{ firstWeek.description }}</p>
 
                                 <!-- Learning Objectives -->
                                 <div v-if="firstWeek?.learning_objectives && firstWeek.learning_objectives.length > 0" class="mb-6">
-                                    <h4 class="text-sm font-semibold text-beach-text dark:text-white mb-2">What you'll learn:</h4>
+                                    <h4 class="text-sm font-semibold text-beach-text dark:text-neutral-200 mb-2">What you'll learn:</h4>
                                     <div class="flex flex-wrap gap-2">
                                         <span
                                             v-for="objective in firstWeek.learning_objectives"
@@ -357,20 +357,20 @@
 
                                 <!-- Fade out overlay -->
                                 <div class="relative mt-4">
-                                    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-gray-800 to-transparent pointer-events-none"></div>
+                                    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-primary-gray to-transparent pointer-events-none"></div>
                                 </div>
                             </div>
 
                             <!-- Modal Footer -->
-                            <div class="p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 rounded-b-xl">
+                            <div class="p-6 border-t border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-primary-dark-gray/50 rounded-b-xl">
                                 <div class="flex items-center justify-between">
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                    <p class="text-sm text-gray-600 dark:text-neutral-400">
                                         Enroll to access the full content
                                     </p>
                                     <div class="flex space-x-3">
                                         <button
                                             @click="showPreview = false"
-                                            class="px-4 py-2 text-sm font-medium text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                                            class="px-4 py-2 text-sm font-medium text-beach-text-light dark:text-neutral-400 bg-white dark:bg-primary-gray border border-gray-300 dark:border-neutral-700 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                                         >
                                             Close
                                         </button>

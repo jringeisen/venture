@@ -8,9 +8,9 @@
             </div>
 
             <!-- Course Details -->
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text mb-6">Course Details</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200 mb-6">Course Details</h3>
 
                     <form @submit.prevent="submitCourse" class="space-y-6">
                         <div>
@@ -44,7 +44,7 @@
                             <select
                                 id="age_group"
                                 v-model="courseForm.age_group"
-                                class="mt-1 block w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm"
+                                class="mt-1 block w-full border-gray-300 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm"
                             >
                                 <option value="">All Ages</option>
                                 <option v-for="group in ageGroups" :key="group.value" :value="group.value">
@@ -64,10 +64,10 @@
             </div>
 
             <!-- Course Weeks -->
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-medium text-beach-text">Course Weeks</h3>
+                        <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200">Course Weeks</h3>
                         <div class="flex items-center gap-3">
                             <button
                                 @click="generateWeeks"
@@ -154,16 +154,16 @@
                             </svg>
                             Generate All Content
                         </button>
-                        <p class="text-xs text-gray-500 mt-1">Queues AI content generation for all days across all weeks.</p>
+                        <p class="text-xs text-gray-400 dark:text-neutral-400 mt-1">Queues AI content generation for all days across all weeks.</p>
                     </div>
 
                     <div v-if="weeks.length" class="space-y-3">
-                        <div v-for="prompt in weeks" :key="prompt.id" class="border border-gray-200 rounded-lg overflow-hidden">
-                            <div class="flex items-center justify-between p-4 bg-gray-50">
+                        <div v-for="prompt in weeks" :key="prompt.id" class="border border-gray-200 dark:border-neutral-700 rounded-lg overflow-hidden">
+                            <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-neutral-800">
                                 <div>
-                                    <p class="font-medium text-beach-text">Week {{ prompt.week_number }}: {{ prompt.title }}</p>
-                                    <p class="text-sm text-beach-text-light">{{ prompt.description?.substring(0, 80) }}{{ prompt.description?.length > 80 ? '...' : '' }}</p>
-                                    <p class="text-xs text-gray-400 mt-1">
+                                    <p class="font-medium text-beach-text dark:text-neutral-200">Week {{ prompt.week_number }}: {{ prompt.title }}</p>
+                                    <p class="text-sm text-beach-text-light dark:text-neutral-400">{{ prompt.description?.substring(0, 80) }}{{ prompt.description?.length > 80 ? '...' : '' }}</p>
+                                    <p class="text-xs text-gray-400 dark:text-neutral-400 mt-1">
                                         {{ prompt.days_count || prompt.days?.length || 5 }} days
                                         <span v-if="prompt.days?.length"> ({{ prompt.days.length }} created)</span>
                                     </p>
@@ -179,7 +179,7 @@
                             </div>
 
                             <!-- Days with content status -->
-                            <div v-if="prompt.days?.length" class="border-t border-gray-200 px-4 py-2 bg-white">
+                            <div v-if="prompt.days?.length" class="border-t border-gray-200 dark:border-neutral-700 px-4 py-2 bg-white dark:bg-primary-gray">
                                 <div class="flex flex-wrap gap-2">
                                     <div
                                         v-for="day in prompt.days"
@@ -201,7 +201,7 @@
                             </div>
                         </div>
                     </div>
-                    <p v-else class="text-sm text-beach-text-light">No weeks added yet. Click "Generate Weeks & Days" to create the course structure.</p>
+                    <p v-else class="text-sm text-beach-text-light dark:text-neutral-400">No weeks added yet. Click "Generate Weeks & Days" to create the course structure.</p>
                 </div>
             </div>
         </div>

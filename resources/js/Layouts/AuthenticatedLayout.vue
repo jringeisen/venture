@@ -37,14 +37,14 @@
                                 <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
                                     <button type="button" class="-m-2.5 p-2.5" @click="sidebarOpen = false">
                                         <span class="sr-only">Close sidebar</span>
-                                        <XMarkIcon class="h-6 w-6 text-beach-text" aria-hidden="true"/>
+                                        <XMarkIcon class="h-6 w-6 text-beach-text dark:text-neutral-400" aria-hidden="true"/>
                                     </button>
                                 </div>
                             </TransitionChild>
-                            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white pb-2">
+                            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:bg-primary-dark-gray pb-2">
                                 <div class="flex h-16 justify-center items-center">
                                     <ApplicationLogo class="w-9 h-9"/>
-                                    <p class="text-beach-ocean-deep text-2xl text-center font-bold">VENTURE</p>
+                                    <p class="text-beach-ocean-deep dark:text-beach-teal-light text-2xl text-center font-bold">VENTURE</p>
                                 </div>
                                 <nav class="flex flex-1 flex-col px-6">
                                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -56,7 +56,7 @@
                                                         :class="[
                                                             item.current
                                                                 ? 'bg-beach-teal/10 text-beach-teal'
-                                                                : 'text-beach-text hover:text-beach-teal hover:bg-slate-50',
+                                                                : 'text-beach-text dark:text-neutral-200 hover:text-beach-teal hover:bg-slate-50 dark:hover:bg-neutral-800',
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                         ]"
                                                     >
@@ -65,7 +65,7 @@
                                                             :class="[
                                                                 item.current
                                                                     ? 'text-beach-teal'
-                                                                    : 'text-beach-text-light group-hover:text-beach-teal',
+                                                                    : 'text-beach-text-light dark:text-neutral-400 group-hover:text-beach-teal',
                                                                 'h-6 w-6 shrink-0',
                                                             ]"
                                                             aria-hidden="true"
@@ -86,9 +86,9 @@
 
         <!-- Static sidebar for desktop -->
         <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white border-r border-slate-200">
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:bg-primary-dark-gray border-r border-slate-200 dark:border-neutral-700">
                 <div class="flex h-16 shrink-0 items-center">
-                    <p class="flex justify-center items-center text-beach-ocean-deep text-2xl font-bold w-full">
+                    <p class="flex justify-center items-center text-beach-ocean-deep dark:text-beach-teal-light text-2xl font-bold w-full">
                         <ApplicationLogo class="w-9 h-9"/>
                         VENTURE
                     </p>
@@ -103,7 +103,7 @@
                                         :class="[
                                             item.current
                                                 ? 'bg-beach-teal/10 text-beach-teal'
-                                                : 'text-beach-text hover:text-beach-teal hover:bg-slate-50',
+                                                : 'text-beach-text dark:text-neutral-200 hover:text-beach-teal hover:bg-slate-50 dark:hover:bg-neutral-800',
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                         ]"
                                     >
@@ -112,7 +112,7 @@
                                             :class="[
                                                 item.current
                                                     ? 'text-beach-teal'
-                                                    : 'text-beach-text-light group-hover:text-beach-teal',
+                                                    : 'text-beach-text-light dark:text-neutral-400 group-hover:text-beach-teal',
                                                 'h-6 w-6 shrink-0',
                                             ]"
                                             aria-hidden="true"
@@ -123,11 +123,11 @@
                             </ul>
                         </li>
                         <li v-if="$page.props.auth.subjects && Object.keys($page.props.auth.subjects).length > 0">
-                            <div class="text-xs font-semibold leading-6 text-beach-text-light uppercase">Subjects</div>
+                            <div class="text-xs font-semibold leading-6 text-beach-text-light dark:text-neutral-400 uppercase">Subjects</div>
                             <ul role="list" class="mt-2 space-y-1">
                                 <Link href="/student/topic/all">
                                     <button
-                                        class="text-beach-text-light hover:text-beach-teal group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
+                                        class="text-beach-text-light dark:text-neutral-400 hover:text-beach-teal dark:hover:text-beach-teal-light group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
                                         :class="{'text-beach-teal font-semibold': route().current('student.topic.show', { topic: 'all' })}"
                                     >
                                         <span class="truncate">All</span>
@@ -137,7 +137,7 @@
                                 <Link v-for="(subject, index) in $page.props.auth.subjects" :key="index"
                                       :href="subject.href">
                                     <button
-                                        class="text-beach-text-light hover:text-beach-teal group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
+                                        class="text-beach-text-light dark:text-neutral-400 hover:text-beach-teal dark:hover:text-beach-teal-light group flex gap-x-3 rounded-md px-2 pb-1 text-sm leading-6"
                                         :class="{'text-beach-teal font-semibold': subject.current}"
                                     >
                                         <span class="truncate">{{ subject.name }}</span>
@@ -157,7 +157,7 @@
                             <a
                                 @click.prevent="toggleSettingsMenu = !toggleSettingsMenu"
                                 href="#"
-                                class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-beach-text hover:text-beach-teal hover:bg-slate-50"
+                                class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-beach-text dark:text-neutral-200 hover:text-beach-teal hover:bg-slate-50 dark:hover:bg-neutral-800"
                             >
                                 <div class="flex justify-center items-center rounded-full bg-beach-teal w-7 h-7">
                                     <p class="text-xl text-white">{{ $page.props.auth.user.name[0] }}</p>
@@ -168,16 +168,16 @@
 
                             <ul
                                 v-if="toggleSettingsMenu"
-                                class="absolute bottom-14 border border-slate-200 bg-white ml-3 w-11/12 shadow-lg py-2 rounded-lg"
+                                class="absolute bottom-14 border border-slate-200 dark:border-neutral-700 bg-white dark:bg-primary-gray ml-3 w-11/12 shadow-lg dark:shadow-neutral-900/50 py-2 rounded-lg"
                             >
                                 <li
                                     @click.prevent="router.post(route('logout'))"
-                                    class="cursor-pointer px-4 py-1 text-beach-text hover:bg-slate-50 hover:text-beach-teal"
+                                    class="cursor-pointer px-4 py-1 text-beach-text dark:text-neutral-200 hover:bg-slate-50 dark:hover:bg-neutral-800 hover:text-beach-teal"
                                 >
                                     Logout
                                 </li>
                                 <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')"
-                                      class="cursor-pointer px-4 py-1 block text-beach-text hover:bg-slate-50 hover:text-beach-teal">
+                                      class="cursor-pointer px-4 py-1 block text-beach-text dark:text-neutral-200 hover:bg-slate-50 dark:hover:bg-neutral-800 hover:text-beach-teal">
                                     Profile
                                 </Link>
                             </ul>
@@ -188,8 +188,8 @@
         </div>
 
         <div
-            class="sticky top-0 z-40 flex justify-between items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-            <button type="button" class="-m-2.5 p-2.5 text-beach-text lg:hidden" @click="sidebarOpen = true">
+            class="sticky top-0 z-40 flex justify-between items-center gap-x-6 bg-white dark:bg-primary-dark-gray px-4 py-4 shadow-sm dark:shadow-neutral-900/50 sm:px-6 lg:hidden">
+            <button type="button" class="-m-2.5 p-2.5 text-beach-text dark:text-neutral-200 lg:hidden" @click="sidebarOpen = true">
                 <span class="sr-only">Open sidebar</span>
                 <Bars3Icon class="h-6 w-6" aria-hidden="true"/>
             </button>
@@ -204,7 +204,7 @@
                 <a
                     @click.prevent="toggleSettingsMenu = !toggleSettingsMenu"
                     href="#"
-                    class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-beach-text"
+                    class="flex items-center gap-x-4 px-6 text-sm font-semibold leading-6 text-beach-text dark:text-neutral-200"
                 >
                     <div
                         class="flex justify-center items-center rounded-full bg-beach-teal w-7 h-7">
@@ -216,22 +216,22 @@
 
                 <ul
                     v-if="toggleSettingsMenu"
-                    class="absolute top-10 border border-slate-200 bg-white ml-3 w-40 shadow-lg py-2 rounded-lg"
+                    class="absolute top-10 border border-slate-200 dark:border-neutral-700 bg-white dark:bg-primary-gray ml-3 w-40 shadow-lg dark:shadow-neutral-900/50 py-2 rounded-lg"
                 >
                     <li
                         @click.prevent="router.post(route('logout'))"
-                        class="cursor-pointer px-4 py-1 text-beach-text hover:bg-slate-50 hover:text-beach-teal"
+                        class="cursor-pointer px-4 py-1 text-beach-text dark:text-neutral-200 hover:bg-slate-50 dark:hover:bg-neutral-800 hover:text-beach-teal"
                     >
                         Logout
                     </li>
                     <Link v-if="$page.props.auth.type === 'teacher'" :href="route('profile.edit')"
-                          class="cursor-pointer px-4 py-1 block text-beach-text hover:bg-slate-50 hover:text-beach-teal">Profile
+                          class="cursor-pointer px-4 py-1 block text-beach-text dark:text-neutral-200 hover:bg-slate-50 dark:hover:bg-neutral-800 hover:text-beach-teal">Profile
                     </Link>
                 </ul>
             </div>
         </div>
 
-        <main class="relative py-10 lg:pl-72 bg-slate-50">
+        <main class="relative py-10 lg:pl-72 bg-slate-50 dark:bg-primary-dark-gray">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div v-if="isBeingImpersonated()" class="max-w-7xl mx-auto sm:px-8 pb-6">
                     <PrimaryButton @click.prevent="router.get(route('users.stop.impersonating'))" class="flex items-center">

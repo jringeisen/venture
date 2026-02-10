@@ -7,9 +7,9 @@
                 </Link>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text mb-6">Create New Course</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200 mb-6">Create New Course</h3>
 
                     <Form v-model="formData" :action="route('admin.courses.store')" method="post" class="space-y-6" #default="{ errors, processing }">
                         <div>
@@ -43,7 +43,7 @@
                                     id="age_group"
                                     v-model="formData.age_group"
                                     name="age_group"
-                                    class="mt-1 block w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm"
+                                    class="mt-1 block w-full border-gray-300 dark:border-neutral-700 dark:bg-primary-dark-gray dark:text-neutral-200 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm"
                                 >
                                     <option value="">All Ages</option>
                                     <option v-for="group in ageGroups" :key="group.value" :value="group.value">

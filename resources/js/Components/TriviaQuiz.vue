@@ -1,9 +1,9 @@
 <template>
-    <div v-if="questions && questions.length > 0" class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-        <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-4">Test Your Knowledge</h3>
+    <div v-if="questions && questions.length > 0" class="border border-gray-200 dark:border-neutral-700 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200 mb-4">Test Your Knowledge</h3>
 
         <div v-if="!triviaStarted" class="text-center">
-            <p class="text-gray-600 dark:text-gray-400 mb-4">Ready to test what you've learned today?</p>
+            <p class="text-gray-600 dark:text-neutral-400 mb-4">Ready to test what you've learned today?</p>
             <button
                 @click="startTrivia"
                 class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-purple-600 hover:bg-purple-700 transition-colors"
@@ -14,7 +14,7 @@
 
         <div v-else-if="!triviaCompleted" class="space-y-4">
             <div class="flex items-center justify-between mb-4">
-                <h4 class="font-medium text-beach-text dark:text-white">Question {{ currentTriviaIndex + 1 }} of {{ questions.length }}</h4>
+                <h4 class="font-medium text-beach-text dark:text-neutral-200">Question {{ currentTriviaIndex + 1 }} of {{ questions.length }}</h4>
                 <div class="flex items-center space-x-3">
                     <div class="flex space-x-1">
                         <span
@@ -26,15 +26,15 @@
                                     ? (triviaAnswers[idx] === questions[idx].correct_answer ? 'bg-green-500' : 'bg-red-500')
                                     : idx === currentTriviaIndex
                                         ? 'bg-beach-teal'
-                                        : 'bg-gray-300 dark:bg-gray-600'
+                                        : 'bg-gray-300 dark:bg-neutral-700'
                             ]"
                         ></span>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
-                <h5 class="font-medium text-beach-text dark:text-white mb-3">{{ currentTriviaQuestion?.question }}</h5>
+            <div class="bg-gray-50 dark:bg-primary-dark-gray rounded-lg p-4">
+                <h5 class="font-medium text-beach-text dark:text-neutral-200 mb-3">{{ currentTriviaQuestion?.question }}</h5>
                 <div class="space-y-2">
                     <button
                         v-for="(option, index) in currentTriviaQuestion?.options"
@@ -49,7 +49,7 @@
                                     ? 'border-red-500 bg-red-50 dark:bg-red-900/20 text-red-900 dark:text-red-100'
                                     : selectedAnswer === index && !answerRevealed
                                         ? 'border-beach-teal bg-teal-50 dark:bg-teal-900/20 text-teal-900 dark:text-teal-100'
-                                        : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-beach-text dark:text-white',
+                                        : 'border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 text-beach-text dark:text-neutral-200',
                             answerRevealed ? 'cursor-default' : ''
                         ]"
                     >
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="mt-4 flex justify-between items-center">
-                    <div class="text-sm text-beach-text-light dark:text-gray-400">
+                    <div class="text-sm text-beach-text-light dark:text-neutral-400">
                         {{ triviaScore }} correct so far
                     </div>
                     <button
@@ -104,14 +104,14 @@
         <div v-else class="text-center space-y-4">
             <div class="text-5xl mb-2">{{ triviaScore >= questions.length * 0.7 ? '&#127881;' : triviaScore >= questions.length * 0.5 ? '&#128077;' : '&#128218;' }}</div>
             <div>
-                <h4 class="text-xl font-semibold text-beach-text dark:text-white">Quiz Complete!</h4>
-                <p class="text-gray-600 dark:text-gray-400 mt-1">You scored {{ triviaScore }} out of {{ questions.length }}</p>
+                <h4 class="text-xl font-semibold text-beach-text dark:text-neutral-200">Quiz Complete!</h4>
+                <p class="text-gray-600 dark:text-neutral-400 mt-1">You scored {{ triviaScore }} out of {{ questions.length }}</p>
 
                 <!-- Score visual -->
                 <div class="mt-4 flex justify-center">
                     <div class="relative w-24 h-24">
                         <svg class="w-24 h-24 transform -rotate-90">
-                            <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-gray-200 dark:text-gray-700"/>
+                            <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-gray-200 dark:text-neutral-700"/>
                             <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="8" fill="none"
                                 :class="triviaScore >= questions.length * 0.7 ? 'text-green-500' : triviaScore >= questions.length * 0.5 ? 'text-yellow-500' : 'text-red-500'"
                                 :stroke-dasharray="251.2"
@@ -120,7 +120,7 @@
                             />
                         </svg>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-2xl font-bold text-beach-text dark:text-white">{{ scorePercent }}%</span>
+                            <span class="text-2xl font-bold text-beach-text dark:text-neutral-200">{{ scorePercent }}%</span>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
             <button
                 v-if="triviaScore < questions.length * 0.7"
                 @click="retryTrivia"
-                class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-neutral-700 text-sm font-medium rounded-lg text-beach-text-light dark:text-neutral-200 bg-white dark:bg-primary-gray hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
             >
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>

@@ -5,7 +5,7 @@
         <div class="max-w-7xl mx-auto space-y-8 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:items-center sm:justify-between sm:flex-row">
                 <div>
-                    <h1 class="text-2xl font-bold dark:text-neutral-400">{{ student.name }}</h1>
+                    <h1 class="text-2xl font-bold dark:text-neutral-200">{{ student.name }}</h1>
                     <p class="text-sm dark:text-neutral-400">Here's an overview of this student.</p>
                 </div>
                 <div>
@@ -25,7 +25,7 @@
             </div>
             <div>
                 <div class="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-                    <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                    <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                         <div class="flex items-center space-x-4">
                             <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -33,13 +33,13 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-2xl font-bold dark:text-neutral-400">{{ totalQuestions }}</p>
+                                <p class="text-2xl font-bold dark:text-neutral-200">{{ totalQuestions }}</p>
                                 <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Total Questions</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                    <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                         <div class="flex items-center space-x-4">
                             <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -47,13 +47,13 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-2xl font-bold dark:text-neutral-400">{{ dailyQuestions }}</p>
+                                <p class="text-2xl font-bold dark:text-neutral-200">{{ dailyQuestions }}</p>
                                 <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Today's Questions</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                    <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                         <div class="flex items-center space-x-4">
                             <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -61,13 +61,13 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-2xl font-bold dark:text-neutral-400">{{ totalWordsRead }}</p>
+                                <p class="text-2xl font-bold dark:text-neutral-200">{{ totalWordsRead }}</p>
                                 <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Total Words Read</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+                    <div class="bg-white border border-slate-100 p-3 space-y-2 overflow-hidden shadow-sm sm:rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                         <div class="flex items-center space-x-4">
                             <div class="bg-beach-teal h-12 w-12 rounded-lg flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
@@ -75,7 +75,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-2xl font-bold dark:text-neutral-400">{{ $page.props.auth.user.current_streak }}</p>
+                                <p class="text-2xl font-bold dark:text-neutral-200">{{ $page.props.auth.user.current_streak }}</p>
                                 <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Current Streak</div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-2xl font-bold dark:text-neutral-400">{{ activeTime }}</p>
+                                <p class="text-2xl font-bold dark:text-neutral-200">{{ activeTime }}</p>
                                 <div class="text-xs text-beach-text-light truncate dark:text-neutral-400">Active Time</div>
                             </div>
                         </div>
@@ -99,9 +99,9 @@
                 <ApexChart v-if="isClient" width="100%" height="300px" type="line" :options="chartOptions" :series="series"></ApexChart>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <div class="flex justify-between items-center">
-                    <p class="text-2xl font-bold dark:text-neutral-400">What this student is learning...</p>
+                    <p class="text-2xl font-bold dark:text-neutral-200">What this student is learning...</p>
                 </div>
                 <div class="mt-8 flow-root">
                     <div class="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
@@ -117,14 +117,14 @@
                                         <div class="relative flex space-x-3">
                                             <div>
                                                 <span
-                                                    class="h-8 w-8 bg-beach-teal rounded-full flex items-center justify-center ring-8 ring-white dark:ring-neutral-700">
+                                                    class="h-8 w-8 bg-beach-teal rounded-full flex items-center justify-center ring-8 ring-white dark:ring-primary-gray">
                                                     {{ question.prompt_answer?.subject_category ? question.prompt_answer?.subject_category[0].toUpperCase() : '' }}
                                                 </span>
                                             </div>
                                             <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                                                 <div>
                                                     <p @click.prevent="handleToggleContent(question.id)" class="text-sm text-beach-text-light cursor-pointer dark:text-neutral-400">{{ question.question }}</p>
-                                                    <div v-if="toggleContent === question.id" class="bg-gray-100 p-2 rounded-lg mt-2 dark:bg-neutral-700">
+                                                    <div v-if="toggleContent === question.id" class="bg-gray-100 p-2 rounded-lg mt-2 dark:bg-neutral-800">
                                                         <div class="flex justify-between">
                                                             <p class="font-semibold text-sm text-beach-text-light dark:text-neutral-400">{{ startCase(question.prompt_answer.subject_category) }}</p>
                                                             <p class="font-semibold text-sm text-beach-text-light dark:text-neutral-400">{{ question.prompt_answer.word_count }} words</p>
@@ -141,7 +141,7 @@
                                 </li>
                             </ul>
                             <div v-else>
-                                <p class="text-sm text-beach-text-light bg-gray-100 rounded-full p-4 text-center dark:bg-neutral-600 dark:text-primary-dark-gray">No questions</p>
+                                <p class="text-sm text-beach-text-light bg-gray-100 rounded-full p-4 text-center dark:bg-neutral-800 dark:text-neutral-400">No questions</p>
                             </div>
                         </div>
                         <Pagination v-if="student.prompt_questions.total > student.prompt_questions.per_page" :data="student.prompt_questions" class="dark:bg-primary-gray" />

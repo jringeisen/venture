@@ -12,16 +12,16 @@
         <meta property="og:url" content="https://learnwithventure.com">
     </Head>
 
-    <div class="bg-white">
+    <div class="bg-white dark:bg-primary-dark-gray">
         <!-- Header -->
-        <header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <header class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-primary-dark-gray/90 backdrop-blur-md shadow-sm dark:shadow-neutral-900/50 z-50">
             <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
                     <a href="#" class="flex items-center gap-2 -m-1.5 p-1.5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" version="1.1" class="block h-10">
                             <path :d="logoPath" stroke="none" fill="#0D9488" fill-rule="evenodd" />
                         </svg>
-                        <span class="uppercase text-beach-ocean-deep text-xl font-semibold tracking-widest">Venture</span>
+                        <span class="uppercase text-beach-ocean-deep dark:text-beach-teal-light text-xl font-semibold tracking-widest">Venture</span>
                     </a>
                 </div>
                 <div class="flex lg:hidden">
@@ -33,15 +33,15 @@
                     </button>
                 </div>
                 <div class="hidden lg:flex lg:gap-x-8">
-                    <a href="#about" class="text-sm font-semibold leading-6 text-beach-ocean-deep hover:text-beach-teal transition-colors">ABOUT</a>
-                    <a href="#mission" class="text-sm font-semibold leading-6 text-beach-ocean-deep hover:text-beach-teal transition-colors">MISSION</a>
-                    <a href="#subjects" class="text-sm font-semibold leading-6 text-beach-ocean-deep hover:text-beach-teal transition-colors">SUBJECTS</a>
-                    <a href="#pricing" class="text-sm font-semibold leading-6 text-beach-ocean-deep hover:text-beach-teal transition-colors">PRICING</a>
-                    <a href="#faq" class="text-sm font-semibold leading-6 text-beach-ocean-deep hover:text-beach-teal transition-colors">SUPPORT</a>
-                    <Link :href="route('blog-posts.index')" class="text-sm font-semibold leading-6 text-beach-ocean-deep hover:text-beach-teal transition-colors">BLOG</Link>
+                    <a href="#about" class="text-sm font-semibold leading-6 text-beach-ocean-deep dark:text-neutral-200 hover:text-beach-teal transition-colors">ABOUT</a>
+                    <a href="#mission" class="text-sm font-semibold leading-6 text-beach-ocean-deep dark:text-neutral-200 hover:text-beach-teal transition-colors">MISSION</a>
+                    <a href="#subjects" class="text-sm font-semibold leading-6 text-beach-ocean-deep dark:text-neutral-200 hover:text-beach-teal transition-colors">SUBJECTS</a>
+                    <a href="#pricing" class="text-sm font-semibold leading-6 text-beach-ocean-deep dark:text-neutral-200 hover:text-beach-teal transition-colors">PRICING</a>
+                    <a href="#faq" class="text-sm font-semibold leading-6 text-beach-ocean-deep dark:text-neutral-200 hover:text-beach-teal transition-colors">SUPPORT</a>
+                    <Link :href="route('blog-posts.index')" class="text-sm font-semibold leading-6 text-beach-ocean-deep dark:text-neutral-200 hover:text-beach-teal transition-colors">BLOG</Link>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
-                    <Link :href="route('auth.options')" class="text-sm font-semibold leading-6 text-beach-ocean-deep hover:text-beach-teal transition-colors">Log in <span aria-hidden="true">&rarr;</span></Link>
+                    <Link :href="route('auth.options')" class="text-sm font-semibold leading-6 text-beach-ocean-deep dark:text-neutral-200 hover:text-beach-teal transition-colors">Log in <span aria-hidden="true">&rarr;</span></Link>
                     <Link :href="route('register')" class="inline-flex items-center px-5 py-2.5 bg-beach-teal border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-widest hover:bg-beach-teal-dark focus:outline-none focus:ring-2 focus:ring-beach-teal focus:ring-offset-2 transition-colors ease-in-out duration-150">Get Started</Link>
                 </div>
             </nav>
@@ -128,42 +128,42 @@
         </section>
 
         <!-- Why Venture -->
-        <section id="about" class="scroll-mt-20 py-24 bg-white">
+        <section id="about" class="scroll-mt-20 py-24 bg-white dark:bg-primary-dark-gray">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <p class="text-beach-teal font-semibold tracking-wider uppercase text-sm">Why Venture</p>
-                    <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-text tracking-wide">The Future of Education</h2>
-                    <p class="mt-6 text-lg text-beach-text-light leading-relaxed">
+                    <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-text dark:text-neutral-200 tracking-wide">The Future of Education</h2>
+                    <p class="mt-6 text-lg text-beach-text-light dark:text-neutral-400 leading-relaxed">
                         We believe learning should have no limits. Our platform fosters a generation of learners who are empowered to explore, question, and innovate.
                     </p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-slate-50 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow" data-aos="fade-up">
+                    <div class="bg-slate-50 dark:bg-primary-gray rounded-2xl p-8 text-center hover:shadow-lg dark:hover:shadow-neutral-900/50 transition-shadow" data-aos="fade-up">
                         <div class="w-16 h-16 mx-auto bg-beach-teal/10 rounded-xl flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-beach-teal" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-beach-text">Curiosity-Led</h3>
-                        <p class="mt-3 text-beach-text-light leading-relaxed">Follow your interests and explore topics you love. Our platform adapts to what excites each learner, making every lesson an adventure.</p>
+                        <h3 class="text-xl font-semibold text-beach-text dark:text-neutral-200">Curiosity-Led</h3>
+                        <p class="mt-3 text-beach-text-light dark:text-neutral-400 leading-relaxed">Follow your interests and explore topics you love. Our platform adapts to what excites each learner, making every lesson an adventure.</p>
                     </div>
-                    <div class="bg-slate-50 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-slate-50 dark:bg-primary-gray rounded-2xl p-8 text-center hover:shadow-lg dark:hover:shadow-neutral-900/50 transition-shadow" data-aos="fade-up" data-aos-delay="100">
                         <div class="w-16 h-16 mx-auto bg-beach-teal/10 rounded-xl flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-beach-teal" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-beach-text">AI-Powered</h3>
-                        <p class="mt-3 text-beach-text-light leading-relaxed">Personalized learning paths that adapt to each student's pace and interests. No two journeys are the same.</p>
+                        <h3 class="text-xl font-semibold text-beach-text dark:text-neutral-200">AI-Powered</h3>
+                        <p class="mt-3 text-beach-text-light dark:text-neutral-400 leading-relaxed">Personalized learning paths that adapt to each student's pace and interests. No two journeys are the same.</p>
                     </div>
-                    <div class="bg-slate-50 rounded-2xl p-8 text-center hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-slate-50 dark:bg-primary-gray rounded-2xl p-8 text-center hover:shadow-lg dark:hover:shadow-neutral-900/50 transition-shadow" data-aos="fade-up" data-aos-delay="200">
                         <div class="w-16 h-16 mx-auto bg-beach-teal/10 rounded-xl flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-beach-teal" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-beach-text">Affordable for Everyone</h3>
-                        <p class="mt-3 text-beach-text-light leading-relaxed">Quality education that fits every budget. Venture offers flexible plans so every family can access curiosity-led learning.</p>
+                        <h3 class="text-xl font-semibold text-beach-text dark:text-neutral-200">Affordable for Everyone</h3>
+                        <p class="mt-3 text-beach-text-light dark:text-neutral-400 leading-relaxed">Quality education that fits every budget. Venture offers flexible plans so every family can access curiosity-led learning.</p>
                     </div>
                 </div>
             </div>
@@ -210,28 +210,28 @@
         </section>
 
         <!-- Pricing -->
-        <section id="pricing" class="scroll-mt-20 py-24 bg-slate-50">
+        <section id="pricing" class="scroll-mt-20 py-24 bg-slate-50 dark:bg-primary-dark-gray">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-12">
                     <p class="text-beach-teal font-semibold tracking-wider uppercase text-sm">Pricing</p>
-                    <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-text tracking-wide">Plans for Every Family</h2>
-                    <p class="mt-6 text-lg text-beach-text-light leading-relaxed">
+                    <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-text dark:text-neutral-200 tracking-wide">Plans for Every Family</h2>
+                    <p class="mt-6 text-lg text-beach-text-light dark:text-neutral-400 leading-relaxed">
                         Choose the plan that fits your family. Every plan includes access to our AI-powered, curiosity-led curriculum.
                     </p>
                 </div>
 
                 <!-- Billing Toggle -->
                 <div class="flex items-center justify-center gap-4 mb-12">
-                    <span class="text-sm font-medium" :class="billingCycle === 'monthly' ? 'text-beach-text' : 'text-beach-text-light'">Monthly</span>
+                    <span class="text-sm font-medium" :class="billingCycle === 'monthly' ? 'text-beach-text dark:text-neutral-200' : 'text-beach-text-light dark:text-neutral-400'">Monthly</span>
                     <button
                         @click="billingCycle = billingCycle === 'monthly' ? 'yearly' : 'monthly'"
                         class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors"
-                        :class="billingCycle === 'yearly' ? 'bg-beach-teal' : 'bg-gray-200'"
+                        :class="billingCycle === 'yearly' ? 'bg-beach-teal' : 'bg-gray-200 dark:bg-neutral-700'"
                         aria-label="Toggle billing cycle"
                     >
                         <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform" :class="billingCycle === 'yearly' ? 'translate-x-6' : 'translate-x-1'" />
                     </button>
-                    <span class="text-sm font-medium" :class="billingCycle === 'yearly' ? 'text-beach-text' : 'text-beach-text-light'">
+                    <span class="text-sm font-medium" :class="billingCycle === 'yearly' ? 'text-beach-text dark:text-neutral-200' : 'text-beach-text-light dark:text-neutral-400'">
                         Yearly <span class="text-beach-teal font-semibold">(Save ~17%)</span>
                     </span>
                 </div>
@@ -239,17 +239,17 @@
                 <!-- Plan Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     <!-- Free Plan -->
-                    <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm" data-aos="fade-up">
-                        <h3 class="text-lg font-semibold text-beach-text">Free</h3>
-                        <p class="mt-1 text-sm text-beach-text-light">Perfect for getting started</p>
+                    <div class="rounded-2xl border border-gray-200 dark:border-neutral-700 bg-white dark:bg-primary-gray p-8 shadow-sm dark:shadow-neutral-900/50" data-aos="fade-up">
+                        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">Free</h3>
+                        <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">Perfect for getting started</p>
                         <div class="mt-6">
-                            <span class="text-4xl font-bold text-beach-text">$0</span>
-                            <span class="text-beach-text-light">/forever</span>
+                            <span class="text-4xl font-bold text-beach-text dark:text-neutral-200">$0</span>
+                            <span class="text-beach-text-light dark:text-neutral-400">/forever</span>
                         </div>
-                        <Link :href="route('register')" class="mt-8 block w-full rounded-lg bg-white px-4 py-3 text-center text-sm font-semibold text-beach-teal ring-1 ring-inset ring-beach-teal hover:bg-beach-teal/5 transition-colors">
+                        <Link :href="route('register')" class="mt-8 block w-full rounded-lg bg-white dark:bg-primary-gray px-4 py-3 text-center text-sm font-semibold text-beach-teal ring-1 ring-inset ring-beach-teal hover:bg-beach-teal/5 transition-colors">
                             Get Started Free
                         </Link>
-                        <ul class="mt-8 space-y-3 text-sm text-beach-text-light">
+                        <ul class="mt-8 space-y-3 text-sm text-beach-text-light dark:text-neutral-400">
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
                                 <span>10 AI questions per hour</span>
@@ -278,15 +278,15 @@
                     </div>
 
                     <!-- Family Plan -->
-                    <div class="rounded-2xl border-2 border-beach-teal bg-white p-8 shadow-lg relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="rounded-2xl border-2 border-beach-teal bg-white dark:bg-primary-gray p-8 shadow-lg dark:shadow-neutral-900/50 relative" data-aos="fade-up" data-aos-delay="100">
                         <div class="absolute -top-4 left-1/2 -translate-x-1/2">
                             <span class="inline-flex items-center rounded-full bg-beach-teal px-4 py-1 text-xs font-semibold text-white uppercase tracking-wider">Most Popular</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-beach-text">Family</h3>
-                        <p class="mt-1 text-sm text-beach-text-light">For the whole family</p>
+                        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">Family</h3>
+                        <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">For the whole family</p>
                         <div class="mt-6">
-                            <span class="text-4xl font-bold text-beach-text">${{ billingCycle === 'monthly' ? pricing.family.monthly : pricing.family.yearly }}</span>
-                            <span class="text-beach-text-light">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
+                            <span class="text-4xl font-bold text-beach-text dark:text-neutral-200">${{ billingCycle === 'monthly' ? pricing.family.monthly : pricing.family.yearly }}</span>
+                            <span class="text-beach-text-light dark:text-neutral-400">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
                         </div>
                         <button
                             @click="subscribe('family')"
@@ -295,22 +295,22 @@
                         >
                             {{ checkoutForm.processing ? 'Redirecting...' : 'Subscribe' }}
                         </button>
-                        <ul class="mt-8 space-y-3 text-sm text-beach-text-light">
+                        <ul class="mt-8 space-y-3 text-sm text-beach-text-light dark:text-neutral-400">
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
-                                <span><strong class="text-beach-text">Unlimited</strong> AI questions</span>
+                                <span><strong class="text-beach-text dark:text-neutral-200">Unlimited</strong> AI questions</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
-                                <span><strong class="text-beach-text">Unlimited</strong> active courses</span>
+                                <span><strong class="text-beach-text dark:text-neutral-200">Unlimited</strong> active courses</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
-                                <span>Up to <strong class="text-beach-text">5</strong> students</span>
+                                <span>Up to <strong class="text-beach-text dark:text-neutral-200">5</strong> students</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
-                                <span><strong class="text-beach-text">Unlimited</strong> compliance reports</span>
+                                <span><strong class="text-beach-text dark:text-neutral-200">Unlimited</strong> compliance reports</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
@@ -324,14 +324,14 @@
                     </div>
 
                     <!-- Classroom Plan -->
-                    <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-lg font-semibold text-beach-text">Classroom</h3>
-                        <p class="mt-1 text-sm text-beach-text-light">For microschools &amp; co-ops</p>
+                    <div class="rounded-2xl border border-gray-200 dark:border-neutral-700 bg-white dark:bg-primary-gray p-8 shadow-sm dark:shadow-neutral-900/50" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">Classroom</h3>
+                        <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">For microschools &amp; co-ops</p>
                         <div class="mt-6">
-                            <span class="text-4xl font-bold text-beach-text">${{ billingCycle === 'monthly' ? pricing.classroom.monthly : pricing.classroom.yearly }}</span>
-                            <span class="text-beach-text-light">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
+                            <span class="text-4xl font-bold text-beach-text dark:text-neutral-200">${{ billingCycle === 'monthly' ? pricing.classroom.monthly : pricing.classroom.yearly }}</span>
+                            <span class="text-beach-text-light dark:text-neutral-400">/{{ billingCycle === 'monthly' ? 'mo' : 'yr' }}</span>
                         </div>
-                        <p class="mt-1 text-xs text-beach-text-light">As low as $2.36/student/mo</p>
+                        <p class="mt-1 text-xs text-beach-text-light dark:text-neutral-400">As low as $2.36/student/mo</p>
                         <button
                             @click="subscribe('classroom')"
                             :disabled="checkoutForm.processing"
@@ -339,14 +339,14 @@
                         >
                             {{ checkoutForm.processing ? 'Redirecting...' : 'Subscribe' }}
                         </button>
-                        <ul class="mt-8 space-y-3 text-sm text-beach-text-light">
+                        <ul class="mt-8 space-y-3 text-sm text-beach-text-light dark:text-neutral-400">
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
                                 <span>Everything in Family, plus:</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
-                                <span>Up to <strong class="text-beach-text">25</strong> students</span>
+                                <span>Up to <strong class="text-beach-text dark:text-neutral-200">25</strong> students</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <CheckIcon class="shrink-0" />
@@ -367,16 +367,16 @@
         </section>
 
         <!-- Subjects -->
-        <section id="subjects" class="scroll-mt-20 py-24 bg-slate-50">
+        <section id="subjects" class="scroll-mt-20 py-24 bg-slate-50 dark:bg-primary-dark-gray">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-16">
                     <p class="text-beach-teal font-semibold tracking-wider uppercase text-sm">Explore &amp; Discover</p>
-                    <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-text tracking-wide">What Will You Learn?</h2>
+                    <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-text dark:text-neutral-200 tracking-wide">What Will You Learn?</h2>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <div v-for="subject in subjects" :key="subject.name" class="bg-white rounded-xl p-5 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group cursor-default" data-aos="fade-up">
+                    <div v-for="subject in subjects" :key="subject.name" class="bg-white dark:bg-primary-gray rounded-xl p-5 text-center hover:shadow-lg dark:hover:shadow-neutral-900/50 hover:-translate-y-1 transition-all duration-200 group cursor-default" data-aos="fade-up">
                         <img :src="subject.icon" :alt="subject.name" class="w-10 h-10 mx-auto mb-3 group-hover:scale-110 transition-transform" loading="lazy" />
-                        <p class="text-sm font-medium text-beach-text">{{ subject.name }}</p>
+                        <p class="text-sm font-medium text-beach-text dark:text-neutral-200">{{ subject.name }}</p>
                     </div>
                 </div>
                 <div class="text-center mt-12">
@@ -386,25 +386,25 @@
         </section>
 
         <!-- FAQ -->
-        <section id="faq" class="scroll-mt-20 py-24 bg-white">
+        <section id="faq" class="scroll-mt-20 py-24 bg-white dark:bg-primary-dark-gray">
             <div class="max-w-3xl mx-auto px-6">
                 <div class="text-center mb-16">
                     <p class="text-beach-teal font-semibold tracking-wider uppercase text-sm">Support</p>
-                    <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-ocean-deep tracking-wide">Frequently Asked Questions</h2>
-                    <p class="mt-6 text-lg text-beach-text-light leading-relaxed">
+                    <h2 class="mt-3 text-3xl md:text-5xl font-light text-beach-ocean-deep dark:text-neutral-200 tracking-wide">Frequently Asked Questions</h2>
+                    <p class="mt-6 text-lg text-beach-text-light dark:text-neutral-400 leading-relaxed">
                         Everything you need to know about Venture and our curiosity-led approach to learning.
                     </p>
                 </div>
                 <div class="space-y-3">
-                    <div v-for="(faq, index) in faqs" :key="index" class="rounded-xl border border-slate-200 overflow-hidden" data-aos="fade-up">
+                    <div v-for="(faq, index) in faqs" :key="index" class="rounded-xl border border-slate-200 dark:border-neutral-700 overflow-hidden" data-aos="fade-up">
                         <button @click="toggleQuestion(index)" class="w-full flex items-center justify-between px-6 py-5 text-left">
-                            <span class="font-semibold text-beach-text">{{ faq.question }}</span>
+                            <span class="font-semibold text-beach-text dark:text-neutral-200">{{ faq.question }}</span>
                             <svg class="w-5 h-5 text-beach-teal shrink-0 ml-4 transition-transform" :class="toggledQuestion === index ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                             </svg>
                         </button>
                         <div v-if="toggledQuestion === index" class="px-6 pb-5">
-                            <p class="text-beach-text-light leading-relaxed">{{ faq.answer }}</p>
+                            <p class="text-beach-text-light dark:text-neutral-400 leading-relaxed">{{ faq.answer }}</p>
                         </div>
                     </div>
                 </div>
@@ -634,6 +634,6 @@ const CheckIcon = {
 };
 
 const XIcon = {
-    template: `<svg class="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
+    template: `<svg class="w-5 h-5 text-gray-300 dark:text-neutral-500" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
 };
 </script>

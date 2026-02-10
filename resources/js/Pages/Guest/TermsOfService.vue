@@ -13,13 +13,13 @@
         <meta property="og:url" content="https://learnwithventure.com">
     </Head>
 
-    <div class="bg-white">
-        <div class="max-w-4xl mx-auto prose py-20 text-beach-text-light">
+    <div class="bg-white dark:bg-primary-dark-gray">
+        <div class="max-w-4xl mx-auto prose dark:prose-invert py-20 text-beach-text-light dark:text-neutral-400">
             <p>Privacy Policy and Terms of Service</p>
 
             <p>Effective Date: February 7, 2026</p>
 
-            <h1 class="text-beach-text">Welcome to Venture, an online learning platform powered by Artificial Intelligence (AI).</h1>
+            <h1 class="text-beach-text dark:text-neutral-200">Welcome to Venture, an online learning platform powered by Artificial Intelligence (AI).</h1>
 
             <!-- TERMS OF SERVICE -->
 
@@ -156,7 +156,7 @@
 
             <!-- PRIVACY POLICY -->
 
-            <h1 class="text-beach-text mt-16">Privacy Policy</h1>
+            <h1 class="text-beach-text dark:text-neutral-200 mt-16">Privacy Policy</h1>
 
             <h2 class="text-beach-ocean-deep">12. Personal Information We Collect</h2>
             <p>

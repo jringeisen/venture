@@ -7,9 +7,9 @@
                 </Link>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text mb-6">Add Week to {{ course.title }}</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200 mb-6">Add Week to {{ course.title }}</h3>
 
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid grid-cols-3 gap-4">
@@ -21,7 +21,7 @@
 
                             <div>
                                 <InputLabel for="days_count" value="Days per Week"/>
-                                <select id="days_count" v-model="form.days_count" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                <select id="days_count" v-model="form.days_count" class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-700 dark:bg-primary-dark-gray dark:text-neutral-200 shadow-sm">
                                     <option :value="1">1 day</option>
                                     <option :value="2">2 days</option>
                                     <option :value="3">3 days</option>
@@ -52,7 +52,7 @@
                             <InputError :message="form.errors.description" class="mt-2"/>
                         </div>
 
-                        <p class="text-sm text-beach-text-light bg-gray-50 p-3 rounded-lg">
+                        <p class="text-sm text-beach-text-light dark:text-neutral-400 bg-gray-50 dark:bg-primary-dark-gray p-3 rounded-lg">
                             Content, learning objectives, and trivia questions are managed at the day level. After creating this week, you can add days and their content.
                         </p>
 

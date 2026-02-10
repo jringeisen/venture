@@ -1,13 +1,13 @@
 <template>
     <div class="tiptap-editor">
-        <div v-if="editor" class="border border-gray-300 dark:border-neutral-600 rounded-md overflow-hidden">
+        <div v-if="editor" class="border border-gray-300 dark:border-neutral-700 rounded-md overflow-hidden">
             <!-- Toolbar -->
-            <div class="flex flex-wrap gap-1 p-2 border-b border-gray-300 dark:border-neutral-600 bg-gray-50 dark:bg-neutral-700">
+            <div class="flex flex-wrap gap-1 p-2 border-b border-gray-300 dark:border-neutral-700 bg-gray-50 dark:bg-primary-gray">
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleBold().run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('bold') }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('bold') }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Bold"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -19,8 +19,8 @@
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleItalic().run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('italic') }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('italic') }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Italic"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,8 +31,8 @@
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleStrike().run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('strike') }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('strike') }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Strikethrough"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,13 +40,13 @@
                     </svg>
                 </button>
 
-                <div class="w-px h-6 bg-gray-300 dark:bg-neutral-500 mx-1 self-center"></div>
+                <div class="w-px h-6 bg-gray-300 dark:bg-neutral-700 mx-1 self-center"></div>
 
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('heading', { level: 1 }) }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600 text-sm font-bold"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('heading', { level: 1 }) }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800 text-sm font-bold"
                     title="Heading 1"
                 >
                     H1
@@ -55,8 +55,8 @@
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('heading', { level: 2 }) }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600 text-sm font-bold"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('heading', { level: 2 }) }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800 text-sm font-bold"
                     title="Heading 2"
                 >
                     H2
@@ -65,20 +65,20 @@
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('heading', { level: 3 }) }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600 text-sm font-bold"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('heading', { level: 3 }) }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800 text-sm font-bold"
                     title="Heading 3"
                 >
                     H3
                 </button>
 
-                <div class="w-px h-6 bg-gray-300 dark:bg-neutral-500 mx-1 self-center"></div>
+                <div class="w-px h-6 bg-gray-300 dark:bg-neutral-700 mx-1 self-center"></div>
 
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleBulletList().run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('bulletList') }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('bulletList') }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Bullet List"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,8 +89,8 @@
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleOrderedList().run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('orderedList') }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('orderedList') }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Numbered List"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,8 +101,8 @@
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleBlockquote().run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('blockquote') }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('blockquote') }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Quote"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,8 +113,8 @@
                 <button
                     type="button"
                     @click="editor.chain().focus().toggleCodeBlock().run()"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('codeBlock') }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('codeBlock') }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Code Block"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,13 +122,13 @@
                     </svg>
                 </button>
 
-                <div class="w-px h-6 bg-gray-300 dark:bg-neutral-500 mx-1 self-center"></div>
+                <div class="w-px h-6 bg-gray-300 dark:bg-neutral-700 mx-1 self-center"></div>
 
                 <button
                     type="button"
                     @click="setLink"
-                    :class="{ 'bg-gray-200 dark:bg-neutral-600': editor.isActive('link') }"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    :class="{ 'bg-gray-200 dark:bg-neutral-700': editor.isActive('link') }"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Link"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +139,7 @@
                 <button
                     type="button"
                     @click="addImage"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800"
                     title="Image"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,13 +147,13 @@
                     </svg>
                 </button>
 
-                <div class="w-px h-6 bg-gray-300 dark:bg-neutral-500 mx-1 self-center"></div>
+                <div class="w-px h-6 bg-gray-300 dark:bg-neutral-700 mx-1 self-center"></div>
 
                 <button
                     type="button"
                     @click="editor.chain().focus().undo().run()"
                     :disabled="!editor.can().undo()"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600 disabled:opacity-50"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800 disabled:opacity-50"
                     title="Undo"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,7 +165,7 @@
                     type="button"
                     @click="editor.chain().focus().redo().run()"
                     :disabled="!editor.can().redo()"
-                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-600 disabled:opacity-50"
+                    class="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-800 disabled:opacity-50"
                     title="Redo"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,7 +175,7 @@
             </div>
 
             <!-- Editor Content -->
-            <editor-content :editor="editor" class="prose dark:prose-invert max-w-none p-4 min-h-[200px] bg-white dark:bg-neutral-800" />
+            <editor-content :editor="editor" class="prose dark:prose-invert max-w-none p-4 min-h-[200px] bg-white dark:bg-primary-gray" />
         </div>
     </div>
 </template>

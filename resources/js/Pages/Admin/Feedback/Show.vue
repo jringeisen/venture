@@ -7,12 +7,12 @@
                 </Link>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <div class="flex items-start justify-between mb-6">
                         <div>
-                            <h3 class="text-lg font-medium text-beach-text">{{ feedback.title }}</h3>
-                            <p class="mt-1 text-sm text-beach-text-light">
+                            <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200">{{ feedback.title }}</h3>
+                            <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">
                                 Submitted by {{ feedback.user?.name || 'Unknown' }}
                             </p>
                         </div>
@@ -22,14 +22,14 @@
                     </div>
 
                     <div class="prose max-w-none mb-6">
-                        <p class="text-beach-text-light whitespace-pre-wrap">{{ feedback.description }}</p>
+                        <p class="text-beach-text-light dark:text-neutral-400 whitespace-pre-wrap">{{ feedback.description }}</p>
                     </div>
 
-                    <div class="border-t border-gray-200 pt-6">
+                    <div class="border-t border-gray-200 dark:border-neutral-700 pt-6">
                         <form @submit.prevent="updateStatus" class="flex items-end gap-4">
                             <div class="flex-1">
                                 <InputLabel for="status" value="Update Status"/>
-                                <select id="status" v-model="form.status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                <select id="status" v-model="form.status" class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-700 dark:bg-primary-dark-gray dark:text-neutral-200 shadow-sm">
                                     <option v-for="(label, value) in statuses" :key="value" :value="value">{{ label }}</option>
                                 </select>
                             </div>

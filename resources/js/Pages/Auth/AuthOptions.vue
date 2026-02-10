@@ -1,25 +1,25 @@
 <template>
     <Head title="Login Options" />
-    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-slate-50">
+    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-slate-50 dark:bg-primary-dark-gray">
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="mt-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     <Link
                         :href="route('parent.login')"
-                        class="scale-100 p-6 bg-white border border-slate-100 rounded-lg shadow-sm flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-beach-teal"
+                        class="scale-100 p-6 bg-white border border-slate-100 rounded-lg shadow-sm flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-beach-teal dark:bg-primary-gray dark:border-neutral-700"
                     >
                         <div>
-                            <div class="h-16 w-16 bg-slate-50 flex items-center justify-center rounded-full">
+                            <div class="h-16 w-16 bg-slate-50 dark:bg-neutral-800 flex items-center justify-center rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 stroke-beach-teal">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                                 </svg>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-beach-text">
+                            <h2 class="mt-6 text-xl font-semibold text-beach-text dark:text-neutral-200">
                                 Are you a parent?
                             </h2>
 
-                            <p class="mt-4 text-beach-text-light text-sm leading-relaxed">
+                            <p class="mt-4 text-beach-text-light text-sm leading-relaxed dark:text-neutral-400">
                                 Click here to login as a parent.
                             </p>
                         </div>
@@ -41,20 +41,20 @@
 
                     <Link
                         :href="route('student.login')"
-                        class="scale-100 p-6 bg-white border border-slate-100 rounded-lg shadow-sm flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-beach-teal"
+                        class="scale-100 p-6 bg-white border border-slate-100 rounded-lg shadow-sm flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-beach-teal dark:bg-primary-gray dark:border-neutral-700"
                     >
                         <div>
-                            <div class="h-16 w-16 bg-slate-50 flex items-center justify-center rounded-full">
+                            <div class="h-16 w-16 bg-slate-50 dark:bg-neutral-800 flex items-center justify-center rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 stroke-beach-teal">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
                                 </svg>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-beach-text">
+                            <h2 class="mt-6 text-xl font-semibold text-beach-text dark:text-neutral-200">
                                 Are you a student?
                             </h2>
 
-                            <p class="mt-4 text-beach-text-light text-sm leading-relaxed">
+                            <p class="mt-4 text-beach-text-light text-sm leading-relaxed dark:text-neutral-400">
                                 Click here to login as a student.
                             </p>
                         </div>

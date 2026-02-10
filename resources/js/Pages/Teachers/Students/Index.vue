@@ -3,10 +3,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">Students</h1>
+                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-200">Students</h1>
                         <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">
                             A list of all the students in your account including their name, title, email and role.
                         </p>
@@ -20,36 +20,36 @@
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <div class="overflow-hidden shadow ring-1 ring-black/5 sm:rounded-lg">
                                 <table class="min-w-full divide-y divide-gray-300 dark:divide-neutral-700">
-                                    <thead class="bg-gray-50 dark:bg-neutral-600">
+                                    <thead class="bg-gray-50 dark:bg-neutral-800">
                                     <tr>
                                         <th></th>
                                         <th
                                             scope="col"
-                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-neutral-300"
+                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-neutral-200"
                                         >
                                             Name
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
+                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-200"
                                         >
                                             Username
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
+                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-200"
                                         >
                                             Questions Asked
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
+                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-200"
                                         >
                                             Active Time <small>(in minutes)</small>
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-300"
+                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-neutral-200"
                                         >
                                             Age
                                         </th>
@@ -59,7 +59,7 @@
                                     </tr>
                                     </thead>
                                     <tbody
-                                        class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
+                                        class="divide-y divide-gray-200 bg-white dark:bg-primary-gray dark:divide-neutral-700">
                                     <tr v-for="(student, index) in students.data" :key="index">
                                         <td>
                                             <button @click.prevent="handleStudentLogin(student)" type="button"
@@ -68,22 +68,22 @@
                                             </button>
                                         </td>
                                         <td
-                                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-beach-text sm:pl-6 dark:text-primary-gray"
+                                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-beach-text sm:pl-6 dark:text-neutral-200"
                                         >
                                             {{ student.name }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">
                                             {{ student.username }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">
                                             {{ student.prompt_questions_count }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">
                                             {{
                                                 student.active_time.length > 0 ? student.active_time[0].total_minutes : 0
                                             }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">
                                             {{ student.age }}
                                         </td>
                                         <td
@@ -102,24 +102,24 @@
 
                                                 <ul
                                                     v-if="toggleAction === student.id"
-                                                    class="absolute bg-white shadow-lg text-left border rounded-lg right-4 -top-6 overflow-hidden"
+                                                    class="absolute bg-white shadow-lg text-left border rounded-lg right-4 -top-6 overflow-hidden dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50"
                                                 >
                                                     <Link
                                                         :href="route('parent.users.show', student.id)"
-                                                        class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
+                                                        class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
                                                         as="li"
                                                     >
                                                         View
                                                     </Link>
                                                     <Link
                                                         :href="route('parent.users.edit', student.id)"
-                                                        class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
+                                                        class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
                                                         as="li">
                                                         Edit
                                                     </Link>
                                                     <li
                                                         @click.prevent="deleteStudent(student)"
-                                                        class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100"
+                                                        class="cursor-pointer px-4 py-1 text-gray-600 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
                                                     >
                                                         Delete
                                                     </li>
@@ -129,8 +129,8 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <div v-if="students.total > students.per_page" class="border-t">
-                                    <Pagination :data="students" class="dark:bg-neutral-600"/>
+                                <div v-if="students.total > students.per_page" class="border-t dark:border-neutral-700">
+                                    <Pagination :data="students" class="dark:bg-primary-gray"/>
                                 </div>
                             </div>
                         </div>

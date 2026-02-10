@@ -3,7 +3,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto">
-            <div class="bg-white shadow rounded-lg overflow-hidden dark:bg-primary-gray">
+            <div class="bg-white shadow rounded-lg overflow-hidden dark:bg-primary-gray dark:shadow-neutral-900/50">
                 <div class="py-8">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                         <ul v-if="questions.data.length > 0" role="list" class="-mb-8">
@@ -21,7 +21,7 @@
                                                     'bg-yellow-500 text-yellow-800': question.prompt_answer.subject_category === 'science',
                                                     'bg-blue-500 text-blue-800': question.prompt_answer.subject_category === 'technology',
                                                 }"
-                                                class="h-8 w-8 bg-green-600 rounded-full flex items-center justify-center ring-8 ring-white dark:ring-neutral-700">
+                                                class="h-8 w-8 bg-green-600 rounded-full flex items-center justify-center ring-8 ring-white dark:ring-primary-gray">
                                                 {{ question.prompt_answer.subject_category[0].toUpperCase() }}
                                             </span>
                                         </div>
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <Pagination v-if="questions.total > questions.per_page" :data="questions" class="dark:bg-neutral-600" />
+                <Pagination v-if="questions.total > questions.per_page" :data="questions" class="dark:bg-primary-gray" />
             </div>
         </div>
     </div>

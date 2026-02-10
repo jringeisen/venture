@@ -4,10 +4,10 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
             <!-- Header -->
-            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <div class="sm:flex sm:items-center sm:justify-between">
                     <div>
-                        <h1 class="text-lg font-semibold text-beach-text dark:text-neutral-300">{{ report.title }}</h1>
+                        <h1 class="text-lg font-semibold text-beach-text dark:text-neutral-200">{{ report.title }}</h1>
                         <p class="mt-1 text-sm text-beach-text-light dark:text-neutral-400">
                             {{ report.student.name }} &middot; {{ report.state }} &middot; {{ report.period_start }} - {{ report.period_end }}
                         </p>
@@ -23,39 +23,39 @@
 
             <!-- Summary Statistics -->
             <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Instruction Days</dt>
-                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ report.summary.total_instruction_days }}</dd>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Instruction Days</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-200">{{ report.summary.total_instruction_days }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Instruction Hours</dt>
-                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ report.summary.total_instruction_hours }}</dd>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Instruction Hours</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-200">{{ report.summary.total_instruction_hours }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Active Courses</dt>
-                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ report.summary.courses_active }}</dd>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Active Courses</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-200">{{ report.summary.courses_active }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Completed</dt>
-                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ report.summary.courses_completed }}</dd>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Completed</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-200">{{ report.summary.courses_completed }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Avg Trivia Score</dt>
-                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ report.summary.average_trivia_score }}%</dd>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Avg Trivia Score</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-200">{{ report.summary.average_trivia_score }}%</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Interactions</dt>
-                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ report.summary.total_interactions }}</dd>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Interactions</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-200">{{ report.summary.total_interactions }}</dd>
                 </div>
             </div>
 
             <!-- Attendance Summary -->
-            <div v-if="attendanceSummary" class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div v-if="attendanceSummary" class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <button @click.prevent="toggleSection('attendance')" class="flex w-full items-center justify-between p-6">
-                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-300">Attendance</h2>
+                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-200">Attendance</h2>
                     <ChevronDownIcon :class="['h-5 w-5 text-beach-text-light transition-transform', openSections.attendance ? 'rotate-180' : '']"/>
                 </button>
-                <div v-if="openSections.attendance" class="border-t border-gray-200 dark:border-neutral-600 p-6">
+                <div v-if="openSections.attendance" class="border-t border-gray-200 dark:border-neutral-700 p-6">
                     <div class="grid grid-cols-2 gap-3 sm:grid-cols-5 mb-4">
                         <div class="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                             <dd class="text-xl font-semibold text-green-600 dark:text-green-400">{{ attendanceSummary.present }}</dd>
@@ -74,25 +74,25 @@
                             <dt class="text-xs text-orange-700 dark:text-orange-400">Excused</dt>
                         </div>
                         <div class="text-center p-3 bg-gray-50 dark:bg-neutral-700 rounded-lg col-span-2 sm:col-span-1">
-                            <dd class="text-xl font-semibold text-beach-text dark:text-neutral-300">{{ attendanceSummary.total_attendance_days }}</dd>
+                            <dd class="text-xl font-semibold text-beach-text dark:text-neutral-200">{{ attendanceSummary.total_attendance_days }}</dd>
                             <dt class="text-xs text-beach-text-light dark:text-neutral-400">Total</dt>
                         </div>
                     </div>
 
                     <div v-if="attendanceLog.length > 0" class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-300 dark:divide-neutral-700">
-                            <thead class="bg-gray-50 dark:bg-neutral-600">
+                            <thead class="bg-gray-50 dark:bg-neutral-800">
                                 <tr>
-                                    <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Date</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Type</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Notes</th>
+                                    <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Date</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Type</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Notes</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
+                            <tbody class="divide-y divide-gray-200 bg-white dark:bg-primary-gray dark:divide-neutral-600">
                                 <tr v-for="entry in attendanceLog" :key="entry.date">
-                                    <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm text-beach-text dark:text-primary-gray">{{ entry.date }}</td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">{{ entry.label }}</td>
-                                    <td class="px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">{{ entry.notes || 'N/A' }}</td>
+                                    <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm text-beach-text dark:text-neutral-400">{{ entry.date }}</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">{{ entry.label }}</td>
+                                    <td class="px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">{{ entry.notes || 'N/A' }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -102,28 +102,28 @@
             </div>
 
             <!-- Daily Activity Log -->
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <button @click.prevent="toggleSection('activity')" class="flex w-full items-center justify-between p-6">
-                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-300">Daily Activity Log</h2>
+                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-200">Daily Activity Log</h2>
                     <ChevronDownIcon :class="['h-5 w-5 text-beach-text-light transition-transform', openSections.activity ? 'rotate-180' : '']"/>
                 </button>
-                <div v-if="openSections.activity" class="border-t border-gray-200 dark:border-neutral-600">
+                <div v-if="openSections.activity" class="border-t border-gray-200 dark:border-neutral-700">
                     <div v-if="activityLog.length > 0" class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-300 dark:divide-neutral-700">
-                            <thead class="bg-gray-50 dark:bg-neutral-600">
+                            <thead class="bg-gray-50 dark:bg-neutral-800">
                                 <tr>
-                                    <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Date</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Duration</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Sessions</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Reading Materials</th>
+                                    <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Date</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Duration</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Sessions</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Reading Materials</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
+                            <tbody class="divide-y divide-gray-200 bg-white dark:bg-primary-gray dark:divide-neutral-600">
                                 <tr v-for="entry in activityLog" :key="entry.date">
-                                    <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm text-beach-text dark:text-primary-gray">{{ entry.date }}</td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">{{ formatDuration(entry.total_seconds) }}</td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">{{ entry.sessions }}</td>
-                                    <td class="px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">{{ entry.courses_studied.join(', ') || 'N/A' }}</td>
+                                    <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm text-beach-text dark:text-neutral-400">{{ entry.date }}</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">{{ formatDuration(entry.total_seconds) }}</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">{{ entry.sessions }}</td>
+                                    <td class="px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">{{ entry.courses_studied.join(', ') || 'N/A' }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -133,19 +133,19 @@
             </div>
 
             <!-- Course Progress -->
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <button @click.prevent="toggleSection('courses')" class="flex w-full items-center justify-between p-6">
-                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-300">Course Progress & Reading Materials</h2>
+                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-200">Course Progress & Reading Materials</h2>
                     <ChevronDownIcon :class="['h-5 w-5 text-beach-text-light transition-transform', openSections.courses ? 'rotate-180' : '']"/>
                 </button>
-                <div v-if="openSections.courses" class="border-t border-gray-200 dark:border-neutral-600">
+                <div v-if="openSections.courses" class="border-t border-gray-200 dark:border-neutral-700">
                     <div v-if="courseProgress.length > 0" class="divide-y divide-gray-200 dark:divide-neutral-600">
                         <div v-for="course in courseProgress" :key="course.title" class="p-6">
                             <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-300">{{ course.title }}</h3>
+                                <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-200">{{ course.title }}</h3>
                                 <span class="text-sm text-beach-text-light dark:text-neutral-400">{{ course.progress }}%</span>
                             </div>
-                            <div class="mt-2 h-2 w-full rounded-full bg-gray-200 dark:bg-neutral-600">
+                            <div class="mt-2 h-2 w-full rounded-full bg-gray-200 dark:bg-neutral-700">
                                 <div class="h-2 rounded-full bg-beach-teal" :style="{ width: course.progress + '%' }"></div>
                             </div>
                             <div class="mt-2 flex gap-4 text-xs text-beach-text-light dark:text-neutral-400">
@@ -167,20 +167,20 @@
             </div>
 
             <!-- Assessment Results -->
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <button @click.prevent="toggleSection('assessments')" class="flex w-full items-center justify-between p-6">
-                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-300">Assessment Results</h2>
+                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-200">Assessment Results</h2>
                     <ChevronDownIcon :class="['h-5 w-5 text-beach-text-light transition-transform', openSections.assessments ? 'rotate-180' : '']"/>
                 </button>
-                <div v-if="openSections.assessments" class="border-t border-gray-200 dark:border-neutral-600">
+                <div v-if="openSections.assessments" class="border-t border-gray-200 dark:border-neutral-700">
                     <div v-if="assessmentResults.length > 0" class="divide-y divide-gray-200 dark:divide-neutral-600">
                         <div v-for="assessment in assessmentResults" :key="assessment.course_title" class="p-6">
                             <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-300">{{ assessment.course_title }}</h3>
+                                <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-200">{{ assessment.course_title }}</h3>
                                 <span class="text-sm font-medium text-beach-text-light dark:text-neutral-400">Avg: {{ assessment.average }}%</span>
                             </div>
                             <div class="mt-3 flex flex-wrap gap-2">
-                                <span v-for="(score, key) in assessment.scores" :key="key" class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-neutral-600 dark:text-neutral-300">
+                                <span v-for="(score, key) in assessment.scores" :key="key" class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-neutral-800 dark:text-neutral-200">
                                     {{ formatScoreKey(key) }}: {{ score.score ?? score }}%
                                 </span>
                             </div>
@@ -191,26 +191,26 @@
             </div>
 
             <!-- Student Interactions -->
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <button @click.prevent="toggleSection('interactions')" class="flex w-full items-center justify-between p-6">
-                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-300">Student Interactions</h2>
+                    <h2 class="text-base font-semibold text-beach-text dark:text-neutral-200">Student Interactions</h2>
                     <ChevronDownIcon :class="['h-5 w-5 text-beach-text-light transition-transform', openSections.interactions ? 'rotate-180' : '']"/>
                 </button>
-                <div v-if="openSections.interactions" class="border-t border-gray-200 dark:border-neutral-600">
+                <div v-if="openSections.interactions" class="border-t border-gray-200 dark:border-neutral-700">
                     <div v-if="interactionLog.length > 0" class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-300 dark:divide-neutral-700">
-                            <thead class="bg-gray-50 dark:bg-neutral-600">
+                            <thead class="bg-gray-50 dark:bg-neutral-800">
                                 <tr>
-                                    <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Date</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Question</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-300">Word Count</th>
+                                    <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Date</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Question</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-beach-text dark:text-neutral-200">Word Count</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200 bg-white dark:bg-neutral-500 dark:divide-neutral-600">
+                            <tbody class="divide-y divide-gray-200 bg-white dark:bg-primary-gray dark:divide-neutral-600">
                                 <tr v-for="(interaction, i) in interactionLog" :key="i">
-                                    <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm text-beach-text dark:text-primary-gray">{{ interaction.date }}</td>
-                                    <td class="px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray max-w-md truncate">{{ interaction.question }}</td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-primary-gray">{{ interaction.word_count }}</td>
+                                    <td class="whitespace-nowrap py-4 pl-6 pr-3 text-sm text-beach-text dark:text-neutral-400">{{ interaction.date }}</td>
+                                    <td class="px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400 max-w-md truncate">{{ interaction.question }}</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-beach-text-light dark:text-neutral-400">{{ interaction.word_count }}</td>
                                 </tr>
                             </tbody>
                         </table>

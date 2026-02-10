@@ -4,7 +4,7 @@
     <div class="max-w-7xl mx-auto pb-20 sm:px-8">
         <form @submit.prevent="submit" class="flex items-center mt-6 relative">
             <TextInput
-                class="py-2 px-6 text-xl w-full font-bold rounded-full shadow-lg"
+                class="py-2 px-6 text-xl w-full font-bold rounded-full shadow-lg dark:shadow-neutral-900/50"
                 placeholder="Ask a question or tell us what you want to learn about..."
                 v-model="form.question"
                 @change="form.question = $event.target.value"

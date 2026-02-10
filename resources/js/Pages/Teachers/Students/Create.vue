@@ -8,10 +8,10 @@
                 <p class="text-white">To get started you will need to add a student which you can do with the form below.</p>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-neutral-800 dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">Create Student</h1>
+                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-200">Create Student</h1>
                         <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">
                             Create a new student.
                         </p>

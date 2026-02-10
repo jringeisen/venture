@@ -43,7 +43,7 @@
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                    <span class="ms-2 text-sm text-gray-600 dark:text-neutral-400">Remember me</span>
                 </label>
             </div>
 
@@ -51,7 +51,7 @@
                 <Link
                     v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="underline text-sm text-beach-text-light hover:text-beach-text rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-beach-teal"
+                    class="underline text-sm text-beach-text-light hover:text-beach-text dark:text-beach-teal-light rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-beach-teal"
                 >
                     Forgot your password?
                 </Link>

@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-4 sticky top-24">
-        <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-4">Course Content</h3>
+    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 p-4 sticky top-24">
+        <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200 mb-4">Course Content</h3>
         <div class="space-y-2">
             <div v-for="prompt in coursePrompts" :key="prompt.id">
                 <!-- Week Header (collapsible) -->
@@ -11,8 +11,8 @@
                         prompt.week_number === weekNumber
                             ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-900 dark:text-teal-100'
                             : canAccessWeek(prompt.week_number)
-                                ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-beach-text dark:text-white'
-                                : 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                                ? 'hover:bg-gray-100 dark:hover:bg-neutral-800 text-beach-text dark:text-neutral-200'
+                                : 'text-gray-400 dark:text-neutral-600 cursor-not-allowed'
                     ]"
                 >
                     <div class="flex items-center">
@@ -23,8 +23,8 @@
                                 : isWeekFullyCompleted(prompt.week_number)
                                     ? 'bg-green-500 text-white'
                                     : canAccessWeek(prompt.week_number)
-                                        ? 'bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-300'
-                                        : 'bg-gray-100 dark:bg-gray-700 text-gray-400'
+                                        ? 'bg-gray-200 dark:bg-neutral-700 text-gray-600 dark:text-neutral-200'
+                                        : 'bg-gray-100 dark:bg-neutral-800 text-gray-400'
                         ]">
                             <svg v-if="isWeekFullyCompleted(prompt.week_number)" class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
@@ -33,13 +33,13 @@
                         </span>
                         <div class="min-w-0 flex-1">
                             <p class="text-sm font-medium truncate">Week {{ prompt.week_number }}</p>
-                            <p class="text-xs text-beach-text-light dark:text-gray-400 truncate">{{ prompt.title }}</p>
+                            <p class="text-xs text-beach-text-light dark:text-neutral-400 truncate">{{ prompt.title }}</p>
                         </div>
                     </div>
                     <svg v-if="canAccessWeek(prompt.week_number)" :class="['w-4 h-4 transition-transform', expandedWeeks.includes(prompt.week_number) ? 'rotate-180' : '']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
-                    <svg v-else class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg v-else class="w-4 h-4 text-neutral-400 dark:text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                     </svg>
                 </button>
@@ -56,8 +56,8 @@
                             prompt.week_number === weekNumber && day.day_number === dayNumber
                                 ? 'bg-teal-100 dark:bg-teal-800 text-teal-900 dark:text-teal-100'
                                 : canAccessDay(prompt.week_number, day.day_number)
-                                    ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-beach-text-light dark:text-gray-300'
-                                    : 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                                    ? 'hover:bg-gray-100 dark:hover:bg-neutral-800 text-beach-text-light dark:text-neutral-200'
+                                    : 'text-gray-400 dark:text-neutral-600 cursor-not-allowed'
                         ]"
                     >
                         <div class="flex items-center">
@@ -67,7 +67,7 @@
                                     ? 'bg-green-500 text-white'
                                     : prompt.week_number === weekNumber && day.day_number === dayNumber
                                         ? 'bg-beach-teal text-white'
-                                        : 'bg-gray-200 dark:bg-gray-600 text-beach-text-light dark:text-gray-400'
+                                        : 'bg-gray-200 dark:bg-neutral-700 text-beach-text-light dark:text-neutral-400'
                             ]">
                                 <svg v-if="isDayCompleted(prompt.week_number, day.day_number)" class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
@@ -89,8 +89,8 @@
                             prompt.week_number === weekNumber
                                 ? 'bg-teal-100 dark:bg-teal-800 text-teal-900 dark:text-teal-100'
                                 : canAccessWeek(prompt.week_number)
-                                    ? 'hover:bg-gray-100 dark:hover:bg-gray-700 text-beach-text-light dark:text-gray-300'
-                                    : 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                                    ? 'hover:bg-gray-100 dark:hover:bg-neutral-800 text-beach-text-light dark:text-neutral-200'
+                                    : 'text-gray-400 dark:text-neutral-600 cursor-not-allowed'
                         ]"
                     >
                         View Week Content

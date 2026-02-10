@@ -7,9 +7,9 @@
                 </Link>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text mb-6">
+                    <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200 mb-6">
                         Week {{ prompt.week_number }}, Day {{ day.day_number }}: {{ day.title }}
                     </h3>
 
@@ -59,12 +59,12 @@
                             </p>
 
                             <!-- Streaming preview -->
-                            <div v-if="isGenerating && streamingContent" class="mt-2 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div v-if="isGenerating && streamingContent" class="mt-2 p-4 bg-gray-50 dark:bg-primary-dark-gray rounded-lg border border-gray-200 dark:border-neutral-700">
                                 <div class="flex items-center gap-2 mb-2">
                                     <div class="animate-spin h-4 w-4 border-2 border-beach-teal border-t-transparent rounded-full"></div>
                                     <span class="text-sm font-medium text-beach-text-light">Generating content...</span>
                                 </div>
-                                <pre class="text-xs text-gray-600 whitespace-pre-wrap max-h-48 overflow-y-auto font-mono">{{ streamingContent.slice(-1000) }}</pre>
+                                <pre class="text-xs text-gray-600 dark:text-neutral-400 whitespace-pre-wrap max-h-48 overflow-y-auto font-mono">{{ streamingContent.slice(-1000) }}</pre>
                             </div>
 
                             <TiptapEditor v-if="!isGenerating" v-model="form.content" class="mt-2" placeholder="Write your day content here..."/>
@@ -91,7 +91,7 @@
                         <div>
                             <InputLabel value="Trivia Questions"/>
                             <div class="mt-2 space-y-4">
-                                <div v-for="(question, qIndex) in form.trivia_questions" :key="qIndex" class="p-4 bg-gray-50 rounded-lg">
+                                <div v-for="(question, qIndex) in form.trivia_questions" :key="qIndex" class="p-4 bg-gray-50 dark:bg-primary-dark-gray rounded-lg">
                                     <div class="flex justify-between items-start mb-3">
                                         <span class="text-sm font-medium text-beach-text-light">Question {{ qIndex + 1 }}</span>
                                         <button type="button" @click="removeQuestion(qIndex)" class="text-red-600 hover:text-red-900">
@@ -107,8 +107,8 @@
                                             <TextInput v-model="question.option_d" type="text" placeholder="Option D" class="block w-full"/>
                                         </div>
                                         <div>
-                                            <label class="text-sm text-gray-600">Correct Answer</label>
-                                            <select v-model="question.correct_answer" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                            <label class="text-sm text-gray-600 dark:text-neutral-400">Correct Answer</label>
+                                            <select v-model="question.correct_answer" class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-700 dark:bg-primary-dark-gray dark:text-neutral-200 shadow-sm">
                                                 <option :value="0">A</option>
                                                 <option :value="1">B</option>
                                                 <option :value="2">C</option>

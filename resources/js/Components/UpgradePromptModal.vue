@@ -11,7 +11,7 @@
                 <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">
                     {{ featureMessage }}
                 </p>
-                <p class="mt-1 text-xs text-beach-text-light dark:text-neutral-500">
+                <p class="mt-1 text-xs text-beach-text-light dark:text-neutral-400">
                     You're currently on the <strong>{{ currentPlan }}</strong> plan.
                 </p>
             </div>
@@ -19,7 +19,7 @@
                 <a href="/#pricing" class="inline-flex items-center px-4 py-2 bg-beach-teal border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-beach-teal-dark transition-colors">
                     View Plans
                 </a>
-                <button @click="$emit('close')" class="inline-flex items-center px-4 py-2 bg-white dark:bg-neutral-700 border border-gray-300 dark:border-neutral-900 rounded-md font-semibold text-xs text-gray-700 dark:text-neutral-400 uppercase tracking-widest shadow-sm hover:bg-gray-50 transition-colors">
+                <button @click="$emit('close')" class="inline-flex items-center px-4 py-2 bg-white dark:bg-primary-gray border border-gray-300 dark:border-neutral-700 rounded-md font-semibold text-xs text-gray-700 dark:text-neutral-200 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
                     Maybe Later
                 </button>
             </div>

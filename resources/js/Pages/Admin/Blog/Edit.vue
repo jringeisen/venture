@@ -7,9 +7,9 @@
                 </Link>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text mb-6">Edit Blog Post</h3>
+                    <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200 mb-6">Edit Blog Post</h3>
 
                     <form @submit.prevent="submit" class="space-y-6">
                         <div>
@@ -20,7 +20,7 @@
 
                         <div>
                             <InputLabel for="blog_category_id" value="Category"/>
-                            <select id="blog_category_id" v-model="form.blog_category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                            <select id="blog_category_id" v-model="form.blog_category_id" class="mt-1 block w-full rounded-md border-gray-300 dark:border-neutral-700 dark:bg-primary-dark-gray dark:text-neutral-200 shadow-sm">
                                 <option :value="null">No Category</option>
                                 <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
                             </select>

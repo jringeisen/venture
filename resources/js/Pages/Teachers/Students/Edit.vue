@@ -3,10 +3,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+            <div class="bg-white shadow-sm border border-slate-100 p-8 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-400">Edit {{ student.name }}</h1>
+                        <h1 class="text-base font-semibold leading-6 text-beach-text dark:text-neutral-200">Edit {{ student.name }}</h1>
                         <p class="mt-2 text-sm text-beach-text-light dark:text-neutral-400">Update this students details.</p>
                     </div>
                 </div>

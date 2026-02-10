@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-200 group">
+    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 overflow-hidden hover:shadow-md transition-all duration-200 group">
         <div class="p-6">
             <div class="flex items-start space-x-4">
                 <!-- Course Image -->
@@ -24,7 +24,7 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-start justify-between mb-2">
                         <div class="flex-1">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white line-clamp-1 group-hover:text-beach-teal dark:group-hover:text-beach-teal-light transition-colors">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-neutral-200 line-clamp-1 group-hover:text-beach-teal dark:group-hover:text-beach-teal-light transition-colors">
                                 {{ course.title }}
                             </h3>
                             <div v-if="course.subject_category || course.difficulty_level || hasAgeGroup" class="flex items-center flex-wrap gap-2 mt-1">
@@ -41,12 +41,12 @@
                         </div>
                     </div>
 
-                    <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-3">
+                    <p class="text-gray-600 dark:text-neutral-400 text-sm line-clamp-2 mb-3">
                         {{ course.description }}
                     </p>
 
                     <!-- Course Stats -->
-                    <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-neutral-400 mb-4">
                         <div class="flex items-center">
                             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>

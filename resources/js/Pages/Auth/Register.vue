@@ -67,7 +67,7 @@
             <div class="mt-4">
                 <InputLabel for="referred_by" value="Referred By" />
 
-                <select v-model="form.referred_by" class="w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm">
+                <select v-model="form.referred_by" class="w-full border-gray-300 focus:border-beach-teal focus:ring-beach-teal rounded-md shadow-sm dark:bg-primary-gray dark:border-neutral-700 dark:text-neutral-200">
                     <option value="" disabled>Choose an option:</option>
                     <option value="facebook">Facebook</option>
                     <option value="google">Google</option>
@@ -102,8 +102,8 @@
                         required
                         autocomplete="terms-of-service"
                     />
-                    <label for="password_confirmation" class="text-sm">
-                        I agree to the <Link :href="route('terms-of-service')" class="text-dark-gray font-bold">Terms of Service</Link> and <Link :href="route('privacy-policy')" class="text-dark-gray font-bold">Privacy Policy</Link>
+                    <label for="password_confirmation" class="text-sm dark:text-neutral-200">
+                        I agree to the <Link :href="route('terms-of-service')" class="text-dark-gray font-bold dark:text-beach-teal-light">Terms of Service</Link> and <Link :href="route('privacy-policy')" class="text-dark-gray font-bold dark:text-beach-teal-light">Privacy Policy</Link>
                     </label>
                 </div>
 
@@ -113,7 +113,7 @@
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('parent.login')"
-                    class="underline text-sm text-beach-text-light hover:text-beach-text rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-beach-teal"
+                    class="underline text-sm text-beach-text-light hover:text-beach-text dark:text-beach-teal-light rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-beach-teal"
                 >
                     Already registered?
                 </Link>

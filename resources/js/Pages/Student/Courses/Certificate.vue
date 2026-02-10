@@ -1,13 +1,13 @@
 <template>
     <Head :title="`Certificate - ${course.title}`" />
 
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 py-8">
+    <div class="min-h-screen bg-gray-100 dark:bg-primary-dark-gray py-8">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Actions Bar -->
             <div class="mb-6 flex items-center justify-between">
                 <button
                     @click="router.visit(`/student/courses/${course.id}`)"
-                    class="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    class="inline-flex items-center text-gray-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-neutral-200 transition-colors"
                 >
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -17,7 +17,7 @@
                 <div class="flex space-x-3">
                     <button
                         @click="printCertificate"
-                        class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-lg text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                        class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-neutral-700 text-sm font-medium rounded-lg text-beach-text-light dark:text-neutral-400 bg-white dark:bg-primary-gray hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                     >
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
@@ -115,7 +115,7 @@
             </div>
 
             <!-- Certificate Info -->
-            <div class="mt-6 text-center text-sm text-beach-text-light dark:text-gray-400">
+            <div class="mt-6 text-center text-sm text-beach-text-light dark:text-neutral-400">
                 <p>This certificate was issued on {{ completedAt }} to recognize the successful completion of the course.</p>
                 <p class="mt-1">Verify this certificate using ID: <span class="font-mono">{{ certificateId }}</span></p>
             </div>

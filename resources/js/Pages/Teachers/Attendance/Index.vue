@@ -5,14 +5,14 @@
         <!-- Header -->
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <h1 class="text-2xl font-bold text-beach-text dark:text-neutral-300">Attendance</h1>
+                <h1 class="text-2xl font-bold text-beach-text dark:text-neutral-200">Attendance</h1>
                 <p class="text-sm text-beach-text-light dark:text-neutral-400">Track and manage student attendance records.</p>
             </div>
             <div v-if="students.length > 1">
                 <select
                     v-model="selectedStudent"
                     @change="navigateToStudent"
-                    class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-beach-teal focus:ring-beach-teal dark:bg-neutral-800 dark:border-neutral-600 dark:text-neutral-300 sm:text-sm"
+                    class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-beach-teal focus:ring-beach-teal dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200 sm:text-sm"
                 >
                     <option v-for="student in students" :key="student.id" :value="student.id">
                         {{ student.name }}
@@ -22,23 +22,23 @@
         </div>
 
         <!-- Month Navigation -->
-        <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700">
+        <div class="bg-white shadow-sm border border-slate-100 rounded-lg dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
             <div class="flex items-center justify-between p-4">
-                <button @click="prevMonth" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 text-beach-text-light dark:text-neutral-400">
+                <button @click="prevMonth" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800 text-beach-text-light dark:text-neutral-400">
                     <ChevronLeftIcon class="h-5 w-5" />
                 </button>
-                <h2 class="text-lg font-semibold text-beach-text dark:text-neutral-300">
+                <h2 class="text-lg font-semibold text-beach-text dark:text-neutral-200">
                     {{ monthName }} {{ currentYear }}
                 </h2>
-                <button @click="nextMonth" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 text-beach-text-light dark:text-neutral-400">
+                <button @click="nextMonth" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800 text-beach-text-light dark:text-neutral-400">
                     <ChevronRightIcon class="h-5 w-5" />
                 </button>
             </div>
 
             <!-- Calendar Grid -->
-            <div class="border-t border-gray-200 dark:border-neutral-600">
+            <div class="border-t border-gray-200 dark:border-neutral-700">
                 <!-- Day Headers -->
-                <div class="grid grid-cols-7 text-center text-xs font-medium text-beach-text-light dark:text-neutral-500 border-b border-gray-200 dark:border-neutral-600">
+                <div class="grid grid-cols-7 text-center text-xs font-medium text-beach-text-light dark:text-neutral-400 border-b border-gray-200 dark:border-neutral-700">
                     <div v-for="day in weekDays" :key="day" class="py-2">{{ day }}</div>
                 </div>
 
@@ -50,7 +50,7 @@
                         class="min-h-[80px] sm:min-h-[100px] border-b border-r border-gray-100 dark:border-neutral-700 p-1 sm:p-2"
                         :class="{
                             'bg-gray-50 dark:bg-neutral-800/50': !day.isCurrentMonth,
-                            'cursor-pointer hover:bg-gray-50 dark:hover:bg-neutral-700/50': day.isCurrentMonth,
+                            'cursor-pointer hover:bg-gray-50 dark:hover:bg-neutral-800/50': day.isCurrentMonth,
                         }"
                         @click="day.isCurrentMonth ? handleDayClick(day) : null"
                     >
@@ -59,7 +59,7 @@
                                 class="text-xs sm:text-sm"
                                 :class="{
                                     'text-gray-300 dark:text-neutral-600': !day.isCurrentMonth,
-                                    'text-beach-text dark:text-neutral-300': day.isCurrentMonth && !day.isToday,
+                                    'text-beach-text dark:text-neutral-200': day.isCurrentMonth && !day.isToday,
                                     'font-bold text-beach-teal': day.isToday,
                                 }"
                             >
@@ -82,56 +82,56 @@
         <!-- Year-to-Date Summary -->
         <div v-if="yearSummary">
             <div class="flex items-center gap-2 mb-3">
-                <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-300">Year-to-Date</h3>
-                <span class="text-xs text-beach-text-light dark:text-neutral-500">{{ schoolYearLabel }}</span>
+                <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-200">Year-to-Date</h3>
+                <span class="text-xs text-beach-text-light dark:text-neutral-400">{{ schoolYearLabel }}</span>
             </div>
             <div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Present</dt>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Present</dt>
                     <dd class="mt-1 text-2xl font-semibold text-green-600 dark:text-green-400">{{ yearSummary.present }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Field Trips</dt>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Field Trips</dt>
                     <dd class="mt-1 text-2xl font-semibold text-blue-600 dark:text-blue-400">{{ yearSummary.field_trip }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Offline Days</dt>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Offline Days</dt>
                     <dd class="mt-1 text-2xl font-semibold text-purple-600 dark:text-purple-400">{{ yearSummary.offline_day }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Excused</dt>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Excused</dt>
                     <dd class="mt-1 text-2xl font-semibold text-orange-600 dark:text-orange-400">{{ yearSummary.excused_absence }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 col-span-2 sm:col-span-1">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Total Attendance</dt>
-                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ yearSummary.total_attendance_days }}</dd>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50 col-span-2 sm:col-span-1">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Total Attendance</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-200">{{ yearSummary.total_attendance_days }}</dd>
                 </div>
             </div>
         </div>
 
         <!-- Monthly Summary -->
         <div v-if="summary">
-            <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-300 mb-3">Monthly</h3>
+            <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-200 mb-3">Monthly</h3>
             <div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Present</dt>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Present</dt>
                     <dd class="mt-1 text-2xl font-semibold text-green-600 dark:text-green-400">{{ summary.present }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Field Trips</dt>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Field Trips</dt>
                     <dd class="mt-1 text-2xl font-semibold text-blue-600 dark:text-blue-400">{{ summary.field_trip }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Offline Days</dt>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Offline Days</dt>
                     <dd class="mt-1 text-2xl font-semibold text-purple-600 dark:text-purple-400">{{ summary.offline_day }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Excused</dt>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Excused</dt>
                     <dd class="mt-1 text-2xl font-semibold text-orange-600 dark:text-orange-400">{{ summary.excused_absence }}</dd>
                 </div>
-                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 col-span-2 sm:col-span-1">
-                    <dt class="text-xs text-beach-text-light dark:text-neutral-500">Total Attendance</dt>
-                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-300">{{ summary.total_attendance_days }}</dd>
+                <div class="rounded-lg bg-white p-4 shadow-sm border border-slate-100 dark:bg-primary-gray dark:border-neutral-700 dark:shadow-neutral-900/50 col-span-2 sm:col-span-1">
+                    <dt class="text-xs text-beach-text-light dark:text-neutral-400">Total Attendance</dt>
+                    <dd class="mt-1 text-2xl font-semibold text-beach-text dark:text-neutral-200">{{ summary.total_attendance_days }}</dd>
                 </div>
             </div>
         </div>
@@ -140,7 +140,7 @@
     <!-- Add/Edit Attendance Modal -->
     <Modal :show="showModal" max-width="lg" @close="closeModal">
         <div class="p-6">
-            <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-300 mb-4">
+            <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200 mb-4">
                 {{ editingAttendance ? 'Edit Attendance' : 'Add Attendance' }}
             </h3>
             <p class="text-sm text-beach-text-light dark:text-neutral-400 mb-4">
@@ -153,7 +153,7 @@
                     <select
                         id="type"
                         v-model="modalForm.type"
-                        class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-beach-teal focus:ring-beach-teal dark:bg-neutral-800 dark:border-neutral-600 dark:text-neutral-300 sm:text-sm"
+                        class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-beach-teal focus:ring-beach-teal dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200 sm:text-sm"
                     >
                         <option v-for="t in attendanceTypes" :key="t.value" :value="t.value">{{ t.label }}</option>
                     </select>
@@ -190,7 +190,7 @@
         <div class="p-6">
             <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-300">
+                    <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200">
                         Daily Overview
                     </h3>
                     <p class="text-sm text-beach-text-light dark:text-neutral-400">{{ selectedDate }}</p>
@@ -207,7 +207,7 @@
 
             <div v-if="overviewAttendance?.notes" class="mb-4 p-3 bg-gray-50 dark:bg-neutral-800 rounded-lg">
                 <p class="text-sm text-beach-text-light dark:text-neutral-400">
-                    <span class="font-medium text-beach-text dark:text-neutral-300">Notes:</span> {{ overviewAttendance.notes }}
+                    <span class="font-medium text-beach-text dark:text-neutral-200">Notes:</span> {{ overviewAttendance.notes }}
                 </p>
             </div>
 
@@ -225,16 +225,16 @@
             <div v-else-if="dailyOverview" class="space-y-4">
                 <!-- Active Time -->
                 <div class="p-3 bg-gray-50 dark:bg-neutral-800 rounded-lg">
-                    <h4 class="text-sm font-medium text-beach-text dark:text-neutral-300 mb-1">Active Time</h4>
+                    <h4 class="text-sm font-medium text-beach-text dark:text-neutral-200 mb-1">Active Time</h4>
                     <p class="text-xl font-semibold text-beach-teal">{{ formatDuration(dailyOverview.active_time_seconds) }}</p>
                 </div>
 
                 <!-- Courses -->
                 <div v-if="dailyOverview.courses.length > 0">
-                    <h4 class="text-sm font-medium text-beach-text dark:text-neutral-300 mb-2">Courses Studied</h4>
+                    <h4 class="text-sm font-medium text-beach-text dark:text-neutral-200 mb-2">Courses Studied</h4>
                     <div class="space-y-2">
                         <div v-for="course in dailyOverview.courses" :key="course.title" class="flex items-center justify-between p-2 bg-gray-50 dark:bg-neutral-800 rounded-lg">
-                            <span class="text-sm text-beach-text dark:text-neutral-300">{{ course.title }}</span>
+                            <span class="text-sm text-beach-text dark:text-neutral-200">{{ course.title }}</span>
                             <span class="text-xs text-beach-text-light dark:text-neutral-400">{{ formatDuration(course.duration_seconds) }}</span>
                         </div>
                     </div>
@@ -243,12 +243,12 @@
 
                 <!-- Questions -->
                 <div v-if="dailyOverview.questions.length > 0">
-                    <h4 class="text-sm font-medium text-beach-text dark:text-neutral-300 mb-2">
+                    <h4 class="text-sm font-medium text-beach-text dark:text-neutral-200 mb-2">
                         Questions Asked ({{ dailyOverview.question_count }})
                     </h4>
                     <div class="space-y-2 max-h-48 overflow-y-auto">
                         <div v-for="(q, i) in dailyOverview.questions" :key="i" class="p-2 bg-gray-50 dark:bg-neutral-800 rounded-lg">
-                            <p class="text-sm text-beach-text dark:text-neutral-300 truncate">{{ q.question }}</p>
+                            <p class="text-sm text-beach-text dark:text-neutral-200 truncate">{{ q.question }}</p>
                             <p class="text-xs text-beach-text-light dark:text-neutral-400">{{ q.time }}</p>
                         </div>
                     </div>
@@ -365,7 +365,7 @@ const typeColorClass = (type) => {
         field_trip: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
         offline_day: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
         excused_absence: 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400',
-    }[type] || 'bg-gray-100 text-gray-800 dark:bg-neutral-700 dark:text-neutral-300';
+    }[type] || 'bg-gray-100 text-gray-800 dark:bg-neutral-700 dark:text-neutral-200';
 };
 
 const navigateMonth = (year, month) => {

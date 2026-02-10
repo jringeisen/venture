@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-200 group">
+    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 overflow-hidden hover:shadow-md transition-all duration-200 group">
         <!-- Course Image -->
         <div class="relative h-48 overflow-hidden">
             <img 
@@ -25,7 +25,7 @@
         <!-- Course Content -->
         <div class="p-6">
             <div class="flex items-start justify-between mb-3">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-neutral-200 line-clamp-2 group-hover:text-beach-teal dark:group-hover:text-beach-teal-light transition-colors">
                     {{ course.title }}
                 </h3>
                 <div class="ml-2 shrink-0">
@@ -35,19 +35,19 @@
                 </div>
             </div>
 
-            <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">
+            <p class="text-gray-600 dark:text-neutral-400 text-sm line-clamp-3 mb-4">
                 {{ course.description }}
             </p>
 
             <!-- Course Stats -->
             <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
-                <div class="flex items-center text-gray-500 dark:text-gray-400">
+                <div class="flex items-center text-gray-500 dark:text-neutral-400">
                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     {{ course.length_in_weeks }} weeks
                 </div>
-                <div class="flex items-center text-gray-500 dark:text-gray-400">
+                <div class="flex items-center text-gray-500 dark:text-neutral-400">
                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
                     </svg>

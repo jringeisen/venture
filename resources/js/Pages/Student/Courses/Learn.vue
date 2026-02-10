@@ -1,16 +1,16 @@
 <template>
     <Head :title="`${course.title} - Week ${weekNumber}, Day ${dayNumber}`" />
 
-    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-50 dark:bg-primary-dark-gray">
         <!-- Header -->
-        <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
+        <div class="bg-white dark:bg-primary-gray border-b border-gray-200 dark:border-neutral-700 sticky top-0 z-40">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
                     <!-- Left: Course Info with Breadcrumbs -->
                     <div class="flex items-center space-x-4">
                         <button
                             @click="router.visit(`/student/courses/${course.id}`)"
-                            class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                            class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-neutral-400 transition-colors"
                         >
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -18,14 +18,14 @@
                         </button>
                         <div>
                             <!-- Breadcrumbs -->
-                            <nav class="flex items-center space-x-1 text-sm text-beach-text-light dark:text-gray-400 mb-0.5">
-                                <button @click="router.visit('/student/courses')" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors">Courses</button>
+                            <nav class="flex items-center space-x-1 text-sm text-beach-text-light dark:text-neutral-400 mb-0.5">
+                                <button @click="router.visit('/student/courses')" class="hover:text-gray-700 dark:hover:text-neutral-200 transition-colors">Courses</button>
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
-                                <button @click="router.visit(`/student/courses/${course.id}`)" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors truncate max-w-[150px]">{{ course.title }}</button>
+                                <button @click="router.visit(`/student/courses/${course.id}`)" class="hover:text-gray-700 dark:hover:text-neutral-200 transition-colors truncate max-w-[150px]">{{ course.title }}</button>
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
-                                <span class="text-beach-text-light dark:text-gray-200">Week {{ weekNumber }}, Day {{ dayNumber }}</span>
+                                <span class="text-beach-text-light dark:text-neutral-200">Week {{ weekNumber }}, Day {{ dayNumber }}</span>
                             </nav>
-                            <h1 class="text-lg font-semibold text-beach-text dark:text-white">
+                            <h1 class="text-lg font-semibold text-beach-text dark:text-neutral-200">
                                 {{ currentDay?.title || currentWeek?.formatted_title || currentWeek?.title }}
                             </h1>
                         </div>
@@ -34,14 +34,14 @@
                     <!-- Right: Progress & Time -->
                     <div class="flex items-center space-x-4">
                         <!-- Estimated reading time -->
-                        <div v-if="estimatedReadingTime" class="hidden md:flex items-center space-x-2 text-sm text-beach-text-light dark:text-gray-400">
+                        <div v-if="estimatedReadingTime" class="hidden md:flex items-center space-x-2 text-sm text-beach-text-light dark:text-neutral-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                             </svg>
                             <span>~{{ estimatedReadingTime }} min read</span>
                         </div>
                         <!-- Time tracking indicator -->
-                        <div class="hidden sm:flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                        <div class="hidden sm:flex items-center space-x-2 text-sm text-gray-600 dark:text-neutral-400">
                             <svg class="w-4 h-4" :class="{ 'text-green-500': isUserActive && isPageVisible, 'text-gray-400': !isUserActive || !isPageVisible }" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                             </svg>
@@ -49,13 +49,13 @@
                         </div>
                         <!-- Progress bar -->
                         <div class="hidden sm:flex items-center space-x-2">
-                            <div class="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="w-32 bg-gray-200 dark:bg-neutral-700 rounded-full h-2">
                                 <div
                                     class="bg-beach-teal h-2 rounded-full transition-all duration-300"
                                     :style="{ width: `${progressPercent}%` }"
                                 ></div>
                             </div>
-                            <span class="text-sm text-gray-600 dark:text-gray-400">{{ progressPercent }}%</span>
+                            <span class="text-sm text-gray-600 dark:text-neutral-400">{{ progressPercent }}%</span>
                         </div>
                     </div>
                 </div>
@@ -77,21 +77,21 @@
 
                 <!-- Main Content -->
                 <div class="lg:col-span-3">
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <div class="bg-white dark:bg-primary-gray rounded-xl shadow-sm dark:shadow-neutral-900/50 border border-gray-200 dark:border-neutral-700 overflow-hidden">
                         <!-- Day Header -->
-                        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <div class="p-6 border-b border-gray-200 dark:border-neutral-700">
                             <div class="flex items-start justify-between">
                                 <div>
-                                    <h2 class="text-2xl font-bold text-beach-text dark:text-white mb-2">
+                                    <h2 class="text-2xl font-bold text-beach-text dark:text-neutral-200 mb-2">
                                         {{ currentDay?.title || currentWeek?.formatted_title || currentWeek?.title }}
                                     </h2>
-                                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                    <p class="text-gray-600 dark:text-neutral-400 mb-4">
                                         {{ currentDay?.description || currentWeek?.description }}
                                     </p>
 
                                     <!-- Learning Objectives -->
                                     <div v-if="activeObjectives && activeObjectives.length > 0">
-                                        <h3 class="text-sm font-semibold text-beach-text dark:text-white mb-2">Today's Objectives:</h3>
+                                        <h3 class="text-sm font-semibold text-beach-text dark:text-neutral-200 mb-2">Today's Objectives:</h3>
                                         <div class="flex flex-wrap gap-2">
                                             <span
                                                 v-for="objective in activeObjectives"
@@ -110,21 +110,21 @@
                         <div class="p-6">
                             <!-- Content Display -->
                             <div class="mb-6">
-                                <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-4">Lesson Content</h3>
+                                <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200 mb-4">Lesson Content</h3>
 
                                 <!-- Content Output -->
                                 <div
                                     v-if="sanitizedContent"
-                                    class="prose dark:prose-invert max-w-none bg-gray-50 dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700"
+                                    class="prose dark:prose-invert max-w-none bg-gray-50 dark:bg-primary-dark-gray rounded-lg p-6 border border-gray-200 dark:border-neutral-700"
                                     v-html="sanitizedContent"
                                 ></div>
 
                                 <!-- No Content Message -->
                                 <div
                                     v-else
-                                    class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700 text-center"
+                                    class="bg-gray-50 dark:bg-primary-dark-gray rounded-lg p-6 border border-gray-200 dark:border-neutral-700 text-center"
                                 >
-                                    <p class="text-beach-text-light dark:text-gray-400">Content for this lesson is coming soon.</p>
+                                    <p class="text-beach-text-light dark:text-neutral-400">Content for this lesson is coming soon.</p>
                                 </div>
                             </div>
 
@@ -151,7 +151,7 @@
                                         </svg>
                                         {{ completing ? 'Completing...' : isLastDay ? 'Complete Course' : isLastDayOfWeek ? 'Complete Week' : 'Complete Day & Continue' }}
                                     </button>
-                                    <p v-if="activeTrivia?.length > 0 && !triviaIsCompleted" class="text-sm text-beach-text-light dark:text-gray-400 mt-2">
+                                    <p v-if="activeTrivia?.length > 0 && !triviaIsCompleted" class="text-sm text-beach-text-light dark:text-neutral-400 mt-2">
                                         Complete the quiz to continue
                                     </p>
                                 </div>
@@ -160,17 +160,17 @@
                             <!-- Already Completed Message -->
                             <div v-else-if="isDayCompleted(weekNumber, dayNumber) && sanitizedContent" class="text-center py-8">
                                 <div class="text-4xl mb-4">✅</div>
-                                <h3 class="text-lg font-semibold text-beach-text dark:text-white mb-2">Lesson Completed!</h3>
-                                <p class="text-gray-600 dark:text-gray-400 mb-4">You've already completed this lesson.</p>
+                                <h3 class="text-lg font-semibold text-beach-text dark:text-neutral-200 mb-2">Lesson Completed!</h3>
+                                <p class="text-gray-600 dark:text-neutral-400 mb-4">You've already completed this lesson.</p>
                             </div>
 
                             <!-- Bottom Navigation -->
-                            <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <div class="mt-8 pt-6 border-t border-gray-200 dark:border-neutral-700">
                                 <div class="flex items-center justify-between">
                                     <button
                                         v-if="hasPreviousDay"
                                         @click="navigateToPreviousDay"
-                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-beach-text-light dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-beach-text-light dark:text-neutral-400 bg-white dark:bg-primary-gray border border-gray-300 dark:border-neutral-700 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                                     >
                                         <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>

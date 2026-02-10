@@ -7,9 +7,9 @@
                 </Link>
             </div>
 
-            <div class="bg-white shadow-sm border border-slate-100 rounded-lg">
+            <div class="bg-white dark:bg-primary-gray shadow-sm dark:shadow-neutral-900/50 border border-slate-100 dark:border-neutral-700 rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg font-medium text-beach-text mb-6">
+                    <h3 class="text-lg font-medium text-beach-text dark:text-neutral-200 mb-6">
                         Add Day to Week {{ prompt.week_number }}: {{ prompt.title }}
                     </h3>
 
