@@ -23,7 +23,19 @@ class GetQuestionsController extends Controller
                 );
 
             $questions = collect($response['questions'] ?? [])
-                ->map(fn (string $q) => ['question' => $q, 'selected' => false])
+                ->map(function ($q) {
+                    if (is_array($q)) {
+                        return ['question' => $q['question'] ?? (string) ($q[0] ?? ''), 'selected' => false];
+                    }
+
+                    $decoded = json_decode($q, true);
+                    if (is_array($decoded) && isset($decoded['question'])) {
+                        return ['question' => $decoded['question'], 'selected' => false];
+                    }
+
+                    return ['question' => (string) $q, 'selected' => false];
+                })
+                ->filter(fn ($q) => $q['question'] !== '')
                 ->values()
                 ->all();
 
